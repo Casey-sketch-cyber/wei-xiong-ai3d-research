@@ -35,6 +35,8 @@ Figure 3 代表性网格图需要远程 mesh、GPU/nvdiffrast 和渲染依赖。
 
 原 make_submission_materials.py 依据 manuscripts/m03_jcde/ 的固定结构工作。编辑正文后应同步作者栏、checklist、cover letter、PDF 和源文件包；检查 ORCID 的投稿系统要求。
 
+Git 中的投稿目录采用展开保存方式。重复的源文件 ZIP、实验补充 ZIP 与大型 TIFF 已排除；需要实际提交时，从本仓库源文件重建这些打包文件，并按最新期刊要求检查上传顺序。
+
 ## M05 小规模代码检查
 
 不需原始数据的单元检查：

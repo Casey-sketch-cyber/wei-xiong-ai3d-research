@@ -1,0 +1,21 @@
+{
+  "source_experiment_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+  "tolerance": 0.005,
+  "total_cases": 480,
+  "failure_count": 4,
+  "failure_rate": 0.008333333333333333,
+  "by_source": {
+    "llm": 2,
+    "procedural": 2
+  },
+  "by_corruption": {
+    "compound": 4
+  },
+  "by_severity": {
+    "2": 3,
+    "3": 1
+  },
+  "budget_exhaustion_rate_among_failures": 1.0,
+  "generic_better_on_failures": 0,
+  "annealing_better_on_failures": 2
+}

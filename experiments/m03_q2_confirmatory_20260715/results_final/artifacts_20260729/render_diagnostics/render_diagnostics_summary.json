@@ -1,0 +1,17 @@
+{
+  "jobs_requested": 5040,
+  "records": 5040,
+  "success": 5040,
+  "failed": 0,
+  "resolution": 256,
+  "grid_extent": 1.5,
+  "views": [
+    "front",
+    "back",
+    "right",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "normal_similarity_rule": "absolute normal cosine over intersection, zero over silhouette mismatch, averaged over union"
+}

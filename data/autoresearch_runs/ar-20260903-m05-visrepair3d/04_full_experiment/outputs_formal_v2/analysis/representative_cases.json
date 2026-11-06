@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "procedural_4002_premature_reveal_s2_2702200",
+    "corruption": "premature_reveal",
+    "severity": 2,
+    "profile_target": "exhibit_1",
+    "before_loss": 0.2738745261472534,
+    "after_loss": 0.0,
+    "actions": [
+      {
+        "object_id": "screen_exhibit_1",
+        "dx": 0.0,
+        "dy": 2.4000000000000004,
+        "dyaw": 0.0
+      }
+    ]
+  },
+  {
+    "case_id": "qwen25_7b_000_back_facing_s1_1700102",
+    "corruption": "back_facing",
+    "severity": 1,
+    "profile_target": "exhibit_1",
+    "before_loss": 0.16666666666666666,
+    "after_loss": 0.0,
+    "actions": [
+      {
+        "object_id": "exhibit_1",
+        "dx": 0.0,
+        "dy": 0.0,
+        "dyaw": 2.617993877991495
+      }
+    ]
+  },
+  {
+    "case_id": "qwen25_7b_005_compound_s3_1705304",
+    "corruption": "compound",
+    "severity": 3,
+    "profile_target": "exhibit_1",
+    "before_loss": 0.6471425413344605,
+    "after_loss": 0.0013992741265468536,
+    "actions": [
+      {
+        "object_id": "exhibit_0",
+        "dx": 0.0,
+        "dy": 0.0,
+        "dyaw": -2.617993877991495
+      },
+      {
+        "object_id": "screen_exhibit_1",
+        "dx": 0.0,
+        "dy": 2.2,
+        "dyaw": 0.0
+      }
+    ]
+  }
+]

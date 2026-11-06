@@ -1,0 +1,9 @@
+model,scope,records,total_inference_seconds,total_inference_hours,mean_seconds,median_seconds,p95_seconds,median_vertices,median_faces,watertight_fraction,timing_rule
+triposr,all,1020,260.722,0.07242277777777777,0.2556098039215686,0.254,0.26,13916.0,27823.0,0.9764705882352941,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+triposr,main,720,184.24900000000002,0.05118027777777778,0.2559013888888889,0.254,0.26,13983.5,27970.0,0.9819444444444444,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+instantmesh,all,1740,9069.298,2.5192494444444447,5.212240229885058,5.197,5.384049999999999,22951.0,45868.0,,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+instantmesh,main,1440,7518.9490000000005,2.0885969444444448,5.221492361111111,5.208,5.39705,24864.0,49720.0,,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+hunyuan21,all,1740,35660.769,9.905769166666667,20.49469482758621,20.464,20.86705,359698.0,719390.0,0.3758620689655172,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+hunyuan21,main,1440,29527.554,8.202098333333334,20.505245833333333,20.47,20.87805,360352.5,720738.0,0.3729166666666667,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+trellis,all,1740,7215.628,2.004341111111111,4.146912643678161,4.015499999999999,5.1065499999999995,196056.0,392122.0,0.9063218390804598,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction
+trellis,main,1440,5982.82,1.6618944444444443,4.154736111111111,4.021,5.12365,196986.0,393976.0,0.9034722222222222,per-record model inference; InstantMesh includes multiview diffusion and mesh reconstruction

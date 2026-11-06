@@ -1,0 +1,29 @@
+{
+  "primary_models_passing": 0,
+  "primary_requirement_passes": false,
+  "supporting_criteria": {
+    "both_seed_directions": {
+      "passes": false,
+      "detail": "1 stochastic models positive in both seeds"
+    },
+    "both_view_directions": {
+      "passes": false,
+      "detail": "0 models positive at both additional views"
+    },
+    "positive_severity_slope": {
+      "passes": false,
+      "detail": "1 models with positive sketch slope"
+    },
+    "model_style_metric_interaction": {
+      "passes": true,
+      "detail": "primary Holm p=1.02835e-08"
+    }
+  },
+  "supporting_criteria_passing": 1,
+  "supporting_requirement_passes": false,
+  "q2_gate_passes": false,
+  "alpha": 0.01,
+  "bootstrap_seed": 20260715,
+  "bootstrap_replicates": 50000,
+  "n_main_objects": 120
+}

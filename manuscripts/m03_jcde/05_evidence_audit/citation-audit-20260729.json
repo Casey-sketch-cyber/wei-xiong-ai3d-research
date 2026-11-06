@@ -1,0 +1,1062 @@
+{
+  "tex": "D:\\AutoResearch\\manuscripts\\m03_jcde\\01_manuscript\\latex\\main.tex",
+  "bib": "D:\\AutoResearch\\manuscripts\\m03_jcde\\01_manuscript\\latex\\references.bib",
+  "cited_key_count": 39,
+  "bibliography_entry_count": 42,
+  "missing_bib_keys": [],
+  "uncited_bib_keys": [
+    "huang2026unimesh",
+    "wu2026culturalrelics",
+    "yang2025nova3d"
+  ],
+  "semantic_scholar_api_key_configured": false,
+  "source_errors": {},
+  "status_counts": {
+    "verified_two_sources": 39,
+    "verified_one_source": 0,
+    "manual_review": 0
+  },
+  "records": [
+    {
+      "key": "chen2023panic3d",
+      "bib_title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+      "bib_year": "2023",
+      "doi": "10.1109/CVPR52729.2023.02018",
+      "arxiv": "2303.14587",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "cong2025art3d",
+      "bib_title": "Art3D: Training-Free 3D Generation from Flat-Colored Illustration",
+      "bib_year": "2025",
+      "doi": "10.48550/arXiv.2504.10466",
+      "arxiv": "2504.10466",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Art3D: Training-Free 3D Generation from Flat-Colored Illustration",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Art3D: Training-Free 3D Generation from Flat-Colored Illustration",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "deitke2022objaverse",
+      "bib_title": "Objaverse: A Universe of Annotated 3D Objects",
+      "bib_year": "2023",
+      "doi": "10.1109/CVPR52729.2023.01263",
+      "arxiv": "2212.08051",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Objaverse: A Universe of Annotated 3D Objects",
+          "year": 2022,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Objaverse: A Universe of Annotated 3D Objects",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Objaverse: A Universe of Annotated 3D Objects",
+          "year": "2022",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "deitke2023objaversexl",
+      "bib_title": "Objaverse-XL: A Universe of 10M+ 3D Objects",
+      "bib_year": "2023",
+      "doi": "10.48550/arXiv.2307.05663",
+      "arxiv": "2307.05663",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Objaverse-XL: A Universe of 10M+ 3D Objects",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Objaverse-XL: A Universe of 10M+ 3D Objects",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "doris2026cadbench",
+      "bib_title": "CADBench: A Multimodal Benchmark for AI-Assisted CAD Program Generation",
+      "bib_year": "2026",
+      "doi": null,
+      "arxiv": "2605.10873",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "CADBench: A Multimodal Benchmark for AI-Assisted CAD Program Generation",
+          "year": 2026,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "CADBench: A Multimodal Benchmark for AI-Assisted CAD Program Generation",
+          "year": "2026",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "downs2022gso",
+      "bib_title": "Google Scanned Objects: A High-Quality Dataset of 3D Scanned Household Items",
+      "bib_year": "2022",
+      "doi": "10.1109/ICRA46639.2022.9811809",
+      "arxiv": "2204.11918",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Crossref",
+          "title": "Google Scanned Objects: A High-Quality Dataset of 3D Scanned Household Items",
+          "year": 2022,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Google Scanned Objects: A High-Quality Dataset of 3D Scanned Household Items",
+          "year": "2022",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "ebert2025threedarena",
+      "bib_title": "3D Arena: An Open Platform for Generative 3D Evaluation",
+      "bib_year": "2025",
+      "doi": "10.48550/arXiv.2506.18787",
+      "arxiv": "2506.18787",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "3D Arena: An Open Platform for Generative 3D Evaluation",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "3D Arena: An Open Platform for Generative 3D Evaluation",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "fu2025si23dcqa",
+      "bib_title": "SI23DCQA: Perceptual Quality Assessment of Single Image-to-3D Content",
+      "bib_year": "2025",
+      "doi": "10.1109/ICME59968.2025.11210072",
+      "arxiv": null,
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "SI23DCQA: Perceptual Quality Assessment of Single Image-to-3D Content",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "SI23DCQA: Perceptual Quality Assessment of Single Image-to-3D Content",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "hong2023lrm",
+      "bib_title": "LRM: Large Reconstruction Model for Single Image to 3D",
+      "bib_year": "2023",
+      "doi": "10.48550/arXiv.2311.04400",
+      "arxiv": "2311.04400",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "LRM: Large Reconstruction Model for Single Image to 3D",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "LRM: Large Reconstruction Model for Single Image to 3D",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "huang2020manifoldplus",
+      "bib_title": "ManifoldPlus: A Robust and Scalable Watertight Manifold Surface Generation Method for Triangle Soups",
+      "bib_year": "2020",
+      "doi": null,
+      "arxiv": "2005.11621",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "ManifoldPlus: A Robust and Scalable Watertight Manifold Surface Generation Method for Triangle Soups",
+          "year": 2020,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "ManifoldPlus: A Robust and Scalable Watertight Manifold Surface Generation Method for Triangle Soups",
+          "year": "2020",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "hunyuan3d2025",
+      "bib_title": "Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material",
+      "bib_year": "2025",
+      "doi": null,
+      "arxiv": "2506.15442",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "jiang2025threedgenbench",
+      "bib_title": "3DGen-Bench: Comprehensive Benchmark Suite for 3D Generative Models",
+      "bib_year": "2025",
+      "doi": "10.48550/arXiv.2503.21745",
+      "arxiv": "2503.21745",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "3DGen-Bench: Comprehensive Benchmark Suite for 3D Generative Models",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "3DGen-Bench: Comprehensive Benchmark Suite for 3D Generative Models",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "lee2025pasta",
+      "bib_title": "PASTA: Part-Aware Sketch-to-3D Shape Generation with Text-Aligned Prior",
+      "bib_year": "2025",
+      "doi": "10.1109/ICCV51701.2025.01727",
+      "arxiv": "2503.12834",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "PASTA: Part-Aware Sketch-to-3D Shape Generation with Text-Aligned Prior",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "PASTA: Part-Aware Sketch-to-3D Shape Generation with Text-Aligned Prior",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "PASTA: Part-Aware Sketch-to-3D Shape Generation with Text-Aligned Prior",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "li2024mvlrm",
+      "bib_title": "Multi-View Large Reconstruction Model via Geometry-Aware Positional Encoding and Attention",
+      "bib_year": "2025",
+      "doi": "10.1109/TVCG.2025.3572341",
+      "arxiv": "2406.07648",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Multi-View Large Reconstruction Model via Geometry-Aware Positional Encoding and Attention",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Multi-View Large Reconstruction Model via Geometry-Aware Positional Encoding and Attention",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Multi-View Large Reconstruction Model via Geometry-Aware Positional Encoding and Attention",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "li2025artiscene",
+      "bib_title": "ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary",
+      "bib_year": "2025",
+      "doi": "10.1109/CVPR52734.2025.00275",
+      "arxiv": "2506.00742",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "li2025cue3d",
+      "bib_title": "Cue3D: Quantifying the Role of Image Cues in Single-Image 3D Generation",
+      "bib_year": "2025",
+      "doi": "10.48550/arXiv.2511.22121",
+      "arxiv": "2511.22121",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Cue3D: Quantifying the Role of Image Cues in Single-Image 3D Generation",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Cue3D: Quantifying the Role of Image Cues in Single-Image 3D Generation",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "lin2025objaversepp",
+      "bib_title": "Objaverse++: Curated 3D Object Dataset with Quality Annotations",
+      "bib_year": "2025",
+      "doi": "10.1109/ICCVW69036.2025.00710",
+      "arxiv": "2504.07334",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Objaverse++: Curated 3D Object Dataset with Quality Annotations",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Objaverse++: Curated 3D Object Dataset with Quality Annotations",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Objaverse++: Curated 3D Object Dataset with Quality Annotations",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "liu2023one2345",
+      "bib_title": "One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds without Per-Shape Optimization",
+      "bib_year": "2023",
+      "doi": "10.48550/arXiv.2306.16928",
+      "arxiv": "2306.16928",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds without Per-Shape Optimization",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds without Per-Shape Optimization",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "liu2023one2345pp",
+      "bib_title": "One-2-3-45++: Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion",
+      "bib_year": "2024",
+      "doi": "10.1109/CVPR52733.2024.00960",
+      "arxiv": "2311.07885",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "One-2-3-45++: Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "One-2-3-45++: Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "One-2-3-45++: Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "liu2023zero123",
+      "bib_title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+      "bib_year": "2023",
+      "doi": "10.1109/ICCV51070.2023.00853",
+      "arxiv": "2303.11328",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "liu2024meshformer",
+      "bib_title": "MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2408.10198",
+      "arxiv": "2408.10198",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "long2023wonder3d",
+      "bib_title": "Wonder3D: Single Image to 3D Using Cross-Domain Diffusion",
+      "bib_year": "2024",
+      "doi": "10.1109/CVPR52733.2024.00951",
+      "arxiv": "2310.15008",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Wonder3D: Single Image to 3D Using Cross-Domain Diffusion",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Wonder3D: Single Image to 3D Using Cross-Domain Diffusion",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Wonder3D: Single Image to 3D using Cross-Domain Diffusion",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "long2025wonder3dpp",
+      "bib_title": "Wonder3D++: Cross-Domain Diffusion for High-Fidelity 3D Generation From a Single Image",
+      "bib_year": "2026",
+      "doi": "10.1109/TPAMI.2025.3618675",
+      "arxiv": "2511.01767",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Wonder3D++: Cross-Domain Diffusion for High-Fidelity 3D Generation From a Single Image",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Wonder3D++: Cross-Domain Diffusion for High-Fidelity 3D Generation From a Single Image",
+          "year": 2026,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Wonder3D++: Cross-domain Diffusion for High-fidelity 3D Generation from a Single Image",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "oztas2025stylizationlrm",
+      "bib_title": "3D Stylization via Large Reconstruction Model",
+      "bib_year": "2025",
+      "doi": "10.1145/3721238.3730636",
+      "arxiv": "2504.21836",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "3D Stylization via Large Reconstruction Model",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "3D Stylization via Large Reconstruction Model",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "3D Stylization via Large Reconstruction Model",
+          "year": "2025",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "pallotto2026miniatures",
+      "bib_title": "A Semi-Automated Framework for 3D Reconstruction of Medieval Manuscript Miniatures",
+      "bib_year": "2026",
+      "doi": null,
+      "arxiv": "2604.08610",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "A Semi-Automated Framework for 3D Reconstruction of Medieval Manuscript Miniatures",
+          "year": 2026,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "A Semi-Automated Framework for 3D Reconstruction of Medieval Manuscript Miniatures",
+          "year": "2026",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "sanghi2023sketchashape",
+      "bib_title": "Sketch-A-Shape: Zero-Shot Sketch-to-3D Shape Generation",
+      "bib_year": "2023",
+      "doi": "10.48550/arXiv.2307.03869",
+      "arxiv": "2307.03869",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Sketch-A-Shape: Zero-Shot Sketch-to-3D Shape Generation",
+          "year": 2023,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Sketch-A-Shape: Zero-Shot Sketch-to-3D Shape Generation",
+          "year": "2023",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "tochilkin2024triposr",
+      "bib_title": "TripoSR: Fast 3D Object Reconstruction from a Single Image",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2403.02151",
+      "arxiv": "2403.02151",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "TripoSR: Fast 3D Object Reconstruction from a Single Image",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "TripoSR: Fast 3D Object Reconstruction from a Single Image",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "tono2026sketchsurvey",
+      "bib_title": "Deep Sketch-Based 3D Modeling: A Survey",
+      "bib_year": "2026",
+      "doi": "10.1111/cgf.70302",
+      "arxiv": "2603.03287",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Deep Sketch-Based 3D Modeling: A Survey",
+          "year": 2026,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Deep Sketch\u2010Based 3D Modeling: A Survey",
+          "year": 2026,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Deep Sketch-Based 3D Modeling: A Survey",
+          "year": "2026",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "wang2024crm",
+      "bib_title": "CRM: Single Image to 3D Textured Mesh with Convolutional Reconstruction Model",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2403.05034",
+      "arxiv": "2403.05034",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "CRM: Single Image to 3D Textured Mesh with Convolutional Reconstruction Model",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "CRM: Single Image to 3D Textured Mesh with Convolutional Reconstruction Model",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "wang2025mage",
+      "bib_title": "MAGE: Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model",
+      "bib_year": "2025",
+      "doi": "10.1109/CVPR52734.2025.01026",
+      "arxiv": null,
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "MAGE : Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "MAGE : Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "wei2024meshlrm",
+      "bib_title": "MeshLRM: Large Reconstruction Model for High-Quality Mesh",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2404.12385",
+      "arxiv": "2404.12385",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "MeshLRM: Large Reconstruction Model for High-Quality Mesh",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "MeshLRM: Large Reconstruction Model for High-Quality Meshes",
+          "year": "2024",
+          "title_similarity": 0.9825,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "wu2024unique3d",
+      "bib_title": "Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2405.20343",
+      "arxiv": "2405.20343",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "xiang2025trellis",
+      "bib_title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+      "bib_year": "2025",
+      "doi": "10.1109/CVPR52734.2025.02000",
+      "arxiv": "2412.01506",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+          "year": 2025,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "xie2024lrmzero",
+      "bib_title": "LRM-Zero: Training Large Reconstruction Models with Synthesized Data",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2406.09371",
+      "arxiv": "2406.09371",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "LRM-Zero: Training Large Reconstruction Models with Synthesized Data",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "LRM-Zero: Training Large Reconstruction Models with Synthesized Data",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "xu2024instantmesh",
+      "bib_title": "InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2404.07191",
+      "arxiv": "2404.07191",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "zhang2024geolrm",
+      "bib_title": "GeoLRM: Geometry-Aware Large Reconstruction Model for High-Quality 3D Gaussian Generation",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2406.15333",
+      "arxiv": "2406.15333",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "GeoLRM: Geometry-Aware Large Reconstruction Model for High-Quality 3D Gaussian Generation",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "GeoLRM: Geometry-Aware Large Reconstruction Model for High-Quality 3D Gaussian Generation",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "zhang2024gslrm",
+      "bib_title": "GS-LRM: Large Reconstruction Model for 3D Gaussian Splatting",
+      "bib_year": "2024",
+      "doi": "10.48550/arXiv.2404.19702",
+      "arxiv": "2404.19702",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "GS-LRM: Large Reconstruction Model for 3D Gaussian Splatting",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "GS-LRM: Large Reconstruction Model for 3D Gaussian Splatting",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "zheng2024sketch3d",
+      "bib_title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+      "bib_year": "2024",
+      "doi": "10.1145/3664647.3680641",
+      "arxiv": "2404.01843",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    },
+    {
+      "key": "zhou2024drawingspinup",
+      "bib_title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+      "bib_year": "2024",
+      "doi": "10.1145/3680528.3687593",
+      "arxiv": "2409.08615",
+      "status": "verified_two_sources",
+      "sources": [
+        {
+          "source": "Semantic Scholar",
+          "title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "Crossref",
+          "title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+          "year": 2024,
+          "title_similarity": 1.0,
+          "title_match": true
+        },
+        {
+          "source": "arXiv",
+          "title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+          "year": "2024",
+          "title_similarity": 1.0,
+          "title_match": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "model": "tencent/Hunyuan3D-2.1",
+  "jobs_requested": 144,
+  "records": 144,
+  "success": 144,
+  "failed": 0,
+  "steps": 25,
+  "octree_resolution": 384,
+  "seeds": [
+    20260714,
+    3407
+  ]
+}

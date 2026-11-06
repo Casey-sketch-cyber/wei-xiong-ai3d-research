@@ -1,0 +1,1332 @@
+{
+  "status": "pass",
+  "required_checks": 133,
+  "required_passed": 133,
+  "boundary_checks": 7,
+  "boundary_passed": 7,
+  "human_or_external_steps_remaining": [
+    "ArtEmis/WikiArt authorization and formal data use",
+    "Human evaluators filling annotation CSV files"
+  ],
+  "checks": [
+    {
+      "name": "m03_main100_relative_rows",
+      "ok": true,
+      "severity": "required",
+      "evidence": "5 non-photo styles"
+    },
+    {
+      "name": "m03_res128_relative_rows",
+      "ok": true,
+      "severity": "required",
+      "evidence": "5 non-photo styles"
+    },
+    {
+      "name": "m02_proxy_rows",
+      "ok": true,
+      "severity": "required",
+      "evidence": "5 non-photo styles"
+    },
+    {
+      "name": "m02_emoart_n50_render_ok",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 50,
+        "render_ok": 50
+      }
+    },
+    {
+      "name": "m02_emoart_va_n50",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 50
+      }
+    },
+    {
+      "name": "m02_emoart100_render_ok",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 100,
+        "render_ok": 100
+      }
+    },
+    {
+      "name": "m02_emoart100_va_n100",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 100
+      }
+    },
+    {
+      "name": "table_experiment_summary_table.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 5,
+        "actual_rows": 5
+      }
+    },
+    {
+      "name": "table_figure_caption_table.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 6,
+        "actual_rows": 6
+      }
+    },
+    {
+      "name": "table_m02_emoart100_by_emotion.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 8,
+        "actual_rows": 8
+      }
+    },
+    {
+      "name": "table_m02_emoart100_summary.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 1,
+        "actual_rows": 1
+      }
+    },
+    {
+      "name": "table_m02_emoart100_va.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 1,
+        "actual_rows": 1
+      }
+    },
+    {
+      "name": "table_m02_emoart_by_emotion.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 8,
+        "actual_rows": 8
+      }
+    },
+    {
+      "name": "table_m02_emoart_summary.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 1,
+        "actual_rows": 1
+      }
+    },
+    {
+      "name": "table_m02_emoart_va.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 1,
+        "actual_rows": 1
+      }
+    },
+    {
+      "name": "table_m02_proxy.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 5,
+        "actual_rows": 5
+      }
+    },
+    {
+      "name": "table_m03_main100.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 5,
+        "actual_rows": 5
+      }
+    },
+    {
+      "name": "table_m03_res128.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "expected_rows": 5,
+        "actual_rows": 5
+      }
+    },
+    {
+      "name": "figure_m02_emoart100_affect_summary.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 5443
+      }
+    },
+    {
+      "name": "figure_m02_emoart50_affect_summary.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 5438
+      }
+    },
+    {
+      "name": "figure_m02_proxy_affect_drift.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 6817
+      }
+    },
+    {
+      "name": "figure_m03_main100_metric_paradox.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 10147
+      }
+    },
+    {
+      "name": "figure_m03_main100_volume_z_ratios.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 6845
+      }
+    },
+    {
+      "name": "figure_m03_res128_volume_z_ratios.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "exists": true,
+        "bytes": 6833
+      }
+    },
+    {
+      "name": "caption_target_m03_main100_volume_z_ratios.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M03-1"
+      }
+    },
+    {
+      "name": "caption_target_m03_main100_metric_paradox.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M03-2"
+      }
+    },
+    {
+      "name": "caption_target_m03_res128_volume_z_ratios.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M03-3"
+      }
+    },
+    {
+      "name": "caption_target_m02_proxy_affect_drift.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M02-1"
+      }
+    },
+    {
+      "name": "caption_target_m02_emoart50_affect_summary.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M02-2; C-M02-3"
+      }
+    },
+    {
+      "name": "caption_target_m02_emoart100_affect_summary.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "claim_link": "C-M02-2; C-M02-3"
+      }
+    },
+    {
+      "name": "human_audit_items",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n_items": 50
+      }
+    },
+    {
+      "name": "human_audit_image_pairs",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "image_pairs_present": 50,
+        "image_pngs": 100
+      }
+    },
+    {
+      "name": "human_audit_status_pending",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "pending_human_evaluators"
+    },
+    {
+      "name": "human_audit_html_blocks",
+      "ok": true,
+      "severity": "required",
+      "evidence": "50 item sections"
+    },
+    {
+      "name": "human_audit_rating_tool_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_human_audit_pack\\rating_tool.html",
+        "exists": true,
+        "bytes": 54847,
+        "ok": true
+      }
+    },
+    {
+      "name": "human_audit_rating_tool_core_features",
+      "ok": true,
+      "severity": "required",
+      "evidence": "rating tool has export/localStorage/score fields"
+    },
+    {
+      "name": "human_audit_template_rows",
+      "ok": true,
+      "severity": "required",
+      "evidence": "50 rows"
+    },
+    {
+      "name": "human_audit_analysis_script",
+      "ok": true,
+      "severity": "required",
+      "evidence": "script exists"
+    },
+    {
+      "name": "human_audit_rating_tool_generator",
+      "ok": true,
+      "severity": "required",
+      "evidence": "generator exists"
+    },
+    {
+      "name": "human_audit_rater_quickstart",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_human_audit_pack\\RATER_QUICKSTART-zh.md",
+        "exists": true,
+        "bytes": 1027,
+        "ok": true
+      }
+    },
+    {
+      "name": "human_audit_rater_exports_readme",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_human_audit_pack\\rater_exports\\README-zh.md",
+        "exists": true,
+        "bytes": 566,
+        "ok": true
+      }
+    },
+    {
+      "name": "human_audit_rater_tracking",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "rows": 3
+      }
+    },
+    {
+      "name": "human_audit_rater_followup_messages",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_human_audit_pack\\rater_followup_messages-zh.md",
+        "exists": true,
+        "bytes": 1326,
+        "ok": true
+      }
+    },
+    {
+      "name": "human_audit_rating_tool_summary",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "annotation_items_rows": 50,
+        "annotation_template_rows": 50,
+        "html_item_blocks": 50,
+        "rating_tool_items": 50,
+        "rating_tool_js_syntax": "pass",
+        "empty_template_analysis_status": "no_completed_scores",
+        "smoke_scored_rows_tested": 3
+      }
+    },
+    {
+      "name": "human_audit_empty_template_no_fake_scores",
+      "ok": true,
+      "severity": "required",
+      "evidence": "no_completed_scores"
+    },
+    {
+      "name": "rater_distribution_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_rater_distribution\\rater_package_summary.json",
+        "exists": true,
+        "bytes": 415,
+        "ok": true
+      }
+    },
+    {
+      "name": "rater_distribution_zip_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_rater_distribution\\M02_rater_package.zip",
+        "exists": true,
+        "bytes": 22968265,
+        "ok": true
+      }
+    },
+    {
+      "name": "rater_distribution_zip_contents",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "summary_files": 108,
+        "zip_entries": 108,
+        "image_pngs": 100,
+        "duplicate_names": 0
+      }
+    },
+    {
+      "name": "m02_hunyuan21_report_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02-hunyuan21-smoke-results-zh.md",
+        "exists": true,
+        "bytes": 3034,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_local_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\hunyuan21_smoke_summary.json",
+        "exists": true,
+        "bytes": 564,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_shape_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\remote_hunyuan21_shape_smoke_results\\outputs\\hunyuan21_shape_smoke\\shape_smoke_summary.json",
+        "exists": true,
+        "bytes": 250,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_contact_sheet_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\remote_hunyuan21_shape_smoke_results\\outputs\\hunyuan21_shape_smoke\\previews\\hunyuan21_shape_contact_sheet.png",
+        "exists": true,
+        "bytes": 939281,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_results_zip_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\hunyuan21_shape_smoke_results.zip",
+        "exists": true,
+        "bytes": 19642694,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_local_sample_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n_samples": 8,
+        "model_target": "Hunyuan3D 2.1"
+      }
+    },
+    {
+      "name": "m02_hunyuan21_shape_success_8",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 8,
+        "success": 8,
+        "failed": 0
+      }
+    },
+    {
+      "name": "m02_hunyuan21_texture_boundary",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "not_run_bpy_unavailable_in_python312_base_env"
+    },
+    {
+      "name": "m02_hunyuan21_shape_glb_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "shape_glbs": 8
+      }
+    },
+    {
+      "name": "m02_hunyuan21_comparison_panel_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "comparison_panels": 8
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_report_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02-hunyuan21-colorized-projection-results-zh.md",
+        "exists": true,
+        "bytes": 2665,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_script_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "colorize_hunyuan21_shapes.py",
+        "exists": true,
+        "bytes": 8244,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\colorized_projection_results\\colorized_projection_summary.json",
+        "exists": true,
+        "bytes": 4708,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_contact_sheet_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\colorized_projection_results\\previews\\hunyuan21_colorized_projection_contact_sheet.png",
+        "exists": true,
+        "bytes": 1250990,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_results_zip_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_hunyuan21_rerun\\hunyuan21_colorized_projection_results.zip",
+        "exists": true,
+        "bytes": 17687490,
+        "ok": true
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_success_8",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "n": 8,
+        "success": 8
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_not_official_pbr_boundary",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "not_official_pbr_front_view_vertex_color_projection"
+    },
+    {
+      "name": "m02_hunyuan21_color_glb_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "colorized_glbs": 8
+      }
+    },
+    {
+      "name": "m02_hunyuan21_color_panel_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "colorized_panels": 8
+      }
+    },
+    {
+      "name": "run_readme_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "README.md",
+        "exists": true,
+        "bytes": 2337,
+        "ok": true
+      }
+    },
+    {
+      "name": "run_index_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "RUN_INDEX-zh.md",
+        "exists": true,
+        "bytes": 7436,
+        "ok": true
+      }
+    },
+    {
+      "name": "reproducibility_checklist_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "REPRODUCIBILITY-zh.md",
+        "exists": true,
+        "bytes": 8139,
+        "ok": true
+      }
+    },
+    {
+      "name": "status_dashboard_md_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "status_dashboard\\status_dashboard.md",
+        "exists": true,
+        "bytes": 2144,
+        "ok": true
+      }
+    },
+    {
+      "name": "status_dashboard_json_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "status_dashboard\\status_dashboard.json",
+        "exists": true,
+        "bytes": 3888,
+        "ok": true
+      }
+    },
+    {
+      "name": "readme_points_to_run_index",
+      "ok": true,
+      "severity": "required",
+      "evidence": "README links run index"
+    },
+    {
+      "name": "readme_points_to_status_dashboard",
+      "ok": true,
+      "severity": "required",
+      "evidence": "README links status dashboard"
+    },
+    {
+      "name": "readme_points_to_reproducibility",
+      "ok": true,
+      "severity": "required",
+      "evidence": "README links reproducibility checklist"
+    },
+    {
+      "name": "run_index_has_verify_command",
+      "ok": true,
+      "severity": "required",
+      "evidence": "run index includes verifier command"
+    },
+    {
+      "name": "run_index_points_to_status_dashboard",
+      "ok": true,
+      "severity": "required",
+      "evidence": "run index links status dashboard"
+    },
+    {
+      "name": "run_index_points_to_reproducibility",
+      "ok": true,
+      "severity": "required",
+      "evidence": "run index links reproducibility checklist"
+    },
+    {
+      "name": "readme_points_to_hunyuan21_smoke",
+      "ok": true,
+      "severity": "required",
+      "evidence": "README links Hunyuan3D 2.1 smoke rerun"
+    },
+    {
+      "name": "run_index_points_to_hunyuan21_smoke",
+      "ok": true,
+      "severity": "required",
+      "evidence": "run index links Hunyuan3D 2.1 smoke report"
+    },
+    {
+      "name": "run_index_points_to_hunyuan21_colorized",
+      "ok": true,
+      "severity": "required",
+      "evidence": "run index links Hunyuan3D 2.1 colorized report"
+    },
+    {
+      "name": "reproducibility_has_core_commands",
+      "ok": true,
+      "severity": "required",
+      "evidence": "repro checklist includes core commands"
+    },
+    {
+      "name": "reproducibility_mentions_hunyuan_texture_boundary",
+      "ok": true,
+      "severity": "required",
+      "evidence": "repro checklist states Hunyuan texture boundary"
+    },
+    {
+      "name": "status_dashboard_values",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "overall": {
+          "automatic_package_status": "pass",
+          "required_checks": 133,
+          "required_passed": 133,
+          "boundary_checks": 7,
+          "boundary_passed": 7,
+          "external_status": "pending_external_or_human_steps"
+        },
+        "m03": {
+          "status": "complete_for_mainline_draft",
+          "main_experiment": "M03 main100",
+          "robustness": "M03 res128 robustness",
+          "recommended_role": "main paper direction",
+          "key_claim": "Style-induced geometry collapse and metric paradox in image-to-3D reconstruction."
+        }
+      }
+    },
+    {
+      "name": "claim_matrix_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "paper-claim-evidence-matrix-zh.md",
+        "exists": true,
+        "bytes": 7169,
+        "ok": true
+      }
+    },
+    {
+      "name": "safe_claim_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "safe_claims": 8
+      }
+    },
+    {
+      "name": "unsafe_claim_count",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "unsafe_claims": 5
+      }
+    },
+    {
+      "name": "completion_audit_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "experiment-completion-audit-zh.md",
+        "exists": true,
+        "bytes": 14564,
+        "ok": true
+      }
+    },
+    {
+      "name": "artifact_manifest_csv_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "artifact_manifest\\artifact_manifest_sha256.csv",
+        "exists": true,
+        "bytes": 67721,
+        "ok": true
+      }
+    },
+    {
+      "name": "artifact_manifest_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "artifact_manifest\\artifact_manifest_summary.json",
+        "exists": true,
+        "bytes": 795,
+        "ok": true
+      }
+    },
+    {
+      "name": "artifact_manifest_counts_match",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "csv_rows": 445,
+        "summary_total": 445
+      }
+    },
+    {
+      "name": "remote_inventory_json_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "remote_artifact_inventory\\remote_artifact_inventory.json",
+        "exists": true,
+        "bytes": 11754,
+        "ok": true
+      }
+    },
+    {
+      "name": "remote_inventory_md_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "remote_artifact_inventory\\remote_artifact_inventory.md",
+        "exists": true,
+        "bytes": 10655,
+        "ok": true
+      }
+    },
+    {
+      "name": "remote_inventory_items_exist",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "items": 11,
+        "existing_items": 11,
+        "total_files": 3265,
+        "total_bytes": 1424501026
+      }
+    },
+    {
+      "name": "external_completion_check_script",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "check_external_steps.py",
+        "exists": true,
+        "bytes": 5488,
+        "ok": true
+      }
+    },
+    {
+      "name": "strict_m02_followup_script",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "run_m02_strict_followup.py",
+        "exists": true,
+        "bytes": 5683,
+        "ok": true
+      }
+    },
+    {
+      "name": "strict_m02_followup_status_json",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_strict_followup\\strict_m02_followup_status.json",
+        "exists": true,
+        "bytes": 1171,
+        "ok": true
+      }
+    },
+    {
+      "name": "strict_m02_followup_status_md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_strict_followup\\strict_m02_followup_status.md",
+        "exists": true,
+        "bytes": 728,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_README-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\README-zh.md",
+        "exists": true,
+        "bytes": 2403,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_artemis_access_request_template-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\artemis_access_request_template-zh.md",
+        "exists": true,
+        "bytes": 2347,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_artemis_access_live_check-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\artemis_access_live_check-zh.md",
+        "exists": true,
+        "bytes": 1852,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_artemis_authorization_record_template-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\artemis_authorization_record_template-zh.md",
+        "exists": true,
+        "bytes": 1451,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_human_evaluation_protocol-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\human_evaluation_protocol-zh.md",
+        "exists": true,
+        "bytes": 2858,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_rater_invitation_template-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\rater_invitation_template-zh.md",
+        "exists": true,
+        "bytes": 1105,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_rater_consent_template-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\rater_consent_template-zh.md",
+        "exists": true,
+        "bytes": 1488,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_rater_metadata_template.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\rater_metadata_template.csv",
+        "exists": true,
+        "bytes": 166,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_human_evaluation_ethics_checklist-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\human_evaluation_ethics_checklist-zh.md",
+        "exists": true,
+        "bytes": 1385,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_post_artemis_data_plan-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\post_artemis_data_plan-zh.md",
+        "exists": true,
+        "bytes": 1494,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_steps_external_steps_status.json",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\external_steps_status.json",
+        "exists": true,
+        "bytes": 736,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_completion_check_json",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\external_step_checks\\external_completion_check.json",
+        "exists": true,
+        "bytes": 795,
+        "ok": true
+      }
+    },
+    {
+      "name": "external_completion_check_md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_external_steps_pack\\external_step_checks\\external_completion_check.md",
+        "exists": true,
+        "bytes": 415,
+        "ok": true
+      }
+    },
+    {
+      "name": "artemis_access_package_script",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "make_m02_artemis_access_package.py",
+        "exists": true,
+        "bytes": 3814,
+        "ok": true
+      }
+    },
+    {
+      "name": "artemis_access_package_summary",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_artemis_access_package\\artemis_access_package_summary.json",
+        "exists": true,
+        "bytes": 451,
+        "ok": true
+      }
+    },
+    {
+      "name": "artemis_access_package_zip",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "m02_artemis_access_package\\M02_ArtEmis_access_package.zip",
+        "exists": true,
+        "bytes": 7401,
+        "ok": true
+      }
+    },
+    {
+      "name": "artemis_access_package_contents",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "summary_files": 7,
+        "zip_entries": 7,
+        "contains_restricted_data": false,
+        "duplicate_names": 0
+      }
+    },
+    {
+      "name": "external_steps_artemis_pending",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "pending_human_action"
+    },
+    {
+      "name": "external_steps_human_eval_pending",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "pending_human_evaluators"
+    },
+    {
+      "name": "external_steps_readme_references_ethics_materials",
+      "ok": true,
+      "severity": "required",
+      "evidence": "README references consent, metadata, ethics checklist, and live access check"
+    },
+    {
+      "name": "external_completion_check_pending",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "pending_external_or_human_steps"
+    },
+    {
+      "name": "strict_m02_followup_pending_or_ready",
+      "ok": true,
+      "severity": "boundary",
+      "evidence": "pending_external_or_human_steps"
+    },
+    {
+      "name": "handoff_summary_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\handoff_summary.json",
+        "exists": true,
+        "bytes": 261,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_manifest_exists",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\handoff_manifest.csv",
+        "exists": true,
+        "bytes": 3237,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_HANDOFF_README.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\HANDOFF_README.md",
+        "exists": true,
+        "bytes": 848,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_status_dashboard/status_dashboard.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\status_dashboard\\status_dashboard.md",
+        "exists": true,
+        "bytes": 1878,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_RUN_INDEX-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\RUN_INDEX-zh.md",
+        "exists": true,
+        "bytes": 6844,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_experiment-completion-audit-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\experiment-completion-audit-zh.md",
+        "exists": true,
+        "bytes": 14564,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_paper-claim-evidence-matrix-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\paper-claim-evidence-matrix-zh.md",
+        "exists": true,
+        "bytes": 7169,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_final_figures_tables/m03_main100_metric_paradox.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\final_figures_tables\\m03_main100_metric_paradox.svg",
+        "exists": true,
+        "bytes": 10147,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_external_steps_pack/artemis_access_request_template-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_external_steps_pack\\artemis_access_request_template-zh.md",
+        "exists": true,
+        "bytes": 2347,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_make_m02_artemis_access_package.py",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\make_m02_artemis_access_package.py",
+        "exists": true,
+        "bytes": 3814,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_artemis_access_package/artemis_access_package_summary.json",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_artemis_access_package\\artemis_access_package_summary.json",
+        "exists": true,
+        "bytes": 451,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_make_m02_rater_distribution.py",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\make_m02_rater_distribution.py",
+        "exists": true,
+        "bytes": 4205,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_rater_distribution/rater_package_summary.json",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_rater_distribution\\rater_package_summary.json",
+        "exists": true,
+        "bytes": 415,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_human_audit_pack/rater_tracking.csv",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_human_audit_pack\\rater_tracking.csv",
+        "exists": true,
+        "bytes": 381,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_human_audit_pack/rater_followup_messages-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_human_audit_pack\\rater_followup_messages-zh.md",
+        "exists": true,
+        "bytes": 1326,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_run_m02_strict_followup.py",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\run_m02_strict_followup.py",
+        "exists": true,
+        "bytes": 5683,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02_strict_followup/strict_m02_followup_status.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02_strict_followup\\strict_m02_followup_status.md",
+        "exists": true,
+        "bytes": 728,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_m02-emoart100-results-zh.md",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\m02-emoart100-results-zh.md",
+        "exists": true,
+        "bytes": 4059,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_file_final_figures_tables/m02_emoart100_affect_summary.svg",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "path": "handoff_package\\final_figures_tables\\m02_emoart100_affect_summary.svg",
+        "exists": true,
+        "bytes": 5443,
+        "ok": true
+      }
+    },
+    {
+      "name": "handoff_counts_match",
+      "ok": true,
+      "severity": "required",
+      "evidence": {
+        "packaged_files": 65,
+        "manifest_rows": 65,
+        "total_files_on_disk": 67,
+        "actual_files": 67
+      }
+    }
+  ]
+}

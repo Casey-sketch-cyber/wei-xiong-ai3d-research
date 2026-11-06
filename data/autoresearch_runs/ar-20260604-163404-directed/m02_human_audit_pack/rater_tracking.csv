@@ -1,0 +1,4 @@
+rater_id,assigned_package,sent_date,consent_received,metadata_received,csv_received,csv_path,complete_50_items,notes
+rater01,M02_rater_package.zip,,no,no,no,rater_exports/annotation_rater01.csv,no,
+rater02,M02_rater_package.zip,,no,no,no,rater_exports/annotation_rater02.csv,no,
+rater03,M02_rater_package.zip,,no,no,no,rater_exports/annotation_rater03.csv,no,optional backup rater

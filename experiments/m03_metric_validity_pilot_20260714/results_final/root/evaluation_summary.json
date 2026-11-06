@@ -1,0 +1,10 @@
+{
+  "jobs_requested": 900,
+  "records": 900,
+  "success": 900,
+  "failed": 0,
+  "samples": 10000,
+  "calibration_samples": 3000,
+  "voxel_resolution": 128,
+  "grid_extent": 1.5
+}

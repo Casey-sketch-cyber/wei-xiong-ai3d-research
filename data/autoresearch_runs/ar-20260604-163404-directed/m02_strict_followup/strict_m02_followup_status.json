@@ -1,0 +1,31 @@
+{
+  "generated_at_utc": "2026-06-05T02:43:04.825395+00:00",
+  "overall_status": "pending_external_or_human_steps",
+  "human_evaluation": {
+    "status": "pending_human_evaluators",
+    "minimum_raters": 2,
+    "search_dirs": [
+      "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\m02_human_audit_pack",
+      "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\m02_human_audit_pack\\rater_exports"
+    ],
+    "rater_files_found": 0,
+    "complete_rater_files": 0,
+    "files": [],
+    "next_command": null
+  },
+  "human_analysis": {
+    "status": "not_run"
+  },
+  "artemis_wikiart_authorization": {
+    "status": "pending_human_action",
+    "expected_dir": "D:\\AutoResearch\\data\\restricted\\artemis",
+    "dir_exists": true,
+    "candidate_data_files": 0,
+    "has_terms_or_authorization_record": false,
+    "sample_files": []
+  },
+  "next_actions": [
+    "Collect at least 2 complete rater CSV files under m02_human_audit_pack/rater_exports/.",
+    "Complete ArtEmis/WikiArt authorization and place data plus Terms/authorization record under D:/AutoResearch/data/restricted/artemis/."
+  ]
+}

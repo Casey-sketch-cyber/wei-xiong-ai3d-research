@@ -1,0 +1,15 @@
+﻿query_id,query,source,year_filter,reported_total,retrieved,status,error,elapsed_seconds
+Q01,single image 3D generation image cues robustness,Semantic Scholar Graph API,2018-2026,8662,100,ok,,4.168
+Q02,image to 3D stylized input benchmark,Semantic Scholar Graph API,2018-2026,1266,100,ok,,7.083
+Q03,single image 3D style perturbation,Semantic Scholar Graph API,2018-2026,528,100,ok,,2.94
+Q04,image to 3D domain shift robustness,Semantic Scholar Graph API,2018-2026,4415,100,ok,,3.777
+Q05,image to 3D artistic input reconstruction,Semantic Scholar Graph API,2018-2026,3334,100,ok,,4.766
+Q06,sketch to 3D benchmark reconstruction,Semantic Scholar Graph API,2018-2026,18,18,ok,,2.344
+Q07,single image 3D generation evaluation geometry metrics,Semantic Scholar Graph API,2018-2026,3507,100,ok,,8.352
+Q08,single image 3D metric reliability Chamfer F-score,Semantic Scholar Graph API,2018-2026,57,57,ok,,2.875
+Q09,image to 3D topology volume watertight,Semantic Scholar Graph API,2018-2026,193,100,ok,,9.456
+Q10,image to 3D cross model comparison benchmark,Semantic Scholar Graph API,2018-2026,1648,100,ok,,8.424
+Q11,3D generation asset quality evaluation geometry,Semantic Scholar Graph API,2018-2026,5884,100,ok,,7.324
+Q12,single image 3D controlled benchmark ground truth,Semantic Scholar Graph API,2018-2026,2561,100,ok,,4.674
+Q13,stylization geometric cues single image 3D,Semantic Scholar Graph API,2018-2026,3056,100,ok,,5.089
+Q14,illustration image to 3D benchmark,Semantic Scholar Graph API,2018-2026,8,8,ok,,7.571

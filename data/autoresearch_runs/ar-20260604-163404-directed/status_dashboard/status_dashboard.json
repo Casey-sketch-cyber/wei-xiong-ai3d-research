@@ -1,0 +1,96 @@
+{
+  "generated_at_utc": "2026-06-05T06:16:51.178835+00:00",
+  "run_id": "ar-20260604-163404-directed",
+  "overall": {
+    "automatic_package_status": "pass",
+    "required_checks": 133,
+    "required_passed": 133,
+    "boundary_checks": 7,
+    "boundary_passed": 7,
+    "external_status": "pending_external_or_human_steps"
+  },
+  "m03": {
+    "status": "complete_for_mainline_draft",
+    "main_experiment": "M03 main100",
+    "robustness": "M03 res128 robustness",
+    "recommended_role": "main paper direction",
+    "key_claim": "Style-induced geometry collapse and metric paradox in image-to-3D reconstruction."
+  },
+  "m02": {
+    "status": "automatic_experiments_complete_hunyuan_shape_smoke_not_viable_pending_human_steps",
+    "completed_automatic_experiments": [
+      "M02 proxy",
+      "M02 EmoArt-5k",
+      "M02 EmoArt-100 robustness"
+    ],
+    "hunyuan21_shape_smoke": {
+      "n": 8,
+      "success": 8,
+      "failed": 0,
+      "texture_status": "not_run_bpy_unavailable_in_python312_base_env",
+      "interpretation": "shape rerun succeeded technically but did not make original-vs-render human emotional scoring viable"
+    },
+    "hunyuan21_colorized_projection": {
+      "n": 8,
+      "success": 8,
+      "texture_status": "not_official_pbr_front_view_vertex_color_projection",
+      "interpretation": "front-view projected vertex colors improve visual readability but are not official PBR texture"
+    },
+    "human_evaluation": "pending_human_evaluators",
+    "artemis_wikiart_authorization": "pending_human_action",
+    "recommended_role": "supplement/discussion or future SSCI/AHCI extension"
+  },
+  "experiments": [
+    {
+      "experiment": "M03 main100",
+      "scale": "100 objects x 6 styles",
+      "completed_outputs": "600",
+      "key_finding": "Style inputs shrink volume/thickness while Chamfer/F-score can improve.",
+      "evidence": "m03_main100.csv; m03_main100_volume_z_ratios.svg"
+    },
+    {
+      "experiment": "M03 res128 robustness",
+      "scale": "30 objects x 6 styles",
+      "completed_outputs": "180",
+      "key_finding": "Volume and z-extent shrinkage persists at higher mesh extraction resolution.",
+      "evidence": "m03_res128.csv; m03_res128_volume_z_ratios.svg"
+    },
+    {
+      "experiment": "M02 proxy",
+      "scale": "100 objects x 6 styles renders",
+      "completed_outputs": "600",
+      "key_finding": "Sketch has strongest affect-proxy drift; geometry and affect degradation differ.",
+      "evidence": "m02_proxy.csv; m02_proxy_affect_drift.svg"
+    },
+    {
+      "experiment": "M02 EmoArt-5k",
+      "scale": "50 paintings",
+      "completed_outputs": "50",
+      "key_finding": "Painting-to-3D lowers fine emotion and valence proxy consistency.",
+      "evidence": "m02_emoart_summary.csv; m02_emoart50_affect_summary.svg"
+    },
+    {
+      "experiment": "M02 EmoArt-100 robustness",
+      "scale": "100 paintings",
+      "completed_outputs": "100",
+      "key_finding": "The valence drop persists at 100 paintings, strengthening the proxy evidence.",
+      "evidence": "m02_emoart100_summary.csv; m02_emoart100_affect_summary.svg"
+    }
+  ],
+  "remaining_human_or_external_steps": [
+    "ArtEmis/WikiArt authorization and formal data use",
+    "Human evaluators filling annotation CSV files"
+  ],
+  "artifact_manifest": {
+    "total_files": 445,
+    "total_bytes": 203941074,
+    "manifest_csv": "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\artifact_manifest\\artifact_manifest_sha256.csv"
+  },
+  "entry_points": {
+    "run_index": "RUN_INDEX-zh.md",
+    "completion_audit": "experiment-completion-audit-zh.md",
+    "claim_matrix": "paper-claim-evidence-matrix-zh.md",
+    "reproducibility": "REPRODUCIBILITY-zh.md",
+    "verification": "package_verification/verification_summary.md"
+  }
+}

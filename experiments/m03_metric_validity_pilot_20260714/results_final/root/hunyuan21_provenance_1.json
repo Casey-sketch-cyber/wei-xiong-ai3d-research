@@ -1,0 +1,20 @@
+{
+  "repo": "/root/autodl-tmp/m03_hunyuan21_pilot_20260714/repo/Hunyuan3D-2.1-official",
+  "repo_commit": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "model": "tencent/Hunyuan3D-2.1",
+  "manifest": "/root/autodl-tmp/m03_metric_validity_pilot_20260714/dataset/inputs_manifest.csv",
+  "manifest_sha256": "7ce6ee837968d608adee39407a39cc9052a9ced11d658de9af60d5d10de9c263",
+  "steps": 25,
+  "octree_resolution": 384,
+  "seeds": [
+    20260714,
+    3407
+  ],
+  "paired_seed_design": true,
+  "shard_count": 2,
+  "shard_index": 1,
+  "records_name": "hunyuan21_results_shard1.json",
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

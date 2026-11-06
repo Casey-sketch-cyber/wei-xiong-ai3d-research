@@ -1,0 +1,14 @@
+{
+  "shape_success": 144,
+  "shape_expected": 144,
+  "watertight_rate": 0.3958333333333333,
+  "styles_with_median_convex_hull_volume_ratio_below_0.8": 0,
+  "median_convex_hull_ratio_seed_abs_difference": 0.01835441921173897,
+  "photo_model_comparison": {
+    "median_hunyuan_photo_fscore": 0.3162360062787255,
+    "median_triposr_photo_fscore": 0.2438764129737015,
+    "objects_hunyuan_fscore_better": 9,
+    "objects_compared": 12
+  },
+  "requires_visual_review": true
+}

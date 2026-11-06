@@ -1,0 +1,10 @@
+{
+  "protocol_sha256": "958efa741cdd5ed9e00b439672ef36c9c08a64fcd98152d20a97f25932a97d60",
+  "task_count": 480,
+  "succeeded": 480,
+  "failed_or_missing": 0,
+  "elapsed_seconds_this_invocation": 11458.695894177072,
+  "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+  "platform": "Linux-5.15.0-136-generic-x86_64-with-glibc2.35",
+  "workers": 14
+}

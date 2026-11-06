@@ -1,0 +1,122 @@
+{
+  "triposr": {
+    "model": "triposr",
+    "scale": 1.0843326555780675,
+    "matrix": [
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "determinant": 1.0,
+    "median_calibration_chamfer": 0.020913624887960662,
+    "calibration_objects": [
+      "gso_001",
+      "gso_002",
+      "gso_003",
+      "gso_004",
+      "gso_005"
+    ],
+    "calibration_seed": null,
+    "scale_ratios": [
+      0.9501794714748809,
+      1.110220852040898,
+      1.1789635543094337,
+      1.0843326555780675,
+      1.0520379785242426
+    ],
+    "orientation_candidates": 48,
+    "rule": "single global model scale and signed-axis transform frozen from photo inputs"
+  },
+  "instantmesh": {
+    "model": "instantmesh",
+    "scale": 0.5584737706976978,
+    "matrix": [
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ]
+    ],
+    "determinant": 1.0,
+    "median_calibration_chamfer": 0.005041399277488479,
+    "calibration_objects": [
+      "gso_001",
+      "gso_002",
+      "gso_003",
+      "gso_004",
+      "gso_005"
+    ],
+    "calibration_seed": 20260714,
+    "scale_ratios": [
+      0.5195682430200573,
+      0.5584737706976978,
+      0.5491159911488802,
+      0.5671790679056228,
+      0.5970002437389991
+    ],
+    "orientation_candidates": 48,
+    "rule": "single global model scale and signed-axis transform frozen from photo inputs"
+  },
+  "hunyuan21": {
+    "model": "hunyuan21",
+    "scale": 0.5417731953482358,
+    "matrix": [
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "determinant": 1.0,
+    "median_calibration_chamfer": 0.022845857187595502,
+    "calibration_objects": [
+      "gso_001",
+      "gso_002",
+      "gso_003",
+      "gso_004",
+      "gso_005"
+    ],
+    "calibration_seed": 20260714,
+    "scale_ratios": [
+      0.47575789054250284,
+      0.5550293431375676,
+      0.550042559394199,
+      0.5417731953482358,
+      0.5245633588776537
+    ],
+    "orientation_candidates": 48,
+    "rule": "single global model scale and signed-axis transform frozen from photo inputs"
+  }
+}

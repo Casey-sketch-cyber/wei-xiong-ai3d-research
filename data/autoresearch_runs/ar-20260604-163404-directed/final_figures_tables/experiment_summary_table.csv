@@ -1,0 +1,6 @@
+﻿experiment,scale,completed_outputs,key_finding,evidence
+M03 main100,100 objects x 6 styles,600,Style inputs shrink volume/thickness while Chamfer/F-score can improve.,m03_main100.csv; m03_main100_volume_z_ratios.svg
+M03 res128 robustness,30 objects x 6 styles,180,Volume and z-extent shrinkage persists at higher mesh extraction resolution.,m03_res128.csv; m03_res128_volume_z_ratios.svg
+M02 proxy,100 objects x 6 styles renders,600,Sketch has strongest affect-proxy drift; geometry and affect degradation differ.,m02_proxy.csv; m02_proxy_affect_drift.svg
+M02 EmoArt-5k,50 paintings,50,Painting-to-3D lowers fine emotion and valence proxy consistency.,m02_emoart_summary.csv; m02_emoart50_affect_summary.svg
+M02 EmoArt-100 robustness,100 paintings,100,"The valence drop persists at 100 paintings, strengthening the proxy evidence.",m02_emoart100_summary.csv; m02_emoart100_affect_summary.svg

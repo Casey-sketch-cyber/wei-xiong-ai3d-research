@@ -1,0 +1,12 @@
+{
+  "repo": "/root/autodl-tmp/m03/repos/TripoSR",
+  "repo_commit": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "model": "stabilityai/TripoSR",
+  "manifest": "/root/autodl-tmp/m03_metric_validity_pilot_20260714/dataset/inputs_manifest.csv",
+  "manifest_sha256": "7ce6ee837968d608adee39407a39cc9052a9ced11d658de9af60d5d10de9c263",
+  "mc_resolution": 128,
+  "chunk_size": 4096,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

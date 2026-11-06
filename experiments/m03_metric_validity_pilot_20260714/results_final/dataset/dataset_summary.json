@@ -1,0 +1,11 @@
+{
+  "source_repo": "huanngzh/Edit3D-Bench",
+  "endpoint": "https://hf-mirror.com",
+  "candidates_found": 50,
+  "audited": 50,
+  "solid_gt_valid": 0,
+  "solid_gt_valid_after_name_exclusions": 0,
+  "selected": 0,
+  "requested": 30,
+  "gate_passed": false
+}

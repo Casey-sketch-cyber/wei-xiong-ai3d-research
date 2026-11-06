@@ -1,0 +1,80 @@
+{
+  "pilot": {
+    "checks": {
+      "case_count_15": true,
+      "row_count_90": true,
+      "six_primary_methods": true,
+      "balanced_method_counts": true,
+      "unique_case_method_pairs": true,
+      "numeric_values_finite": true,
+      "reported_gate_passed": true
+    },
+    "all_checks_pass": true,
+    "method_counts": {
+      "generic_greedy": 15,
+      "no_repair": 15,
+      "random_feasible": 15,
+      "revealrepair_attributed": 15,
+      "simulated_annealing": 15,
+      "visibility_max_only": 15
+    },
+    "hashes": {
+      "pilot_cases.json": "f26091c567c0d77445ed51aca96b3d6e46bb95b07c103b2e6cbfef2ab278232a",
+      "pilot_results.csv": "46b3fe971eee4c618fc74d50d135b4c48cb519f60069fae55f5bb5e9c999df7e",
+      "pilot_summary.json": "db7698c32b5255be2b58edd50707d4b110091b3f887fc60de2e92be909cff75f"
+    }
+  },
+  "full": {
+    "checks": {
+      "run_completed": true,
+      "task_count_matches_cases": true,
+      "primary_rows_balanced": true,
+      "unique_case_method_pairs": true,
+      "frozen_task_count_matches": true,
+      "ablation_rows_balanced": true,
+      "total_row_count_exact": true,
+      "frozen_protocol_hash_recomputes": true,
+      "frozen_core_code_hashes_match": true,
+      "frozen_input_manifest_hashes_match": true,
+      "numeric_values_finite": true,
+      "analysis_hash_matches_results": true,
+      "all_declared_derived_analyses_present": true,
+      "derived_source_hashes_match_results": true,
+      "robustness_gate_passed": true
+    },
+    "all_checks_pass": true,
+    "reported_evidence_gate_passed": true,
+    "primary_case_count": 480,
+    "primary_method_counts": {
+      "generic_greedy": 480,
+      "no_repair": 480,
+      "random_feasible": 480,
+      "revealrepair_attributed": 480,
+      "simulated_annealing": 480,
+      "visibility_max_only": 480
+    },
+    "ablation_method_counts": {
+      "ablation_no_hard_filter": 105,
+      "ablation_no_sparsity": 105,
+      "ablation_partitions_only": 105,
+      "ablation_targets_only": 105,
+      "ablation_visibility_only": 105
+    },
+    "expected_ablation_cases_per_method": 105,
+    "expected_total_row_count": 3405,
+    "derived_analysis_names": [
+      "failure_analysis",
+      "oracle",
+      "robustness",
+      "stochastic_sensitivity"
+    ],
+    "hashes": {
+      "frozen_config.json": "acb161cd410d37a5cac9b324131724cab62f9482a68c285712ec21c2c6fa2924",
+      "full_cases.json": "0c4c693b115f50739de117bc6eb4d0bfe8912cdf57f9b5fdcc6d8185519d0422",
+      "full_results.csv": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+      "run_metadata.json": "acf284fdc375db7689b4e381f56720854889db25ed76aacd2138766790ec26ca"
+    }
+  },
+  "manifest_file_count": 201,
+  "overall_integrity_pass": true
+}

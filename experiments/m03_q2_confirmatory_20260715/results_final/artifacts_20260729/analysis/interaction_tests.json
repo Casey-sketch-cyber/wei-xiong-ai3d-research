@@ -1,0 +1,24 @@
+[
+  {
+    "metric": "rg",
+    "n_rows": 2400,
+    "n_object_clusters": 120,
+    "interaction_df": 12,
+    "wald_statistic": 63.50655604366379,
+    "p_value": 5.141749543865136e-09,
+    "covariance": "object-cluster robust",
+    "formula": "RG ~ C(model) * C(style)",
+    "p_holm": 1.0283499087730272e-08
+  },
+  {
+    "metric": "rg_fscore_0.1",
+    "n_rows": 2400,
+    "n_object_clusters": 120,
+    "interaction_df": 12,
+    "wald_statistic": 20.47766393051195,
+    "p_value": 0.05857270805250609,
+    "covariance": "object-cluster robust",
+    "formula": "RG ~ C(model) * C(style)",
+    "p_holm": 0.05857270805250609
+  }
+]

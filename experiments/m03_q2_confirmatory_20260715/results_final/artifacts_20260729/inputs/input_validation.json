@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "manifest": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inputs/confirmatory_inputs_manifest.csv",
+  "manifest_sha256": "76823f5012ab88bdd779d9a052e275108eefac8d7600f8d1b640ddbaafcfb5c8",
+  "rows": 1080,
+  "unique_image_files": 1020,
+  "split_counts": {
+    "main": 720,
+    "view": 180,
+    "severity": 180
+  },
+  "main_objects": 120,
+  "view_objects": 30,
+  "severity_objects": 30,
+  "alpha_groups": 210,
+  "edge_high_dark_fraction_min": 0.02612620004923279,
+  "edge_high_dark_fraction_median": 0.046163821798493154,
+  "edge_high_dark_fraction_max": 0.12874323511725796,
+  "errors": []
+}

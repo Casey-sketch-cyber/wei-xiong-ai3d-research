@@ -1,0 +1,20 @@
+{
+  "generated_date": "2026-06-04",
+  "artemis_wikiart_authorization": {
+    "status": "pending_human_action",
+    "official_site": "https://artemisdataset.org/",
+    "official_code": "https://github.com/optas/artemis",
+    "live_check_record": "artemis_access_live_check-zh.md",
+    "blocking_reason": "Official ArtEmis dataset download requires filling the form and accepting Terms of Use."
+  },
+  "human_evaluation": {
+    "status": "pending_human_evaluators",
+    "audit_pack": "../m02_human_audit_pack",
+    "minimum_raters": 2,
+    "analysis_script": "../m02_human_audit_pack/analyze_annotations.py"
+  },
+  "automatic_experiment_package": {
+    "status": "pass",
+    "verification_script": "../verify_experiment_package.py"
+  }
+}

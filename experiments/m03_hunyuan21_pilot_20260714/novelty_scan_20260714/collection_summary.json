@@ -1,0 +1,7 @@
+{
+  "queries": 14,
+  "successful_queries": 14,
+  "unique_candidates": 1006,
+  "candidates_score_ge_15": 27,
+  "candidates_score_ge_20": 3
+}

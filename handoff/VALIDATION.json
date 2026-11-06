@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "imported_files_verified": 950,
+  "repository_files": 965,
+  "repository_bytes": 76240433,
+  "python_files_parsed": 173,
+  "m03_citekeys": 39,
+  "m03_primary_models_passing": 0,
+  "m03_historical_artifact_validation": true,
+  "m05_result_rows": 3405,
+  "m05_result_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+  "groups": {
+    ".env.example": 1,
+    ".gitattributes": 1,
+    ".gitignore": 1,
+    "AGENTS.md": 1,
+    "CLAUDE.md": 1,
+    "README.md": 1,
+    "requirements-review.txt": 1,
+    "handoff": 7,
+    "tools": 1,
+    "data": 178,
+    "experiments": 255,
+    "external": 287,
+    "manuscripts": 230
+  },
+  "failures": [],
+  "scope": "Repository integrity and frozen-summary checks; no GPU or full-data replay."
+}

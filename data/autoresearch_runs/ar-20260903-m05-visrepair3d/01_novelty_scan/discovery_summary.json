@@ -1,0 +1,8 @@
+{
+  "snapshot_date": "2026-09-03",
+  "query_count": 30,
+  "raw_record_count": 1718,
+  "deduplicated_paper_count": 1421,
+  "failure_count": 10,
+  "top_100_cutoff_score": 10
+}

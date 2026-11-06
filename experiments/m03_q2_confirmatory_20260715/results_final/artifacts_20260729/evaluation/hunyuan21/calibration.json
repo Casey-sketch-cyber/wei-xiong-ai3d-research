@@ -1,0 +1,51 @@
+{
+  "model": "hunyuan21",
+  "scale": 0.5402076278915608,
+  "matrix": [
+    [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      -1.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "determinant": 1.0,
+  "median_calibration_chamfer": 0.02421654398411997,
+  "calibration_objects": [
+    "gso_001",
+    "gso_002",
+    "gso_003",
+    "gso_004",
+    "gso_005",
+    "gso_006",
+    "gso_007",
+    "gso_008",
+    "gso_009",
+    "gso_010"
+  ],
+  "calibration_seed": 20260714,
+  "scale_ratios": [
+    0.47575789054250284,
+    0.5550293431375676,
+    0.550042559394199,
+    0.5417731953482358,
+    0.5245633588776537,
+    0.4559008171305419,
+    0.538642060434886,
+    0.5726295885430279,
+    0.5060948403399496,
+    0.5872680917773013
+  ],
+  "orientation_candidates": 48,
+  "calibration_samples": 3000,
+  "rule": "single global model scale and signed-axis transform frozen from ten D30 photos"
+}

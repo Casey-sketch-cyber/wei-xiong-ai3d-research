@@ -1,0 +1,13 @@
+# Lightweight CPU review and plotting tools, not a GPU reproduction lockfile.
+numpy
+scipy
+pandas
+statsmodels
+matplotlib
+seaborn
+Pillow
+python-docx
+requests
+paramiko
+pypdf
+bibtexparser

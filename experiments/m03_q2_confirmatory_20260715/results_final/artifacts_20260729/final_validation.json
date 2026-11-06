@@ -1,0 +1,436 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "name": "inference_validation",
+      "pass": true,
+      "detail": {
+        "checks": [
+          {
+            "model": "triposr",
+            "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/triposr/triposr_summary.json",
+            "success_key": "success",
+            "expected": 1020,
+            "observed": 1020,
+            "failed": 0,
+            "status": "pass"
+          },
+          {
+            "model": "instantmesh",
+            "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/instantmesh/instantmesh_summary.json",
+            "success_key": "mesh_success",
+            "expected": 1740,
+            "observed": 1740,
+            "failed": 0,
+            "status": "pass"
+          },
+          {
+            "model": "hunyuan21",
+            "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/hunyuan21/hunyuan21_summary.json",
+            "success_key": "success",
+            "expected": 1740,
+            "observed": 1740,
+            "failed": 0,
+            "status": "pass"
+          },
+          {
+            "model": "trellis",
+            "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/trellis/trellis_summary.json",
+            "success_key": "success",
+            "expected": 1740,
+            "observed": 1740,
+            "failed": 0,
+            "status": "pass"
+          }
+        ],
+        "all_pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "evaluation_triposr",
+      "pass": true,
+      "detail": {
+        "model": "triposr",
+        "jobs_requested": 1020,
+        "records": 1020,
+        "success": 1020,
+        "failed": 0,
+        "samples": 10000,
+        "calibration_samples": 3000,
+        "voxel_resolution": 128,
+        "grid_extent": 1.5,
+        "deterministic_schedule_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+        "stochastic_schedule_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+        "d30_schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876"
+      }
+    },
+    {
+      "name": "calibration_triposr",
+      "pass": true,
+      "detail": [
+        "gso_001",
+        "gso_002",
+        "gso_003",
+        "gso_004",
+        "gso_005",
+        "gso_006",
+        "gso_007",
+        "gso_008",
+        "gso_009",
+        "gso_010"
+      ]
+    },
+    {
+      "name": "evaluation_instantmesh",
+      "pass": true,
+      "detail": {
+        "model": "instantmesh",
+        "jobs_requested": 1740,
+        "records": 1740,
+        "success": 1740,
+        "failed": 0,
+        "samples": 10000,
+        "calibration_samples": 3000,
+        "voxel_resolution": 128,
+        "grid_extent": 1.5,
+        "deterministic_schedule_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+        "stochastic_schedule_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+        "d30_schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876"
+      }
+    },
+    {
+      "name": "calibration_instantmesh",
+      "pass": true,
+      "detail": [
+        "gso_001",
+        "gso_002",
+        "gso_003",
+        "gso_004",
+        "gso_005",
+        "gso_006",
+        "gso_007",
+        "gso_008",
+        "gso_009",
+        "gso_010"
+      ]
+    },
+    {
+      "name": "evaluation_hunyuan21",
+      "pass": true,
+      "detail": {
+        "model": "hunyuan21",
+        "jobs_requested": 1740,
+        "records": 1740,
+        "success": 1740,
+        "failed": 0,
+        "samples": 10000,
+        "calibration_samples": 3000,
+        "voxel_resolution": 128,
+        "grid_extent": 1.5,
+        "deterministic_schedule_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+        "stochastic_schedule_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+        "d30_schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876"
+      }
+    },
+    {
+      "name": "calibration_hunyuan21",
+      "pass": true,
+      "detail": [
+        "gso_001",
+        "gso_002",
+        "gso_003",
+        "gso_004",
+        "gso_005",
+        "gso_006",
+        "gso_007",
+        "gso_008",
+        "gso_009",
+        "gso_010"
+      ]
+    },
+    {
+      "name": "evaluation_trellis",
+      "pass": true,
+      "detail": {
+        "model": "trellis",
+        "jobs_requested": 1740,
+        "records": 1740,
+        "success": 1740,
+        "failed": 0,
+        "samples": 10000,
+        "calibration_samples": 3000,
+        "voxel_resolution": 128,
+        "grid_extent": 1.5,
+        "deterministic_schedule_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+        "stochastic_schedule_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+        "d30_schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876"
+      }
+    },
+    {
+      "name": "calibration_trellis",
+      "pass": true,
+      "detail": [
+        "gso_001",
+        "gso_002",
+        "gso_003",
+        "gso_004",
+        "gso_005",
+        "gso_006",
+        "gso_007",
+        "gso_008",
+        "gso_009",
+        "gso_010"
+      ]
+    },
+    {
+      "name": "render_diagnostics",
+      "pass": true,
+      "detail": {
+        "jobs_requested": 5040,
+        "records": 5040,
+        "success": 5040,
+        "failed": 0,
+        "resolution": 256,
+        "grid_extent": 1.5,
+        "views": [
+          "front",
+          "back",
+          "right",
+          "left",
+          "top",
+          "bottom"
+        ],
+        "normal_similarity_rule": "absolute normal cosine over intersection, zero over silhouette mismatch, averaged over union"
+      }
+    },
+    {
+      "name": "primary_table",
+      "pass": true,
+      "detail": [
+        {
+          "model": "triposr",
+          "style": "sketch",
+          "metric": "rg",
+          "n_objects": "120",
+          "mean": "0.008856536095919658",
+          "median": "0.004433458806484157",
+          "sd": "0.03825681585695688",
+          "standardized_mean": "0.23150217543024101",
+          "positive_fraction": "0.5583333333333333",
+          "ci99_low": "6.798166575278962e-05",
+          "ci99_high": "0.01800118407144806",
+          "p_two_sided": "0.009439811203775924",
+          "bootstrap_replicates": "50000",
+          "p_holm": "0.0377592448151037",
+          "passes": "False"
+        },
+        {
+          "model": "instantmesh",
+          "style": "sketch",
+          "metric": "rg",
+          "n_objects": "120",
+          "mean": "0.02215427787424645",
+          "median": "0.0049342673891047024",
+          "sd": "0.1504023518603138",
+          "standardized_mean": "0.14730007609736206",
+          "positive_fraction": "0.5166666666666667",
+          "ci99_low": "-0.012435923886306396",
+          "ci99_high": "0.058327033708945784",
+          "p_two_sided": "0.10275794484110318",
+          "bootstrap_replicates": "50000",
+          "p_holm": "0.30827383452330953",
+          "passes": "False"
+        },
+        {
+          "model": "hunyuan21",
+          "style": "sketch",
+          "metric": "rg",
+          "n_objects": "120",
+          "mean": "-0.00406303957699366",
+          "median": "-0.0017623220033750955",
+          "sd": "0.03066154696749552",
+          "standardized_mean": "-0.13251254352237712",
+          "positive_fraction": "0.4166666666666667",
+          "ci99_low": "-0.011361767819465605",
+          "ci99_high": "0.0030092976194026704",
+          "p_two_sided": "0.14451710965780684",
+          "bootstrap_replicates": "50000",
+          "p_holm": "0.30827383452330953",
+          "passes": "False"
+        },
+        {
+          "model": "trellis",
+          "style": "sketch",
+          "metric": "rg",
+          "n_objects": "120",
+          "mean": "-0.009078427072727869",
+          "median": "-0.004468888853697804",
+          "sd": "0.06998379930652605",
+          "standardized_mean": "-0.12972183794944808",
+          "positive_fraction": "0.425",
+          "ci99_low": "-0.025597483967710378",
+          "ci99_high": "0.007088072479838149",
+          "p_two_sided": "0.14703705925881483",
+          "bootstrap_replicates": "50000",
+          "p_holm": "0.30827383452330953",
+          "passes": "False"
+        }
+      ]
+    },
+    {
+      "name": "publication_gate",
+      "pass": true,
+      "detail": {
+        "primary_models_passing": 0,
+        "primary_requirement_passes": false,
+        "supporting_criteria": {
+          "both_seed_directions": {
+            "passes": false,
+            "detail": "1 stochastic models positive in both seeds"
+          },
+          "both_view_directions": {
+            "passes": false,
+            "detail": "0 models positive at both additional views"
+          },
+          "positive_severity_slope": {
+            "passes": false,
+            "detail": "1 models with positive sketch slope"
+          },
+          "model_style_metric_interaction": {
+            "passes": true,
+            "detail": "primary Holm p=1.02835e-08"
+          }
+        },
+        "supporting_criteria_passing": 1,
+        "supporting_requirement_passes": false,
+        "q2_gate_passes": false,
+        "alpha": 0.01,
+        "bootstrap_seed": 20260715,
+        "bootstrap_replicates": 50000,
+        "n_main_objects": 120
+      }
+    },
+    {
+      "name": "representative_cases",
+      "pass": true,
+      "detail": [
+        {
+          "model": "instantmesh",
+          "object_id": "c120_039",
+          "style": "sketch",
+          "delta_fscore_0.05": "-0.485187844764775",
+          "delta_fscore_0.1": "-0.6617421139908677",
+          "delta_voxel_iou": "-0.679811971758917",
+          "rg": "0.194624126994142",
+          "rg_fscore_0.1": "0.0180698577680494",
+          "surface_degradation": "0.485187844764775",
+          "solid_degradation": "0.679811971758917",
+          "delta_watertight": "0.0",
+          "delta_components": "20.0",
+          "delta_boundary_edges": "0.0",
+          "distance_to_target": "0.00406991842959209",
+          "case_label": "P1",
+          "selection_quantile": "0.9",
+          "selection_target_rg": "0.1986940454237341",
+          "selection_rule": "highest model mean; nearest 90th percentile",
+          "model_mean_rg": "0.02215427787424645",
+          "display_seed": "20260715",
+          "display_delta_fscore_0.05": "-0.5350261153630763",
+          "display_delta_voxel_iou": "-0.7042336461571602",
+          "photo_mesh_sha256": "f01e621d4465b9a1c1025adc535390b7e899a6822cbdca9a861c3035f7aac1bf",
+          "sketch_mesh_sha256": "b2ed41f08d5ba836df7724e28ea2c2d341be3c4f05e9aea73cdc9a9051ea76f3",
+          "photo_input_sha256": "109dde2ba569d57905b67b65b6848bc7871751b40de6403c8124c36fb6708043",
+          "sketch_input_sha256": "fbf850127080c8b145f27a982b6a36578832065cb691b1c23c7f0e6e57f77d2a"
+        },
+        {
+          "model": "triposr",
+          "object_id": "c120_016",
+          "style": "sketch",
+          "delta_fscore_0.05": "-0.0164921799618533",
+          "delta_fscore_0.1": "-0.0644139370333307",
+          "delta_voxel_iou": "-0.0787220490274112",
+          "rg": "0.0622298690655578",
+          "rg_fscore_0.1": "0.0143081119940804",
+          "surface_degradation": "0.0164921799618533",
+          "solid_degradation": "0.0787220490274112",
+          "delta_watertight": "0.0",
+          "delta_components": "1.0",
+          "delta_boundary_edges": "0.0",
+          "distance_to_target": "0.0002867540892352999",
+          "case_label": "P2",
+          "selection_quantile": "0.9",
+          "selection_target_rg": "0.0625166231547931",
+          "selection_rule": "second-highest model mean; nearest 90th percentile",
+          "model_mean_rg": "0.008856536095919649",
+          "display_seed": "-1",
+          "display_delta_fscore_0.05": "-0.016492179961853315",
+          "display_delta_voxel_iou": "-0.0787220490274112",
+          "photo_mesh_sha256": "261844a9d11a8ab3e289224352802ffabe0c6d82222e32a1a0b72fe1f971aeef",
+          "sketch_mesh_sha256": "6163aa19648cf1c7d1aa21edbac4400d6b428c523f9cc81e6c3135d78eada6ef",
+          "photo_input_sha256": "eeb4103bcc62ff2c8e917b2428cd03997891dc4483d9be6e884ad66a0a68181f",
+          "sketch_input_sha256": "52a36cb8736bffe7be4399ead8bb30845d8f32107308c9be304866f8faf7066b"
+        },
+        {
+          "model": "trellis",
+          "object_id": "c120_012",
+          "style": "sketch",
+          "delta_fscore_0.05": "0.0989032925789433",
+          "delta_fscore_0.1": "0.1385473097588387",
+          "delta_voxel_iou": "0.1972295234275343",
+          "rg": "-0.0983262308485909",
+          "rg_fscore_0.1": "-0.0586822136686955",
+          "surface_degradation": "-0.0989032925789433",
+          "solid_degradation": "-0.1972295234275343",
+          "delta_watertight": "0.0",
+          "delta_components": "0.0",
+          "delta_boundary_edges": "0.0",
+          "distance_to_target": "9.455478514470983e-05",
+          "case_label": "L1",
+          "selection_quantile": "0.1",
+          "selection_target_rg": "-0.09842078563373562",
+          "selection_rule": "lowest model mean; nearest 10th percentile",
+          "model_mean_rg": "-0.009078427072727867",
+          "display_seed": "20260715",
+          "display_delta_fscore_0.05": "0.1908196884682265",
+          "display_delta_voxel_iou": "0.4544781233199879",
+          "photo_mesh_sha256": "ed86667c9922e4ed1fecc4591af820c221ff698aa2a9e653312339518ba3c6ab",
+          "sketch_mesh_sha256": "cf88bcfc41bf928bf86182ab6cfd193c37b8eb4c6e2d5195cc49a0de8eb78c1d",
+          "photo_input_sha256": "da9140d862751e90af8e67deb95acc3c6d00e066717abff6c19a652b48c64875",
+          "sketch_input_sha256": "aae3fb803935993a38786037cb43a12093d0f3f347ec66acbbf40888008710ce"
+        }
+      ]
+    },
+    {
+      "name": "figure_figure2_main_quantitative_results",
+      "pass": true,
+      "detail": {
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure2_main_quantitative_results.svg": 41955,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure2_main_quantitative_results.pdf": 29302,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure2_main_quantitative_results.tiff": 50742602,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure2_main_quantitative_results.png": 251541
+      }
+    },
+    {
+      "name": "figure_figure3_metric_gap_and_representative_cases",
+      "pass": true,
+      "detail": {
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure3_metric_gap_and_representative_cases.svg": 203375,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure3_metric_gap_and_representative_cases.pdf": 93461,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure3_metric_gap_and_representative_cases.tiff": 70866554,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure3_metric_gap_and_representative_cases.png": 669154
+      }
+    },
+    {
+      "name": "figure_figure4_robustness_and_render_diagnostics",
+      "pass": true,
+      "detail": {
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure4_robustness_and_render_diagnostics.svg": 44362,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure4_robustness_and_render_diagnostics.pdf": 24988,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure4_robustness_and_render_diagnostics.tiff": 61253090,
+        "/root/autodl-tmp/m03_q2_confirmatory_20260715/figures/figure4_robustness_and_render_diagnostics.png": 227489
+      }
+    }
+  ],
+  "failures": []
+}

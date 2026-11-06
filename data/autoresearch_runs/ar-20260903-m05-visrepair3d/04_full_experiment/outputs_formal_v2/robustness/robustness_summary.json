@@ -1,0 +1,56 @@
+{
+  "source_experiment_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+  "subset_rule": "sha256(case_id) mod 5 == 0",
+  "selected_cases": 103,
+  "evaluation_count": 618,
+  "conditions": {
+    "original": {
+      "n": 103,
+      "success_rate_at_0.005": 0.9902912621359223,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.00018572285402075408,
+      "median_relative_loss_reduction": 1.0
+    },
+    "surface_5x5": {
+      "n": 103,
+      "success_rate_at_0.005": 0.9805825242718447,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.00018154989599887607,
+      "median_relative_loss_reduction": 1.0
+    },
+    "route_2x": {
+      "n": 103,
+      "success_rate_at_0.005": 0.9611650485436893,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.0017754879880785546,
+      "median_relative_loss_reduction": 0.9883147708599599
+    },
+    "surface_5x5_route_2x": {
+      "n": 103,
+      "success_rate_at_0.005": 0.9320388349514563,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.001541115497006608,
+      "median_relative_loss_reduction": 0.9946484316931767
+    },
+    "route_noise_5cm": {
+      "n": 103,
+      "success_rate_at_0.005": 0.9611650485436893,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.0009498030159623795,
+      "median_relative_loss_reduction": 1.0
+    },
+    "route_noise_10cm": {
+      "n": 103,
+      "success_rate_at_0.005": 0.8252427184466019,
+      "hard_valid_rate": 1.0,
+      "mean_after_loss": 0.0029084643433603995,
+      "median_relative_loss_reduction": 0.9916742552361129
+    }
+  },
+  "gate": {
+    "dense_both_success_at_least_0.75": true,
+    "noise_10cm_success_at_least_0.70": true,
+    "all_conditions_hard_valid": true,
+    "overall_pass": true
+  }
+}

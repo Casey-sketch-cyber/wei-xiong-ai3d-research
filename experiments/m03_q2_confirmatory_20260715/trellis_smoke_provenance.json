@@ -1,0 +1,49 @@
+{
+  "model": "microsoft/TRELLIS-image-large",
+  "seed": 20260715,
+  "image": "/root/autodl-tmp/m03_q2_confirmatory_20260715/repos/TRELLIS/assets/example_image/T.png",
+  "image_sha256": "e29ddc83a5bd3a05fe9b34732169bc4ea7131f7c36527fdc5f626a90a73076d2",
+  "mesh_path": "/root/autodl-tmp/m03_q2_confirmatory_20260715/trellis_smoke_flash/trellis_smoke.obj",
+  "mesh_sha256": "844f92409ce0a217ece155ad72fa9f679c0fa702d9f9526b12b557905a95e942",
+  "vertices": 320941,
+  "faces": 642032,
+  "watertight": false,
+  "winding_consistent": true,
+  "components": 86,
+  "load_seconds": 36.011972427368164,
+  "inference_seconds": 10.652182817459106,
+  "total_seconds": 49.53729772567749,
+  "peak_gpu_gib": 10.140551090240479,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "device": "NVIDIA GeForce RTX 5090",
+  "attention_backend": "flash_attn",
+  "spconv_algorithm": "native",
+  "formats": [
+    "mesh"
+  ],
+  "removed_unused_decoders": [
+    "slat_decoder_gs",
+    "slat_decoder_rf"
+  ],
+  "sampler_parameters": {
+    "sparse_structure": {
+      "steps": 25,
+      "cfg_strength": 5.0,
+      "cfg_interval": [
+        0.5,
+        1.0
+      ],
+      "rescale_t": 3.0
+    },
+    "slat": {
+      "steps": 25,
+      "cfg_strength": 5.0,
+      "cfg_interval": [
+        0.5,
+        1.0
+      ],
+      "rescale_t": 3.0
+    }
+  }
+}

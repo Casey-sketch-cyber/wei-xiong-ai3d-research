@@ -1,0 +1,78 @@
+{
+  "objects_main": 120,
+  "main_images": 720,
+  "objects_view": 30,
+  "view_images": 180,
+  "objects_severity": 30,
+  "severity_rows": 180,
+  "manifest_rows": 1080,
+  "image_size": 512,
+  "seed": 20260715,
+  "canonical_rotation": [
+    [
+      0.8192,
+      0.0,
+      0.5736
+    ],
+    [
+      0.2962,
+      0.8563,
+      -0.4234
+    ],
+    [
+      -0.4912,
+      0.5165,
+      0.701
+    ]
+  ],
+  "view_rotations": {
+    "yaw_m30": [
+      [
+        0.9550480107802122,
+        -0.2582499999999999,
+        0.1462521716107541
+      ],
+      [
+        0.2962,
+        0.8563,
+        -0.4234
+      ],
+      [
+        -0.01579167833891637,
+        0.44730212105466255,
+        0.8938838080528915
+      ]
+    ],
+    "yaw_p30": [
+      [
+        0.46384801078021226,
+        0.2582499999999999,
+        0.847252171610754
+      ],
+      [
+        0.2962,
+        0.8563,
+        -0.4234
+      ],
+      [
+        -0.8349916783389163,
+        0.44730212105466255,
+        0.3202838080528916
+      ]
+    ]
+  },
+  "main_styles": [
+    "photo",
+    "edge",
+    "flat",
+    "low_detail",
+    "sketch",
+    "watercolor"
+  ],
+  "view_styles": [
+    "photo",
+    "edge",
+    "sketch"
+  ],
+  "alpha_policy": "same rendered alpha within each view; white RGB outside foreground"
+}

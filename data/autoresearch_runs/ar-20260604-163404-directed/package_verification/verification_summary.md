@@ -1,0 +1,153 @@
+# Experiment Package Verification
+
+Status: pass
+Required checks: 133 / 133
+Boundary checks: 7 / 7
+
+## Remaining Human Or External Steps
+
+- ArtEmis/WikiArt authorization and formal data use
+- Human evaluators filling annotation CSV files
+
+## Checks
+
+- PASS [required] m03_main100_relative_rows: `5 non-photo styles`
+- PASS [required] m03_res128_relative_rows: `5 non-photo styles`
+- PASS [required] m02_proxy_rows: `5 non-photo styles`
+- PASS [required] m02_emoart_n50_render_ok: `{'n': 50, 'render_ok': 50}`
+- PASS [required] m02_emoart_va_n50: `{'n': 50}`
+- PASS [required] m02_emoart100_render_ok: `{'n': 100, 'render_ok': 100}`
+- PASS [required] m02_emoart100_va_n100: `{'n': 100}`
+- PASS [required] table_experiment_summary_table.csv: `{'expected_rows': 5, 'actual_rows': 5}`
+- PASS [required] table_figure_caption_table.csv: `{'expected_rows': 6, 'actual_rows': 6}`
+- PASS [required] table_m02_emoart100_by_emotion.csv: `{'expected_rows': 8, 'actual_rows': 8}`
+- PASS [required] table_m02_emoart100_summary.csv: `{'expected_rows': 1, 'actual_rows': 1}`
+- PASS [required] table_m02_emoart100_va.csv: `{'expected_rows': 1, 'actual_rows': 1}`
+- PASS [required] table_m02_emoart_by_emotion.csv: `{'expected_rows': 8, 'actual_rows': 8}`
+- PASS [required] table_m02_emoart_summary.csv: `{'expected_rows': 1, 'actual_rows': 1}`
+- PASS [required] table_m02_emoart_va.csv: `{'expected_rows': 1, 'actual_rows': 1}`
+- PASS [required] table_m02_proxy.csv: `{'expected_rows': 5, 'actual_rows': 5}`
+- PASS [required] table_m03_main100.csv: `{'expected_rows': 5, 'actual_rows': 5}`
+- PASS [required] table_m03_res128.csv: `{'expected_rows': 5, 'actual_rows': 5}`
+- PASS [required] figure_m02_emoart100_affect_summary.svg: `{'exists': True, 'bytes': 5443}`
+- PASS [required] figure_m02_emoart50_affect_summary.svg: `{'exists': True, 'bytes': 5438}`
+- PASS [required] figure_m02_proxy_affect_drift.svg: `{'exists': True, 'bytes': 6817}`
+- PASS [required] figure_m03_main100_metric_paradox.svg: `{'exists': True, 'bytes': 10147}`
+- PASS [required] figure_m03_main100_volume_z_ratios.svg: `{'exists': True, 'bytes': 6845}`
+- PASS [required] figure_m03_res128_volume_z_ratios.svg: `{'exists': True, 'bytes': 6833}`
+- PASS [required] caption_target_m03_main100_volume_z_ratios.svg: `{'claim_link': 'C-M03-1'}`
+- PASS [required] caption_target_m03_main100_metric_paradox.svg: `{'claim_link': 'C-M03-2'}`
+- PASS [required] caption_target_m03_res128_volume_z_ratios.svg: `{'claim_link': 'C-M03-3'}`
+- PASS [required] caption_target_m02_proxy_affect_drift.svg: `{'claim_link': 'C-M02-1'}`
+- PASS [required] caption_target_m02_emoart50_affect_summary.svg: `{'claim_link': 'C-M02-2; C-M02-3'}`
+- PASS [required] caption_target_m02_emoart100_affect_summary.svg: `{'claim_link': 'C-M02-2; C-M02-3'}`
+- PASS [required] human_audit_items: `{'n_items': 50}`
+- PASS [required] human_audit_image_pairs: `{'image_pairs_present': 50, 'image_pngs': 100}`
+- PASS [boundary] human_audit_status_pending: `pending_human_evaluators`
+- PASS [required] human_audit_html_blocks: `50 item sections`
+- PASS [required] human_audit_rating_tool_exists: `{'path': 'm02_human_audit_pack\\rating_tool.html', 'exists': True, 'bytes': 54847, 'ok': True}`
+- PASS [required] human_audit_rating_tool_core_features: `rating tool has export/localStorage/score fields`
+- PASS [required] human_audit_template_rows: `50 rows`
+- PASS [required] human_audit_analysis_script: `script exists`
+- PASS [required] human_audit_rating_tool_generator: `generator exists`
+- PASS [required] human_audit_rater_quickstart: `{'path': 'm02_human_audit_pack\\RATER_QUICKSTART-zh.md', 'exists': True, 'bytes': 1027, 'ok': True}`
+- PASS [required] human_audit_rater_exports_readme: `{'path': 'm02_human_audit_pack\\rater_exports\\README-zh.md', 'exists': True, 'bytes': 566, 'ok': True}`
+- PASS [required] human_audit_rater_tracking: `{'rows': 3}`
+- PASS [required] human_audit_rater_followup_messages: `{'path': 'm02_human_audit_pack\\rater_followup_messages-zh.md', 'exists': True, 'bytes': 1326, 'ok': True}`
+- PASS [required] human_audit_rating_tool_summary: `{'annotation_items_rows': 50, 'annotation_template_rows': 50, 'html_item_blocks': 50, 'rating_tool_items': 50, 'rating_tool_js_syntax': 'pass', 'empty_template_analysis_status': 'no_completed_scores', 'smoke_scored_rows_tested': 3}`
+- PASS [required] human_audit_empty_template_no_fake_scores: `no_completed_scores`
+- PASS [required] rater_distribution_summary_exists: `{'path': 'm02_rater_distribution\\rater_package_summary.json', 'exists': True, 'bytes': 415, 'ok': True}`
+- PASS [required] rater_distribution_zip_exists: `{'path': 'm02_rater_distribution\\M02_rater_package.zip', 'exists': True, 'bytes': 22968265, 'ok': True}`
+- PASS [required] rater_distribution_zip_contents: `{'summary_files': 108, 'zip_entries': 108, 'image_pngs': 100, 'duplicate_names': 0}`
+- PASS [required] m02_hunyuan21_report_exists: `{'path': 'm02-hunyuan21-smoke-results-zh.md', 'exists': True, 'bytes': 3034, 'ok': True}`
+- PASS [required] m02_hunyuan21_local_summary_exists: `{'path': 'm02_hunyuan21_rerun\\hunyuan21_smoke_summary.json', 'exists': True, 'bytes': 564, 'ok': True}`
+- PASS [required] m02_hunyuan21_shape_summary_exists: `{'path': 'm02_hunyuan21_rerun\\remote_hunyuan21_shape_smoke_results\\outputs\\hunyuan21_shape_smoke\\shape_smoke_summary.json', 'exists': True, 'bytes': 250, 'ok': True}`
+- PASS [required] m02_hunyuan21_contact_sheet_exists: `{'path': 'm02_hunyuan21_rerun\\remote_hunyuan21_shape_smoke_results\\outputs\\hunyuan21_shape_smoke\\previews\\hunyuan21_shape_contact_sheet.png', 'exists': True, 'bytes': 939281, 'ok': True}`
+- PASS [required] m02_hunyuan21_results_zip_exists: `{'path': 'm02_hunyuan21_rerun\\hunyuan21_shape_smoke_results.zip', 'exists': True, 'bytes': 19642694, 'ok': True}`
+- PASS [required] m02_hunyuan21_local_sample_count: `{'n_samples': 8, 'model_target': 'Hunyuan3D 2.1'}`
+- PASS [required] m02_hunyuan21_shape_success_8: `{'n': 8, 'success': 8, 'failed': 0}`
+- PASS [boundary] m02_hunyuan21_texture_boundary: `not_run_bpy_unavailable_in_python312_base_env`
+- PASS [required] m02_hunyuan21_shape_glb_count: `{'shape_glbs': 8}`
+- PASS [required] m02_hunyuan21_comparison_panel_count: `{'comparison_panels': 8}`
+- PASS [required] m02_hunyuan21_color_report_exists: `{'path': 'm02-hunyuan21-colorized-projection-results-zh.md', 'exists': True, 'bytes': 2665, 'ok': True}`
+- PASS [required] m02_hunyuan21_color_script_exists: `{'path': 'colorize_hunyuan21_shapes.py', 'exists': True, 'bytes': 8244, 'ok': True}`
+- PASS [required] m02_hunyuan21_color_summary_exists: `{'path': 'm02_hunyuan21_rerun\\colorized_projection_results\\colorized_projection_summary.json', 'exists': True, 'bytes': 4708, 'ok': True}`
+- PASS [required] m02_hunyuan21_color_contact_sheet_exists: `{'path': 'm02_hunyuan21_rerun\\colorized_projection_results\\previews\\hunyuan21_colorized_projection_contact_sheet.png', 'exists': True, 'bytes': 1250990, 'ok': True}`
+- PASS [required] m02_hunyuan21_color_results_zip_exists: `{'path': 'm02_hunyuan21_rerun\\hunyuan21_colorized_projection_results.zip', 'exists': True, 'bytes': 17687490, 'ok': True}`
+- PASS [required] m02_hunyuan21_color_success_8: `{'n': 8, 'success': 8}`
+- PASS [boundary] m02_hunyuan21_color_not_official_pbr_boundary: `not_official_pbr_front_view_vertex_color_projection`
+- PASS [required] m02_hunyuan21_color_glb_count: `{'colorized_glbs': 8}`
+- PASS [required] m02_hunyuan21_color_panel_count: `{'colorized_panels': 8}`
+- PASS [required] run_readme_exists: `{'path': 'README.md', 'exists': True, 'bytes': 2337, 'ok': True}`
+- PASS [required] run_index_exists: `{'path': 'RUN_INDEX-zh.md', 'exists': True, 'bytes': 7436, 'ok': True}`
+- PASS [required] reproducibility_checklist_exists: `{'path': 'REPRODUCIBILITY-zh.md', 'exists': True, 'bytes': 8139, 'ok': True}`
+- PASS [required] status_dashboard_md_exists: `{'path': 'status_dashboard\\status_dashboard.md', 'exists': True, 'bytes': 2144, 'ok': True}`
+- PASS [required] status_dashboard_json_exists: `{'path': 'status_dashboard\\status_dashboard.json', 'exists': True, 'bytes': 3888, 'ok': True}`
+- PASS [required] readme_points_to_run_index: `README links run index`
+- PASS [required] readme_points_to_status_dashboard: `README links status dashboard`
+- PASS [required] readme_points_to_reproducibility: `README links reproducibility checklist`
+- PASS [required] run_index_has_verify_command: `run index includes verifier command`
+- PASS [required] run_index_points_to_status_dashboard: `run index links status dashboard`
+- PASS [required] run_index_points_to_reproducibility: `run index links reproducibility checklist`
+- PASS [required] readme_points_to_hunyuan21_smoke: `README links Hunyuan3D 2.1 smoke rerun`
+- PASS [required] run_index_points_to_hunyuan21_smoke: `run index links Hunyuan3D 2.1 smoke report`
+- PASS [required] run_index_points_to_hunyuan21_colorized: `run index links Hunyuan3D 2.1 colorized report`
+- PASS [required] reproducibility_has_core_commands: `repro checklist includes core commands`
+- PASS [required] reproducibility_mentions_hunyuan_texture_boundary: `repro checklist states Hunyuan texture boundary`
+- PASS [required] status_dashboard_values: `{'overall': {'automatic_package_status': 'pass', 'required_checks': 133, 'required_passed': 133, 'boundary_checks': 7, 'boundary_passed': 7, 'external_status': 'pending_external_or_human_steps'}, 'm03': {'status': 'complete_for_mainline_draft', 'main_experiment': 'M03 main100', 'robustness': 'M03 res128 robustness', 'recommended_role': 'main paper direction', 'key_claim': 'Style-induced geometry collapse and metric paradox in image-to-3D reconstruction.'}}`
+- PASS [required] claim_matrix_exists: `{'path': 'paper-claim-evidence-matrix-zh.md', 'exists': True, 'bytes': 7169, 'ok': True}`
+- PASS [required] safe_claim_count: `{'safe_claims': 8}`
+- PASS [required] unsafe_claim_count: `{'unsafe_claims': 5}`
+- PASS [required] completion_audit_exists: `{'path': 'experiment-completion-audit-zh.md', 'exists': True, 'bytes': 14564, 'ok': True}`
+- PASS [required] artifact_manifest_csv_exists: `{'path': 'artifact_manifest\\artifact_manifest_sha256.csv', 'exists': True, 'bytes': 67721, 'ok': True}`
+- PASS [required] artifact_manifest_summary_exists: `{'path': 'artifact_manifest\\artifact_manifest_summary.json', 'exists': True, 'bytes': 795, 'ok': True}`
+- PASS [required] artifact_manifest_counts_match: `{'csv_rows': 445, 'summary_total': 445}`
+- PASS [required] remote_inventory_json_exists: `{'path': 'remote_artifact_inventory\\remote_artifact_inventory.json', 'exists': True, 'bytes': 11754, 'ok': True}`
+- PASS [required] remote_inventory_md_exists: `{'path': 'remote_artifact_inventory\\remote_artifact_inventory.md', 'exists': True, 'bytes': 10655, 'ok': True}`
+- PASS [required] remote_inventory_items_exist: `{'items': 11, 'existing_items': 11, 'total_files': 3265, 'total_bytes': 1424501026}`
+- PASS [required] external_completion_check_script: `{'path': 'check_external_steps.py', 'exists': True, 'bytes': 5488, 'ok': True}`
+- PASS [required] strict_m02_followup_script: `{'path': 'run_m02_strict_followup.py', 'exists': True, 'bytes': 5683, 'ok': True}`
+- PASS [required] strict_m02_followup_status_json: `{'path': 'm02_strict_followup\\strict_m02_followup_status.json', 'exists': True, 'bytes': 1171, 'ok': True}`
+- PASS [required] strict_m02_followup_status_md: `{'path': 'm02_strict_followup\\strict_m02_followup_status.md', 'exists': True, 'bytes': 728, 'ok': True}`
+- PASS [required] external_steps_README-zh.md: `{'path': 'm02_external_steps_pack\\README-zh.md', 'exists': True, 'bytes': 2403, 'ok': True}`
+- PASS [required] external_steps_artemis_access_request_template-zh.md: `{'path': 'm02_external_steps_pack\\artemis_access_request_template-zh.md', 'exists': True, 'bytes': 2347, 'ok': True}`
+- PASS [required] external_steps_artemis_access_live_check-zh.md: `{'path': 'm02_external_steps_pack\\artemis_access_live_check-zh.md', 'exists': True, 'bytes': 1852, 'ok': True}`
+- PASS [required] external_steps_artemis_authorization_record_template-zh.md: `{'path': 'm02_external_steps_pack\\artemis_authorization_record_template-zh.md', 'exists': True, 'bytes': 1451, 'ok': True}`
+- PASS [required] external_steps_human_evaluation_protocol-zh.md: `{'path': 'm02_external_steps_pack\\human_evaluation_protocol-zh.md', 'exists': True, 'bytes': 2858, 'ok': True}`
+- PASS [required] external_steps_rater_invitation_template-zh.md: `{'path': 'm02_external_steps_pack\\rater_invitation_template-zh.md', 'exists': True, 'bytes': 1105, 'ok': True}`
+- PASS [required] external_steps_rater_consent_template-zh.md: `{'path': 'm02_external_steps_pack\\rater_consent_template-zh.md', 'exists': True, 'bytes': 1488, 'ok': True}`
+- PASS [required] external_steps_rater_metadata_template.csv: `{'path': 'm02_external_steps_pack\\rater_metadata_template.csv', 'exists': True, 'bytes': 166, 'ok': True}`
+- PASS [required] external_steps_human_evaluation_ethics_checklist-zh.md: `{'path': 'm02_external_steps_pack\\human_evaluation_ethics_checklist-zh.md', 'exists': True, 'bytes': 1385, 'ok': True}`
+- PASS [required] external_steps_post_artemis_data_plan-zh.md: `{'path': 'm02_external_steps_pack\\post_artemis_data_plan-zh.md', 'exists': True, 'bytes': 1494, 'ok': True}`
+- PASS [required] external_steps_external_steps_status.json: `{'path': 'm02_external_steps_pack\\external_steps_status.json', 'exists': True, 'bytes': 736, 'ok': True}`
+- PASS [required] external_completion_check_json: `{'path': 'm02_external_steps_pack\\external_step_checks\\external_completion_check.json', 'exists': True, 'bytes': 795, 'ok': True}`
+- PASS [required] external_completion_check_md: `{'path': 'm02_external_steps_pack\\external_step_checks\\external_completion_check.md', 'exists': True, 'bytes': 415, 'ok': True}`
+- PASS [required] artemis_access_package_script: `{'path': 'make_m02_artemis_access_package.py', 'exists': True, 'bytes': 3814, 'ok': True}`
+- PASS [required] artemis_access_package_summary: `{'path': 'm02_artemis_access_package\\artemis_access_package_summary.json', 'exists': True, 'bytes': 451, 'ok': True}`
+- PASS [required] artemis_access_package_zip: `{'path': 'm02_artemis_access_package\\M02_ArtEmis_access_package.zip', 'exists': True, 'bytes': 7401, 'ok': True}`
+- PASS [required] artemis_access_package_contents: `{'summary_files': 7, 'zip_entries': 7, 'contains_restricted_data': False, 'duplicate_names': 0}`
+- PASS [boundary] external_steps_artemis_pending: `pending_human_action`
+- PASS [boundary] external_steps_human_eval_pending: `pending_human_evaluators`
+- PASS [required] external_steps_readme_references_ethics_materials: `README references consent, metadata, ethics checklist, and live access check`
+- PASS [boundary] external_completion_check_pending: `pending_external_or_human_steps`
+- PASS [boundary] strict_m02_followup_pending_or_ready: `pending_external_or_human_steps`
+- PASS [required] handoff_summary_exists: `{'path': 'handoff_package\\handoff_summary.json', 'exists': True, 'bytes': 261, 'ok': True}`
+- PASS [required] handoff_manifest_exists: `{'path': 'handoff_package\\handoff_manifest.csv', 'exists': True, 'bytes': 3237, 'ok': True}`
+- PASS [required] handoff_file_HANDOFF_README.md: `{'path': 'handoff_package\\HANDOFF_README.md', 'exists': True, 'bytes': 848, 'ok': True}`
+- PASS [required] handoff_file_status_dashboard/status_dashboard.md: `{'path': 'handoff_package\\status_dashboard\\status_dashboard.md', 'exists': True, 'bytes': 1878, 'ok': True}`
+- PASS [required] handoff_file_RUN_INDEX-zh.md: `{'path': 'handoff_package\\RUN_INDEX-zh.md', 'exists': True, 'bytes': 6844, 'ok': True}`
+- PASS [required] handoff_file_experiment-completion-audit-zh.md: `{'path': 'handoff_package\\experiment-completion-audit-zh.md', 'exists': True, 'bytes': 14564, 'ok': True}`
+- PASS [required] handoff_file_paper-claim-evidence-matrix-zh.md: `{'path': 'handoff_package\\paper-claim-evidence-matrix-zh.md', 'exists': True, 'bytes': 7169, 'ok': True}`
+- PASS [required] handoff_file_final_figures_tables/m03_main100_metric_paradox.svg: `{'path': 'handoff_package\\final_figures_tables\\m03_main100_metric_paradox.svg', 'exists': True, 'bytes': 10147, 'ok': True}`
+- PASS [required] handoff_file_m02_external_steps_pack/artemis_access_request_template-zh.md: `{'path': 'handoff_package\\m02_external_steps_pack\\artemis_access_request_template-zh.md', 'exists': True, 'bytes': 2347, 'ok': True}`
+- PASS [required] handoff_file_make_m02_artemis_access_package.py: `{'path': 'handoff_package\\make_m02_artemis_access_package.py', 'exists': True, 'bytes': 3814, 'ok': True}`
+- PASS [required] handoff_file_m02_artemis_access_package/artemis_access_package_summary.json: `{'path': 'handoff_package\\m02_artemis_access_package\\artemis_access_package_summary.json', 'exists': True, 'bytes': 451, 'ok': True}`
+- PASS [required] handoff_file_make_m02_rater_distribution.py: `{'path': 'handoff_package\\make_m02_rater_distribution.py', 'exists': True, 'bytes': 4205, 'ok': True}`
+- PASS [required] handoff_file_m02_rater_distribution/rater_package_summary.json: `{'path': 'handoff_package\\m02_rater_distribution\\rater_package_summary.json', 'exists': True, 'bytes': 415, 'ok': True}`
+- PASS [required] handoff_file_m02_human_audit_pack/rater_tracking.csv: `{'path': 'handoff_package\\m02_human_audit_pack\\rater_tracking.csv', 'exists': True, 'bytes': 381, 'ok': True}`
+- PASS [required] handoff_file_m02_human_audit_pack/rater_followup_messages-zh.md: `{'path': 'handoff_package\\m02_human_audit_pack\\rater_followup_messages-zh.md', 'exists': True, 'bytes': 1326, 'ok': True}`
+- PASS [required] handoff_file_run_m02_strict_followup.py: `{'path': 'handoff_package\\run_m02_strict_followup.py', 'exists': True, 'bytes': 5683, 'ok': True}`
+- PASS [required] handoff_file_m02_strict_followup/strict_m02_followup_status.md: `{'path': 'handoff_package\\m02_strict_followup\\strict_m02_followup_status.md', 'exists': True, 'bytes': 728, 'ok': True}`
+- PASS [required] handoff_file_m02-emoart100-results-zh.md: `{'path': 'handoff_package\\m02-emoart100-results-zh.md', 'exists': True, 'bytes': 4059, 'ok': True}`
+- PASS [required] handoff_file_final_figures_tables/m02_emoart100_affect_summary.svg: `{'path': 'handoff_package\\final_figures_tables\\m02_emoart100_affect_summary.svg', 'exists': True, 'bytes': 5443, 'ok': True}`
+- PASS [required] handoff_counts_match: `{'packaged_files': 65, 'manifest_rows': 65, 'total_files_on_disk': 67, 'actual_files': 67}`

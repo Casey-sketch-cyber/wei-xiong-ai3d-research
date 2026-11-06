@@ -1,0 +1,8 @@
+{
+  "jobs_requested": 360,
+  "records": 360,
+  "multiview_success": 360,
+  "mesh_success": 360,
+  "multiview_failed": 0,
+  "mesh_failed": 0
+}

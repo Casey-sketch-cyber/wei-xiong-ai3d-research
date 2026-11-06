@@ -1,0 +1,20 @@
+{
+  "source_manifest": "..\\m03_metric_validity_pilot_20260714\\results_final\\dataset\\inputs_manifest.csv",
+  "source_manifest_sha256": "7ce6ee837968d608adee39407a39cc9052a9ced11d658de9af60d5d10de9c263",
+  "schedule": "calibration_d30_schedule.csv",
+  "schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876",
+  "objects": [
+    "gso_001",
+    "gso_002",
+    "gso_003",
+    "gso_004",
+    "gso_005",
+    "gso_006",
+    "gso_007",
+    "gso_008",
+    "gso_009",
+    "gso_010"
+  ],
+  "seed": 20260714,
+  "rule": "first ten D30 objects by frozen object_id; photo input only"
+}

@@ -1,0 +1,14 @@
+{
+  "model": "trellis",
+  "jobs_requested": 1740,
+  "records": 1740,
+  "success": 1740,
+  "failed": 0,
+  "samples": 10000,
+  "calibration_samples": 3000,
+  "voxel_resolution": 128,
+  "grid_extent": 1.5,
+  "deterministic_schedule_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+  "stochastic_schedule_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+  "d30_schedule_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876"
+}

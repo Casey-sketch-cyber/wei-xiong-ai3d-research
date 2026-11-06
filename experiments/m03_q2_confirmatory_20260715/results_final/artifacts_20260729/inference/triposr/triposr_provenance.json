@@ -1,0 +1,12 @@
+{
+  "repo": "/root/autodl-tmp/m03/repos/TripoSR",
+  "repo_commit": "107cefdc244c39106fa830359024f6a2f1c78871",
+  "model": "stabilityai/TripoSR",
+  "manifest": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference_schedule_deterministic.csv",
+  "manifest_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+  "mc_resolution": 128,
+  "chunk_size": 4096,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

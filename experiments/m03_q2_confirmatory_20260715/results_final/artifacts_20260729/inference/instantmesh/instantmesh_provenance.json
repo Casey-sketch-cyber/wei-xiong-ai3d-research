@@ -1,0 +1,18 @@
+{
+  "repo": "/root/autodl-tmp/m03_metric_validity_pilot_20260714/repos/InstantMesh",
+  "repo_commit": "08822c52fdc399b93ea00e4fa9e596344ed52ccc",
+  "model": "TencentARC/InstantMesh",
+  "multiview_model": "sudo-ai/zero123plus-v1.2",
+  "config": "/root/autodl-tmp/m03_metric_validity_pilot_20260714/repos/InstantMesh/configs/instant-mesh-large.yaml",
+  "manifest": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference_schedule_stochastic.csv",
+  "manifest_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+  "diffusion_steps": 75,
+  "seeds": [
+    3407,
+    20260715
+  ],
+  "paired_seed_design": true,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

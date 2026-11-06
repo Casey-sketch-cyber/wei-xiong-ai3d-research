@@ -1,0 +1,136 @@
+profile:
+  name: ar-20260604-163404-directed
+  description: Complete configurable research-to-paper run.
+  language: zh
+entrypoint:
+  trigger_words:
+  - ARX-START
+  - AutoResearch
+  - 自动科研
+  - 从创新点到论文
+  mode: full_pipeline
+gate_1_startup_wizard:
+  objective:
+    allowed:
+    - top_conference
+    - q1_journal
+    - q2_journal
+    - q3_q4_journal
+    - draft_first
+    selected: q2_journal
+    notes: ''
+  innovation_source:
+    allowed:
+    - radar_gap
+    - radar_topic
+    - user_direction
+    - user_papers
+    - web_literature
+    - hybrid
+    selected: user_direction
+    snapshot_id: null
+    topic_id: null
+    gap_id: null
+    user_direction_text: AI+3D modeling; AI-assisted 3D asset generation; AI+art;
+      AI+painting; computational creativity; image-to-3D; text-to-3D; sketch-to-3D;
+      AI painting evaluation; style transfer and generative art
+    paper_paths: []
+  resources:
+    allowed_profiles:
+    - local_laptop
+    - rtx3090_24g
+    - a6000_48g
+    - two_a6000_96g
+    - custom
+    selected_profile: custom
+    cpu: null
+    ram_gb: 90
+    gpu: RTX 5090 * 1
+    gpu_vram_gb: 32
+    max_runtime_days: null
+    max_budget_usd: null
+    allow_remote_gpu: true
+  automation:
+    allowed:
+    - full_auto
+    - gate_only
+    - copilot
+    - step_by_step
+    selected: gate_only
+    pause_at:
+    - candidate_selection
+    - experiment_design
+    - evidence_gate
+    - writing_plan_confirmation
+  data_policy:
+    allowed:
+    - public_only
+    - public_or_synthetic
+    - small_manual_allowed
+    - unrestricted
+    selected: public_only
+    require_reproducible_access: true
+    dataset_max_size_gb: null
+  other_text: 'Target: CAS SCI/SSCI/AHCI Q2 journal; open-access or subscription journals
+    are both acceptable. Must strongly fit AI+3D modeling, AI+art, or AI+painting.
+    Prefer public, easy-to-download datasets. Updated resource profile: one remote RTX
+    5090, 90GB RAM, Ubuntu 22.04, PyTorch 2.8, CUDA 12.8, 30GB system disk, free
+    50GB SSD plus paid 700GB data disk. Generate concrete innovation candidates only,
+    then stop for user selection before experiments. Selected direction: M03 narrowed
+    to a paired cross-style image-to-3D robustness benchmark with known 3D ground truth.'
+candidate_generation:
+  min_candidates: 3
+  max_candidates: 6
+  scoring_dimensions:
+    novelty: 0.25
+    feasibility: 0.25
+    evidence_strength: 0.2
+    venue_fit: 0.2
+    user_fit: 0.1
+  require_novelty_scan: true
+  require_dataset_access_check: true
+  require_baseline_plan: true
+  output_file: candidates.json
+gate_2_candidate_selection:
+  require_user_selection: true
+  allow_user_edit_candidate: true
+  selected_candidate_id: M03
+experiment_execution:
+  generate_guidance_file: true
+  guidance_file: guidance.md
+  traceability_file: experiment-traceability.md
+  require_baseline_before_method: true
+  record_failed_runs: true
+  allow_method_iteration: true
+  max_iterations: null
+  evidence_gate:
+    allowed_verdicts:
+    - ready_to_write
+    - needs_more_experiments
+    - infeasible_with_evidence
+    require_user_confirmation_when_not_ready: true
+gate_3_writing_plan_confirmation:
+  trigger_after: evidence_gate
+  require_user_confirmation: true
+  plan_file: writing-execution-plan.md
+  plan_must_cover:
+  - inherited_objective
+  - selected_candidate
+  - evidence_strength
+  - paper_positioning
+  - writing_backend
+  - figure_backend
+  - manuscript_structure
+  - figure_table_plan
+  - citation_strategy
+  - reviewer_and_audit_strategy
+  - risks_and_claim_adjustments
+  user_adjustment_text: ''
+writing_execution:
+  writing_backend: infer_after_experiments
+  figure_backend: infer_after_experiments
+  citation_backend: infer_after_experiments
+  reviewer_backend: infer_after_experiments
+  humanizer_after_content_stable: true
+  compile_tex_pdf: true
+  final_package_dir: final

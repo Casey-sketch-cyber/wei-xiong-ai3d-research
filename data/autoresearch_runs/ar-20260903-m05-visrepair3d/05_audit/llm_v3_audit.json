@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "accepted_count_matches": true,
+    "raw_count_matches_attempted": true,
+    "accepted_hashes_link_to_raw": true,
+    "accepted_hashes_unique": true,
+    "balanced_route_families": true,
+    "balanced_exhibit_counts": true,
+    "geometry_and_schedule_replay": true
+  },
+  "all_checks_pass": true,
+  "route_family_counts": {
+    "straight": 4,
+    "arc": 4,
+    "serpentine": 4
+  },
+  "exhibit_count_counts": {
+    "3": 4,
+    "4": 4,
+    "5": 4
+  },
+  "manifest_sha256": "359d9573075ab628a2051152d78c801de8270ee1958d115b24cc71e91eb66a63",
+  "raw_generations_sha256": "ecfb6b22c755b108123a076702102eaa38288234dba7833e0ce255fd597714d7"
+}

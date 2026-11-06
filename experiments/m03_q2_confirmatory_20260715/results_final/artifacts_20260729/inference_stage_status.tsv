@@ -1,0 +1,6 @@
+stage	started_at	finished_at	exit_code	log
+triposr	2026-07-16T01:17:46+08:00	2026-07-16T01:22:35+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/triposr.log
+instantmesh	2026-07-16T01:22:35+08:00	2026-07-16T03:56:12+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/instantmesh.log
+hunyuan21	2026-07-16T03:56:12+08:00	2026-07-16T13:58:39+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/hunyuan21.log
+trellis	2026-07-16T13:58:39+08:00	2026-07-16T14:00:43+08:00	1	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/trellis.log
+trellis_retry	2026-07-16T18:07:29+08:00	2026-07-16T20:19:01+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/trellis_retry.log

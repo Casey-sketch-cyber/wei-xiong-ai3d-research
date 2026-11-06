@@ -1,0 +1,9 @@
+claim_id,candidate_claim,closest_prior,overlap,verdict,allowed_reframing
+C1,"A paired same-object benchmark isolates the effect of artistic style on image-to-3D geometry","Cue3D; Kantarci et al.","Full","Blocked","Use pairing as experimental control, not as the headline novelty"
+C2,"A cross-model comparison reveals model-dependent robustness to stylized inputs","Cue3D; manuscript miniatures study","Full","Blocked","Do not claim cross-model robustness or model-by-style variation as new"
+C3,"Stronger native 3D priors reduce style-induced degradation","Cue3D","High","Blocked","Report as a replication or model-specific finding only"
+C4,"Depth, volume, and watertightness reveal failures hidden by appearance metrics","Manuscript miniatures; Eval3D; Fancy123-related metric criticism","High","Mostly blocked","Narrow to a formally tested style-conditioned ranking failure across metric families"
+C5,"F-score can improve while paired reconstructed volume collapses","No exact same formulation located; adjacent metric-reliability work exists","Partial","Open but insufficient alone","Treat as the motivating empirical paradox, not the full contribution"
+C6,"The validity of geometry metrics changes with input style and model family","No direct matched study located in the scanned pool","Partial","PARTIAL-OPEN","Test metric-by-style rank stability against an independent asset-utility anchor"
+C7,"A new asset-utility metric solves the evaluation problem","SAUCD; Eval3D; SI23DCQA/I3DQA; DB-3DME","High","Blocked unless rigorously validated","Benchmark established metrics and focus on conditional validity before proposing a new score"
+C8,"TripoSR and Hunyuan3D 2.1 form a novel comparison","Cue3D includes Hunyuan3D-2 and multiple regression/native models","High","Blocked","The exact model pair is an implementation choice, not a research novelty"

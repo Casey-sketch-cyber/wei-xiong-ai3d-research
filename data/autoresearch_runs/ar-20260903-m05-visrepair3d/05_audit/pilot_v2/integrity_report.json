@@ -1,0 +1,29 @@
+{
+  "pilot": {
+    "checks": {
+      "case_count_15": true,
+      "row_count_90": true,
+      "six_primary_methods": true,
+      "balanced_method_counts": true,
+      "unique_case_method_pairs": true,
+      "numeric_values_finite": true,
+      "reported_gate_passed": true
+    },
+    "all_checks_pass": true,
+    "method_counts": {
+      "generic_greedy": 15,
+      "no_repair": 15,
+      "random_feasible": 15,
+      "revealrepair_attributed": 15,
+      "simulated_annealing": 15,
+      "visibility_max_only": 15
+    },
+    "hashes": {
+      "pilot_cases.json": "f26091c567c0d77445ed51aca96b3d6e46bb95b07c103b2e6cbfef2ab278232a",
+      "pilot_results.csv": "46b3fe971eee4c618fc74d50d135b4c48cb519f60069fae55f5bb5e9c999df7e",
+      "pilot_summary.json": "db7698c32b5255be2b58edd50707d4b110091b3f887fc60de2e92be909cff75f"
+    }
+  },
+  "manifest_file_count": 88,
+  "overall_integrity_pass": true
+}

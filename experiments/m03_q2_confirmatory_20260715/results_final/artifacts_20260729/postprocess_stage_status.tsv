@@ -1,0 +1,15 @@
+stage	started_at	finished_at	exit_code	log
+validate_inference	2026-07-16T14:01:04+08:00	2026-07-16T14:01:04+08:00	1	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_validate_inference.log
+validate_inference	2026-07-16T20:19:01+08:00	2026-07-16T20:19:01+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_validate_inference.log
+inference_compute_summary	2026-07-16T20:19:01+08:00	2026-07-16T20:19:02+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_inference_compute_summary.log
+trellis_calibration	2026-07-16T20:19:02+08:00	2026-07-16T20:20:26+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_trellis_calibration.log
+evaluation_instantmesh	2026-07-16T20:20:26+08:00	2026-07-16T20:35:41+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_evaluation_instantmesh.log
+evaluation_hunyuan21	2026-07-16T20:35:41+08:00	2026-07-16T21:46:06+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_evaluation_hunyuan21.log
+evaluation_trellis	2026-07-16T21:46:06+08:00	2026-07-16T22:52:40+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_evaluation_trellis.log
+render_diagnostics	2026-07-16T22:52:40+08:00	2026-07-16T23:47:10+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_render_diagnostics.log
+confirmatory_statistics	2026-07-16T23:47:10+08:00	2026-07-16T23:47:11+08:00	1	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_confirmatory_statistics.log
+confirmatory_statistics_retry	2026-07-29T22:22:59+08:00	2026-07-29T22:23:06+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_confirmatory_statistics_retry.log
+exploratory_morphology	2026-07-29T22:23:06+08:00	2026-07-29T22:24:46+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_exploratory_morphology.log
+confirmatory_figures	2026-07-29T22:24:46+08:00	2026-07-29T22:24:50+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_confirmatory_figures.log
+representative_cases	2026-07-29T22:24:50+08:00	2026-07-29T22:25:01+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_representative_cases.log
+final_validation	2026-07-29T22:25:01+08:00	2026-07-29T22:25:01+08:00	0	/root/autodl-tmp/m03_q2_confirmatory_20260715/logs/post_final_validation.log

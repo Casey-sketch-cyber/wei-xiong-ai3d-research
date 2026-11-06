@@ -1,0 +1,43 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5090, 32607 MiB, 580.76.05",
+  "shape_repo_commit": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "shape_repo_changed_files": [
+    "hy3dpaint/utils/image_super_utils.py",
+    "hy3dpaint/utils/simplify_mesh_utils.py"
+  ],
+  "pbr_repo_commit": "82920d643c0dc2f7bfd7255f45f62d386edfe60c",
+  "pbr_repo_tracked_changes": [],
+  "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+  "packages": {
+    "torch": "2.8.0+cu128",
+    "torchvision": "0.23.0+cu128",
+    "transformers": "4.46.0",
+    "diffusers": "0.30.0",
+    "trimesh": "4.4.7",
+    "pymeshlab": "2022.2.post3",
+    "basicsr": "1.4.2",
+    "realesrgan": "0.3.0",
+    "bpy": "4.0.0",
+    "numpy": "1.26.4",
+    "open3d": "0.18.0"
+  },
+  "shape_settings": {
+    "steps": 25,
+    "octree_resolution": 384,
+    "seeds": [
+      20260714,
+      3407
+    ],
+    "objects": 12,
+    "styles": 6
+  },
+  "pbr_settings": {
+    "resolution": 512,
+    "max_num_view": 6,
+    "objects": 2,
+    "styles": 6,
+    "use_remesh": true,
+    "remesh_note": "Official Hunyuan3DPaintPipeline default; original shape GLBs remain unchanged and geometry metrics use originals."
+  },
+  "compatibility_note": "Runner invokes the official hy3dpaint/utils/torchvision_fix.py used by the project demo; official Hunyuan tracked files are unchanged."
+}

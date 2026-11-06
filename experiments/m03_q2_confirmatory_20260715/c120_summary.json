@@ -1,0 +1,26 @@
+{
+  "status": "complete",
+  "protocol_salt": "m03-q2-confirmatory-20260715",
+  "source_repo": "WalkerCH/stream3d",
+  "source_endpoint": "https://hf-mirror.com",
+  "source_glbs_found": 1030,
+  "discovery_objects_excluded": 30,
+  "eligible_candidates": 1000,
+  "candidate_prefix_considered": 220,
+  "audited": 132,
+  "failed": 0,
+  "accepted": 120,
+  "target": 120,
+  "manifold_commit": "a0cc6d9817f81efff63b704a2fed53567ea44cbd",
+  "manifold_depth": 8,
+  "thresholds": {
+    "watertight": true,
+    "winding_consistent": true,
+    "positive_volume": true,
+    "max_components": 4,
+    "min_surface_fscore_0.02": 0.95,
+    "max_surface_p95_distance": 0.02,
+    "max_surface_chamfer_l2": 0.0002,
+    "max_extent_relative_mae": 0.03
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "input_source_repo": "huanngzh/Edit3D-Bench",
+  "solid_source_repo": "tars-home/GeometricBreaks",
+  "solid_source_doi": "10.57967/hf/5592",
+  "archive_sha256": "75f90705a22bd40f523dff2f6a7c24d8083ee928b8f76186355289ef6d1cfe37",
+  "candidates": 101,
+  "audited": 91,
+  "valid_before_name_exclusions": 54,
+  "valid_after_name_exclusions": 51,
+  "selected": 30,
+  "requested": 30,
+  "gate_passed": true,
+  "alignment_transform": "(x, y, z)_GeometricBreaks -> (x, z, -y)_GSO",
+  "selection_thresholds": {
+    "watertight": true,
+    "winding_consistent": true,
+    "is_volume": true,
+    "max_components": 4,
+    "min_surface_fscore_0.02": 0.95,
+    "max_surface_p95_distance": 0.02,
+    "max_surface_chamfer_l2": 0.0002
+  }
+}

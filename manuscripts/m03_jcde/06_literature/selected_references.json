@@ -1,0 +1,3100 @@
+[
+  {
+    "paperId": "1b31dbf44e68b698120552366df03e6e35a1e428",
+    "externalIds": {
+      "ArXiv": "2212.08051",
+      "DBLP": "conf/cvpr/DeitkeSSWMVSEKF23",
+      "DOI": "10.1109/CVPR52729.2023.01263",
+      "CorpusId": 254685588
+    },
+    "publicationVenue": {
+      "id": "768b87bb-8a18-4d9c-a161-4d483c776bcf",
+      "name": "Computer Vision and Pattern Recognition",
+      "type": "conference",
+      "alternate_names": [
+        "CVPR",
+        "Comput Vis Pattern Recognit"
+      ],
+      "issn": "1063-6919",
+      "url": "https://ieeexplore.ieee.org/xpl/conhome.jsp?punumber=1000147",
+      "alternate_urls": [
+        "https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/1b31dbf44e68b698120552366df03e6e35a1e428",
+    "title": "Objaverse: A Universe of Annotated 3D Objects",
+    "venue": "Computer Vision and Pattern Recognition",
+    "year": 2022,
+    "citationCount": 1670,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2212.08051",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2212.08051, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "1632916259",
+        "name": "Matt Deitke"
+      },
+      {
+        "authorId": "34846449",
+        "name": "Dustin Schwenk"
+      },
+      {
+        "authorId": "145704057",
+        "name": "J. Salvador"
+      },
+      {
+        "authorId": "20745881",
+        "name": "Luca Weihs"
+      },
+      {
+        "authorId": "2196005933",
+        "name": "Oscar Michel"
+      },
+      {
+        "authorId": "1632920625",
+        "name": "Eli VanderBilt"
+      },
+      {
+        "authorId": "152772922",
+        "name": "Ludwig Schmidt"
+      },
+      {
+        "authorId": "2883417",
+        "name": "Kiana Ehsani"
+      },
+      {
+        "authorId": "2684226",
+        "name": "Aniruddha Kembhavi"
+      },
+      {
+        "authorId": "143787583",
+        "name": "Ali Farhadi"
+      }
+    ],
+    "abstract": "Massive data corpora like WebText, Wikipedia, Conceptual Captions, WebImageText, and LAION have propelled recent dramatic progress in AI. Large neural models trained on such datasets produce impressive results and top many of today's benchmarks. A notable omisslion within this family of large-scale datasets is 3D data. Despite considerable interest and potential applications in 3D vision, datasets of high-fidelity 3D models continue to be mid-sized with limited diversity of object categories. Addressing this gap, we present Objaverse 1.0, a large dataset of objects with 800K + (and growing) 3D models with descriptive captions, tags, and animations. Objaverse improves upon present day 3D repositories in terms of scale, number of categories, and in the visual diversity of instances within a category. We demonstrate the large potential of Objaverse via four diverse applications: training generative 3D models, improving tail category segmentation on the LVIS benchmark, training open-vocabulary object-navigation models for Embodied AI, and creating a new benchmark for robustness analysis of vision models. Objaverse can open new directions for research and enable new applications across the field of AI.",
+    "_key": "deitke2022objaverse"
+  },
+  {
+    "paperId": "1b90e9e9734bed6b379ae87d688cb3b887baf597",
+    "externalIds": {
+      "DBLP": "conf/nips/DeitkeLWNMKFLVG23",
+      "ArXiv": "2307.05663",
+      "DOI": "10.48550/arXiv.2307.05663",
+      "CorpusId": 259836993
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/1b90e9e9734bed6b379ae87d688cb3b887baf597",
+    "title": "Objaverse-XL: A Universe of 10M+ 3D Objects",
+    "venue": "Neural Information Processing Systems",
+    "year": 2023,
+    "citationCount": 815,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2307.05663",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2307.05663, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "1632916259",
+        "name": "Matt Deitke"
+      },
+      {
+        "authorId": "2143183492",
+        "name": "Ruoshi Liu"
+      },
+      {
+        "authorId": "1632957174",
+        "name": "Matthew Wallingford"
+      },
+      {
+        "authorId": "2223118889",
+        "name": "Huong Ngo"
+      },
+      {
+        "authorId": "2196005933",
+        "name": "Oscar Michel"
+      },
+      {
+        "authorId": "52207562",
+        "name": "Aditya Kusupati"
+      },
+      {
+        "authorId": "2219305108",
+        "name": "Alan Fan"
+      },
+      {
+        "authorId": "2223133147",
+        "name": "Christian Laforte"
+      },
+      {
+        "authorId": "2961618",
+        "name": "Vikram S. Voleti"
+      },
+      {
+        "authorId": "1387466862",
+        "name": "S. Gadre"
+      },
+      {
+        "authorId": "1632920625",
+        "name": "Eli VanderBilt"
+      },
+      {
+        "authorId": "2684226",
+        "name": "Aniruddha Kembhavi"
+      },
+      {
+        "authorId": "1856025",
+        "name": "Carl Vondrick"
+      },
+      {
+        "authorId": "2397488692",
+        "name": "Georgia Gkioxari"
+      },
+      {
+        "authorId": "2883417",
+        "name": "Kiana Ehsani"
+      },
+      {
+        "authorId": "152772922",
+        "name": "Ludwig Schmidt"
+      },
+      {
+        "authorId": "143787583",
+        "name": "Ali Farhadi"
+      }
+    ],
+    "abstract": "Natural language processing and 2D vision models have attained remarkable proficiency on many tasks primarily by escalating the scale of training data. However, 3D vision tasks have not seen the same progress, in part due to the challenges of acquiring high-quality 3D data. In this work, we present Objaverse-XL, a dataset of over 10 million 3D objects. Our dataset comprises deduplicated 3D objects from a diverse set of sources, including manually designed objects, photogrammetry scans of landmarks and everyday items, and professional scans of historic and antique artifacts. Representing the largest scale and diversity in the realm of 3D datasets, Objaverse-XL enables significant new possibilities for 3D vision. Our experiments demonstrate the improvements enabled with the scale provided by Objaverse-XL. We show that by training Zero123 on novel view synthesis, utilizing over 100 million multi-view rendered images, we achieve strong zero-shot generalization abilities. We hope that releasing Objaverse-XL will enable further innovations in the field of 3D vision at scale.",
+    "_key": "deitke2023objaversexl"
+  },
+  {
+    "paperId": "bbf0c32daf7032726299156442b1782b7c1e5d18",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2504-07334",
+      "ArXiv": "2504.07334",
+      "DOI": "10.1109/ICCVW69036.2025.00710",
+      "CorpusId": 277667467
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/bbf0c32daf7032726299156442b1782b7c1e5d18",
+    "title": "Objaverse++: Curated 3D Object Dataset with Quality Annotations",
+    "venue": "2025 IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)",
+    "year": 2025,
+    "citationCount": 17,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2504.07334, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2296836260",
+        "name": "Chendi Lin"
+      },
+      {
+        "authorId": "2300429088",
+        "name": "Heshan Liu"
+      },
+      {
+        "authorId": "2303967101",
+        "name": "Qunshu Lin"
+      },
+      {
+        "authorId": "2354556314",
+        "name": "Zachary Bright"
+      },
+      {
+        "authorId": "2338977747",
+        "name": "Shitao Tang"
+      },
+      {
+        "authorId": "2265652371",
+        "name": "Yihui He"
+      },
+      {
+        "authorId": "2307832296",
+        "name": "Minghao Liu"
+      },
+      {
+        "authorId": "2394282741",
+        "name": "Ling Zhu"
+      },
+      {
+        "authorId": "2265489545",
+        "name": "Cindy X. Le"
+      }
+    ],
+    "abstract": "This paper presents Objaverse++, a curated subset of Objaverse enhanced with detailed attribute annotations. Recent advances in 3D content generation have been driven by large-scale datasets such as Objaverse [6], which contains over 800,000 3D objects collected from the Internet. To address the issue of the prevalence of low-quality models in Objaverse, human experts manually annotate 10,000 3D objects with detailed attributes, including aesthetic quality scores, texture color classifications, multi-object composition flags, transparency characteristics, etc. Then, we trained a neural network capable of annotating the tags for the rest of the Objaverse dataset. Through experiments and a user study on generation results, we demonstrate that models pre-trained on our quality-focused subset achieve better performance than those trained on the larger dataset of Objaverse in image-to-3D generation tasks. In addition, by comparing multiple subsets of training data filtered by our tags, our results show that the higher the data quality, the faster the training loss converges. These findings suggest that careful curation and rich annotation can compensate for the raw dataset size, potentially offering a more efficient path to develop 3D generative models. We released our enhanced dataset of approximately 790,000 curated 3D models to facilitate further research on various downstream tasks in 3D computer vision and aim to extend our annotations to cover the entire Objaverse dataset.",
+    "_query": "Objaverse 3D object dataset image to 3D",
+    "_key": "lin2025objaversepp"
+  },
+  {
+    "paperId": "4c94d04afa4309ec2f06bdd0fe3781f91461b362",
+    "externalIds": {
+      "ArXiv": "2209.14988",
+      "DBLP": "journals/corr/abs-2209-14988",
+      "DOI": "10.48550/arXiv.2209.14988",
+      "CorpusId": 252596091
+    },
+    "publicationVenue": {
+      "id": "939c6e1d-0d17-4d6e-8a82-66d960df0e40",
+      "name": "International Conference on Learning Representations",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Learn Represent",
+        "ICLR"
+      ],
+      "url": "https://iclr.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/4c94d04afa4309ec2f06bdd0fe3781f91461b362",
+    "title": "DreamFusion: Text-to-3D using 2D Diffusion",
+    "venue": "International Conference on Learning Representations",
+    "year": 2022,
+    "citationCount": 3576,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2209.14988",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2209.14988, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science",
+      "Mathematics"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "16443937",
+        "name": "Ben Poole"
+      },
+      {
+        "authorId": "50658699",
+        "name": "Ajay Jain"
+      },
+      {
+        "authorId": "50329510",
+        "name": "J. Barron"
+      },
+      {
+        "authorId": "2577533",
+        "name": "B. Mildenhall"
+      }
+    ],
+    "abstract": "Recent breakthroughs in text-to-image synthesis have been driven by diffusion models trained on billions of image-text pairs. Adapting this approach to 3D synthesis would require large-scale datasets of labeled 3D data and efficient architectures for denoising 3D data, neither of which currently exist. In this work, we circumvent these limitations by using a pretrained 2D text-to-image diffusion model to perform text-to-3D synthesis. We introduce a loss based on probability density distillation that enables the use of a 2D diffusion model as a prior for optimization of a parametric image generator. Using this loss in a DeepDream-like procedure, we optimize a randomly-initialized 3D model (a Neural Radiance Field, or NeRF) via gradient descent such that its 2D renderings from random angles achieve a low loss. The resulting 3D model of the given text can be viewed from any angle, relit by arbitrary illumination, or composited into any 3D environment. Our approach requires no 3D training data and no modifications to the image diffusion model, demonstrating the effectiveness of pretrained image diffusion models as priors.",
+    "_key": "poole2022dreamfusion"
+  },
+  {
+    "paperId": "dc7b2a39421f93ae134fbb43ef62763056ebe1c7",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2305-02463",
+      "ArXiv": "2305.02463",
+      "DOI": "10.48550/arXiv.2305.02463",
+      "CorpusId": 258480331
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/dc7b2a39421f93ae134fbb43ef62763056ebe1c7",
+    "title": "Shap-E: Generating Conditional 3D Implicit Functions",
+    "venue": "arXiv.org",
+    "year": 2023,
+    "citationCount": 467,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2305.02463",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2305.02463, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "35450887",
+        "name": "Heewoo Jun"
+      },
+      {
+        "authorId": "38967461",
+        "name": "Alex Nichol"
+      }
+    ],
+    "abstract": "We present Shap-E, a conditional generative model for 3D assets. Unlike recent work on 3D generative models which produce a single output representation, Shap-E directly generates the parameters of implicit functions that can be rendered as both textured meshes and neural radiance fields. We train Shap-E in two stages: first, we train an encoder that deterministically maps 3D assets into the parameters of an implicit function; second, we train a conditional diffusion model on outputs of the encoder. When trained on a large dataset of paired 3D and text data, our resulting models are capable of generating complex and diverse 3D assets in a matter of seconds. When compared to Point-E, an explicit generative model over point clouds, Shap-E converges faster and reaches comparable or better sample quality despite modeling a higher-dimensional, multi-representation output space. We release model weights, inference code, and samples at https://github.com/openai/shap-e.",
+    "_key": "jun2023shapee"
+  },
+  {
+    "paperId": "2c70684973bc4d7b6f8404a647b8031c4d3c8383",
+    "externalIds": {
+      "ArXiv": "2303.11328",
+      "DBLP": "journals/corr/abs-2303-11328",
+      "DOI": "10.1109/ICCV51070.2023.00853",
+      "CorpusId": 257631738
+    },
+    "publicationVenue": {
+      "id": "7654260e-79f9-45c5-9663-d72027cf88f3",
+      "name": "IEEE International Conference on Computer Vision",
+      "type": "conference",
+      "alternate_names": [
+        "ICCV",
+        "IEEE Int Conf Comput Vis",
+        "ICCV Workshops",
+        "ICCV Work"
+      ],
+      "url": "https://ieeexplore.ieee.org/xpl/conhome/1000149/all-proceedings"
+    },
+    "url": "https://www.semanticscholar.org/paper/2c70684973bc4d7b6f8404a647b8031c4d3c8383",
+    "title": "Zero-1-to-3: Zero-shot One Image to 3D Object",
+    "venue": "IEEE International Conference on Computer Vision",
+    "year": 2023,
+    "citationCount": 1715,
+    "influentialCitationCount": 264,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2303.11328, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2143183492",
+        "name": "Ruoshi Liu"
+      },
+      {
+        "authorId": "1406236938",
+        "name": "Rundi Wu"
+      },
+      {
+        "authorId": "1470838102",
+        "name": "Basile Van Hoorick"
+      },
+      {
+        "authorId": "2931554",
+        "name": "P. Tokmakov"
+      },
+      {
+        "authorId": "144506587",
+        "name": "Sergey Zakharov"
+      },
+      {
+        "authorId": "1856025",
+        "name": "Carl Vondrick"
+      }
+    ],
+    "abstract": "We introduce Zero-1-to-3, a framework for changing the camera viewpoint of an object given just a single RGB image. To perform novel view synthesis in this under-constrained setting, we capitalize on the geometric priors that large-scale diffusion models learn about natural images. Our conditional diffusion model uses a synthetic dataset to learn controls of the relative camera viewpoint, which allow new images to be generated of the same object under a specified camera transformation. Even though it is trained on a synthetic dataset, our model retains a strong zero-shot generalization ability to out-of-distribution datasets as well as in-the-wild images, including impressionist paintings. Our viewpoint-conditioned diffusion approach can further be used for the task of 3D reconstruction from a single image. Qualitative and quantitative experiments show that our method significantly outperforms state-of-the-art single-view 3D reconstruction and novel view synthesis models by leveraging Internet-scale pre-training.",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "liu2023zero123"
+  },
+  {
+    "paperId": "c22ef963b2388cdbbfcc7a00b24f68710a7febd2",
+    "externalIds": {
+      "ArXiv": "2306.16928",
+      "DBLP": "journals/corr/abs-2306-16928",
+      "DOI": "10.48550/arXiv.2306.16928",
+      "CorpusId": 259286991
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/c22ef963b2388cdbbfcc7a00b24f68710a7febd2",
+    "title": "One-2-3-45: Any Single Image to 3D Mesh in 45 Seconds without Per-Shape Optimization",
+    "venue": "Neural Information Processing Systems",
+    "year": 2023,
+    "citationCount": 688,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "http://arxiv.org/pdf/2306.16928",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2306.16928, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "47842126",
+        "name": "Minghua Liu"
+      },
+      {
+        "authorId": "2166105731",
+        "name": "Chao Xu"
+      },
+      {
+        "authorId": "2107097305",
+        "name": "Haian Jin"
+      },
+      {
+        "authorId": "2119322767",
+        "name": "Ling Chen"
+      },
+      {
+        "authorId": "2007825839",
+        "name": "T. MukundVarma"
+      },
+      {
+        "authorId": "2615346",
+        "name": "Zexiang Xu"
+      },
+      {
+        "authorId": "144914140",
+        "name": "Hao Su"
+      }
+    ],
+    "abstract": "Single image 3D reconstruction is an important but challenging task that requires extensive knowledge of our natural world. Many existing methods solve this problem by optimizing a neural radiance field under the guidance of 2D diffusion models but suffer from lengthy optimization time, 3D inconsistency results, and poor geometry. In this work, we propose a novel method that takes a single image of any object as input and generates a full 360-degree 3D textured mesh in a single feed-forward pass. Given a single image, we first use a view-conditioned 2D diffusion model, Zero123, to generate multi-view images for the input view, and then aim to lift them up to 3D space. Since traditional reconstruction methods struggle with inconsistent multi-view predictions, we build our 3D reconstruction module upon an SDF-based generalizable neural surface reconstruction method and propose several critical training strategies to enable the reconstruction of 360-degree meshes. Without costly optimizations, our method reconstructs 3D shapes in significantly less time than existing methods. Moreover, our method favors better geometry, generates more 3D consistent results, and adheres more closely to the input image. We evaluate our approach on both synthetic data and in-the-wild images and demonstrate its superiority in terms of both mesh quality and runtime. In addition, our approach can seamlessly support the text-to-3D task by integrating with off-the-shelf text-to-image diffusion models.",
+    "_key": "liu2023one2345"
+  },
+  {
+    "paperId": "05782b157d5468c08de9dbde9635ee9902f40b60",
+    "externalIds": {
+      "DBLP": "conf/cvpr/LiuSCZXW00G024",
+      "ArXiv": "2311.07885",
+      "DOI": "10.1109/CVPR52733.2024.00960",
+      "CorpusId": 265157982
+    },
+    "publicationVenue": {
+      "id": "768b87bb-8a18-4d9c-a161-4d483c776bcf",
+      "name": "Computer Vision and Pattern Recognition",
+      "type": "conference",
+      "alternate_names": [
+        "CVPR",
+        "Comput Vis Pattern Recognit"
+      ],
+      "issn": "1063-6919",
+      "url": "https://ieeexplore.ieee.org/xpl/conhome.jsp?punumber=1000147",
+      "alternate_urls": [
+        "https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/05782b157d5468c08de9dbde9635ee9902f40b60",
+    "title": "One-2-3-45++: Fast Single Image to 3D Objects with Consistent Multi-View Generation and 3D Diffusion",
+    "venue": "Computer Vision and Pattern Recognition",
+    "year": 2023,
+    "citationCount": 332,
+    "influentialCitationCount": 23,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2311.07885",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2311.07885, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "47842126",
+        "name": "Minghua Liu"
+      },
+      {
+        "authorId": "2261364293",
+        "name": "Ruoxi Shi"
+      },
+      {
+        "authorId": "2261455905",
+        "name": "Linghao Chen"
+      },
+      {
+        "authorId": "2261394413",
+        "name": "Zhuoyang Zhang"
+      },
+      {
+        "authorId": "2166105731",
+        "name": "Chao Xu"
+      },
+      {
+        "authorId": "2261364250",
+        "name": "Xinyue Wei"
+      },
+      {
+        "authorId": "2261396433",
+        "name": "Hansheng Chen"
+      },
+      {
+        "authorId": "2223946708",
+        "name": "Chong Zeng"
+      },
+      {
+        "authorId": "2256468903",
+        "name": "Jiayuan Gu"
+      },
+      {
+        "authorId": "2261386289",
+        "name": "Hao Su"
+      }
+    ],
+    "abstract": "Recent advancements in open-world 3D object generation have been remarkable, with image-to-3D methods of-fering superior fine-grained control over their text-to-3D counterparts. However, most existing models fall short in simultaneously providing rapid generation speeds and high fidelity to input images - two features essential for practi-cal applications. In this paper, we present One-2-3-45++, an innovative method that transforms a single image into a detailed 3D textured mesh in approximately one minute. Our approach aims to fully harness the extensive knowledge embedded in 2D diffusion models and priors from valuable yet limited 3D data. This is achieved by initially finetuning a 2D diffusion model for consistent multi-view image generation, followed by elevating these images to 3D with the aid of multi-view-conditioned 3D native diffusion models. Extensive experimental evaluations demonstrate that our method can produce high-quality, diverse 3D assets that closely mirror the original input image.",
+    "_query": "multi-view diffusion 3D generation single image",
+    "_key": "liu2023one2345pp"
+  },
+  {
+    "paperId": "9aa01997226b5c4d705ae2e2f52c32681006654b",
+    "externalIds": {
+      "DBLP": "conf/iclr/ShiWYMLY24",
+      "ArXiv": "2308.16512",
+      "DOI": "10.48550/arXiv.2308.16512",
+      "CorpusId": 261395233
+    },
+    "publicationVenue": {
+      "id": "939c6e1d-0d17-4d6e-8a82-66d960df0e40",
+      "name": "International Conference on Learning Representations",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Learn Represent",
+        "ICLR"
+      ],
+      "url": "https://iclr.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/9aa01997226b5c4d705ae2e2f52c32681006654b",
+    "title": "MVDream: Multi-view Diffusion for 3D Generation",
+    "venue": "International Conference on Learning Representations",
+    "year": 2023,
+    "citationCount": 1002,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2308.16512",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2308.16512, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "9644181",
+        "name": "Yichun Shi"
+      },
+      {
+        "authorId": "2182513005",
+        "name": "Peng Wang"
+      },
+      {
+        "authorId": "2153258399",
+        "name": "Jianglong Ye"
+      },
+      {
+        "authorId": "2341007041",
+        "name": "M. Long"
+      },
+      {
+        "authorId": "2149141434",
+        "name": "Kejie Li"
+      },
+      {
+        "authorId": "48520620",
+        "name": "X. Yang"
+      }
+    ],
+    "abstract": "We introduce MVDream, a diffusion model that is able to generate consistent multi-view images from a given text prompt. Learning from both 2D and 3D data, a multi-view diffusion model can achieve the generalizability of 2D diffusion models and the consistency of 3D renderings. We demonstrate that such a multi-view diffusion model is implicitly a generalizable 3D prior agnostic to 3D representations. It can be applied to 3D generation via Score Distillation Sampling, significantly enhancing the consistency and stability of existing 2D-lifting methods. It can also learn new concepts from a few 2D examples, akin to DreamBooth, but for 3D generation.",
+    "_key": "shi2023mvdream"
+  },
+  {
+    "paperId": "d2c5565a039f464b778e0f2263da418ef42e98b0",
+    "externalIds": {
+      "DBLP": "conf/cvpr/LongGLLDLMZHTW24",
+      "ArXiv": "2310.15008",
+      "DOI": "10.1109/CVPR52733.2024.00951",
+      "CorpusId": 264436465
+    },
+    "publicationVenue": {
+      "id": "768b87bb-8a18-4d9c-a161-4d483c776bcf",
+      "name": "Computer Vision and Pattern Recognition",
+      "type": "conference",
+      "alternate_names": [
+        "CVPR",
+        "Comput Vis Pattern Recognit"
+      ],
+      "issn": "1063-6919",
+      "url": "https://ieeexplore.ieee.org/xpl/conhome.jsp?punumber=1000147",
+      "alternate_urls": [
+        "https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/d2c5565a039f464b778e0f2263da418ef42e98b0",
+    "title": "Wonder3D: Single Image to 3D Using Cross-Domain Diffusion",
+    "venue": "Computer Vision and Pattern Recognition",
+    "year": 2023,
+    "citationCount": 772,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2310.15008",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2310.15008, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "1606258913",
+        "name": "Xiaoxiao Long"
+      },
+      {
+        "authorId": "2143377386",
+        "name": "Yuanchen Guo"
+      },
+      {
+        "authorId": "144428897",
+        "name": "Cheng Lin"
+      },
+      {
+        "authorId": "2143861796",
+        "name": "Yuan Liu"
+      },
+      {
+        "authorId": "1382485620",
+        "name": "Zhiyang Dou"
+      },
+      {
+        "authorId": "46458089",
+        "name": "Lingjie Liu"
+      },
+      {
+        "authorId": "2256460023",
+        "name": "Yuexin Ma"
+      },
+      {
+        "authorId": "2243302639",
+        "name": "Song-Hai Zhang"
+      },
+      {
+        "authorId": "14210288",
+        "name": "Marc Habermann"
+      },
+      {
+        "authorId": "2257192905",
+        "name": "C. Theobalt"
+      },
+      {
+        "authorId": "2227589685",
+        "name": "Wenping Wang"
+      }
+    ],
+    "abstract": "In this work, we introduce Wonder3D, a novel method for efficiently generating high-fidelity textured meshes from single-view images. Recent methods based on Score Distillation Sampling (SDS) have shown the potential to recover 3D geometry from 2D diffusion priors, but they typically suffer from time-consuming per-shape optimization and inconsistent geometry. In contrast, certain works di-rectly produce 3D information via fast network inferences, but their results are often of low quality and lack geometric details. To holistically improve the quality, consistency, and efficiency of single-view reconstruction tasks, we pro-pose a cross-domain diffusion model that generates multi-view normal maps and the corresponding color images. To ensure the consistency of generation, we employ a multi-view cross-domain attention mechanism that facilitates information exchange across views and modalities. Lastly, we introduce a geometry-aware normal fusion algorithm that extracts high-quality surfaces from the multi-view 2D representations in only 2 r-;» 3 minutes. Our extensive evaluations demonstrate that our method achieves high-quality reconstruction results, robust generalization, and good efficiency compared to prior works.",
+    "_key": "long2023wonder3d"
+  },
+  {
+    "paperId": "0f449b304095bf7498d63aee7d89aaa26b107b87",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2511-01767",
+      "ArXiv": "2511.01767",
+      "DOI": "10.1109/TPAMI.2025.3618675",
+      "CorpusId": 281891305,
+      "PubMed": "41056166"
+    },
+    "publicationVenue": {
+      "id": "25248f80-fe99-48e5-9b8e-9baef3b8e23b",
+      "name": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "type": "journal",
+      "alternate_names": [
+        "IEEE Trans Pattern Anal Mach Intell"
+      ],
+      "issn": "0162-8828",
+      "url": "http://www.computer.org/tpami/",
+      "alternate_urls": [
+        "http://www.computer.org/portal/web/tpami",
+        "http://ieeexplore.ieee.org/servlet/opac?punumber=34"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/0f449b304095bf7498d63aee7d89aaa26b107b87",
+    "title": "Wonder3D++: Cross-Domain Diffusion for High-Fidelity 3D Generation From a Single Image",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "year": 2025,
+    "citationCount": 8,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2511.01767, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science",
+      "Medicine"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2334480357",
+        "name": "Yuxiao Yang"
+      },
+      {
+        "authorId": "1606258913",
+        "name": "Xiaoxiao Long"
+      },
+      {
+        "authorId": "1382485620",
+        "name": "Zhiyang Dou"
+      },
+      {
+        "authorId": "2374009608",
+        "name": "Cheng Lin"
+      },
+      {
+        "authorId": "2382840774",
+        "name": "Yuan Liu"
+      },
+      {
+        "authorId": "50442611",
+        "name": "Qingsong Yan"
+      },
+      {
+        "authorId": "2256460023",
+        "name": "Yuexin Ma"
+      },
+      {
+        "authorId": "2334521366",
+        "name": "Haoqian Wang"
+      },
+      {
+        "authorId": "2268626832",
+        "name": "Zhiqiang Wu"
+      },
+      {
+        "authorId": "2268616119",
+        "name": "Wei Yin"
+      }
+    ],
+    "abstract": "In this work, we introduce Wonder3D++, a novel method for efficiently generating high-fidelity textured meshes from single-view images. Recent methods based on Score Distillation Sampling (SDS) have shown the potential to recover 3D geometry from 2D diffusion priors, but they typically suffer from time-consuming per-shape optimization and inconsistent geometry. In contrast, certain works directly produce 3D information via fast network inferences, but their results are often of low quality and lack geometric details. To holistically improve the quality, consistency, and efficiency of single-view reconstruction tasks, we propose a cross-domain diffusion model that generates multi-view normal maps and the corresponding color images. To ensure the consistency of generation, we employ a multi-view cross-domain attention mechanism that facilitates information exchange across views and modalities. Lastly, we introduce a cascaded 3D mesh extraction algorithm that drives high-quality surfaces from the multi-view 2D representations in only about 3 minute in a coarse-to-fine manner. Our extensive evaluations demonstrate that our method achieves high-quality reconstruction results, robust generalization, and good efficiency compared to prior works.",
+    "_query": "multi-view diffusion 3D generation single image",
+    "_key": "long2025wonder3dpp"
+  },
+  {
+    "paperId": "eb2cbd12f749f14716296f7f415e921562c9079b",
+    "externalIds": {
+      "ArXiv": "2311.04400",
+      "DBLP": "conf/iclr/Hong0GBZLLSB024",
+      "DOI": "10.48550/arXiv.2311.04400",
+      "CorpusId": 265050698
+    },
+    "publicationVenue": {
+      "id": "939c6e1d-0d17-4d6e-8a82-66d960df0e40",
+      "name": "International Conference on Learning Representations",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Learn Represent",
+        "ICLR"
+      ],
+      "url": "https://iclr.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/eb2cbd12f749f14716296f7f415e921562c9079b",
+    "title": "LRM: Large Reconstruction Model for Single Image to 3D",
+    "venue": "International Conference on Learning Representations",
+    "year": 2023,
+    "citationCount": 851,
+    "influentialCitationCount": 127,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2311.04400, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2265727453",
+        "name": "Yicong Hong"
+      },
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      },
+      {
+        "authorId": "2274190457",
+        "name": "Jiuxiang Gu"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      },
+      {
+        "authorId": "2265714726",
+        "name": "Yang Zhou"
+      },
+      {
+        "authorId": "34989944",
+        "name": "Difan Liu"
+      },
+      {
+        "authorId": "2265751333",
+        "name": "Feng Liu"
+      },
+      {
+        "authorId": "2123318412",
+        "name": "Kalyan Sunkavalli"
+      },
+      {
+        "authorId": "2265648615",
+        "name": "Trung Bui"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      }
+    ],
+    "abstract": "We propose the first Large Reconstruction Model (LRM) that predicts the 3D model of an object from a single input image within just 5 seconds. In contrast to many previous methods that are trained on small-scale datasets such as ShapeNet in a category-specific fashion, LRM adopts a highly scalable transformer-based architecture with 500 million learnable parameters to directly predict a neural radiance field (NeRF) from the input image. We train our model in an end-to-end manner on massive multi-view data containing around 1 million objects, including both synthetic renderings from Objaverse and real captures from MVImgNet. This combination of a high-capacity model and large-scale training data empowers our model to be highly generalizable and produce high-quality 3D reconstructions from various testing inputs, including real-world in-the-wild captures and images created by generative models. Video demos and interactable 3D meshes can be found on our LRM project webpage: https://yiconghong.me/LRM.",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "hong2023lrm"
+  },
+  {
+    "paperId": "9e4d7b3504c0900d596a432278d0deca6243a0db",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2311-09217",
+      "ArXiv": "2311.09217",
+      "DOI": "10.48550/arXiv.2311.09217",
+      "CorpusId": 265213192
+    },
+    "publicationVenue": {
+      "id": "939c6e1d-0d17-4d6e-8a82-66d960df0e40",
+      "name": "International Conference on Learning Representations",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Learn Represent",
+        "ICLR"
+      ],
+      "url": "https://iclr.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/9e4d7b3504c0900d596a432278d0deca6243a0db",
+    "title": "DMV3D: Denoising Multi-View Diffusion using 3D Large Reconstruction Model",
+    "venue": "International Conference on Learning Representations",
+    "year": 2023,
+    "citationCount": 238,
+    "influentialCitationCount": 12,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2311.09217, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "121983635",
+        "name": "Yinghao Xu"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      },
+      {
+        "authorId": "13981526",
+        "name": "Fujun Luan"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      },
+      {
+        "authorId": "2266834361",
+        "name": "Peng Wang"
+      },
+      {
+        "authorId": "2266362739",
+        "name": "Jiahao Li"
+      },
+      {
+        "authorId": "2125701522",
+        "name": "Zifan Shi"
+      },
+      {
+        "authorId": "2123318412",
+        "name": "Kalyan Sunkavalli"
+      },
+      {
+        "authorId": "2256985147",
+        "name": "Gordon Wetzstein"
+      },
+      {
+        "authorId": "2615346",
+        "name": "Zexiang Xu"
+      },
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      }
+    ],
+    "abstract": "We propose \\textbf{DMV3D}, a novel 3D generation approach that uses a transformer-based 3D large reconstruction model to denoise multi-view diffusion. Our reconstruction model incorporates a triplane NeRF representation and can denoise noisy multi-view images via NeRF reconstruction and rendering, achieving single-stage 3D generation in $\\sim$30s on single A100 GPU. We train \\textbf{DMV3D} on large-scale multi-view image datasets of highly diverse objects using only image reconstruction losses, without accessing 3D assets. We demonstrate state-of-the-art results for the single-image reconstruction problem where probabilistic modeling of unseen object parts is required for generating diverse reconstructions with sharp textures. We also show high-quality text-to-3D generation results outperforming previous 3D diffusion models. Our project website is at: https://justimyhxu.github.io/projects/dmv3d/ .",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "xu2023dmv3d"
+  },
+  {
+    "paperId": "3af134a559a618b3185390646d49d1d4e7ffab45",
+    "externalIds": {
+      "ArXiv": "2311.06214",
+      "DBLP": "journals/corr/abs-2311-06214",
+      "DOI": "10.48550/arXiv.2311.06214",
+      "CorpusId": 265128529
+    },
+    "publicationVenue": {
+      "id": "939c6e1d-0d17-4d6e-8a82-66d960df0e40",
+      "name": "International Conference on Learning Representations",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Learn Represent",
+        "ICLR"
+      ],
+      "url": "https://iclr.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/3af134a559a618b3185390646d49d1d4e7ffab45",
+    "title": "Instant3D: Fast Text-to-3D with Sparse-View Generation and Large Reconstruction Model",
+    "venue": "International Conference on Learning Representations",
+    "year": 2023,
+    "citationCount": 418,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2311.06214, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2266362739",
+        "name": "Jiahao Li"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      },
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      },
+      {
+        "authorId": "2615346",
+        "name": "Zexiang Xu"
+      },
+      {
+        "authorId": "13981526",
+        "name": "Fujun Luan"
+      },
+      {
+        "authorId": "121983635",
+        "name": "Yinghao Xu"
+      },
+      {
+        "authorId": "2265727453",
+        "name": "Yicong Hong"
+      },
+      {
+        "authorId": "2123318412",
+        "name": "Kalyan Sunkavalli"
+      },
+      {
+        "authorId": "2261742091",
+        "name": "Greg Shakhnarovich"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      }
+    ],
+    "abstract": "Text-to-3D with diffusion models has achieved remarkable progress in recent years. However, existing methods either rely on score distillation-based optimization which suffer from slow inference, low diversity and Janus problems, or are feed-forward methods that generate low-quality results due to the scarcity of 3D training data. In this paper, we propose Instant3D, a novel method that generates high-quality and diverse 3D assets from text prompts in a feed-forward manner. We adopt a two-stage paradigm, which first generates a sparse set of four structured and consistent views from text in one shot with a fine-tuned 2D text-to-image diffusion model, and then directly regresses the NeRF from the generated images with a novel transformer-based sparse-view reconstructor. Through extensive experiments, we demonstrate that our method can generate diverse 3D assets of high visual quality within 20 seconds, which is two orders of magnitude faster than previous optimization-based methods that can take 1 to 10 hours. Our project webpage: https://jiahao.ai/instant3d/.",
+    "_key": "li2023instant3d"
+  },
+  {
+    "paperId": "4c8608124dd92b84effedb7dd1965aeb13420e9c",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2312-02201",
+      "ArXiv": "2312.02201",
+      "DOI": "10.48550/arXiv.2312.02201",
+      "CorpusId": 265659122
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/4c8608124dd92b84effedb7dd1965aeb13420e9c",
+    "title": "ImageDream: Image-Prompt Multi-view Diffusion for 3D Generation",
+    "venue": "arXiv.org",
+    "year": 2023,
+    "citationCount": 281,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2312.02201, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2182513005",
+        "name": "Peng Wang"
+      },
+      {
+        "authorId": "2253839312",
+        "name": "Yichun Shi"
+      }
+    ],
+    "abstract": "We introduce\"ImageDream,\"an innovative image-prompt, multi-view diffusion model for 3D object generation. ImageDream stands out for its ability to produce 3D models of higher quality compared to existing state-of-the-art, image-conditioned methods. Our approach utilizes a canonical camera coordination for the objects in images, improving visual geometry accuracy. The model is designed with various levels of control at each block inside the diffusion model based on the input image, where global control shapes the overall object layout and local control fine-tunes the image details. The effectiveness of ImageDream is demonstrated through extensive evaluations using a standard prompt list. For more information, visit our project page at https://Image-Dream.github.io.",
+    "_key": "wang2023imagedream"
+  },
+  {
+    "paperId": "4299b79ef41601cf6e3e0603f7216d72b6d1315f",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2403-02151",
+      "ArXiv": "2403.02151",
+      "DOI": "10.48550/arXiv.2403.02151",
+      "CorpusId": 268248244
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/4299b79ef41601cf6e3e0603f7216d72b6d1315f",
+    "title": "TripoSR: Fast 3D Object Reconstruction from a Single Image",
+    "venue": "arXiv.org",
+    "year": 2024,
+    "citationCount": 264,
+    "influentialCitationCount": 33,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2403.02151, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2290020087",
+        "name": "Dmitry Tochilkin"
+      },
+      {
+        "authorId": "2290020264",
+        "name": "David Pankratz"
+      },
+      {
+        "authorId": "2274196732",
+        "name": "Zexiang Liu"
+      },
+      {
+        "authorId": "2269833984",
+        "name": "Zixuan Huang"
+      },
+      {
+        "authorId": "2290015024",
+        "name": "Adam Letts"
+      },
+      {
+        "authorId": "2263689119",
+        "name": "Yangguang Li"
+      },
+      {
+        "authorId": "2273647142",
+        "name": "Ding Liang"
+      },
+      {
+        "authorId": "2223133147",
+        "name": "Christian Laforte"
+      },
+      {
+        "authorId": "2131639924",
+        "name": "Varun Jampani"
+      },
+      {
+        "authorId": "2273910135",
+        "name": "Yan-Pei Cao"
+      }
+    ],
+    "abstract": "This technical report introduces TripoSR, a 3D reconstruction model leveraging transformer architecture for fast feed-forward 3D generation, producing 3D mesh from a single image in under 0.5 seconds. Building upon the LRM network architecture, TripoSR integrates substantial improvements in data processing, model design, and training techniques. Evaluations on public datasets show that TripoSR exhibits superior performance, both quantitatively and qualitatively, compared to other open-source alternatives. Released under the MIT license, TripoSR is intended to empower researchers, developers, and creatives with the latest advancements in 3D generative AI.",
+    "_query": "image to 3D generation mesh single image 2024",
+    "_key": "tochilkin2024triposr"
+  },
+  {
+    "paperId": "34276d30da30285f4ad348848ec746457730899a",
+    "externalIds": {
+      "ArXiv": "2404.07191",
+      "DBLP": "journals/corr/abs-2404-07191",
+      "DOI": "10.48550/arXiv.2404.07191",
+      "CorpusId": 269033473
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/34276d30da30285f4ad348848ec746457730899a",
+    "title": "InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models",
+    "venue": "arXiv.org",
+    "year": 2024,
+    "citationCount": 458,
+    "influentialCitationCount": 89,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2404.07191, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2125239096",
+        "name": "Jiale Xu"
+      },
+      {
+        "authorId": "10405156",
+        "name": "Weihao Cheng"
+      },
+      {
+        "authorId": "2282305440",
+        "name": "Yiming Gao"
+      },
+      {
+        "authorId": "2253795356",
+        "name": "Xintao Wang"
+      },
+      {
+        "authorId": "2296058255",
+        "name": "Shenghua Gao"
+      },
+      {
+        "authorId": "2257019659",
+        "name": "Ying Shan"
+      }
+    ],
+    "abstract": "We present InstantMesh, a feed-forward framework for instant 3D mesh generation from a single image, featuring state-of-the-art generation quality and significant training scalability. By synergizing the strengths of an off-the-shelf multiview diffusion model and a sparse-view reconstruction model based on the LRM architecture, InstantMesh is able to create diverse 3D assets within 10 seconds. To enhance the training efficiency and exploit more geometric supervisions, e.g, depths and normals, we integrate a differentiable iso-surface extraction module into our framework and directly optimize on the mesh representation. Experimental results on public datasets demonstrate that InstantMesh significantly outperforms other latest image-to-3D baselines, both qualitatively and quantitatively. We release all the code, weights, and demo of InstantMesh, with the intention that it can make substantial contributions to the community of 3D generative AI and empower both researchers and content creators.",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "xu2024instantmesh"
+  },
+  {
+    "paperId": "2177967931f395f88faa630019e3cd9b1831ffc1",
+    "externalIds": {
+      "ArXiv": "2403.05034",
+      "DBLP": "conf/eccv/WangWCXCYLSZ24",
+      "DOI": "10.48550/arXiv.2403.05034",
+      "CorpusId": 268297409
+    },
+    "publicationVenue": {
+      "id": "167fa0ca-e88a-4ef7-a16f-bc66c457c806",
+      "name": "European Conference on Computer Vision",
+      "type": "conference",
+      "alternate_names": [
+        "ECCV",
+        "Eur Conf Comput Vis"
+      ],
+      "url": "https://link.springer.com/conference/eccv"
+    },
+    "url": "https://www.semanticscholar.org/paper/2177967931f395f88faa630019e3cd9b1831ffc1",
+    "title": "CRM: Single Image to 3D Textured Mesh with Convolutional Reconstruction Model",
+    "venue": "European Conference on Computer Vision",
+    "year": 2024,
+    "citationCount": 242,
+    "influentialCitationCount": 28,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2403.05034, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2272269919",
+        "name": "Zhengyi Wang"
+      },
+      {
+        "authorId": "2271890043",
+        "name": "Yikai Wang"
+      },
+      {
+        "authorId": "2124919963",
+        "name": "Yifei Chen"
+      },
+      {
+        "authorId": "2213191361",
+        "name": "Chendong Xiang"
+      },
+      {
+        "authorId": "2290556067",
+        "name": "Shuo Chen"
+      },
+      {
+        "authorId": "2269117489",
+        "name": "Dajiang Yu"
+      },
+      {
+        "authorId": "2399563",
+        "name": "Chongxuan Li"
+      },
+      {
+        "authorId": "2245088111",
+        "name": "Hang Su"
+      },
+      {
+        "authorId": "2265522339",
+        "name": "Jun Zhu"
+      }
+    ],
+    "abstract": "Feed-forward 3D generative models like the Large Reconstruction Model (LRM) have demonstrated exceptional generation speed. However, the transformer-based methods do not leverage the geometric priors of the triplane component in their architecture, often leading to sub-optimal quality given the limited size of 3D data and slow training. In this work, we present the Convolutional Reconstruction Model (CRM), a high-fidelity feed-forward single image-to-3D generative model. Recognizing the limitations posed by sparse 3D data, we highlight the necessity of integrating geometric priors into network design. CRM builds on the key observation that the visualization of triplane exhibits spatial correspondence of six orthographic images. First, it generates six orthographic view images from a single input image, then feeds these images into a convolutional U-Net, leveraging its strong pixel-level alignment capabilities and significant bandwidth to create a high-resolution triplane. CRM further employs Flexicubes as geometric representation, facilitating direct end-to-end optimization on textured meshes. Overall, our model delivers a high-fidelity textured mesh from an image in just 10 seconds, without any test-time optimization.",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "wang2024crm"
+  },
+  {
+    "paperId": "03e2cfa44b64489fb98f09dfbd940043fbef90ad",
+    "externalIds": {
+      "ArXiv": "2403.12008",
+      "DBLP": "conf/eccv/VoletiYBLPTLRJ24",
+      "DOI": "10.48550/arXiv.2403.12008",
+      "CorpusId": 268531375
+    },
+    "publicationVenue": {
+      "id": "167fa0ca-e88a-4ef7-a16f-bc66c457c806",
+      "name": "European Conference on Computer Vision",
+      "type": "conference",
+      "alternate_names": [
+        "ECCV",
+        "Eur Conf Comput Vis"
+      ],
+      "url": "https://link.springer.com/conference/eccv"
+    },
+    "url": "https://www.semanticscholar.org/paper/03e2cfa44b64489fb98f09dfbd940043fbef90ad",
+    "title": "SV3D: Novel Multi-view Synthesis and 3D Generation from a Single Image using Latent Video Diffusion",
+    "venue": "European Conference on Computer Vision",
+    "year": 2024,
+    "citationCount": 386,
+    "influentialCitationCount": 41,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2403.12008, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2961618",
+        "name": "Vikram S. Voleti"
+      },
+      {
+        "authorId": "2292210811",
+        "name": "C. Yao"
+      },
+      {
+        "authorId": "2063102428",
+        "name": "Mark Boss"
+      },
+      {
+        "authorId": "2290015024",
+        "name": "Adam Letts"
+      },
+      {
+        "authorId": "2290020264",
+        "name": "David Pankratz"
+      },
+      {
+        "authorId": "2290020087",
+        "name": "Dmitry Tochilkin"
+      },
+      {
+        "authorId": "2223133147",
+        "name": "Christian Laforte"
+      },
+      {
+        "authorId": "1660819540",
+        "name": "Robin Rombach"
+      },
+      {
+        "authorId": "2131639924",
+        "name": "Varun Jampani"
+      }
+    ],
+    "abstract": "We present Stable Video 3D (SV3D) -- a latent video diffusion model for high-resolution, image-to-multi-view generation of orbital videos around a 3D object. Recent work on 3D generation propose techniques to adapt 2D generative models for novel view synthesis (NVS) and 3D optimization. However, these methods have several disadvantages due to either limited views or inconsistent NVS, thereby affecting the performance of 3D object generation. In this work, we propose SV3D that adapts image-to-video diffusion model for novel multi-view synthesis and 3D generation, thereby leveraging the generalization and multi-view consistency of the video models, while further adding explicit camera control for NVS. We also propose improved 3D optimization techniques to use SV3D and its NVS outputs for image-to-3D generation. Extensive experimental results on multiple datasets with 2D and 3D metrics as well as user study demonstrate SV3D's state-of-the-art performance on NVS as well as 3D reconstruction compared to prior works.",
+    "_query": "multi-view diffusion 3D generation single image",
+    "_key": "voleti2024sv3d"
+  },
+  {
+    "paperId": "943be36a6461bc5e6b6281b9a8fc8db2383316f0",
+    "externalIds": {
+      "ArXiv": "2404.00987",
+      "DBLP": "journals/corr/abs-2404-00987",
+      "DOI": "10.48550/arXiv.2404.00987",
+      "CorpusId": 268820053
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/943be36a6461bc5e6b6281b9a8fc8db2383316f0",
+    "title": "FlexiDreamer: Single Image-to-3D Generation with FlexiCubes",
+    "venue": "arXiv.org",
+    "year": 2024,
+    "citationCount": 15,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2404.00987, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2294518743",
+        "name": "Ruowen Zhao"
+      },
+      {
+        "authorId": "2272269919",
+        "name": "Zhengyi Wang"
+      },
+      {
+        "authorId": "2271890043",
+        "name": "Yikai Wang"
+      },
+      {
+        "authorId": "2294380411",
+        "name": "Zihan Zhou"
+      },
+      {
+        "authorId": "2265522339",
+        "name": "Jun Zhu"
+      }
+    ],
+    "abstract": "3D content generation has wide applications in various fields. One of its dominant paradigms is by sparse-view reconstruction using multi-view images generated by diffusion models. However, since directly reconstructing triangle meshes from multi-view images is challenging, most methodologies opt to an implicit representation (such as NeRF) during the sparse-view reconstruction and acquire the target mesh by a post-processing extraction. However, the implicit representation takes extensive time to train and the post-extraction also leads to undesirable visual artifacts. In this paper, we propose FlexiDreamer, a novel framework that directly reconstructs high-quality meshes from multi-view generated images. We utilize an advanced gradient-based mesh optimization, namely FlexiCubes, for multi-view mesh reconstruction, which enables us to generate 3D meshes in an end-to-end manner. To address the reconstruction artifacts owing to the inconsistencies from generated images, we design a hybrid positional encoding scheme to improve the reconstruction geometry and an orientation-aware texture mapping to mitigate surface ghosting. To further enhance the results, we respectively incorporate eikonal and smooth regularizations to reduce geometric holes and surface noise. Our approach can generate high-fidelity 3D meshes in the single image-to-3D downstream task with approximately 1 minute, significantly outperforming previous methods.",
+    "_query": "image to 3D generation mesh single image 2024",
+    "_key": "zhao2024flexidreamer"
+  },
+  {
+    "paperId": "adbc5b89468452d3799362b991a26aeec2a6cba7",
+    "externalIds": {
+      "ArXiv": "2404.12385",
+      "DBLP": "journals/corr/abs-2404-12385",
+      "DOI": "10.48550/arXiv.2404.12385",
+      "CorpusId": 269214358
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/adbc5b89468452d3799362b991a26aeec2a6cba7",
+    "title": "MeshLRM: Large Reconstruction Model for High-Quality Mesh",
+    "venue": "arXiv.org",
+    "year": 2024,
+    "citationCount": 145,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2404.12385, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2261364250",
+        "name": "Xinyue Wei"
+      },
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      },
+      {
+        "authorId": "13981526",
+        "name": "Fujun Luan"
+      },
+      {
+        "authorId": "51149220",
+        "name": "V. Deschaintre"
+      },
+      {
+        "authorId": "2123318412",
+        "name": "Kalyan Sunkavalli"
+      },
+      {
+        "authorId": "2261386289",
+        "name": "Hao Su"
+      },
+      {
+        "authorId": "2615346",
+        "name": "Zexiang Xu"
+      }
+    ],
+    "abstract": "We propose MeshLRM, a novel LRM-based approach that can reconstruct a high-quality mesh from merely four input images in less than one second. Different from previous large reconstruction models (LRMs) that focus on NeRF-based reconstruction, MeshLRM incorporates differentiable mesh extraction and rendering within the LRM framework. This allows for end-to-end mesh reconstruction by fine-tuning a pre-trained NeRF LRM with mesh rendering. Moreover, we improve the LRM architecture by simplifying several complex designs in previous LRMs. MeshLRM's NeRF initialization is sequentially trained with low- and high-resolution images; this new LRM training strategy enables significantly faster convergence and thereby leads to better quality with less compute. Our approach achieves state-of-the-art mesh reconstruction from sparse-view inputs and also allows for many downstream applications, including text-to-3D and single-image-to-3D generation. Project page: https://sarahweiii.github.io/meshlrm/",
+    "_key": "wei2024meshlrm"
+  },
+  {
+    "paperId": "dac2d86182abcc25ad66ec1a73646ca06087772f",
+    "externalIds": {
+      "ArXiv": "2405.20343",
+      "DBLP": "conf/nips/WuLCY0HDM24",
+      "DOI": "10.48550/arXiv.2405.20343",
+      "CorpusId": 270123803
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/dac2d86182abcc25ad66ec1a73646ca06087772f",
+    "title": "Unique3D: High-Quality and Efficient 3D Mesh Generation from a Single Image",
+    "venue": "Neural Information Processing Systems",
+    "year": 2024,
+    "citationCount": 160,
+    "influentialCitationCount": 14,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2405.20343, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "51286435",
+        "name": "Kailu Wu"
+      },
+      {
+        "authorId": "2273665760",
+        "name": "Fangfu Liu"
+      },
+      {
+        "authorId": "2304259258",
+        "name": "Zhihan Cai"
+      },
+      {
+        "authorId": "2302331802",
+        "name": "Runjie Yan"
+      },
+      {
+        "authorId": "2291393860",
+        "name": "Hanyang Wang"
+      },
+      {
+        "authorId": "2343511333",
+        "name": "Yating Hu"
+      },
+      {
+        "authorId": "2274036307",
+        "name": "Yueqi Duan"
+      },
+      {
+        "authorId": "2302323241",
+        "name": "Kaisheng Ma"
+      }
+    ],
+    "abstract": "In this work, we introduce Unique3D, a novel image-to-3D framework for efficiently generating high-quality 3D meshes from single-view images, featuring state-of-the-art generation fidelity and strong generalizability. Previous methods based on Score Distillation Sampling (SDS) can produce diversified 3D results by distilling 3D knowledge from large 2D diffusion models, but they usually suffer from long per-case optimization time with inconsistent issues. Recent works address the problem and generate better 3D results either by finetuning a multi-view diffusion model or training a fast feed-forward model. However, they still lack intricate textures and complex geometries due to inconsistency and limited generated resolution. To simultaneously achieve high fidelity, consistency, and efficiency in single image-to-3D, we propose a novel framework Unique3D that includes a multi-view diffusion model with a corresponding normal diffusion model to generate multi-view images with their normal maps, a multi-level upscale process to progressively improve the resolution of generated orthographic multi-views, as well as an instant and consistent mesh reconstruction algorithm called ISOMER, which fully integrates the color and geometric priors into mesh results. Extensive experiments demonstrate that our Unique3D significantly outperforms other image-to-3D baselines in terms of geometric and textural details.",
+    "_query": "image to 3D generation mesh single image 2024",
+    "_key": "wu2024unique3d"
+  },
+  {
+    "paperId": "c72aea23a78619ee085d80ea22e663b2d5910ba6",
+    "externalIds": {
+      "ArXiv": "2408.10198",
+      "DBLP": "journals/corr/abs-2408-10198",
+      "DOI": "10.48550/arXiv.2408.10198",
+      "CorpusId": 271903628
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/c72aea23a78619ee085d80ea22e663b2d5910ba6",
+    "title": "MeshFormer: High-Quality Mesh Generation with 3D-Guided Reconstruction Model",
+    "venue": "Neural Information Processing Systems",
+    "year": 2024,
+    "citationCount": 65,
+    "influentialCitationCount": 6,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2408.10198, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "47842126",
+        "name": "Minghua Liu"
+      },
+      {
+        "authorId": "2223946708",
+        "name": "Chong Zeng"
+      },
+      {
+        "authorId": "2261364250",
+        "name": "Xinyue Wei"
+      },
+      {
+        "authorId": "2261364293",
+        "name": "Ruoxi Shi"
+      },
+      {
+        "authorId": "2261455905",
+        "name": "Linghao Chen"
+      },
+      {
+        "authorId": "2166105731",
+        "name": "Chao Xu"
+      },
+      {
+        "authorId": "2316442118",
+        "name": "Mengqi Zhang"
+      },
+      {
+        "authorId": "2316496913",
+        "name": "Zhaoning Wang"
+      },
+      {
+        "authorId": "2316443292",
+        "name": "Xiaoshuai Zhang"
+      },
+      {
+        "authorId": "2240520600",
+        "name": "Isabella Liu"
+      },
+      {
+        "authorId": "2284733584",
+        "name": "Hongzhi Wu"
+      },
+      {
+        "authorId": "2261386289",
+        "name": "Hao Su"
+      }
+    ],
+    "abstract": "Open-world 3D reconstruction models have recently garnered significant attention. However, without sufficient 3D inductive bias, existing methods typically entail expensive training costs and struggle to extract high-quality 3D meshes. In this work, we introduce MeshFormer, a sparse-view reconstruction model that explicitly leverages 3D native structure, input guidance, and training supervision. Specifically, instead of using a triplane representation, we store features in 3D sparse voxels and combine transformers with 3D convolutions to leverage an explicit 3D structure and projective bias. In addition to sparse-view RGB input, we require the network to take input and generate corresponding normal maps. The input normal maps can be predicted by 2D diffusion models, significantly aiding in the guidance and refinement of the geometry's learning. Moreover, by combining Signed Distance Function (SDF) supervision with surface rendering, we directly learn to generate high-quality meshes without the need for complex multi-stage training processes. By incorporating these explicit 3D biases, MeshFormer can be trained efficiently and deliver high-quality textured meshes with fine-grained geometric details. It can also be integrated with 2D diffusion models to enable fast single-image-to-3D and text-to-3D tasks. Project page: https://meshformer3d.github.io",
+    "_query": "3D generation evaluation benchmark mesh quality",
+    "_key": "liu2024meshformer"
+  },
+  {
+    "paperId": "2c69ee2e7eef507db7e91d77e62af8c35feaaf66",
+    "externalIds": {
+      "ArXiv": "2406.09371",
+      "DBLP": "conf/nips/XieBSZX0PK0024",
+      "DOI": "10.48550/arXiv.2406.09371",
+      "CorpusId": 270440145
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/2c69ee2e7eef507db7e91d77e62af8c35feaaf66",
+    "title": "LRM-Zero: Training Large Reconstruction Models with Synthesized Data",
+    "venue": "Neural Information Processing Systems",
+    "year": 2024,
+    "citationCount": 31,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2406.09371, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2275599184",
+        "name": "Desai Xie"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      },
+      {
+        "authorId": "2275600953",
+        "name": "Zhixin Shu"
+      },
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      },
+      {
+        "authorId": "2297828138",
+        "name": "Zexiang Xu"
+      },
+      {
+        "authorId": "2275762337",
+        "name": "Yi Zhou"
+      },
+      {
+        "authorId": "2275595638",
+        "name": "Soren Pirk"
+      },
+      {
+        "authorId": "2275608128",
+        "name": "Arie E. Kaufman"
+      },
+      {
+        "authorId": "2275619785",
+        "name": "Xin Sun"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      }
+    ],
+    "abstract": "We present LRM-Zero, a Large Reconstruction Model (LRM) trained entirely on synthesized 3D data, achieving high-quality sparse-view 3D reconstruction. The core of LRM-Zero is our procedural 3D dataset, Zeroverse, which is automatically synthesized from simple primitive shapes with random texturing and augmentations (e.g., height fields, boolean differences, and wireframes). Unlike previous 3D datasets (e.g., Objaverse) which are often captured or crafted by humans to approximate real 3D data, Zeroverse completely ignores realistic global semantics but is rich in complex geometric and texture details that are locally similar to or even more intricate than real objects. We demonstrate that our LRM-Zero, trained with our fully synthesized Zeroverse, can achieve high visual quality in the reconstruction of real-world objects, competitive with models trained on Objaverse. We also analyze several critical design choices of Zeroverse that contribute to LRM-Zero's capability and training stability. Our work demonstrates that 3D reconstruction, one of the core tasks in 3D vision, can potentially be addressed without the semantics of real-world objects. The Zeroverse's procedural synthesis code and interactive visualization are available at: https://desaixie.github.io/lrm-zero/.",
+    "_key": "xie2024lrmzero"
+  },
+  {
+    "paperId": "1c396371b7bdc114603ebd5d127aa54a0fdadce2",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2406-15333",
+      "ArXiv": "2406.15333",
+      "DOI": "10.48550/arXiv.2406.15333",
+      "CorpusId": 270688390
+    },
+    "publicationVenue": {
+      "id": "d9720b90-d60b-48bc-9df8-87a30b9a60dd",
+      "name": "Neural Information Processing Systems",
+      "type": "conference",
+      "alternate_names": [
+        "Neural Inf Process Syst",
+        "NeurIPS",
+        "NIPS"
+      ],
+      "url": "http://neurips.cc/"
+    },
+    "url": "https://www.semanticscholar.org/paper/1c396371b7bdc114603ebd5d127aa54a0fdadce2",
+    "title": "GeoLRM: Geometry-Aware Large Reconstruction Model for High-Quality 3D Gaussian Generation",
+    "venue": "Neural Information Processing Systems",
+    "year": 2024,
+    "citationCount": 37,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2406.15333, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2274193361",
+        "name": "Chubin Zhang"
+      },
+      {
+        "authorId": "2302368595",
+        "name": "Hongliang Song"
+      },
+      {
+        "authorId": "2107995963",
+        "name": "Yi Wei"
+      },
+      {
+        "authorId": "2307971978",
+        "name": "Yu Chen"
+      },
+      {
+        "authorId": "2240226596",
+        "name": "Jiwen Lu"
+      },
+      {
+        "authorId": "35299091",
+        "name": "Yansong Tang"
+      }
+    ],
+    "abstract": "In this work, we introduce the Geometry-Aware Large Reconstruction Model (GeoLRM), an approach which can predict high-quality assets with 512k Gaussians and 21 input images in only 11 GB GPU memory. Previous works neglect the inherent sparsity of 3D structure and do not utilize explicit geometric relationships between 3D and 2D images. This limits these methods to a low-resolution representation and makes it difficult to scale up to the dense views for better quality. GeoLRM tackles these issues by incorporating a novel 3D-aware transformer structure that directly processes 3D points and uses deformable cross-attention mechanisms to effectively integrate image features into 3D representations. We implement this solution through a two-stage pipeline: initially, a lightweight proposal network generates a sparse set of 3D anchor points from the posed image inputs; subsequently, a specialized reconstruction transformer refines the geometry and retrieves textural details. Extensive experimental results demonstrate that GeoLRM significantly outperforms existing models, especially for dense view inputs. We also demonstrate the practical applicability of our model with 3D generation tasks, showcasing its versatility and potential for broader adoption in real-world applications. The project page: https://linshan-bin.github.io/GeoLRM/.",
+    "_key": "zhang2024geolrm"
+  },
+  {
+    "paperId": "3127537e854a4f7262190f39e90e1e5d8354df84",
+    "externalIds": {
+      "ArXiv": "2406.07648",
+      "DBLP": "journals/tvcg/LiLLLLLLWG25",
+      "DOI": "10.1109/TVCG.2025.3572341",
+      "CorpusId": 270391527,
+      "PubMed": "40408210"
+    },
+    "publicationVenue": {
+      "id": "5e1f6444-5d03-48c7-b202-7f47d492aeae",
+      "name": "IEEE Transactions on Visualization and Computer Graphics",
+      "type": "journal",
+      "alternate_names": [
+        "IEEE Trans Vis Comput Graph"
+      ],
+      "issn": "1077-2626",
+      "url": "http://ieeexplore.ieee.org/servlet/opac?punumber=2945"
+    },
+    "url": "https://www.semanticscholar.org/paper/3127537e854a4f7262190f39e90e1e5d8354df84",
+    "title": "Multi-View Large Reconstruction Model via Geometry-Aware Positional Encoding and Attention",
+    "venue": "IEEE Transactions on Visualization and Computer Graphics",
+    "year": 2024,
+    "citationCount": 6,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2406.07648, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science",
+      "Medicine"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2268851325",
+        "name": "Mengfei Li"
+      },
+      {
+        "authorId": "2303254845",
+        "name": "Xiaoxiao Long"
+      },
+      {
+        "authorId": "2290240177",
+        "name": "Yixun Liang"
+      },
+      {
+        "authorId": "2253994054",
+        "name": "Weiyu Li"
+      },
+      {
+        "authorId": "2307211326",
+        "name": "Yuan Liu"
+      },
+      {
+        "authorId": "2268717439",
+        "name": "Peng Li"
+      },
+      {
+        "authorId": "2192825554",
+        "name": "Xiaowei Chi"
+      },
+      {
+        "authorId": "2268724038",
+        "name": "Xingqun Qi"
+      },
+      {
+        "authorId": "2239201089",
+        "name": "Wei Xue"
+      },
+      {
+        "authorId": "2268946386",
+        "name": "Wenhan Luo"
+      },
+      {
+        "authorId": "2157104830",
+        "name": "Qi-fei Liu"
+      },
+      {
+        "authorId": "2118270918",
+        "name": "Yi-Ting Guo"
+      }
+    ],
+    "abstract": "Despite recent advancements in the Large Reconstruction Model (LRM) demonstrating impressive results, when extending its input from single image to multiple images, it exhibits inefficiencies, subpar geometric and texture quality, as well as slower convergence speed than expected. It is attributed to that, LRM formulates 3D reconstruction as a naive images-to-3D translation problem, ignoring the strong 3D coherence among the input images. In this article, we propose a Multi-view Large Reconstruction Model (M-LRM) designed to reconstruct high-quality 3D shapes from multi-views in a 3D-aware manner. Specifically, we introduce a multi-view consistent cross-attention scheme to enable M-LRM to accurately query information from the input images. Moreover, we employ the 3D priors of the input multi-view images to initialize the triplane tokens. Compared to previous methods, the proposed M-LRM can generate 3D shapes of high fidelity. Experimental studies demonstrate that our model achieves a significant performance gain and faster training convergence.",
+    "_query": "single image to 3D reconstruction large reconstruction model",
+    "_key": "li2024mvlrm"
+  },
+  {
+    "paperId": "8ed0477f640fa3a2d5411155e445d13752821629",
+    "externalIds": {
+      "ArXiv": "2404.19702",
+      "DBLP": "conf/eccv/ZhangBTXZSX24",
+      "DOI": "10.48550/arXiv.2404.19702",
+      "CorpusId": 269457309
+    },
+    "publicationVenue": {
+      "id": "167fa0ca-e88a-4ef7-a16f-bc66c457c806",
+      "name": "European Conference on Computer Vision",
+      "type": "conference",
+      "alternate_names": [
+        "ECCV",
+        "Eur Conf Comput Vis"
+      ],
+      "url": "https://link.springer.com/conference/eccv"
+    },
+    "url": "https://www.semanticscholar.org/paper/8ed0477f640fa3a2d5411155e445d13752821629",
+    "title": "GS-LRM: Large Reconstruction Model for 3D Gaussian Splatting",
+    "venue": "European Conference on Computer Vision",
+    "year": 2024,
+    "citationCount": 322,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2404.19702, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2265847064",
+        "name": "Kai Zhang"
+      },
+      {
+        "authorId": "2265648463",
+        "name": "Sai Bi"
+      },
+      {
+        "authorId": "2265922019",
+        "name": "Hao Tan"
+      },
+      {
+        "authorId": "3466717",
+        "name": "Yuanbo Xiangli"
+      },
+      {
+        "authorId": "2298970000",
+        "name": "Nanxuan Zhao"
+      },
+      {
+        "authorId": "2123318412",
+        "name": "Kalyan Sunkavalli"
+      },
+      {
+        "authorId": "2615346",
+        "name": "Zexiang Xu"
+      }
+    ],
+    "abstract": "We propose GS-LRM, a scalable large reconstruction model that can predict high-quality 3D Gaussian primitives from 2-4 posed sparse images in 0.23 seconds on single A100 GPU. Our model features a very simple transformer-based architecture; we patchify input posed images, pass the concatenated multi-view image tokens through a sequence of transformer blocks, and decode final per-pixel Gaussian parameters directly from these tokens for differentiable rendering. In contrast to previous LRMs that can only reconstruct objects, by predicting per-pixel Gaussians, GS-LRM naturally handles scenes with large variations in scale and complexity. We show that our model can work on both object and scene captures by training it on Objaverse and RealEstate10K respectively. In both scenarios, the models outperform state-of-the-art baselines by a wide margin. We also demonstrate applications of our model in downstream 3D generation tasks. Our project webpage is available at: https://sai-bi.github.io/project/gs-lrm/ .",
+    "_key": "zhang2024gslrm"
+  },
+  {
+    "paperId": "82aa9e4c07674cd37a15bf802d37c0ccc4d4e5da",
+    "externalIds": {
+      "ArXiv": "2506.07698",
+      "DBLP": "journals/corr/abs-2506-07698",
+      "DOI": "10.1109/ICME59968.2025.11209975",
+      "CorpusId": 279251481
+    },
+    "publicationVenue": {
+      "id": "975e1529-a14b-436f-ad7e-a09d8eabc50d",
+      "name": "IEEE International Conference on Multimedia and Expo",
+      "type": "conference",
+      "alternate_names": [
+        "ICME",
+        "Int Conf Multimedia Expo",
+        "IEEE Int Conf Multimedia Expo",
+        "International Conference on Multimedia and Expo"
+      ],
+      "issn": "1945-7871",
+      "alternate_issns": [
+        "2330-7927"
+      ],
+      "url": "http://csdl2.computer.org/persagen/ProceedingByFilter.jsp?filter=I",
+      "alternate_urls": [
+        "https://ieeexplore.ieee.org/xpl/conferences.jsp",
+        "http://www.wikicfp.com/cfp/program?id=1418"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/82aa9e4c07674cd37a15bf802d37c0ccc4d4e5da",
+    "title": "NOVA3D: Normal Aligned Video Diffusion Model for Single Image to 3D Generation",
+    "venue": "IEEE International Conference on Multimedia and Expo",
+    "year": 2025,
+    "citationCount": 2,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2506.07698, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2334480357",
+        "name": "Yuxiao Yang"
+      },
+      {
+        "authorId": "2261686995",
+        "name": "Peihao Li"
+      },
+      {
+        "authorId": "2292217339",
+        "name": "Yuhong Zhang"
+      },
+      {
+        "authorId": "2241114860",
+        "name": "Junzhe Lu"
+      },
+      {
+        "authorId": "2257432343",
+        "name": "Xianglong He"
+      },
+      {
+        "authorId": "2256995514",
+        "name": "Minghan Qin"
+      },
+      {
+        "authorId": "2293317437",
+        "name": "Weitao Wang"
+      },
+      {
+        "authorId": "2334521366",
+        "name": "Haoqian Wang"
+      }
+    ],
+    "abstract": "3D AI-generated content (AIGC) has made it increasingly accessible for anyone to become a 3D content creator. While recent methods leverage Score Distillation Sampling to distill 3D objects from pretrained image diffusion models, they often suffer from inadequate 3D priors, leading to insufficient multi-view consistency. In this work, we introduce NOVA3D, an innovative single-image-to-3D generation framework. Our key insight lies in leveraging strong 3D priors from a pretrained video diffusion model and integrating geometric information during multi-view video fine-tuning. To facilitate information exchange between color and geometric domains, we propose the Geometry-Temporal Alignment (GTA) attention mechanism, thereby improving generalization and multi-view consistency. Moreover, we introduce the deconflict geometry fusion algorithm, which improves texture fidelity by addressing multi-view inaccuracies and resolving discrepancies in pose alignment. Extensive experiments validate the superiority of NOVA3D over existing baselines.",
+    "_query": "multi-view diffusion 3D generation single image",
+    "_key": "yang2025nova3d"
+  },
+  {
+    "paperId": "b115e8bee7f1008d010a280d9a049576917ddcc4",
+    "externalIds": {
+      "ArXiv": "2511.22121",
+      "DBLP": "journals/corr/abs-2511-22121",
+      "DOI": "10.48550/arXiv.2511.22121",
+      "CorpusId": 283247602
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/b115e8bee7f1008d010a280d9a049576917ddcc4",
+    "title": "Cue3D: Quantifying the Role of Image Cues in Single-Image 3D Generation",
+    "venue": "arXiv.org",
+    "year": 2025,
+    "citationCount": 2,
+    "influentialCitationCount": 1,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2511.22121, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2332729045",
+        "name": "Xiang Li"
+      },
+      {
+        "authorId": "2337167962",
+        "name": "Zirui Wang"
+      },
+      {
+        "authorId": "2269833984",
+        "name": "Zixuan Huang"
+      },
+      {
+        "authorId": "50779871",
+        "name": "J. Rehg"
+      }
+    ],
+    "abstract": "Humans and traditional computer vision methods rely on a diverse set of monocular cues to infer 3D structure from a single image, such as shading, texture, silhouette, etc. While recent deep generative models have dramatically advanced single-image 3D generation, it remains unclear which image cues these methods actually exploit. We introduce Cue3D, the first comprehensive, model-agnostic framework for quantifying the influence of individual image cues in single-image 3D generation. Our unified benchmark evaluates seven state-of-the-art methods, spanning regression-based, multi-view, and native 3D generative paradigms. By systematically perturbing cues such as shading, texture, silhouette, perspective, edges, and local continuity, we measure their impact on 3D output quality. Our analysis reveals that shape meaningfulness, not texture, dictates generalization. Geometric cues, particularly shading, are crucial for 3D generation. We further identify over-reliance on provided silhouettes and diverse sensitivities to cues such as perspective and local continuity across model families. By dissecting these dependencies, Cue3D advances our understanding of how modern 3D networks leverage classical vision cues, and offers directions for developing more transparent, robust, and controllable single-image 3D generation models.",
+    "_query": "single image 3D generation geometry evaluation cues",
+    "_key": "li2025cue3d"
+  },
+  {
+    "paperId": "669c4f51945ab7582e20ff74ada5e3375333dd89",
+    "externalIds": {
+      "ArXiv": "2503.21745",
+      "DBLP": "journals/corr/abs-2503-21745",
+      "DOI": "10.48550/arXiv.2503.21745",
+      "CorpusId": 277349479
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/669c4f51945ab7582e20ff74ada5e3375333dd89",
+    "title": "3DGen-Bench: Comprehensive Benchmark Suite for 3D Generative Models",
+    "venue": "arXiv.org",
+    "year": 2025,
+    "citationCount": 9,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2503.21745, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2352612382",
+        "name": "Yuhan Zhang"
+      },
+      {
+        "authorId": "2276488228",
+        "name": "Mengchen Zhang"
+      },
+      {
+        "authorId": "2269858155",
+        "name": "Tong Wu"
+      },
+      {
+        "authorId": "2321870956",
+        "name": "Tengfei Wang"
+      },
+      {
+        "authorId": "2288681549",
+        "name": "Gordon Wetzstein"
+      },
+      {
+        "authorId": "2258618427",
+        "name": "Dahua Lin"
+      },
+      {
+        "authorId": "2292942828",
+        "name": "Ziwei Liu"
+      }
+    ],
+    "abstract": "3D generation is experiencing rapid advancements, while the development of 3D evaluation has not kept pace. How to keep automatic evaluation equitably aligned with human perception has become a well-recognized challenge. Recent advances in the field of language and image generation have explored human preferences and showcased respectable fitting ability. However, the 3D domain still lacks such a comprehensive preference dataset over generative models. To mitigate this absence, we develop 3DGen-Arena, an integrated platform in a battle manner. Then, we carefully design diverse text and image prompts and leverage the arena platform to gather human preferences from both public users and expert annotators, resulting in a large-scale multi-dimension human preference dataset 3DGen-Bench. Using this dataset, we further train a CLIP-based scoring model, 3DGen-Score, and a MLLM-based automatic evaluator, 3DGen-Eval. These two models innovatively unify the quality evaluation of text-to-3D and image-to-3D generation, and jointly form our automated evaluation system with their respective strengths. Extensive experiments demonstrate the efficacy of our scoring model in predicting human preferences, exhibiting a superior correlation with human ranks compared to existing metrics. We believe that our 3DGen-Bench dataset and automated evaluation system will foster a more equitable evaluation in the field of 3D generation, further promoting the development of 3D generative models and their downstream applications. Project page is available at https://zyh482.github.io/3DGen-Bench/.",
+    "_query": "3D generation evaluation benchmark mesh quality",
+    "_key": "jiang2025threedgenbench"
+  },
+  {
+    "paperId": "77e3be048624461af1e34d0bea173208a83ee2b3",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2506-18787",
+      "ArXiv": "2506.18787",
+      "DOI": "10.48550/arXiv.2506.18787",
+      "CorpusId": 279999316
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/77e3be048624461af1e34d0bea173208a83ee2b3",
+    "title": "3D Arena: An Open Platform for Generative 3D Evaluation",
+    "venue": "arXiv.org",
+    "year": 2025,
+    "citationCount": 5,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2506.18787, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "39745976",
+        "name": "Dylan Ebert"
+      }
+    ],
+    "abstract": "Evaluating Generative 3D models remains challenging due to misalignment between automated metrics and human perception of quality. Current benchmarks rely on image-based metrics that ignore 3D structure or geometric measures that fail to capture perceptual appeal and real-world utility. To address this gap, we present 3D Arena, an open platform for evaluating image-to-3D generation models through large-scale human preference collection using pairwise comparisons. Since launching in June 2024, the platform has collected 123,243 votes from 8,096 users across 19 state-of-the-art models, establishing the largest human preference evaluation for Generative 3D. We contribute the iso3d dataset of 100 evaluation prompts and demonstrate quality control achieving 99.75% user authenticity through statistical fraud detection. Our ELO-based ranking system provides reliable model assessment, with the platform becoming an established evaluation resource. Through analysis of this preference data, we present insights into human preference patterns. Our findings reveal preferences for visual presentation features, with Gaussian splat outputs achieving a 16.6 ELO advantage over meshes and textured models receiving a 144.1 ELO advantage over untextured models. We provide recommendations for improving evaluation methods, including multi-criteria assessment, task-oriented evaluation, and format-aware comparison. The platform's community engagement establishes 3D Arena as a benchmark for the field while advancing understanding of human-centered evaluation in Generative 3D.",
+    "_key": "ebert2025threedarena"
+  },
+  {
+    "paperId": "88dde8d42f024595a2eb2e1bf633cff842e7e778",
+    "externalIds": {
+      "ArXiv": "2504.10466",
+      "DBLP": "journals/corr/abs-2504-10466",
+      "DOI": "10.48550/arXiv.2504.10466",
+      "CorpusId": 277781441
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/88dde8d42f024595a2eb2e1bf633cff842e7e778",
+    "title": "Art3D: Training-Free 3D Generation from Flat-Colored Illustration",
+    "venue": "arXiv.org",
+    "year": 2025,
+    "citationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2504.10466, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2355354968",
+        "name": "Xiaoyan Cong"
+      },
+      {
+        "authorId": "2341455350",
+        "name": "Jiayi Shen"
+      },
+      {
+        "authorId": "2269588813",
+        "name": "Zekun Li"
+      },
+      {
+        "authorId": "47328629",
+        "name": "Rao Fu"
+      },
+      {
+        "authorId": "2395593873",
+        "name": "Tao Lu"
+      },
+      {
+        "authorId": "2269469994",
+        "name": "Srinath Sridhar"
+      }
+    ],
+    "abstract": "Large-scale pre-trained image-to-3D generative models have exhibited remarkable capabilities in diverse shape generations. However, most of them struggle to synthesize plausible 3D assets when the reference image is flat-colored like hand drawings due to the lack of 3D illusion, which are often the most user-friendly input modalities in art content creation. To this end, we propose Art3D, a training-free method that can lift flat-colored 2D designs into 3D. By leveraging structural and semantic features with pre-trained 2D image generation models and a VLM-based realism evaluation, Art3D successfully enhances the three-dimensional illusion in reference images, thus simplifying the process of generating 3D from 2D, and proves adaptable to a wide range of painting styles. To benchmark the generalization performance of existing image-to-3D models on flat-colored images without 3D feeling, we collect a new dataset, Flat-2D, with over 100 samples. Experimental results demonstrate the performance and robustness of Art3D, exhibiting superior generalizable capacity and promising practical applicability. Our source code and dataset will be publicly available on our project page: https://joy-jy11.github.io/ .",
+    "_key": "cong2025art3d"
+  },
+  {
+    "paperId": "eeca8c6aa8e7875d2faa600c51e36d941ae0d3a8",
+    "externalIds": {
+      "ArXiv": "2604.08610",
+      "CorpusId": 287351721
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/eeca8c6aa8e7875d2faa600c51e36d941ae0d3a8",
+    "title": "A Semi-Automated Framework for 3D Reconstruction of Medieval Manuscript Miniatures",
+    "venue": "",
+    "year": 2026,
+    "citationCount": 0,
+    "influentialCitationCount": 0,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2604.08610, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": null,
+    "authors": [
+      {
+        "authorId": "2349852547",
+        "name": "R. Pallotto"
+      },
+      {
+        "authorId": "2076894606",
+        "name": "Pierluigi Feliciati"
+      },
+      {
+        "authorId": "1789269",
+        "name": "Tiberio Uricchio"
+      }
+    ],
+    "abstract": "This paper presents a semi-automated framework for transforming two-dimensional miniatures from medieval manuscripts into three-dimensional digital models suitable for extended reality (XR), tactile 3D~printing, and web-based visualization. We evaluate seven image-to-3D methods (TripoSR, SF3D, SPAR3D, TRELLIS, Wonder3D, SAM~3D, Hi3DGen) on 69~manuscript figures from two collections using rendering-based metrics (Silhouette IoU, LPIPS, CLIP~Score) and volumetric measures (Depth Range Ratio, watertight percentage), revealing a trade-off between volumetric expansion and geometric fidelity. Hi3DGen balances topological quality with rich surface detail through its normal bridging approach, making it a good starting point for expert refinement. Our pipeline combines SAM segmentation, Hi3DGen mesh generation, expert refinement in ZBrush, and AI-assisted texturing. Two case studies on Gothic illuminations from the Decretum Gratiani (Vatican Library) and Renaissance miniatures by Giulio Clovio demonstrate applicability across artistic traditions. The resulting models can support WebXR visualization, AR overlay on physical manuscripts, and tactile 3D~prints for visually impaired users.",
+    "_query": "TripoSR image to 3D reconstruction",
+    "_key": "pallotto2026miniatures"
+  },
+  {
+    "paperId": "1b610296563ef5ce6de78e096d9bcc52543607d6",
+    "externalIds": {
+      "ArXiv": "2307.03869",
+      "DBLP": "journals/corr/abs-2307-03869",
+      "DOI": "10.48550/arXiv.2307.03869",
+      "CorpusId": 259501843
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/1b610296563ef5ce6de78e096d9bcc52543607d6",
+    "title": "Sketch-A-Shape: Zero-Shot Sketch-to-3D Shape Generation",
+    "venue": "arXiv.org",
+    "year": 2023,
+    "citationCount": 22,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2307.03869",
+      "status": "CLOSED",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2307.03869, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "1557900502",
+        "name": "Aditya Sanghi"
+      },
+      {
+        "authorId": "2514027",
+        "name": "P. Jayaraman"
+      },
+      {
+        "authorId": "14356390",
+        "name": "Arianna Rampini"
+      },
+      {
+        "authorId": "1752580200",
+        "name": "J. Lambourne"
+      },
+      {
+        "authorId": "1812257",
+        "name": "Hooman Shayani"
+      },
+      {
+        "authorId": "30798755",
+        "name": "Evan Atherton"
+      },
+      {
+        "authorId": "17803311",
+        "name": "Saeid Asgari Taghanaki"
+      }
+    ],
+    "abstract": "Significant progress has recently been made in creative applications of large pre-trained models for downstream tasks in 3D vision, such as text-to-shape generation. This motivates our investigation of how these pre-trained models can be used effectively to generate 3D shapes from sketches, which has largely remained an open challenge due to the limited sketch-shape paired datasets and the varying level of abstraction in the sketches. We discover that conditioning a 3D generative model on the features (obtained from a frozen large pre-trained vision model) of synthetic renderings during training enables us to effectively generate 3D shapes from sketches at inference time. This suggests that the large pre-trained vision model features carry semantic signals that are resilient to domain shifts, i.e., allowing us to use only RGB renderings, but generalizing to sketches at inference time. We conduct a comprehensive set of experiments investigating different design factors and demonstrate the effectiveness of our straightforward approach for generation of multiple 3D shapes per each input sketch regardless of their level of abstraction without requiring any paired datasets during training.",
+    "_key": "sanghi2023sketchashape"
+  },
+  {
+    "paperId": "d711ec4c14f19026a98ab3b65e8e93228594cd86",
+    "externalIds": {
+      "DBLP": "conf/mm/ZhengXCSSXD24",
+      "ArXiv": "2404.01843",
+      "DOI": "10.1145/3664647.3680641",
+      "CorpusId": 268856998
+    },
+    "publicationVenue": {
+      "id": "f2c85de5-7cfa-4b92-8714-a0fbdcf0274e",
+      "name": "ACM Multimedia",
+      "type": "conference",
+      "alternate_names": [
+        "MM"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/d711ec4c14f19026a98ab3b65e8e93228594cd86",
+    "title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+    "venue": "ACM Multimedia",
+    "year": 2024,
+    "citationCount": 11,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2404.01843",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2404.01843, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Book"
+    ],
+    "authors": [
+      {
+        "authorId": "2294817627",
+        "name": "Wangguandong Zheng"
+      },
+      {
+        "authorId": "2292205260",
+        "name": "Haifeng Xia"
+      },
+      {
+        "authorId": "2294733530",
+        "name": "Rui Chen"
+      },
+      {
+        "authorId": "2298971344",
+        "name": "Libo Sun"
+      },
+      {
+        "authorId": "2269474291",
+        "name": "Ming Shao"
+      },
+      {
+        "authorId": "2240063101",
+        "name": "Si-Yu Xia"
+      },
+      {
+        "authorId": "2267225830",
+        "name": "Zhengming Ding"
+      }
+    ],
+    "abstract": "Recently, image-to-3D approaches have achieved significant results with a natural image as input. However, it is not always possible to access these enriched color input samples in practical applications, where only sketches are available. Existing sketch-to-3D researches suffer from limitations in broad applications due to the challenges of lacking color information and multi-view content. To overcome them, this paper proposes a novel generation paradigm Sketch3D to generate realistic 3D assets with the shape aligned with the input sketch and color matching the textual description. Concretely, Sketch3D first instantiates the given sketch in the reference image through the shape-preserving generation process. Second, the reference image is leveraged to deduce a coarse 3D Gaussian prior, and multi-view style-consistent guidance images are generated based on the renderings of the 3D Gaussians. Finally, three strategies are designed to optimize 3D Gaussians, i.e., structural optimization via a distribution transfer mechanism, color optimization with a straightforward MSE loss and sketch similarity optimization with a CLIP-based geometric similarity loss. Extensive visual comparisons and quantitative analysis illustrate the advantage of our Sketch3D in generating realistic 3D assets while preserving consistency with the input.",
+    "_key": "zheng2024sketch3d"
+  },
+  {
+    "paperId": "e2b8284d0b653b4adac10a16561b14e00ffba6b1",
+    "externalIds": {
+      "ArXiv": "2303.14587",
+      "DBLP": "journals/corr/abs-2303-14587",
+      "DOI": "10.1109/CVPR52729.2023.02018",
+      "CorpusId": 257767141
+    },
+    "publicationVenue": {
+      "id": "768b87bb-8a18-4d9c-a161-4d483c776bcf",
+      "name": "Computer Vision and Pattern Recognition",
+      "type": "conference",
+      "alternate_names": [
+        "CVPR",
+        "Comput Vis Pattern Recognit"
+      ],
+      "issn": "1063-6919",
+      "url": "https://ieeexplore.ieee.org/xpl/conhome.jsp?punumber=1000147",
+      "alternate_urls": [
+        "https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/e2b8284d0b653b4adac10a16561b14e00ffba6b1",
+    "title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+    "venue": "Computer Vision and Pattern Recognition",
+    "year": 2023,
+    "citationCount": 24,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2303.14587",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2303.14587, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2107947276",
+        "name": "Shuhong Chen"
+      },
+      {
+        "authorId": "2212214530",
+        "name": "Kevin Zhang"
+      },
+      {
+        "authorId": "9644181",
+        "name": "Yichun Shi"
+      },
+      {
+        "authorId": "2155263539",
+        "name": "Heng Wang"
+      },
+      {
+        "authorId": null,
+        "name": "Yiheng Zhu"
+      },
+      {
+        "authorId": "7436326",
+        "name": "Guoxian Song"
+      },
+      {
+        "authorId": "122369339",
+        "name": "Sizhe An"
+      },
+      {
+        "authorId": "2212802133",
+        "name": "J. Kristjansson"
+      },
+      {
+        "authorId": "48520620",
+        "name": "X. Yang"
+      },
+      {
+        "authorId": "1796846",
+        "name": "Matthias Zwicker"
+      }
+    ],
+    "abstract": "We propose PAniC-3D, a system to reconstruct stylized 3D character heads directly from illustrated (p)ortraits of (ani)me (c)haracters. Our anime-style domain poses unique challenges to single-view reconstruction; compared to natural images of human heads, character portrait illustrations have hair and accessories with more complex and diverse geometry, and are shaded with non-photorealistic contour lines. In addition, there is a lack of both 3D model and portrait illustration data suitable to train and evaluate this ambiguous stylized reconstruction task. Facing these challenges, our proposed PAniC-3D architecture crosses the illustration-to-3D domain gap with a line-filling model, and represents sophisticated geometries with a volumetric radiance field. We train our system with two large new datasets (11.2k Vroid 3D models, 1k Vtuber portrait illustrations), and evaluate on a novel AnimeRecon benchmark of illustration-to-3D pairs. PAniC-3D significantly outper-forms baseline methods, and provides data to establish the task of stylized reconstruction from portrait illustrations.",
+    "_key": "chen2023panic3d"
+  },
+  {
+    "paperId": "567772b00d05d8e47a988ab16e00d9b3f315710b",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2409-08615",
+      "ArXiv": "2409.08615",
+      "DOI": "10.1145/3680528.3687593",
+      "CorpusId": 272654016
+    },
+    "publicationVenue": {
+      "id": "51fbe23f-0058-4484-b71c-186477a032db",
+      "name": "ACM SIGGRAPH Conference and Exhibition on Computer Graphics and Interactive Techniques in Asia",
+      "type": "conference",
+      "alternate_names": [
+        "ACM GR Conf Exhib Comput Graph Interact Tech Asia",
+        "GR Conf Exhib Comput Graph Interact Tech Asia",
+        "SIGGRAPH Asia",
+        "SIGGRAPH Conference and Exhibition on Computer Graphics and Interactive Techniques in Asia"
+      ],
+      "url": "http://www.siggraph.org/"
+    },
+    "url": "https://www.semanticscholar.org/paper/567772b00d05d8e47a988ab16e00d9b3f315710b",
+    "title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+    "venue": "ACM SIGGRAPH Conference and Exhibition on Computer Graphics and Interactive Techniques in Asia",
+    "year": 2024,
+    "citationCount": 13,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://dl.acm.org/doi/pdf/10.1145/3680528.3687593",
+      "status": "BRONZE",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2409.08615, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Book"
+    ],
+    "authors": [
+      {
+        "authorId": "2321674635",
+        "name": "Jie Zhou"
+      },
+      {
+        "authorId": "108460597",
+        "name": "Chufeng Xiao"
+      },
+      {
+        "authorId": "2321178198",
+        "name": "Miu-Ling Lam"
+      },
+      {
+        "authorId": "2302855517",
+        "name": "Hongbo Fu"
+      }
+    ],
+    "abstract": "Animating various character drawings is an engaging visual content creation task. Given a single character drawing, existing animation methods are limited to flat 2D motions and thus lack 3D effects. An alternative solution is to reconstruct a 3D model from a character drawing as a proxy and then retarget 3D motion data onto it. However, the existing image-to-3D methods could not work well for amateur character drawings in terms of appearance and geometry. We observe the contour lines, commonly existing in character drawings, would introduce significant ambiguity in texture synthesis due to their view-dependence. Additionally, thin regions represented by single-line contours are difficult to reconstruct (e.g., slim limbs of a stick figure) due to their delicate structures. To address these issues, we propose a novel system, DrawingSpinUp, to produce plausible 3D animations and breathe life into character drawings, allowing them to freely spin up, leap, and even perform a hip-hop dance. For appearance improvement, we adopt a removal-then-restoration strategy to first remove the view-dependent contour lines and then render them back after retargeting the reconstructed character. For geometry refinement, we develop a skeleton-based thinning deformation algorithm to refine the slim structures represented by the single-line contours. The experimental evaluations and a perceptual user study show that our proposed method outperforms the existing 2D and 3D animation methods and generates high-quality 3D animations from a single character drawing. Please refer to our project page (https://lordliang.github.io/DrawingSpinUp) for the code and generated animations.",
+    "_key": "zhou2024drawingspinup"
+  },
+  {
+    "paperId": "be50b554fd2fb37982bae3d0e359f1520b8665f9",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2401-14257",
+      "ArXiv": "2401.14257",
+      "DOI": "10.48550/arXiv.2401.14257",
+      "CorpusId": 267211906
+    },
+    "publicationVenue": {
+      "id": "1901e811-ee72-4b20-8f7e-de08cd395a10",
+      "name": "arXiv.org",
+      "alternate_names": [
+        "ArXiv"
+      ],
+      "issn": "2331-8422",
+      "url": "https://arxiv.org"
+    },
+    "url": "https://www.semanticscholar.org/paper/be50b554fd2fb37982bae3d0e359f1520b8665f9",
+    "title": "Sketch2NeRF: Multi-view Sketch-guided Text-to-3D Generation",
+    "venue": "arXiv.org",
+    "year": 2024,
+    "citationCount": 14,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2401.14257, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2107982267",
+        "name": "Minglin Chen"
+      },
+      {
+        "authorId": "2268513823",
+        "name": "Weihao Yuan"
+      },
+      {
+        "authorId": "2281099810",
+        "name": "Yukun Wang"
+      },
+      {
+        "authorId": "49101627",
+        "name": "Zhe Sheng"
+      },
+      {
+        "authorId": "2281417686",
+        "name": "Yisheng He"
+      },
+      {
+        "authorId": "2268646063",
+        "name": "Zilong Dong"
+      },
+      {
+        "authorId": "2275373104",
+        "name": "Liefeng Bo"
+      },
+      {
+        "authorId": "2325624132",
+        "name": "Yulan Guo"
+      }
+    ],
+    "abstract": "Recently, text-to-3D approaches have achieved high-fidelity 3D content generation using text description. However, the generated objects are stochastic and lack fine-grained control. Sketches provide a cheap approach to introduce such fine-grained control. Nevertheless, it is challenging to achieve flexible control from these sketches due to their abstraction and ambiguity. In this paper, we present a multi-view sketch-guided text-to-3D generation framework (namely, Sketch2NeRF) to add sketch control to 3D generation. Specifically, our method leverages pretrained 2D diffusion models (e.g., Stable Diffusion and ControlNet) to supervise the optimization of a 3D scene represented by a neural radiance field (NeRF). We propose a novel synchronized generation and reconstruction method to effectively optimize the NeRF. In the experiments, we collected two kinds of multi-view sketch datasets to evaluate the proposed method. We demonstrate that our method can synthesize 3D consistent contents with fine-grained sketch control while being high-fidelity to text prompts. Extensive results show that our method achieves state-of-the-art performance in terms of sketch similarity and text alignment.",
+    "_key": "chen2024sketch2nerf"
+  },
+  {
+    "paperId": "8e69a7c197ad70c95193ca839e22be09c354f29a",
+    "externalIds": {
+      "ArXiv": "2303.00167",
+      "DBLP": "journals/corr/abs-2303-00167",
+      "DOI": "10.1109/NICOINT59725.2023.00016",
+      "CorpusId": 257255044
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/8e69a7c197ad70c95193ca839e22be09c354f29a",
+    "title": "Sketch2Cloth: Sketch-Based 3D Garment Generation With Unsigned Distance Fields",
+    "venue": "2023 Nicograph International (NicoInt)",
+    "year": 2023,
+    "citationCount": 10,
+    "isOpenAccess": true,
+    "openAccessPdf": {
+      "url": "https://arxiv.org/pdf/2303.00167",
+      "status": "GREEN",
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2303.00167, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle"
+    ],
+    "authors": [
+      {
+        "authorId": "2145970672",
+        "name": "Yi He"
+      },
+      {
+        "authorId": "2087119718",
+        "name": "Haoran Xie"
+      },
+      {
+        "authorId": "145730883",
+        "name": "K. Miyata"
+      }
+    ],
+    "abstract": "3D model reconstruction from a single image has achieved great progress with the recent deep generative models. However, conventional reconstruction approaches with template mesh deformation and implicit fields have difficulty reconstructing non-watertight 3D mesh models, such as garments. In contrast to image-based modeling, the sketch-based approach can help users generate 3D models to meet the design intentions of hand-drawn sketches. In this study, we propose Sketch2Cloth, a sketch-based 3D garment generation system that uses the unsigned distance fields from the user’s sketch input. Sketch2Cloth first estimates the unsigned distance function of the target 3D model from the sketch input and then extracts the mesh from the estimated field with Marching Cubes. We also provide a model editing function to modify the generated mesh. We verified the proposed Sketch2Cloth with quantitative evaluations of garment generation and editing in comparison to a state-of-the-art approach.",
+    "_key": "he2023sketch2cloth"
+  },
+  {
+    "paperId": "f901f7e7f1ca5f56b47d18dd67a5376bad39d222",
+    "externalIds": {
+      "ArXiv": "2603.03287",
+      "DOI": "10.1111/cgf.70302",
+      "CorpusId": 285556436
+    },
+    "publicationVenue": null,
+    "url": "https://www.semanticscholar.org/paper/f901f7e7f1ca5f56b47d18dd67a5376bad39d222",
+    "title": "Deep Sketch‐Based 3D Modeling: A Survey",
+    "venue": "Computer graphics forum (Print)",
+    "year": 2026,
+    "citationCount": 1,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2603.03287, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Review"
+    ],
+    "authors": [
+      {
+        "authorId": "123205069",
+        "name": "Alberto Tono"
+      },
+      {
+        "authorId": "2283816147",
+        "name": "Jiajun Wu"
+      },
+      {
+        "authorId": "2251831549",
+        "name": "G. Wetzstein"
+      },
+      {
+        "authorId": "1798372",
+        "name": "Iro Armeni"
+      },
+      {
+        "authorId": "2301051721",
+        "name": "Hariharan Subramonyam"
+      },
+      {
+        "authorId": "2301019282",
+        "name": "James A. Landay"
+      },
+      {
+        "authorId": "2152258534",
+        "name": "Martin Fischer"
+      }
+    ],
+    "abstract": "\n \n In the past decade, advances in artificial intelligence have revolutionised sketch‐based 3D modelling, leading to a new paradigm known as Deep Sketch‐Based 3D Modelling (). offers data‐driven methods that address the long‐standing challenges of sketch abstraction and ambiguity. keeps humans at the centre of the creative process by enhancing the flexibility, usability, faithfulness, and adaptability of sketch‐based 3D modelling interfaces. This paper contributes a comprehensive survey of the latest\n DS‐3DM\n within a novel design space:\n MORPHEUS\n . Built upon the Input‐Model‐Output (IMO) framework,\n MORPHEUS\n categorises\n M\n odels outputting\n O\n ptions of 3D\n R\n epresentations and\n P\n arts, derived from\n H\n uman‐inputs (varying in quantity and modality), and\n E\n valuated across diverse\n U\n ser‐views and\n S\n tyles. Throughout , we highlight limitations and identify opportunities for interdisciplinary research in computer vision, computer graphics, and human–computer interaction, revealing a need for controllability and information‐rich outputs. These opportunities align design processes more closely with user' intent, responding to the growing importance of user‐centred approaches.\n",
+    "_key": "tono2026sketchsurvey"
+  },
+  {
+    "paperId": "b7daf9743fe07187872042ae00ac6acfeead9868",
+    "externalIds": {
+      "ArXiv": "2503.12834",
+      "DBLP": "journals/corr/abs-2503-12834",
+      "DOI": "10.1109/ICCV51701.2025.01727",
+      "CorpusId": 277065951
+    },
+    "publicationVenue": {
+      "id": "7654260e-79f9-45c5-9663-d72027cf88f3",
+      "name": "IEEE International Conference on Computer Vision",
+      "type": "conference",
+      "alternate_names": [
+        "ICCV",
+        "IEEE Int Conf Comput Vis",
+        "ICCV Workshops",
+        "ICCV Work"
+      ],
+      "url": "https://ieeexplore.ieee.org/xpl/conhome/1000149/all-proceedings"
+    },
+    "url": "https://www.semanticscholar.org/paper/b7daf9743fe07187872042ae00ac6acfeead9868",
+    "title": "PASTA: Part-Aware Sketch-to-3D Shape Generation with Text-Aligned Prior",
+    "venue": "IEEE International Conference on Computer Vision",
+    "year": 2025,
+    "citationCount": 3,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2503.12834, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2330665241",
+        "name": "Seunggwan Lee"
+      },
+      {
+        "authorId": "2321688488",
+        "name": "Hwanhee Jung"
+      },
+      {
+        "authorId": "2261769866",
+        "name": "Byoungsoo Koh"
+      },
+      {
+        "authorId": "2333406863",
+        "name": "Qixing Huang"
+      },
+      {
+        "authorId": "2318276496",
+        "name": "Sang Ho Yoon"
+      },
+      {
+        "authorId": "2255857057",
+        "name": "Sangpil Kim"
+      }
+    ],
+    "abstract": "A fundamental challenge in conditional 3D shape generation is to minimize the information loss and maximize the intention of user input. Existing approaches have predominantly focused on two types of isolated conditional signals, i.e., user sketches and text descriptions, each of which does not offer flexible control of the generated shape. In this paper, we introduce PASTA, the flexible approach that seamlessly integrates a user sketch and a text description for $3 D$ shape generation. The key idea is to use text embeddings from a vision-language model to enrich the semantic representation of sketches. Specifically, these text-derived priors specify the part components of the object, compensating for missing visual cues from ambiguous sketches. In addition, we introduce ISG-Net which employs two types of graph convolutional networks: IndivGCN, which processes fine-grained details, and PartGCN, which aggregates these details into parts and refines the structure of objects. Extensive experiments demonstrate that PASTA outperforms existing methods in part-level editing and achieves state-of-the-art results in sketch-to-3D shape generation.",
+    "_key": "lee2025pasta"
+  },
+  {
+    "paperId": "0f2e3121637893bed6366d5f2fff6ce229d8c000",
+    "externalIds": {
+      "ArXiv": "2504.21836",
+      "DBLP": "conf/siggraph/OztasCD25",
+      "DOI": "10.1145/3721238.3730636",
+      "CorpusId": 278207837
+    },
+    "publicationVenue": {
+      "id": "cf6b5e76-9274-46e6-a2dd-7c190ec2ec5f",
+      "name": "International Conference on Computer Graphics and Interactive Techniques",
+      "type": "conference",
+      "alternate_names": [
+        "Int Conf Comput Graph Interact Tech",
+        "SIGGRAPH"
+      ],
+      "url": "http://www.siggraph.org/"
+    },
+    "url": "https://www.semanticscholar.org/paper/0f2e3121637893bed6366d5f2fff6ce229d8c000",
+    "title": "3D Stylization via Large Reconstruction Model",
+    "venue": "International Conference on Computer Graphics and Interactive Techniques",
+    "year": 2025,
+    "citationCount": 5,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2504.21836, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "Book",
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2357962454",
+        "name": "Ipek Oztas"
+      },
+      {
+        "authorId": "2299331190",
+        "name": "Duygu Ceylan"
+      },
+      {
+        "authorId": "2294874577",
+        "name": "Aysegul Dundar"
+      }
+    ],
+    "abstract": "With the growing success of text or image guided 3D generators, users demand more control over the generation process, appearance stylization being one of them. Given a reference image, this requires adapting the appearance of a generated 3D asset to reflect the visual style of the reference while maintaining visual consistency from multiple viewpoints. To tackle this problem, we draw inspiration from the success of 2D stylization methods that leverage the attention mechanisms in large image generation models to capture and transfer visual style. In particular, we probe if large reconstruction models, commonly used in the context of 3D generation, has a similar capability. We discover that the certain attention blocks in these models capture the appearance specific features. By injecting features from a visual style image to such blocks, we develop a simple yet effective 3D appearance stylization method. Our method does not require training or test time optimization. Through both quantitative and qualitative evaluations, we demonstrate that our approach achieves superior results in terms of 3D appearance stylization, significantly improving efficiency while maintaining high-quality visual outcomes. Code and models are available via our project website: https://github.com/ipekoztas/3D-Stylization-LRM.",
+    "_key": "oztas2025stylizationlrm"
+  },
+  {
+    "paperId": "78502b35c172eb64b1a6b0ae313b8ee70fce9556",
+    "externalIds": {
+      "DBLP": "journals/corr/abs-2506-00742",
+      "ArXiv": "2506.00742",
+      "DOI": "10.1109/CVPR52734.2025.00275",
+      "CorpusId": 279075256
+    },
+    "publicationVenue": {
+      "id": "768b87bb-8a18-4d9c-a161-4d483c776bcf",
+      "name": "Computer Vision and Pattern Recognition",
+      "type": "conference",
+      "alternate_names": [
+        "CVPR",
+        "Comput Vis Pattern Recognit"
+      ],
+      "issn": "1063-6919",
+      "url": "https://ieeexplore.ieee.org/xpl/conhome.jsp?punumber=1000147",
+      "alternate_urls": [
+        "https://en.wikipedia.org/wiki/Conference_on_Computer_Vision_and_Pattern_Recognition"
+      ]
+    },
+    "url": "https://www.semanticscholar.org/paper/78502b35c172eb64b1a6b0ae313b8ee70fce9556",
+    "title": "ArtiScene: Language-Driven Artistic 3D Scene Generation Through Image Intermediary",
+    "venue": "Computer Vision and Pattern Recognition",
+    "year": 2025,
+    "citationCount": 20,
+    "influentialCitationCount": 1,
+    "isOpenAccess": false,
+    "openAccessPdf": {
+      "url": "",
+      "status": null,
+      "license": null,
+      "disclaimer": "Notice: Paper or abstract available at https://arxiv.org/abs/2506.00742, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use."
+    },
+    "fieldsOfStudy": [
+      "Computer Science"
+    ],
+    "publicationTypes": [
+      "JournalArticle",
+      "Conference"
+    ],
+    "authors": [
+      {
+        "authorId": "2311388727",
+        "name": "Zeqi Gu"
+      },
+      {
+        "authorId": "2299115514",
+        "name": "Yin Cui"
+      },
+      {
+        "authorId": "2313218585",
+        "name": "Zhaoshuo Li"
+      },
+      {
+        "authorId": "2330307301",
+        "name": "Fangyin Wei"
+      },
+      {
+        "authorId": "2299104362",
+        "name": "Yunhao Ge"
+      },
+      {
+        "authorId": "2338980231",
+        "name": "Jinwei Gu"
+      },
+      {
+        "authorId": "2299018949",
+        "name": "Ming-Yu Liu"
+      },
+      {
+        "authorId": "2333849991",
+        "name": "Abe Davis"
+      },
+      {
+        "authorId": "2356785654",
+        "name": "Yifan Ding"
+      }
+    ],
+    "abstract": "Designing 3D scenes is traditionally a challenging and laborious task that demands both artistic expertise and proficiency with complex software. Recent advances in text-to-3D generation have greatly simplified this process by letting users create scenes based on simple text descriptions. However, as these methods generally require extra training or in-context learning, their performance is often hindered by the limited availability of high-quality 3D data. In contrast, modern text-to-image models learned from web-scale images can generate scenes with diverse, reliable spatial layouts and consistent, visually appealing styles. Our key insight is that instead of learning directly from 3D scenes, we can leverage generated 2D images as an intermediary to guide 3D synthesis. In light of this, we introduce ArtiScene, a training-free automated pipeline for scene design that integrates the flexibility of free-form text-to-image generation with the diversity and reliability of 2D intermediary layouts. First, we generate 2D images from a scene description, then extract the shape and appearance of objects to create 3D models. These models are assembled into the final scene using geometry, position, and pose information derived from the same intermediary image. Being generalizable to a wide range of scenes and styles, ArtiScene outperforms state-of-the-art benchmarks by a large margin in layout and aesthetic quality by quantitative metrics. It also averages a 74.89 % winning rate in extensive user studies and 95.07 % in GPT-4o evaluation.",
+    "_query": "artistic image to 3D reconstruction evaluation",
+    "_key": "li2025artiscene"
+  }
+]

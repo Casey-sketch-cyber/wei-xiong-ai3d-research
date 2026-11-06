@@ -1,0 +1,128 @@
+{
+  "input_sha256": "0c4c693b115f50739de117bc6eb4d0bfe8912cdf57f9b5fdcc6d8185519d0422",
+  "audited_cases": 480,
+  "source_layout_count": {
+    "procedural": 20,
+    "llm": 12
+  },
+  "strata_counts": {
+    "llm|back_facing|s1": 12,
+    "llm|back_facing|s2": 12,
+    "llm|back_facing|s3": 12,
+    "llm|compound|s1": 12,
+    "llm|compound|s2": 12,
+    "llm|compound|s3": 12,
+    "llm|missed_reveal|s1": 12,
+    "llm|missed_reveal|s2": 12,
+    "llm|missed_reveal|s3": 12,
+    "llm|premature_reveal|s1": 12,
+    "llm|premature_reveal|s2": 12,
+    "llm|premature_reveal|s3": 12,
+    "llm|target_displacement|s1": 12,
+    "llm|target_displacement|s2": 12,
+    "llm|target_displacement|s3": 12,
+    "procedural|back_facing|s1": 20,
+    "procedural|back_facing|s2": 20,
+    "procedural|back_facing|s3": 20,
+    "procedural|compound|s1": 20,
+    "procedural|compound|s2": 20,
+    "procedural|compound|s3": 20,
+    "procedural|missed_reveal|s1": 20,
+    "procedural|missed_reveal|s2": 20,
+    "procedural|missed_reveal|s3": 20,
+    "procedural|premature_reveal|s1": 20,
+    "procedural|premature_reveal|s2": 20,
+    "procedural|premature_reveal|s3": 20,
+    "procedural|target_displacement|s1": 20,
+    "procedural|target_displacement|s2": 20,
+    "procedural|target_displacement|s3": 20
+  },
+  "checks": {
+    "all_case_ids_unique": true,
+    "every_case_passes_geometry_and_inverse_checks": true,
+    "all_single_fault_corruptions_fully_off_grid": true,
+    "no_complete_known_inverse_available_in_search_grid": true,
+    "all_fifteen_source_strata_present": true,
+    "strata_balanced_with_source_layout_counts": true
+  },
+  "failure_count": 0,
+  "failures": [],
+  "partial_grid_overlap_count": 8,
+  "partial_grid_overlap_cases": [
+    {
+      "case_id": "qwen25_7b_001_compound_s2_1701204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "qwen25_7b_004_compound_s2_1704204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "qwen25_7b_010_compound_s2_1710204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "procedural_4004_compound_s2_2704204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "procedural_4006_compound_s2_2706204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "procedural_4008_compound_s2_2708204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "procedural_4011_compound_s2_2711204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    },
+    {
+      "case_id": "procedural_4018_compound_s2_2718204",
+      "corruption": "compound",
+      "severity": 2,
+      "inverse_action_on_grid": [
+        false,
+        true
+      ]
+    }
+  ],
+  "complete_inverse_on_grid_count": 0,
+  "complete_inverse_on_grid_cases": [],
+  "all_checks_pass": true
+}

@@ -1,0 +1,42 @@
+{
+  "objects": 30,
+  "styles": [
+    "photo",
+    "edge",
+    "flat",
+    "low_detail",
+    "sketch",
+    "watercolor"
+  ],
+  "images": 180,
+  "size": 512,
+  "seed": 20260714,
+  "view_rotation": [
+    [
+      0.8192,
+      0.0,
+      0.5736
+    ],
+    [
+      0.2962,
+      0.8563,
+      -0.4234
+    ],
+    [
+      -0.4912,
+      0.5165,
+      0.701
+    ]
+  ],
+  "camera": {
+    "type": "orthographic",
+    "location": [
+      0.0,
+      0.0,
+      2.05
+    ],
+    "foreground_fit_fraction": 0.82
+  },
+  "background": "transparent alpha with white RGB outside foreground",
+  "all_hashes_recorded": true
+}

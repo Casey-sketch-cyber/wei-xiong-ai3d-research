@@ -1,0 +1,14 @@
+{
+  "input_manifest": "D:\\AutoResearch\\experiments\\m03_q2_confirmatory_20260715\\confirmatory_inputs_manifest.csv",
+  "input_manifest_sha256": "76823f5012ab88bdd779d9a052e275108eefac8d7600f8d1b640ddbaafcfb5c8",
+  "deterministic_schedule": "D:\\AutoResearch\\experiments\\m03_q2_confirmatory_20260715\\inference_schedule_deterministic.csv",
+  "deterministic_sha256": "ed4864a913958699cdaeeb9f28f2ef999d9c6a9837e4331f8b141f9950644721",
+  "deterministic_jobs": 1020,
+  "stochastic_schedule": "D:\\AutoResearch\\experiments\\m03_q2_confirmatory_20260715\\inference_schedule_stochastic.csv",
+  "stochastic_sha256": "c08fb8d6e30fa36c7e65c0c46b1c2d51b25a76fbbe3d62441414eaf146124dff",
+  "stochastic_jobs": 1740,
+  "primary_seed": 20260715,
+  "secondary_seed": 3407,
+  "seed_policy": "both seeds for C120 main; primary seed for V30 and S30 low/high",
+  "severity_medium_policy": "reuse corresponding C120 main outputs"
+}

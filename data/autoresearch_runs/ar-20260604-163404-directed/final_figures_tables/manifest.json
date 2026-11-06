@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "experiment_summary_table.csv",
+    "figure_caption_table.csv",
+    "m02_emoart100_by_emotion.csv",
+    "m02_emoart100_summary.csv",
+    "m02_emoart100_va.csv",
+    "m02_emoart_by_emotion.csv",
+    "m02_emoart_summary.csv",
+    "m02_emoart_va.csv",
+    "m02_proxy.csv",
+    "m03_main100.csv",
+    "m03_res128.csv"
+  ],
+  "figures": [
+    "m02_emoart100_affect_summary.svg",
+    "m02_emoart50_affect_summary.svg",
+    "m02_proxy_affect_drift.svg",
+    "m03_main100_metric_paradox.svg",
+    "m03_main100_volume_z_ratios.svg",
+    "m03_res128_volume_z_ratios.svg"
+  ],
+  "figure_generation_notes": [
+    "matplotlib_unavailable: No module named 'matplotlib'; generated SVG fallback figures",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m03_main100_volume_z_ratios.svg",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m03_main100_metric_paradox.svg",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m03_res128_volume_z_ratios.svg",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m02_proxy_affect_drift.svg",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m02_emoart50_affect_summary.svg",
+    "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\final_figures_tables\\m02_emoart100_affect_summary.svg"
+  ]
+}

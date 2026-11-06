@@ -1,0 +1,82 @@
+[
+  {
+    "candidate_id": "M03",
+    "title": "Cross-Style Geometry Hallucination in Image-to-3D Generation: A Paired Benchmark with Known 3D Ground Truth",
+    "title_zh": "Image-to-3D 生成中的跨风格几何幻觉：一个带真实三维标注的成对鲁棒性基准",
+    "source": "curated_novelty_scan",
+    "source_ref": {
+      "run_id": "ar-20260604-163404-directed",
+      "novelty_scan": "novelty-scan-M02-M03-zh.md",
+      "base_candidate": "M03"
+    },
+    "objective": "q2_journal",
+    "description": "Modern image-to-3D systems are often evaluated on natural or product-like images, while artistic inputs such as sketches, watercolor, oil painting, flat illustration, anime/toon, and abstract low-detail images can change the visual cues that models treat as geometry. This project builds a paired benchmark from known Objaverse-style 3D objects: the same object is rendered or stylized into multiple 2D input domains while retaining the original 3D ground truth. The study quantifies style-induced geometry hallucination, including backside invention, thickness collapse, topology fragmentation, shape-material entanglement, and view-consistency degradation.",
+    "mechanism_rationale": "The novelty scan found that Art3D and manuscript-to-3D studies partially cover artistic image-to-3D, but they do not provide a controlled cross-style paired benchmark with known 3D ground truth for the same objects. This narrower formulation shifts the contribution from another image-to-3D method to a diagnostic benchmark plus lightweight geometry-preserving mitigation.",
+    "supporting_evidence": {
+      "novelty_check_status": "partial_open",
+      "novelty_check_evidence": "Closest prior includes Art3D: Training-Free 3D Generation from Flat-Colored Illustration, a 2026 semi-automated framework for 3D reconstruction of medieval manuscript miniatures, Sketch-A-Shape, Sketch3D, DrawingSpinUp, and PAniC-3D. These works cover flat illustration, manuscript figures, sketch-to-3D, character drawings, and anime portraits. The remaining gap is a controlled, paired cross-style robustness benchmark using the same known 3D objects and true 3D ground truth to isolate how artistic style changes geometry recovery.",
+      "supporting_papers": [
+        {
+          "title": "Art3D: Training-Free 3D Generation from Flat-Colored Illustration",
+          "url": "https://arxiv.org/abs/2504.10466"
+        },
+        {
+          "title": "A Semi-Automated Framework for 3D Reconstruction of Medieval Manuscript Miniatures",
+          "url": "https://arxiv.org/abs/2604.08610"
+        },
+        {
+          "title": "Sketch-A-Shape: Zero-Shot Sketch-to-3D Shape Generation",
+          "url": "https://arxiv.org/abs/2307.03869"
+        },
+        {
+          "title": "Sketch3D: Style-Consistent Guidance for Sketch-to-3D Generation",
+          "url": "https://arxiv.org/abs/2404.01843"
+        },
+        {
+          "title": "DrawingSpinUp: 3D Animation from Single Character Drawings",
+          "url": "https://arxiv.org/abs/2409.08615"
+        },
+        {
+          "title": "PAniC-3D: Stylized Single-view 3D Reconstruction from Portraits of Anime Characters",
+          "url": "https://arxiv.org/abs/2303.14587"
+        }
+      ]
+    },
+    "experiment_sketch": {
+      "datasets_to_check": [
+        "Objaverse or Objaverse curated subset for source 3D meshes",
+        "A small controlled subset of 100-300 objects for the main paper",
+        "Generated paired 2D inputs: photorealistic, sketch, watercolor, oil painting, flat illustration, anime/toon, abstract low-detail"
+      ],
+      "baselines_to_plan": [
+        "Stable Fast 3D",
+        "TripoSR",
+        "Wonder3D or another available multi-view/image-to-3D baseline",
+        "Photorealistic-input condition as an internal reference"
+      ],
+      "ablations_to_plan": [
+        "Style domain ablation",
+        "Object-category ablation",
+        "Style-stripped preprocessing",
+        "Edge-depth assisted preprocessing",
+        "Multi-candidate geometry-proxy reranking"
+      ],
+      "primary_metric": "Relative geometry degradation under artistic style shift, measured against known 3D ground truth"
+    },
+    "resource_fit": {
+      "fit": "single RTX 5090 feasible",
+      "notes": "The proposed server has one RTX 5090, 90GB RAM, Ubuntu 22.04, PyTorch 2.8, CUDA 12.8, and a 700GB data disk. This is sufficient for pilot and main benchmark runs if the study focuses on inference, rendering, and evaluation rather than training a new image-to-3D foundation model. Use CUDA 12.8+ and avoid older prebuilt CUDA extensions that lack Blackwell support."
+    },
+    "data_policy": "public_only",
+    "scores": {
+      "novelty": 0.68,
+      "feasibility": 0.72,
+      "evidence_strength": 0.70,
+      "venue_fit": 0.72,
+      "user_fit": 0.90
+    },
+    "risk": "The broad artistic image-to-3D problem is partially covered by Art3D and related sketch/manuscript/anime works. The paper must emphasize paired cross-style diagnosis with known 3D ground truth and avoid claiming that artistic image-to-3D itself is untouched.",
+    "failure_signal": "If paired stylization cannot preserve enough object identity for fair 3D comparison, or if all tested models show trivial total failure across styles without interpretable error modes, the benchmark claim weakens.",
+    "next_step": "Select this candidate, then run dataset access and environment checks before any large download or model inference."
+  }
+]

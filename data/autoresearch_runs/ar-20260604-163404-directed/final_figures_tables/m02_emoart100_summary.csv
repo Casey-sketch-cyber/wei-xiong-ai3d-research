@@ -1,0 +1,2 @@
+﻿n,render_ok,orig_gt_match_rate,render_gt_match_rate,render_orig_match_rate,js_render_to_orig_mean,render_entropy_delta_mean,render_top_prob_delta_mean
+100,100,0.17,0.06,0.04,0.16871240369561558,-0.22834754083916034,0.14946479946374894

@@ -1,0 +1,43 @@
+{
+  "pilot_objects": 30,
+  "models": [
+    "hunyuan21",
+    "instantmesh",
+    "triposr"
+  ],
+  "evaluated_reconstructions": 900,
+  "bootstrap_replicates": 5000,
+  "gates": {
+    "gate_1_cross_model_primary_sign_reversal": {
+      "passed": false,
+      "models": [],
+      "criterion": "At least two models have a style whose cluster-bootstrap CI shows delta F-score > 0 and delta voxel IoU < 0."
+    },
+    "gate_2_stable_model_rank_reversal": {
+      "passed": false,
+      "cases": [],
+      "criterion": "A model pair has significant opposite orderings under F-score and voxel IoU for at least one style."
+    },
+    "gate_3_medium_metric_family_by_style_effect": {
+      "passed": true,
+      "styles": {
+        "sketch": [
+          "instantmesh",
+          "triposr"
+        ]
+      },
+      "criterion": "The same style has Cohen dz >= 0.5 for delta F-score minus delta voxel IoU in at least two models, with adequate photo baselines."
+    },
+    "gate_4_seed_direction_consistency": {
+      "passed": false,
+      "model_rates": {
+        "hunyuan21": 0.2,
+        "instantmesh": 0.6
+      },
+      "criterion": "Each stochastic model preserves the sign pair of mean delta F-score and delta voxel IoU in at least 80% of styles."
+    }
+  },
+  "passed_gate_count": 1,
+  "expand_to_100": false,
+  "decision_rule": "Expand only when at least two of the four frozen gates pass."
+}

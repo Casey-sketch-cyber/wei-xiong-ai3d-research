@@ -1,0 +1,40 @@
+{
+  "valid": true,
+  "manifest_rows": 180,
+  "evaluation_records": 900,
+  "models": {
+    "triposr": {
+      "records": 180,
+      "seeds": [
+        -1
+      ],
+      "objects": 30,
+      "styles": 6
+    },
+    "instantmesh": {
+      "records": 360,
+      "seeds": [
+        3407,
+        20260714
+      ],
+      "objects": 30,
+      "styles": 6
+    },
+    "hunyuan21": {
+      "records": 360,
+      "seeds": [
+        3407,
+        20260714
+      ],
+      "objects": 30,
+      "styles": 6
+    }
+  },
+  "primary_metrics_finite": true,
+  "records_with_voxel_clip_over_1pct": 0,
+  "calibrations": [
+    "hunyuan21",
+    "instantmesh",
+    "triposr"
+  ]
+}

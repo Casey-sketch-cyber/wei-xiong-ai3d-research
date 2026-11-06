@@ -1,0 +1,51 @@
+{
+  "model": "trellis",
+  "scale": 1.1036227494352309,
+  "matrix": [
+    [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ]
+  ],
+  "determinant": -1.0,
+  "median_calibration_chamfer": 0.03448366300852222,
+  "calibration_objects": [
+    "gso_001",
+    "gso_002",
+    "gso_003",
+    "gso_004",
+    "gso_005",
+    "gso_006",
+    "gso_007",
+    "gso_008",
+    "gso_009",
+    "gso_010"
+  ],
+  "calibration_seed": 20260714,
+  "scale_ratios": [
+    0.9485281472958415,
+    1.1128761264450346,
+    1.094369372425427,
+    1.0793022521892321,
+    1.4520927269719688,
+    0.9113549603230924,
+    1.1408071854031812,
+    1.1432023889029486,
+    1.0078881481923556,
+    1.1877846632209175
+  ],
+  "orientation_candidates": 48,
+  "calibration_samples": 3000,
+  "rule": "single global model scale and signed-axis transform frozen from ten D30 photos"
+}

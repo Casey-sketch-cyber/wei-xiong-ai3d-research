@@ -1,0 +1,51 @@
+{
+  "model": "triposr",
+  "scale": 1.0759657996594203,
+  "matrix": [
+    [
+      0.0,
+      0.0,
+      -1.0
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0
+    ],
+    [
+      -1.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "determinant": 1.0,
+  "median_calibration_chamfer": 0.025080737693067998,
+  "calibration_objects": [
+    "gso_001",
+    "gso_002",
+    "gso_003",
+    "gso_004",
+    "gso_005",
+    "gso_006",
+    "gso_007",
+    "gso_008",
+    "gso_009",
+    "gso_010"
+  ],
+  "calibration_seed": null,
+  "scale_ratios": [
+    0.9501794714748809,
+    1.110220852040898,
+    1.1789635543094337,
+    1.0843326555780675,
+    1.0520379785242426,
+    0.9768120276914233,
+    1.0675989437407731,
+    1.2044738437515814,
+    1.048890585936254,
+    1.228986965190003
+  ],
+  "orientation_candidates": 48,
+  "calibration_samples": 3000,
+  "rule": "single global model scale and signed-axis transform frozen from ten D30 photos"
+}

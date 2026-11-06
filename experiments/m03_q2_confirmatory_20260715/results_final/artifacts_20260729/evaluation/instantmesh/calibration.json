@@ -1,0 +1,51 @@
+{
+  "model": "instantmesh",
+  "scale": 0.5628264193016603,
+  "matrix": [
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0
+    ]
+  ],
+  "determinant": 1.0,
+  "median_calibration_chamfer": 0.011252318857280036,
+  "calibration_objects": [
+    "gso_001",
+    "gso_002",
+    "gso_003",
+    "gso_004",
+    "gso_005",
+    "gso_006",
+    "gso_007",
+    "gso_008",
+    "gso_009",
+    "gso_010"
+  ],
+  "calibration_seed": 20260714,
+  "scale_ratios": [
+    0.5195682430200573,
+    0.5584737706976978,
+    0.5491159911488802,
+    0.5671790679056228,
+    0.5970002437389991,
+    0.47313129358399425,
+    0.606119678331689,
+    0.5749783300196315,
+    0.5544050091215421,
+    0.5901664841108838
+  ],
+  "orientation_candidates": 48,
+  "calibration_samples": 3000,
+  "rule": "single global model scale and signed-axis transform frozen from ten D30 photos"
+}

@@ -1,0 +1,1108 @@
+Style-induced volumetric bias in image-to-3D
+reconstruction:
+A controlled benchmark on artistic input transformations
+Author information to be completed
+Affiliations, e-mail addresses, ORCID identifiers, and corresponding-author information will be
+inserted after author confirmation.
+Abstract
+Single-image 3D reconstruction systems are increasingly used to lift visual concepts into editable assets, yet their evaluation still depends heavily on point-distance
+metrics measured against ground-truth geometry. This paper studies a failure mode
+that becomes visible when the same object is reconstructed from matched photographic and artistic renderings. We build a controlled benchmark from 100 curated
+Objaverse objects, render each object as a photographic input and five stylised variants, and run the same TripoSR reconstruction pipeline on all 600 inputs. Although
+several stylised inputs improve Chamfer distance or F-score relative to the photographic input, they consistently reduce predicted mesh volume. The mean volume
+ratio relative to photo ranges from 0.257 for sketch to 0.500 for flat colour, with
+Wilcoxon tests below 10−16 for all styles. Edge, low-detail, and watercolour inputs
+also substantially reduce z-extent. A 30-object rerun with a higher marching-cubes
+resolution preserves the same pattern, suggesting that the effect is not simply a
+low-resolution mesh-extraction artefact. The results show that conventional point
+metrics can reward geometrically thin or collapsed reconstructions under artistic domain shifts. We therefore argue that image-to-3D evaluation for design and assetgeneration workflows should report volumetric and thickness-oriented diagnostics
+alongside Chamfer and F-score.
+
+Keywords: image-to-3D, 3D reconstruction, artistic inputs, geometry evaluation,
+volumetric bias, benchmark.
+
+1.
+
+Introduction
+
+Single-image 3D reconstruction has moved from a specialised vision problem into a practical tool for design, game production, digital heritage, and AI-assisted asset generation.
+Recent systems can produce a mesh from one image in seconds or minutes, and large
+reconstruction models have made this workflow much easier to deploy (Hong et al., 2023;
+Tochilkin et al., 2024; Xu et al., 2024). The same shift is now visible in adjacent design
+tasks, including AI-assisted CAD generation and single-image reconstruction for cultural
+heritage (Doris et al., 2026; G. Wu et al., 2026). In these settings, the input image is not
+
+1
+
+always a clean photograph. Artists and designers often begin with sketches, flat illustrations, low-detail thumbnails, stylised concept art, or watercolour-like references. A 3D
+generator that appears robust on natural images may therefore behave differently when
+the visual evidence is intentionally abstract.
+The usual evaluation protocol does not fully expose this problem. A reconstructed
+mesh can score well under Chamfer distance or F-score because its visible surface lies
+close to the sampled ground-truth surface, even when the object has lost volume, thickness, or usable back-side structure. For engineering and design use, these failures matter.
+A thin shell, flattened body, or collapsed depth profile may be a poor 3D asset even
+if a point-cloud metric improves. The issue is sharper for artistic inputs because style
+transformations often remove texture, compress shading, simplify boundaries, or emphasise contours. These changes can make the input easier for a metric that favours visible
+outline alignment while making the recovered object less useful as geometry.
+This mismatch is not merely a visual-quality concern. Many image-to-3D systems are
+now presented as asset-generation tools rather than as point-cloud predictors. The output
+may be remeshed, sculpted, textured, animated, inserted into a game engine, used as a
+design reference, or passed to a fabrication-oriented workflow. In such cases, a mesh that
+is topologically simple but volumetrically collapsed can be more damaging than a mesh
+with modest surface noise. It may look acceptable from the source view but fail when
+rotated, edited, or interpreted as a solid object. This is why an evaluation protocol that
+reports only surface proximity can be misleading for computational design.
+Artistic inputs make the problem unusually testable. A sketch, flat-colour rendering,
+or watercolour image removes some visual cues while preserving others. Contours may
+remain sharp even when shading and texture are gone; a flat illustration may retain semantic identity while suppressing depth evidence; a low-detail image may preserve global
+silhouette while erasing local geometry. If the same underlying object is reconstructed
+from both a photographic rendering and a stylised rendering, the paired difference can
+reveal which part of the reconstruction is robust to abstraction and which part depends
+on photographic cues. This paired design is stronger than comparing unrelated photographs and artworks because it fixes object identity, pose, camera view, and ground-truth
+geometry.
+This paper studies that mismatch through a controlled benchmark. Instead of collecting unrelated photographs and artworks, we start from known 3D objects. Each object is
+rendered into a photographic reference and five matched artistic variants: edge, flat colour, low-detail, sketch, and watercolour. This paired design keeps the underlying object
+fixed, keeps the 3D ground truth available, and isolates the effect of input style. We then
+run the same image-to-3D model, TripoSR (Tochilkin et al., 2024), on every input and
+compare each stylised reconstruction with the corresponding photo reconstruction.
+The main finding is that stylised inputs can look better by conventional point metrics
+while becoming worse as volumetric assets. On 100 Objaverse objects (Deitke et al.,
+
+2
+
+2022), every artistic style reduces predicted mesh volume relative to the photo input.
+The reduction is large, with mean volume ratios of 0.332 for edge, 0.500 for flat colour,
+0.305 for low-detail, 0.257 for sketch, and 0.343 for watercolour. At the same time, sketch
+improves mean F-score@0.05 by 0.093 and Chamfer distance by 0.010 relative to photo.
+The metric table therefore supports two different readings of the same reconstructions:
+surface proximity improves, but usable volume is lost.
+Our contribution is not a new image-to-3D generator. It is an evaluation and diagnostic study for image-to-3D reconstruction under artistic input shifts. We make three
+contributions. First, we define a paired cross-style benchmark in which photographic and
+stylised inputs share the same object and known 3D ground truth. Second, we show
+that stylised inputs induce a consistent volumetric bias in TripoSR outputs, including
+strong reductions in volume and z-extent. Third, we identify a metric paradox: Chamfer
+distance and F-score can improve while the reconstructed mesh becomes substantially
+thinner or smaller. The result suggests that evaluation for computational design and 3D
+asset generation should treat volumetric diagnostics as first-class evidence rather than
+optional visual checks.
+The paper is organised as follows. Section 2 reviews single-image 3D reconstruction,
+artistic or sketch-based 3D generation, and recent evaluation work. Section 3 describes
+the paired benchmark, the reconstruction protocol, and the metric design. Section 4
+reports the main 100-object experiment and the higher-resolution robustness rerun. Section 5 discusses the implications for benchmarking and design workflows, and Section 6
+summarises the main limitations.
+
+2.
+
+Related work
+
+2.1
+
+Datasets and generative priors for 3D reconstruction
+
+The recent acceleration of image-to-3D research depends on two ingredients: large 3D
+object corpora and generative priors learned from 2D or multi-view data. Objaverse
+made a large collection of annotated 3D objects available for training and evaluation
+(Deitke et al., 2022), and Objaverse-XL expanded the scale by more than an order of
+magnitude (Deitke et al., 2023). More recent curation work adds quality annotations
+and filtering signals for object-level datasets (Lin et al., 2025). These resources make
+it possible to build controlled benchmarks in which the image input is generated from
+known 3D geometry rather than collected from unrelated web images.
+This distinction matters for evaluation. Web images and artworks often differ in object
+category, viewpoint, scene context, lighting, and level of abstraction. A comparison across
+such images can easily confound model sensitivity to style with ordinary differences in
+content. Large object corpora make a cleaner design possible: one can render the same
+mesh under different visual conditions and then measure all reconstructions against the
+same ground truth. The present benchmark follows this controlled-evaluation logic. It
+3
+
+uses Objaverse as a source of object geometry, but it does not treat the dataset itself
+as the contribution. The contribution is the paired style manipulation and the metric
+analysis that becomes possible once the object is fixed.
+Large 3D corpora also shape the models being evaluated. Several recent reconstruction
+models are trained on synthetic or rendered views of large object collections, so their
+behaviour depends on what kinds of cues are common in those training views. If a model
+has mainly learned from naturalistic renderings, it may infer depth from shading, texture
+gradients, and photographic appearance. A stylised image can remove precisely those
+cues. The benchmark therefore probes a realistic distribution shift: the object remains
+familiar, but the evidence available to the reconstruction model changes.
+
+2.2
+
+Single-image 3D generation and large reconstruction models
+
+Single-image 3D generation has moved from optimisation-heavy pipelines toward feedforward reconstruction. Zero-1-to-3 learns view-conditioned generation from one image
+(R. Liu et al., 2023); One-2-3-45 and One-2-3-45++ combine view generation and reconstruction to produce meshes quickly (M. Liu, Shi et al., 2023; M. Liu, Xu et al., 2023).
+Wonder3D introduced cross-domain diffusion for single-image 3D generation, and Wonder3D++ extends the same line toward higher-fidelity results (Long et al., 2023; Yang,
+Long et al., 2025). Large reconstruction models such as LRM, TripoSR, InstantMesh, and
+CRM further reduce inference time or improve sparse-view reconstruction quality (Hong
+et al., 2023; Tochilkin et al., 2024; Z. Wang et al., 2024; Xu et al., 2024).
+The field has continued to move quickly after these early large reconstruction models. MeshLRM, Unique3D, MeshFormer, GS-LRM, LRM-Zero, GeoLRM, and multi-view
+LRM variants explore higher-quality mesh generation, Gaussian reconstruction, syntheticdata training, and geometry-aware positional encoding (M. Li et al., 2024; M. Liu et al.,
+2024; Wei et al., 2024; K. Wu et al., 2024; Xie et al., 2024; C. Zhang et al., 2024; K. Zhang
+et al., 2024). More recent work, including NOVA3D, Cue3D, MAGE, and UniMesh, shifts
+attention toward normal-aligned video diffusion, image-cue attribution, material-aware 3D
+generation, and joint mesh understanding/generation (Huang et al., 2026; X. Li et al.,
+2025; H. Wang et al., 2025; Yang, Li et al., 2025). This rapid progress makes evaluation
+more important, not less: a model can be fast and visually plausible while still failing
+under input conditions that are common in design practice.
+Most of these systems are evaluated on natural images, synthetic multi-view renderings, or standard object benchmarks. That evaluation is necessary, but it does not answer
+whether a system is reliable for design sketches or illustrative concept images. TripoSR
+is a useful case study for this question because it is fast, open, and representative of feedforward image-to-3D reconstruction. We use it as a diagnostic baseline rather than as the
+object of a model-ranking study. The results should therefore be read as evidence that
+the evaluation problem exists, not as a final statement about every current image-to-3D
+model.
+4
+
+2.3
+
+Artistic, illustrated, and sketch-based 3D inputs
+
+Non-photographic image-to-3D input now has its own line of work. Sketch-A-Shape studies zero-shot sketch-to-3D generation (Sanghi et al., 2023), Sketch3D adds style-consistent
+guidance for sketch-driven generation (Zheng et al., 2024), and PASTA uses part-aware
+priors for sketch-to-3D shape generation (Lee et al., 2025). A 2026 survey on deep sketchbased 3D modelling shows that sketch-driven 3D creation has become a broad research
+area rather than a single-task variant (Tono et al., 2026).
+Other work studies more specialised stylised domains. PAniC-3D reconstructs stylised
+anime portraits (Chen et al., 2023); DrawingSpinUp animates single character drawings
+(Zhou et al., 2024); Art3D targets flat-coloured illustration with a training-free correction
+pipeline (Cong et al., 2025); and a semi-automated framework for medieval manuscript
+miniatures evaluates several image-to-3D systems on historical illustrated inputs (Pallotto
+et al., 2026). Recent work also extends stylisation to reconstructed 3D assets and scenes,
+including 3D stylisation through large reconstruction models and language-driven artistic
+scene generation (Gu et al., 2025; Oztas et al., 2025).
+Our study is positioned differently from these domain-specific systems. We do not
+introduce a new stylised reconstruction model, nor do we claim that artistic 3D generation
+is unexplored. Instead, we use matched styles of the same ground-truth objects to test
+how input abstraction changes the measured geometry. The paired construction lets us
+observe metric disagreement without confounding style with object category, pose, or
+dataset source.
+This positioning is important because specialised stylised models and general-purpose
+reconstruction models answer different questions. A specialised method may be designed
+to handle a particular artistic domain, such as anime portraits or flat-coloured illustrations. A general-purpose model may be used by practitioners because it is available, fast,
+and easy to run. Our benchmark asks what happens in the latter case: if a user gives a
+general reconstruction model a design-like input, do the standard metrics reveal the loss
+of usable 3D structure? The answer in our experiment is no, or at least not reliably.
+
+2.4
+
+Evaluation benchmarks and the metric gap
+
+Evaluation for generative 3D models is beginning to receive more direct attention. 3DGenBench proposes a broad benchmark suite for 3D generative models (Y. Zhang et al.,
+2025), 3D Arena provides an open platform for generative 3D evaluation (Ebert, 2025),
+and SI23DCQA studies perceptual quality assessment for single-image-to-3D content (Fu
+et al., 2025). In computational design, CADBench similarly treats generation quality as
+a benchmark problem rather than a single example-by-example judgement (Doris et al.,
+2026). These efforts reflect a wider concern: as 3D generation becomes easier to run,
+visual plausibility alone is not enough to certify geometric usefulness.
+Chamfer distance and F-score remain useful because they are reproducible and com-
+
+5
+
+patible with sampled point clouds. Yet they measure surface proximity more directly than
+asset usability. A reconstruction can place many sampled points close to a ground-truth
+surface while losing volume, thickness, back-side plausibility, or connected structure. For
+computational design and engineering workflows, the mesh is not only an image surrogate. It may be edited, remeshed, textured, animated, fabricated, or used as a proxy for
+downstream analysis. A flattened mesh is therefore a different failure from a small surface offset. The present benchmark treats volume, z-extent, and mesh-complexity ratios
+as diagnostic signals that complement point-distance metrics.
+Recent benchmark work points in the same direction. 3DGen-Bench and 3D Arena
+broaden evaluation beyond isolated visual examples, while SI23DCQA studies perceptual
+quality for single-image-to-3D outputs (Ebert, 2025; Fu et al., 2025; Y. Zhang et al., 2025).
+CADBench brings a similar benchmark mentality to AI-assisted design, where executability and compactness matter in addition to geometric fidelity (Doris et al., 2026). Our
+work adds a narrower but practical test: when the image style changes while the object
+stays fixed, conventional point metrics can disagree with volume-sensitive diagnostics.
+That disagreement is precisely the kind of failure a design-oriented benchmark should
+expose.
+
+3.
+
+Material and methods
+
+3.1
+
+Object selection
+
+We use Objaverse as the source of ground-truth 3D objects (Deitke et al., 2022). From the
+available objects, we curate a 100-object subset for the main experiment. The curation removes very large meshes, extremely low-complexity meshes, obvious intellectual-property
+or trademarked objects, human figures, full scenes, and collection-like samples. We also
+retain only permissively licensed objects marked as BY or BY-SA in the run manifest.
+This keeps the benchmark small enough to reproduce while avoiding many cases where
+reconstruction failure would be caused by object ambiguity rather than style.
+The subset is deliberately modest. The aim is not to approximate the full diversity of
+Objaverse, but to create a controlled diagnostic benchmark that can be rerun on affordable
+hardware. Each selected object is treated as a unit of paired comparison. The same object
+contributes one photo reconstruction and five stylised reconstructions, so the statistical
+test is based on within-object changes rather than on differences between object categories.
+This design reduces variance from mesh complexity, object identity, and pose. It also
+makes the results easier to interpret: a volume ratio below one means that the stylised
+input produced a smaller mesh than the photo input for the same object.
+During curation we prioritised objects that could be rendered as recognisable singleobject inputs. Full scenes, assemblies with many disconnected parts, and objects whose
+identity depended on fine text or brand marks were removed. These cases are important
+in practice, but they introduce additional failure modes that are not the focus of this
+6
+
+A
+
+B Observed volume loss
+1.0
+
+Benchmark design
+
+Curated
+Objaverse-100
+3D objects
+
+Matched inputs
+photo + 5 styles
+same view
+
+Same TripoSR
+pipeline
+600 meshes
+
+Volume ratio
+
+0.8
+0.6
+0.4
+
+0.50
+0.33
+
+0.34
+
+0.31
+
+0.26
+
+0.2
+Photo
+
+Edge
+
+Flat colour
+
+Low detail
+
+Sketch
+
+Watercolour
+
+0.0
+e
+
+Edg
+
+Paired comparison
+style output vs.
+photo output
+
+Point metrics
+Chamfer
+F-score
+
+Asset diagnostics
+volume
+z-extent
+
+r
+
+lou
+
+t co
+
+Fla
+
+Low
+
+ail
+
+det
+
+tch
+
+Ske
+
+r
+lou
+
+rco
+
+te
+Wa
+
+C Point metric vs. asset diagnostic
+
+Volume ratio
+
+0.5
+
+Diagnostic question:
+can point metrics improve
+while usable 3D volume collapses?
+
+0.4
+0.3
+0.2
+0.00
+
+0.02 0.04 0.06 0.08
+F-score@0.05 change
+
+0.10
+
+Figure 1: Overview of the paired cross-style benchmark and its primary diagnostic
+readout. Each curated Objaverse object is rendered as a photo input and five stylised
+variants, reconstructed with the same TripoSR pipeline, and evaluated through paired
+comparisons between stylised and photo outputs. The result panel shows the main diagnostic pattern: all styles reduce reconstructed volume while several improve point metrics.
+paper. The benchmark instead asks a narrower question: even for relatively clean objectlevel inputs, does artistic abstraction change the geometry recovered by an image-to-3D
+model?
+
+3.2
+
+Matched input styles
+
+For each object, we render a photographic input and five stylised variants. The style set is
+designed to cover common artistic abstractions while keeping the experiment controlled:
+• photo: the reference input used as the paired baseline;
+• edge: a contour-dominant rendering with reduced interior evidence;
+• flat: a flat-colour version with simplified shading;
+• low-detail: a simplified rendering with reduced visual detail;
+• sketch: a hand-drawing-like abstraction;
+7
+
+• watercolour: a soft stylised rendering with diffuse boundaries and colour variation.
+The important property is pairing. Each stylised input corresponds to the same underlying
+mesh and view as its photo counterpart. This lets us report relative changes style by style
+instead of comparing unrelated images.
+The five stylised variants were chosen to cover different forms of abstraction rather than
+to reproduce one named artistic school. Edge inputs preserve outline information while
+discarding much of the interior appearance. Flat-colour inputs preserve object regions
+but reduce shading gradients. Low-detail inputs suppress local texture and small-scale
+visual evidence. Sketch inputs emphasise drawn contours and sparse strokes. Watercolour
+inputs retain colour variation but soften boundaries and local contrast. These transformations are not intended to exhaust the space of artistic images. They provide a compact
+set of controlled perturbations that resemble common inputs in early-stage design and
+illustration workflows.
+All styles share the same view as the photo rendering. This is essential because a different view would change the amount of visible geometry and make the paired comparison
+ambiguous. The photo input is used as the baseline because it represents the input type
+for which many image-to-3D systems are most commonly demonstrated. We do not treat
+the photo reconstruction as ground truth. Ground truth remains the original 3D object.
+The photo reconstruction is used only as a within-model reference for asking how much
+a style transformation changes the model output.
+
+3.3
+
+Reconstruction protocol
+
+All 600 inputs are reconstructed with TripoSR (Tochilkin et al., 2024). We use TripoSR
+because it is a fast, open image-to-3D baseline and can process the full benchmark at
+modest cost. The goal is not to rank models; it is to test whether a widely used reconstruction pipeline exhibits style-induced metric disagreement under controlled inputs.
+The main run reconstructs 100 objects across six styles with the default mesh-extraction
+setting used in the experiment pipeline. All 600 reconstructions succeed and produce
+watertight meshes.
+To check whether the observed volume reduction is merely caused by the meshextraction resolution, we run a separate 30-object robustness experiment with marchingcubes resolution increased to 128. This rerun covers the same six styles and produces 180
+successful reconstructions.
+The reconstruction protocol is intentionally held constant across styles. We do not
+tune model parameters separately for sketch, flat, watercolour, or photo inputs. Stylespecific tuning would make it difficult to determine whether the measured differences
+come from the input or from the intervention. The same pipeline therefore receives each
+rendered image, produces a mesh, and passes the mesh to the same evaluation scripts.
+This fixed-pipeline design mirrors a common user workflow: a practitioner selects a general
+image-to-3D model and applies it to whatever reference image is available.
+8
+
+The robustness rerun addresses a simple concern. If the main experiment used a low
+mesh-extraction resolution, then a smaller or thinner mesh might be an artefact of the
+extraction grid rather than of the reconstruction itself. Increasing the marching-cubes
+resolution cannot prove that no extraction artefact remains, but it can test whether
+the qualitative pattern disappears under a denser extraction. In our rerun it does not
+disappear. We therefore interpret the higher-resolution run as evidence that the observed
+shrinkage is not only a low-resolution extraction effect.
+
+3.4
+
+Metrics
+
+We compute conventional point metrics against the ground-truth object, including Chamfer L2 and F-score at 0.05 and 0.1 thresholds. These metrics are standard in reconstruction
+evaluation because they are easy to reproduce and can be applied to sampled point clouds
+even when mesh topology differs. Chamfer distance measures average point proximity; Fscore measures how many sampled points fall within a chosen tolerance. Both are useful,
+but both are most directly about surface proximity.
+We also compute diagnostics aimed at asset usability: predicted mesh volume, zextent, vertex count, and face count. Volume captures whether the reconstruction remains
+a three-dimensional body rather than a thin or collapsed surface. Z-extent captures loss of
+depth along the view-related axis. Vertex and face counts provide a coarse check on mesh
+complexity, although they should not be interpreted as quality measures by themselves.
+A dense but collapsed mesh is still a poor asset; a sparse mesh can be acceptable if it
+preserves the main volume and shape. For this reason, volume and z-extent receive the
+main emphasis in the analysis.
+For each stylised input, we report the paired change relative to the photo reconstruction of the same object. Chamfer and F-score are reported as differences, while volume
+and z-extent are reported as ratios. A volume ratio below 1 indicates that the stylised
+reconstruction has less predicted volume than the paired photo reconstruction. A z-extent
+ratio below 1 indicates a shallower reconstruction. We use paired Wilcoxon signed-rank
+tests for volume and z-extent differences because the comparisons are within object and
+the distributions need not be Gaussian. The statistical tests are not used as the sole
+evidence. We interpret them together with effect sizes, mean ratios, and the consistency
+of the direction across all five styles.
+The main analysis is therefore organised around three questions. First, do stylised
+inputs change conventional point metrics relative to photo inputs? Second, do the same
+inputs change volumetric and depth-sensitive diagnostics? Third, can these two answers
+disagree? The third question is the most important for this paper because it tests whether
+a benchmark based only on point metrics would lead to a different conclusion from a
+benchmark that also tracks asset-oriented geometry.
+We do not normalise away the paired photo reconstruction when reporting the main
+diagnostic ratios, because the photo output represents the model’s own baseline under the
+9
+
+same object and camera. This choice is conservative for the question we ask. If a model
+already reconstructs an object imperfectly from the photo input, the style ratio measures
+the additional change caused by stylisation rather than the absolute error of the model.
+Absolute metrics against the ground-truth object remain part of the analysis through
+Chamfer and F-score, but the paired ratios are more direct for identifying style-induced
+collapse.
+
+4.
+
+Results
+A
+
+B Metric paradox
+
+Stylised inputs shrink reconstructed geometry
+Volume
+
+z-extent
+
+1.0
+Volume ratio
+
+0.8
+
+0.4
+Edge
+Low detail
+
+0.3
+
+Watercolour
+
+Sketch
+
+0.2
+0.6
+
+0.00 0.02 0.04 0.06 0.08 0.10
+F-score@0.05 change vs. photo
+
+0.50
+
+C Scores improve as volume is lost
+0.4
+
+Edge
+
+0.003
+
+0.056
+
+0.67
+
+0.53
+
+Flat colour
+
+0.007
+
+0.051
+
+0.50
+
+0.12
+
+Low detail
+
+0.000
+
+0.042
+
+0.69
+
+0.55
+
+Sketch
+
+0.010
+
+0.093
+
+0.74
+
+0.13
+
+Watercolour
+
+0.008
+
+0.076
+
+0.66
+
+0.37
+
+Volume
+loss
+
+z-loss
+
+0.34
+
+0.33
+
+0.31
+0.26
+
+0.2
+
+0.0
+dge
+
+E
+
+Fla
+
+tc
+
+ur
+olo
+
+ail
+det
+Low
+
+Sk
+
+h
+etc
+
+Chamfer F-score
+improv. improv.
+
+r
+lou
+
+rco
+
+te
+Wa
+
+1.0
+0.5
+0.0
+−0.5
+
+Directional strength
+
+Ratio relative to paired photo
+
+Flat colour
+
+0.5
+
+−1.0
+
+Figure 2: Main 100-object results. (A) All stylised inputs reduce predicted mesh volume
+relative to the paired photo reconstruction, and several also reduce z-extent. (B) Fscore@0.05 improves for all stylised inputs even though volume remains far below the
+photo baseline. (C) The same styles can improve conventional point metrics while producing large volume or z-extent losses.
+
+4.1
+
+Stylised inputs consistently reduce reconstructed volume
+
+Table 1 summarises the 100-object main experiment. Every stylised input reduces predicted mesh volume relative to the photo input. The largest reduction appears for sketch,
+with a mean volume ratio of 0.257. Low-detail and edge inputs are similarly severe, with
+ratios of 0.305 and 0.332. Watercolour gives a ratio of 0.343, and flat colour is less severe
+10
+
+but still halves the predicted volume on average. The paired Wilcoxon p-values for volume
+are all below 10−16 .
+The scale of the effect is large enough to be practically meaningful. A mean volume
+ratio of 0.257 for sketch does not describe a small perturbation. It means that, on average,
+the mesh reconstructed from the sketch input has roughly one quarter of the volume of
+the mesh reconstructed from the photo input for the same object. Edge, low-detail, and
+watercolour inputs also produce outputs that are closer to one third than to the full photo
+baseline. Even the least severe style, flat colour, gives a mean ratio of 0.500. In a design
+workflow, this difference would usually be visible when the object is rotated or edited,
+even if the source-view silhouette still appears plausible.
+Table 1: Main 100-object results relative to photo input. Negative Chamfer means lower
+Chamfer than photo; positive F-score means higher F-score than photo. Volume and
+z-extent are ratios relative to the paired photo reconstruction.
+Style
+edge
+flat
+low-detail
+sketch
+watercolour
+
+∆ Chamfer
+
+∆ F@0.05
+
+Volume ratio
+
+-0.0032
+-0.0069
+-0.0003
+-0.0100
+-0.0081
+
+0.0564
+0.0506
+0.0416
+0.0925
+0.0757
+
+0.332
+0.500
+0.305
+0.257
+0.343
+
+z-extent ratio
+
+Volume p
+
+0.471 3.90 × 10−18
+0.879 3.75 × 10−17
+0.451 6.44 × 10−18
+0.868 4.14 × 10−18
+0.635 3.90 × 10−18
+
+The z-extent results show that this is not only a scale effect. Edge and low-detail
+inputs reduce z-extent to roughly 47% and 45% of the photo reconstruction, respectively.
+Watercolour reduces z-extent to 63%. Flat colour and sketch preserve more z-extent
+on average, but they still lose substantial volume. This pattern suggests several types
+of collapse: some styles make the object thinner along depth, while others preserve a
+bounding depth but lose bulk or connected volume.
+The difference between volume and z-extent is informative. Edge and low-detail inputs
+reduce both volume and z-extent, suggesting a depth-compression failure. Sketch inputs,
+by contrast, preserve more z-extent on average while producing the lowest volume ratio.
+This points to a different failure mode: the reconstruction may maintain a broad depth
+range but lose bulk within that range. Flat colour is again distinct. It produces the
+mildest z-extent change and the mildest volume reduction, which is consistent with the
+idea that flat regions preserve more object-level area information than edge-only or lowdetail inputs. These distinctions would be lost if the analysis reported only a single
+aggregate score.
+
+4.2
+
+Point metrics can improve while volumetric usability degrades
+
+The central result is the disagreement between point metrics and volumetric diagnostics.
+Sketch improves Chamfer by 0.0100 and F-score@0.05 by 0.0925 relative to the photo
+11
+
+input, yet its mean volume ratio is only 0.257. Watercolour and flat inputs show the same
+direction: better Chamfer and F-score, lower volume. Even edge improves F-score@0.05
+by 0.0564 while reducing volume to one third of the paired photo reconstruction.
+This does not mean Chamfer and F-score are wrong. It means they answer a narrower
+question. They can reward a reconstruction that places sampled points near the groundtruth visible surface, while missing whether the mesh remains a usable three-dimensional
+body. In artistic inputs, simplified contours and reduced texture may make surface alignment easier for some objects, but the model can still infer a thinner or more collapsed
+shape.
+The paradox is most visible when F-score and volume are read together. All five
+stylised inputs improve F-score@0.05 relative to photo in the main experiment. A surfacemetric-only report could therefore describe the stylised inputs as beneficial or at least
+harmless. The volume ratios support the opposite interpretation for asset usability. The
+reconstructed meshes are substantially smaller, and in several styles shallower as well.
+The same output can therefore be closer to the ground-truth surface sample under one
+metric while being less useful as an editable 3D body.
+One plausible explanation is that stylisation simplifies the evidence available to the
+model. A sketch or edge rendering may emphasise the visible contour and suppress texture
+that would otherwise create noisy or ambiguous local detail. This can help surface samples
+align with the visible object boundary. At the same time, the missing shading and interior
+evidence can weaken the model’s inference about thickness and back-side geometry. The
+result is a mesh that is efficient at explaining the image from the observed view but
+incomplete as a volumetric object. The benchmark does not prove this mechanism directly,
+but the style-specific pattern is consistent with it.
+
+4.3
+
+The effect persists at higher mesh-extraction resolution
+
+Table 2 reports the 30-object rerun with mesh extraction at resolution 128. The main
+pattern remains. All five stylised inputs reduce predicted volume, with mean ratios from
+0.300 for low-detail to 0.588 for flat colour. Edge, low-detail, and watercolour again show
+strong z-extent reductions. Sketch still improves F-score@0.05 by 0.0685 while reducing
+mean volume to 0.340.
+The higher-resolution run changes some magnitudes but not the conclusion. Flat
+colour improves to a volume ratio of 0.588 and nearly preserves z-extent, while edge and
+low-detail remain strongly compressed. Sketch still shows the key metric disagreement:
+F-score improves, Chamfer improves slightly, and volume remains far below the photo
+baseline. This is important because a resolution artefact would be expected to weaken
+substantially when the extraction grid becomes denser. Instead, the shrinkage remains
+statistically strong for all styles.
+The rerun is smaller than the main experiment, so we treat it as robustness evidence
+rather than a replacement for the 100-object result. Still, it reduces a straightforward
+12
+
+Table 2: Robustness rerun with marching-cubes resolution 128 on 30 objects. The
+volume-collapse pattern remains under higher mesh-extraction resolution.
+Style
+edge
+flat
+low-detail
+sketch
+watercolour
+
+∆ Chamfer
+
+∆ F@0.05
+
+Volume ratio
+
+z-extent ratio
+
+Volume p
+
+0.0027
+-0.0029
+0.0062
+-0.0024
+-0.0020
+
+0.0301
+0.0293
+0.0191
+0.0685
+0.0493
+
+0.377
+0.588
+0.300
+0.340
+0.390
+
+0.461
+0.962
+0.412
+0.918
+0.675
+
+2.98 × 10−8
+6.56 × 10−7
+3.73 × 10−9
+8.94 × 10−8
+3.73 × 10−9
+
+Higher mesh-extraction resolution preserves the geometry-shrinkage pattern
+A Volume ratio
+B z-extent ratio
+
+Ratio relative to paired photo
+
+1.0
+
+Flat colour 0.96
+Sketch 0.92
+
+0.8
+Watercolour 0.67
+Flat colour 0.59
+
+0.6
+
+Edge 0.46
+Watercolour 0.39
+Edge 0.38
+Sketch 0.34
+Low detail 0.30
+
+0.4
+
+Low detail 0.41
+
+0.2
+Main100
+mc=64
+
+Robustness
+mc=128
+
+Main100
+mc=64
+
+Robustness
+mc=128
+
+Figure 3: Robustness check under higher mesh-extraction resolution. The 30-object mcresolution=128 rerun preserves the main volume-shrinkage pattern. Some styles recover
+part of the z-extent, but the predicted volume remains substantially below the paired
+photo baseline.
+alternative explanation: the collapse is unlikely to be only an artefact of the lower meshextraction resolution used in the main run.
+Taken together, the two experiments support the same claim. The main run establishes
+the effect across 100 objects and 600 reconstructions. The higher-resolution rerun checks
+whether the result depends on a particular extraction setting. Both experiments show
+that artistic abstraction can improve or preserve conventional point metrics while reducing
+volume. The result is therefore better described as a style-induced evaluation failure than
+as a one-off numerical anomaly.
+
+5.
+
+Discussion
+
+The benchmark points to a practical risk in image-to-3D evaluation. Artistic inputs can
+make a reconstruction appear stronger under common point metrics while making the
+
+13
+
+mesh less useful as an object. This matters for computational design and asset generation
+because users often care about editability, thickness, and downstream handling, not only
+surface proximity.
+The result also helps clarify what a benchmark for artistic image-to-3D should measure.
+Prior work has shown that specific artistic domains such as sketches, anime portraits, flat
+illustrations, and manuscript miniatures are challenging for current methods (Chen et al.,
+2023; Cong et al., 2025; Pallotto et al., 2026; Sanghi et al., 2023). Our results suggest
+that the evaluation should not stop at whether the generated object looks plausible from
+the input view. A method can preserve the outline and still lose the volumetric fact of
+the object. Paired photo-versus-style comparisons make that loss visible.
+For model developers, the findings suggest several remedies. First, benchmark reports
+should include volumetric and thickness-sensitive diagnostics alongside Chamfer and Fscore. Second, style-stripping or geometry-preserving preprocessing should be evaluated
+not only by visual similarity but also by whether it restores volume and depth. Third,
+model selection for design workflows may need to depend on input style. A fast reconstruction model that is acceptable for photographs may need additional checks before it
+is used on sketches or flat illustrations.
+The broader implication is that image-to-3D evaluation should be tied to the intended use of the output. If the goal is view synthesis, a source-view or near-view metric
+may be adequate. If the goal is an editable mesh, then the output must preserve more
+than appearance. It must preserve enough three-dimensional structure to support rotation, editing, texturing, and physical or procedural interpretation. Volume is a simple
+diagnostic for this requirement. It is not a complete solution, but it catches a failure
+that point metrics can miss. Z-extent provides a second coarse signal, especially for
+view-dependent flattening.
+The benchmark also suggests a practical screening procedure. Before deploying an
+image-to-3D model in a design pipeline, users can test a small paired set of inputs that
+represent their actual reference material. The test does not require a large new dataset.
+A controlled set of known objects, rendered in the relevant style, can reveal whether the
+model is sensitive to abstraction. If the model loses volume under a style that is common
+in the workflow, the pipeline can add safeguards: ask for a photo-like reference, run a
+style-normalisation step, use a model trained for that input type, or flag the output for
+manual inspection.
+For researchers developing new image-to-3D systems, the results argue for reporting
+paired style robustness rather than only aggregate benchmark scores. A model that
+performs well on photographs may still be brittle for sketches. A model that improves Fscore under stylised inputs may still be unsuitable for asset generation if the improvement
+comes with volume loss. Reporting both point metrics and asset diagnostics would make
+such trade-offs visible. It would also help distinguish true geometric robustness from a
+metric improvement caused by simplified contours.
+
+14
+
+The study further shows why controlled synthetic rendering remains useful even when
+the target domain is artistic human input. Real drawings and illustrations are important,
+but they rarely come with exact 3D ground truth. Controlled stylisation of known 3D
+objects cannot replace real artwork, but it provides a bridge between ecological relevance
+and measurable geometry. It lets the evaluator ask a question that is difficult to answer
+with unpaired data: what changes when only the input style changes?
+There is also a methodological lesson for future benchmarks. If a benchmark mixes
+many styles and object categories without pairing, the average score may hide where the
+model fails. A model could do well on flat illustrations of simple objects and poorly on
+edge renderings of thin objects, yet the aggregate number might appear acceptable. The
+paired structure used here supports a more diagnostic report. Each object can be treated
+as its own control, and each style can be analysed as a perturbation. This structure is
+especially useful when the expected failure is not random noise but a directional shift
+such as volume loss.
+A second lesson concerns metric interpretation. Chamfer distance and F-score should
+not be discarded; they remain valuable for measuring sampled surface agreement. The
+problem is that they can be over-read. A lower Chamfer value does not necessarily mean
+that the generated mesh is a better design asset. It means that the sampled surface is
+closer under the chosen sampling and tolerance assumptions. For asset generation, this
+statement should be accompanied by diagnostics that describe whether the output still
+occupies a plausible three-dimensional region. Volume, z-extent, and related thickness
+measures are simple additions that make the interpretation less brittle.
+The results also suggest why human inspection can be both necessary and unreliable
+as a sole evaluation method. A reviewer looking only at the source view may see a
+recognisable object and accept the reconstruction. The failure becomes more obvious
+when the mesh is rotated, when a cross-section is inspected, or when the object is used
+downstream. A benchmark should therefore make this hidden failure visible numerically
+before it reaches a user. Volumetric diagnostics are not a substitute for visual inspection,
+but they can decide which outputs deserve closer inspection.
+
+6.
+
+Limitations
+
+This study has several boundaries. We evaluate one primary image-to-3D baseline, TripoSR, so the results should not be stated as universal behaviour across all modern systems.
+The benchmark uses 100 curated Objaverse objects, which is sufficient for the observed
+paired statistical effect but not for broad category-level claims. A larger benchmark should
+stratify objects by shape family, concavity, symmetry, texture dependence, and component count. Such a study could identify which object properties make style-induced collapse
+more likely.
+The style transformations are controlled proxies for artistic inputs; they do not cover
+
+15
+
+the full diversity of human artwork. Real sketches can include construction lines, perspective errors, intentional exaggeration, ambiguous boundaries, or semantic conventions
+that are not reproduced by image filters. Real watercolour and concept art may also
+contain stylistic cues that are meaningful to humans but unfamiliar to a reconstruction
+model. The controlled proxy is useful for isolating style, but it should be complemented
+by studies on real artistic datasets.
+The current study also reports mesh-level diagnostics and does not include a human
+usability study. Volume and z-extent are interpretable, but they are not the only qualities
+that matter. A mesh can preserve volume while having poor topology, disconnected
+parts, or unusable surface detail. Conversely, a lower-volume reconstruction might still be
+acceptable for a decorative or low-poly asset. Future work should test whether volumetric
+diagnostics predict human judgements of editability, recognisability after rotation, and
+fabrication readiness.
+Finally, the benchmark does not test mitigation strategies. We do not evaluate stylestripping, multi-view prompting, material-aware reconstruction, or newer textured models
+as fixes. This is a deliberate scope choice. The first step is to show that the metric gap
+exists under a controlled paired design. The next step is to test whether stronger models
+or preprocessing methods reduce the gap without sacrificing the benefits of artistic input.
+
+7.
+
+Conclusion
+
+We presented a paired benchmark for measuring how artistic input transformations affect image-to-3D reconstruction when the ground-truth 3D object is known. On 100
+curated Objaverse objects reconstructed with TripoSR, five stylised input types all reduce predicted mesh volume relative to photo inputs, while several styles improve Chamfer distance or F-score. A higher-resolution mesh-extraction rerun preserves the same
+volume-shrinkage pattern.
+The main lesson is that surface proximity and asset usability can disagree. Stylised
+inputs may simplify contours in a way that helps point metrics, yet still remove the
+evidence needed to infer thickness and volume. For image-to-3D systems used in computational design and 3D asset workflows, evaluation should therefore report volumetric and
+thickness-oriented diagnostics together with conventional surface metrics. A reconstruction benchmark should not only ask whether the generated surface is close to the ground
+truth. It should also ask whether the output remains a usable three-dimensional object.
+
+Data and code availability
+The aggregate result tables, figure-generation scripts, and run manifest have been prepared as a lightweight reproducibility release. Raw Objaverse assets and reconstructed
+meshes are not included in that package because redistribution depends on the source
+
+16
+
+licences of the selected objects. Before submission, the cleared release package and any
+redistributable object identifiers should be deposited in a public repository, and the resulting DOI or stable URL should be inserted here.
+
+Acknowledgements
+To be completed.
+
+Author contributions
+To be completed after the author list is finalised.
+
+Competing interests
+The authors declare no competing interests. This statement should be confirmed before
+submission.
+
+References
+Chen, S., Zhang, K., Shi, Y., Wang, H., Zhu, Y., Song, G., An, S., Kristjansson, J., Yang,
+X., & Zwicker, M. (2023). Panic-3d: Stylized single-view 3d reconstruction from
+portraits of anime characters. Computer Vision and Pattern Recognition. https:
+//doi.org/10.1109/CVPR52729.2023.02018
+Cong, X., Shen, J., Li, Z., Fu, R., Lu, T., & Sridhar, S. (2025). Art3d: Training-free 3d
+generation from flat-colored illustration. arXiv.org. https : / / doi . org / 10 . 48550 /
+arXiv.2504.10466
+Deitke, M., Liu, R., Wallingford, M., Ngo, H., Michel, O., Kusupati, A., Fan, A., Laforte,
+C., Voleti, V. S., Gadre, S., VanderBilt, E., Kembhavi, A., Vondrick, C., Gkioxari,
+G., Ehsani, K., Schmidt, L., & Farhadi, A. (2023). Objaverse-xl: A universe of
+10m+ 3d objects. Neural Information Processing Systems. https://doi.org/10.
+48550/arXiv.2307.05663
+Deitke, M., Schwenk, D., Salvador, J., Weihs, L., Michel, O., VanderBilt, E., Schmidt,
+L., Ehsani, K., Kembhavi, A., & Farhadi, A. (2022). Objaverse: A universe of
+annotated 3d objects. Computer Vision and Pattern Recognition. https://doi.org/
+10.1109/CVPR52729.2023.01263
+Doris, A. C., Sony, J. T., Nehme, G., Syla, E., Nobari, A., & Ahmed, F. (2026). Cadbench:
+A multimodal benchmark for ai-assisted cad program generation. arXiv preprint
+arXiv:2605.10873.
+Ebert, D. (2025). 3d arena: An open platform for generative 3d evaluation. arXiv.org.
+https://doi.org/10.48550/arXiv.2506.18787
+17
+
+Fu, K., Duan, H., Zhang, Z., Liu, X., Min, X., Wang, J., & Zhai, G. (2025). Si23dcqa:
+Perceptual quality assessment of single image-to-3d content. IEEE International
+Conference on Multimedia and Expo. https://doi.org/10.1109/ICME59968.2025.
+11210072
+Gu, Z., Cui, Y., Li, Z., Wei, F., Ge, Y., Gu, J., Liu, M.-Y., Davis, A., & Ding, Y. (2025).
+Artiscene: Language-driven artistic 3d scene generation through image intermediary. Computer Vision and Pattern Recognition. https : / / doi . org / 10 . 1109 /
+CVPR52734.2025.00275
+Hong, Y., Zhang, K., Gu, J., Bi, S., Zhou, Y., Liu, D., Liu, F., Sunkavalli, K., Bui,
+T., & Tan, H. (2023). Lrm: Large reconstruction model for single image to 3d.
+International Conference on Learning Representations. https://doi.org/10.48550/
+arXiv.2311.04400
+Huang, P., Chen, Y., Zhang, Z., & Tang, H. (2026). Unimesh: Unifying 3d mesh understanding and generation. arXiv preprint arXiv:2604.17472.
+Lee, S., Jung, H., Koh, B., Huang, Q., Yoon, S. H., & Kim, S. (2025). Pasta: Partaware sketch-to-3d shape generation with text-aligned prior. IEEE International
+Conference on Computer Vision. https://doi.org/10.1109/ICCV51701.2025.01727
+Li, M., Long, X., Liang, Y., Li, W., Liu, Y., Li, P., Chi, X., Qi, X., Xue, W., Luo, W., Liu,
+Q.-f., & Guo, Y.-T. (2024). Multi-view large reconstruction model via geometryaware positional encoding and attention. IEEE Transactions on Visualization and
+Computer Graphics. https://doi.org/10.1109/TVCG.2025.3572341
+Li, X., Wang, Z., Huang, Z., & Rehg, J. (2025). Cue3d: Quantifying the role of image cues
+in single-image 3d generation. arXiv.org. https://doi.org/10.48550/arXiv.2511.
+22121
+Lin, C., Liu, H., Lin, Q., Bright, Z., Tang, S., He, Y., Liu, M., Zhu, L., & Le, C. X.
+(2025). Objaverse++: Curated 3d object dataset with quality annotations. 2025
+IEEE/CVF International Conference on Computer Vision Workshops (ICCVW).
+https://doi.org/10.1109/ICCVW69036.2025.00710
+Liu, M., Shi, R., Chen, L., Zhang, Z., Xu, C., Wei, X., Chen, H., Zeng, C., Gu, J.,
+& Su, H. (2023). One-2-3-45++: Fast single image to 3d objects with consistent
+multi-view generation and 3d diffusion. Computer Vision and Pattern Recognition.
+https://doi.org/10.1109/CVPR52733.2024.00960
+Liu, M., Xu, C., Jin, H., Chen, L., MukundVarma, T., Xu, Z., & Su, H. (2023). One-2-3-45:
+Any single image to 3d mesh in 45 seconds without per-shape optimization. Neural
+Information Processing Systems. https://doi.org/10.48550/arXiv.2306.16928
+Liu, M., Zeng, C., Wei, X., Shi, R., Chen, L., Xu, C., Zhang, M., Wang, Z., Zhang, X.,
+Liu, I., Wu, H., & Su, H. (2024). Meshformer: High-quality mesh generation with
+3d-guided reconstruction model. Neural Information Processing Systems. https :
+//doi.org/10.48550/arXiv.2408.10198
+
+18
+
+Liu, R., Wu, R., Hoorick, B. V., Tokmakov, P., Zakharov, S., & Vondrick, C. (2023).
+Zero-1-to-3: Zero-shot one image to 3d object. IEEE International Conference on
+Computer Vision. https://doi.org/10.1109/ICCV51070.2023.00853
+Long, X., Guo, Y., Lin, C., Liu, Y., Dou, Z., Liu, L., Ma, Y., Zhang, S.-H., Habermann,
+M., Theobalt, C., & Wang, W. (2023). Wonder3d: Single image to 3d using crossdomain diffusion. Computer Vision and Pattern Recognition. https://doi.org/10.
+1109/CVPR52733.2024.00951
+Oztas, I., Ceylan, D., & Dundar, A. (2025). 3d stylization via large reconstruction model.
+International Conference on Computer Graphics and Interactive Techniques. https:
+//doi.org/10.1145/3721238.3730636
+Pallotto, R., Feliciati, P., & Uricchio, T. (2026). A semi-automated framework for 3d reconstruction of medieval manuscript miniatures. arXiv preprint arXiv:2604.08610.
+Sanghi, A., Jayaraman, P., Rampini, A., Lambourne, J., Shayani, H., Atherton, E., &
+Taghanaki, S. A. (2023). Sketch-a-shape: Zero-shot sketch-to-3d shape generation.
+arXiv.org. https://doi.org/10.48550/arXiv.2307.03869
+Tochilkin, D., Pankratz, D., Liu, Z., Huang, Z., Letts, A., Li, Y., Liang, D., Laforte, C.,
+Jampani, V., & Cao, Y.-P. (2024). Triposr: Fast 3d object reconstruction from a
+single image. arXiv.org. https://doi.org/10.48550/arXiv.2403.02151
+Tono, A., Wu, J., Wetzstein, G., Armeni, I., Subramonyam, H., Landay, J. A., & Fischer,
+M. (2026). Deep sketch-based 3d modeling: A survey. Computer graphics forum
+(Print). https://doi.org/10.1111/cgf.70302
+Wang, H., Wang, Z., Long, X., Lin, C., Hancke, G., & Lau, R. W. H. (2025). Mage: Single
+image to material-aware 3d via the multi-view g-buffer estimation model. Computer
+Vision and Pattern Recognition. https://doi.org/10.1109/CVPR52734.2025.01026
+Wang, Z., Wang, Y., Chen, Y., Xiang, C., Chen, S., Yu, D., Li, C., Su, H., & Zhu, J.
+(2024). Crm: Single image to 3d textured mesh with convolutional reconstruction
+model. European Conference on Computer Vision. https : / / doi . org / 10 . 48550 /
+arXiv.2403.05034
+Wei, X., Zhang, K., Bi, S., Tan, H., Luan, F., Deschaintre, V., Sunkavalli, K., Su, H., & Xu,
+Z. (2024). Meshlrm: Large reconstruction model for high-quality mesh. arXiv.org.
+https://doi.org/10.48550/arXiv.2404.12385
+Wu, G., Ge, M., Wang, Y., Chen, Y., & Liu, L. (2026). From 2d to 3d: A generative
+model from single image to digital 3d of chinese three gorges cultural relics. Applied
+Sciences. https://doi.org/10.3390/app16062678
+Wu, K., Liu, F., Cai, Z., Yan, R., Wang, H., Hu, Y., Duan, Y., & Ma, K. (2024). Unique3d:
+High-quality and efficient 3d mesh generation from a single image. Neural Information Processing Systems. https://doi.org/10.48550/arXiv.2405.20343
+Xie, D., Bi, S., Shu, Z., Zhang, K., Xu, Z., Zhou, Y., Pirk, S., Kaufman, A. E., Sun, X., &
+Tan, H. (2024). Lrm-zero: Training large reconstruction models with synthesized
+
+19
+
+data. Neural Information Processing Systems. https://doi.org/10.48550/arXiv.
+2406.09371
+Xu, J., Cheng, W., Gao, Y., Wang, X., Gao, S., & Shan, Y. (2024). Instantmesh: Efficient 3d mesh generation from a single image with sparse-view large reconstruction
+models. arXiv.org. https://doi.org/10.48550/arXiv.2404.07191
+Yang, Y., Li, P., Zhang, Y., Lu, J., He, X., Qin, M., Wang, W., & Wang, H. (2025).
+Nova3d: Normal aligned video diffusion model for single image to 3d generation.
+IEEE International Conference on Multimedia and Expo. https://doi.org/10.1109/
+ICME59968.2025.11209975
+Yang, Y., Long, X., Dou, Z., Lin, C., Liu, Y., Yan, Q., Ma, Y., Wang, H., Wu, Z., & Yin, W.
+(2025). Wonder3d++: Cross-domain diffusion for high-fidelity 3d generation from
+a single image. IEEE Transactions on Pattern Analysis and Machine Intelligence.
+https://doi.org/10.1109/TPAMI.2025.3618675
+Zhang, C., Song, H., Wei, Y., Chen, Y., Lu, J., & Tang, Y. (2024). Geolrm: Geometryaware large reconstruction model for high-quality 3d gaussian generation. Neural
+Information Processing Systems. https://doi.org/10.48550/arXiv.2406.15333
+Zhang, K., Bi, S., Tan, H., Xiangli, Y., Zhao, N., Sunkavalli, K., & Xu, Z. (2024). Gslrm: Large reconstruction model for 3d gaussian splatting. European Conference
+on Computer Vision. https://doi.org/10.48550/arXiv.2404.19702
+Zhang, Y., Zhang, M., Wu, T., Wang, T., Wetzstein, G., Lin, D., & Liu, Z. (2025). 3dgenbench: Comprehensive benchmark suite for 3d generative models. arXiv.org. https:
+//doi.org/10.48550/arXiv.2503.21745
+Zheng, W., Xia, H., Chen, R., Sun, L., Shao, M., Xia, S.-Y., & Ding, Z. (2024). Sketch3d:
+Style-consistent guidance for sketch-to-3d generation. ACM Multimedia. https://
+doi.org/10.1145/3664647.3680641
+Zhou, J., Xiao, C., Lam, M.-L., & Fu, H. (2024). Drawingspinup: 3d animation from single
+character drawings. ACM SIGGRAPH Conference and Exhibition on Computer
+Graphics and Interactive Techniques in Asia. https://doi.org/10.1145/3680528.
+3687593
+
+20
+
+

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="420" viewBox="0 0 980 420">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="490.0" y="28" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#172033">M03 main100 geometry shrinkage</text>
+<text x="253.0" y="42" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#172033">Volume ratio vs photo</text>
+<line x1="46" y1="350" x2="460" y2="350" stroke="#27313c" stroke-width="1"/>
+<line x1="46" y1="58" x2="46" y2="350" stroke="#27313c" stroke-width="1"/>
+<text x="14" y="204.0" text-anchor="middle" transform="rotate(-90 14 204.0)" font-family="Arial" font-size="11" fill="#5f6b7a">ratio</text>
+<line x1="46" y1="350.0" x2="460" y2="350.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="40" y="354.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">-0.12</text>
+<line x1="46" y1="277.0" x2="460" y2="277.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="40" y="281.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.19</text>
+<line x1="46" y1="204.0" x2="460" y2="204.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="40" y="208.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.50</text>
+<line x1="46" y1="131.0" x2="460" y2="131.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="40" y="135.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.81</text>
+<line x1="46" y1="58.0" x2="460" y2="58.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="40" y="62.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">1.12</text>
+<line x1="46" y1="86.3" x2="460" y2="86.3" stroke="#7b2d26" stroke-width="1.2" stroke-dasharray="5,4"/>
+<rect x="54.0" y="243.6" width="73.2" height="78.1" fill="#4f8fc0" stroke="#26313d" stroke-width="0.7"/>
+<text x="90.6" y="238.6" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.33</text>
+<text x="90.6" y="368" text-anchor="end" transform="rotate(-28 90.6 368)" font-family="Arial" font-size="10" fill="#172033">edge</text>
+<rect x="135.2" y="203.9" width="73.2" height="117.8" fill="#4f8fc0" stroke="#26313d" stroke-width="0.7"/>
+<text x="171.8" y="198.9" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.50</text>
+<text x="171.8" y="368" text-anchor="end" transform="rotate(-28 171.8 368)" font-family="Arial" font-size="10" fill="#172033">flat</text>
+<rect x="216.4" y="249.8" width="73.2" height="71.9" fill="#4f8fc0" stroke="#26313d" stroke-width="0.7"/>
+<text x="253.0" y="244.8" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.31</text>
+<text x="253.0" y="368" text-anchor="end" transform="rotate(-28 253.0 368)" font-family="Arial" font-size="10" fill="#172033">low_detail</text>
+<rect x="297.6" y="261.2" width="73.2" height="60.5" fill="#4f8fc0" stroke="#26313d" stroke-width="0.7"/>
+<text x="334.2" y="256.2" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.26</text>
+<text x="334.2" y="368" text-anchor="end" transform="rotate(-28 334.2 368)" font-family="Arial" font-size="10" fill="#172033">sketch</text>
+<rect x="378.8" y="241.0" width="73.2" height="80.8" fill="#4f8fc0" stroke="#26313d" stroke-width="0.7"/>
+<text x="415.4" y="236.0" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.34</text>
+<text x="415.4" y="368" text-anchor="end" transform="rotate(-28 415.4 368)" font-family="Arial" font-size="10" fill="#172033">watercolor</text>
+<text x="743.0" y="42" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#172033">Z-extent ratio vs photo</text>
+<line x1="536" y1="350" x2="950" y2="350" stroke="#27313c" stroke-width="1"/>
+<line x1="536" y1="58" x2="536" y2="350" stroke="#27313c" stroke-width="1"/>
+<text x="504" y="204.0" text-anchor="middle" transform="rotate(-90 504 204.0)" font-family="Arial" font-size="11" fill="#5f6b7a">ratio</text>
+<line x1="536" y1="350.0" x2="950" y2="350.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="530" y="354.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">-0.12</text>
+<line x1="536" y1="277.0" x2="950" y2="277.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="530" y="281.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.19</text>
+<line x1="536" y1="204.0" x2="950" y2="204.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="530" y="208.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.50</text>
+<line x1="536" y1="131.0" x2="950" y2="131.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="530" y="135.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">0.81</text>
+<line x1="536" y1="58.0" x2="950" y2="58.0" stroke="#d8dee8" stroke-width="1"/>
+<text x="530" y="62.0" text-anchor="end" font-family="Arial" font-size="10" fill="#5f6b7a">1.12</text>
+<line x1="536" y1="86.3" x2="950" y2="86.3" stroke="#7b2d26" stroke-width="1.2" stroke-dasharray="5,4"/>
+<rect x="544.0" y="210.8" width="73.2" height="110.9" fill="#d08a4c" stroke="#26313d" stroke-width="0.7"/>
+<text x="580.6" y="205.8" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.47</text>
+<text x="580.6" y="368" text-anchor="end" transform="rotate(-28 580.6 368)" font-family="Arial" font-size="10" fill="#172033">edge</text>
+<rect x="625.2" y="114.7" width="73.2" height="207.1" fill="#d08a4c" stroke="#26313d" stroke-width="0.7"/>
+<text x="661.8" y="109.7" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.88</text>
+<text x="661.8" y="368" text-anchor="end" transform="rotate(-28 661.8 368)" font-family="Arial" font-size="10" fill="#172033">flat</text>
+<rect x="706.4" y="215.6" width="73.2" height="106.2" fill="#d08a4c" stroke="#26313d" stroke-width="0.7"/>
+<text x="743.0" y="210.6" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.45</text>
+<text x="743.0" y="368" text-anchor="end" transform="rotate(-28 743.0 368)" font-family="Arial" font-size="10" fill="#172033">low_detail</text>
+<rect x="787.6" y="117.2" width="73.2" height="204.5" fill="#d08a4c" stroke="#26313d" stroke-width="0.7"/>
+<text x="824.2" y="112.2" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.87</text>
+<text x="824.2" y="368" text-anchor="end" transform="rotate(-28 824.2 368)" font-family="Arial" font-size="10" fill="#172033">sketch</text>
+<rect x="868.8" y="172.3" width="73.2" height="149.4" fill="#d08a4c" stroke="#26313d" stroke-width="0.7"/>
+<text x="905.4" y="167.3" text-anchor="middle" font-family="Arial" font-size="10" fill="#172033">0.63</text>
+<text x="905.4" y="368" text-anchor="end" transform="rotate(-28 905.4 368)" font-family="Arial" font-size="10" fill="#172033">watercolor</text>
+</svg>

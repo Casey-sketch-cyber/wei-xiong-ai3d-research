@@ -1,0 +1,138 @@
+{
+  "analysis_type": "post_hoc_partial_grid_overlap_exclusion_sensitivity",
+  "reason": "Eight compound severity-2 cases contain one on-grid subfault, although no complete known inverse is available in the search grid.",
+  "tolerance": 0.005,
+  "results_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+  "cases_sha256": "0c4c693b115f50739de117bc6eb4d0bfe8912cdf57f9b5fdcc6d8185519d0422",
+  "partial_overlap_case_count": 8,
+  "partial_overlap_case_ids": [
+    "procedural_4004_compound_s2_2704204",
+    "procedural_4006_compound_s2_2706204",
+    "procedural_4008_compound_s2_2708204",
+    "procedural_4011_compound_s2_2711204",
+    "procedural_4018_compound_s2_2718204",
+    "qwen25_7b_001_compound_s2_1701204",
+    "qwen25_7b_004_compound_s2_1704204",
+    "qwen25_7b_010_compound_s2_1710204"
+  ],
+  "partial_overlap_case_ids_sha256": "70c3bd3c35bf83a7b3038da4030a50743c49ee907b38526658747600ef445e5a",
+  "full_benchmark": {
+    "generic_greedy": {
+      "n": 480,
+      "mean_schedule_loss": 0.008585677875823384,
+      "tolerance_satisfaction_rate": 0.90625,
+      "hard_valid_rate": 1.0
+    },
+    "no_repair": {
+      "n": 480,
+      "mean_schedule_loss": 0.1318447167482872,
+      "tolerance_satisfaction_rate": 0.014583333333333334,
+      "hard_valid_rate": 1.0
+    },
+    "random_feasible": {
+      "n": 480,
+      "mean_schedule_loss": 0.02235363071329594,
+      "tolerance_satisfaction_rate": 0.75625,
+      "hard_valid_rate": 1.0
+    },
+    "revealrepair_attributed": {
+      "n": 480,
+      "mean_schedule_loss": 0.0001640396143353821,
+      "tolerance_satisfaction_rate": 0.9916666666666667,
+      "hard_valid_rate": 1.0
+    },
+    "simulated_annealing": {
+      "n": 480,
+      "mean_schedule_loss": 0.0331564828846418,
+      "tolerance_satisfaction_rate": 0.23125,
+      "hard_valid_rate": 1.0
+    },
+    "visibility_max_only": {
+      "n": 480,
+      "mean_schedule_loss": 0.053928547972764564,
+      "tolerance_satisfaction_rate": 0.43333333333333335,
+      "hard_valid_rate": 1.0
+    }
+  },
+  "excluding_partial_overlap_cases": {
+    "generic_greedy": {
+      "n": 472,
+      "mean_schedule_loss": 0.008324501959800166,
+      "tolerance_satisfaction_rate": 0.9088983050847458,
+      "hard_valid_rate": 1.0
+    },
+    "no_repair": {
+      "n": 472,
+      "mean_schedule_loss": 0.12935733474005418,
+      "tolerance_satisfaction_rate": 0.014830508474576272,
+      "hard_valid_rate": 1.0
+    },
+    "random_feasible": {
+      "n": 472,
+      "mean_schedule_loss": 0.020857828686214712,
+      "tolerance_satisfaction_rate": 0.7690677966101694,
+      "hard_valid_rate": 1.0
+    },
+    "revealrepair_attributed": {
+      "n": 472,
+      "mean_schedule_loss": 0.00016681994678174452,
+      "tolerance_satisfaction_rate": 0.9915254237288136,
+      "hard_valid_rate": 1.0
+    },
+    "simulated_annealing": {
+      "n": 472,
+      "mean_schedule_loss": 0.033094690645329904,
+      "tolerance_satisfaction_rate": 0.2330508474576271,
+      "hard_valid_rate": 1.0
+    },
+    "visibility_max_only": {
+      "n": 472,
+      "mean_schedule_loss": 0.05264727377123371,
+      "tolerance_satisfaction_rate": 0.4406779661016949,
+      "hard_valid_rate": 1.0
+    }
+  },
+  "partial_overlap_cases_only": {
+    "generic_greedy": {
+      "n": 8,
+      "mean_schedule_loss": 0.023995056921193286,
+      "tolerance_satisfaction_rate": 0.75,
+      "hard_valid_rate": 1.0
+    },
+    "no_repair": {
+      "n": 8,
+      "mean_schedule_loss": 0.278600255234036,
+      "tolerance_satisfaction_rate": 0.0,
+      "hard_valid_rate": 1.0
+    },
+    "random_feasible": {
+      "n": 8,
+      "mean_schedule_loss": 0.11060595031108832,
+      "tolerance_satisfaction_rate": 0.0,
+      "hard_valid_rate": 1.0
+    },
+    "revealrepair_attributed": {
+      "n": 8,
+      "mean_schedule_loss": 0.0,
+      "tolerance_satisfaction_rate": 1.0,
+      "hard_valid_rate": 1.0
+    },
+    "simulated_annealing": {
+      "n": 8,
+      "mean_schedule_loss": 0.03680222500404363,
+      "tolerance_satisfaction_rate": 0.125,
+      "hard_valid_rate": 1.0
+    },
+    "visibility_max_only": {
+      "n": 8,
+      "mean_schedule_loss": 0.12952372586308508,
+      "tolerance_satisfaction_rate": 0.0,
+      "hard_valid_rate": 1.0
+    }
+  },
+  "revealrepair_change_after_exclusion": {
+    "case_count": -8,
+    "mean_schedule_loss": 2.780332446362428e-06,
+    "tolerance_satisfaction_rate": -0.00014124293785311437
+  }
+}

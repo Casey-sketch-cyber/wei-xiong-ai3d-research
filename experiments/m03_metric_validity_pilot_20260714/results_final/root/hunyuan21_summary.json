@@ -1,0 +1,11 @@
+{
+  "expected": 360,
+  "success": 360,
+  "failed": 0,
+  "source_files": [
+    "/root/autodl-tmp/m03_metric_validity_pilot_20260714/hunyuan21_results.json",
+    "/root/autodl-tmp/m03_metric_validity_pilot_20260714/hunyuan21_results_shard0.json",
+    "/root/autodl-tmp/m03_metric_validity_pilot_20260714/hunyuan21_results_shard1.json"
+  ],
+  "unique_keys": 360
+}

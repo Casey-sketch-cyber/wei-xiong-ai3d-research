@@ -1,0 +1,45 @@
+{
+  "repo": "/root/autodl-tmp/m03_q2_confirmatory_20260715/repos/TRELLIS",
+  "repo_commit": "442aa1e1afb9014e80681d3bf604e8d728a86ee7",
+  "model": "microsoft/TRELLIS-image-large",
+  "manifest": "/root/autodl-tmp/m03_q2_confirmatory_20260715/calibration_d30_schedule.csv",
+  "manifest_sha256": "5634dbd6ca959269b360f23a8d3b41fb7e88d6512bad59afe39e385165976876",
+  "jobs_requested": 10,
+  "seeds": [
+    20260714
+  ],
+  "paired_seed_design": true,
+  "formats": [
+    "mesh"
+  ],
+  "removed_unused_decoders": [
+    "slat_decoder_gs",
+    "slat_decoder_rf"
+  ],
+  "sampler_parameters": {
+    "sparse_structure": {
+      "steps": 25,
+      "cfg_strength": 5.0,
+      "cfg_interval": [
+        0.5,
+        1.0
+      ],
+      "rescale_t": 3.0
+    },
+    "slat": {
+      "steps": 25,
+      "cfg_strength": 5.0,
+      "cfg_interval": [
+        0.5,
+        1.0
+      ],
+      "rescale_t": 3.0
+    }
+  },
+  "attention_backend": "flash_attn",
+  "spconv_algorithm": "native",
+  "model_load_seconds": 32.972538232803345,
+  "torch": "2.8.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 5090"
+}

@@ -1,0 +1,23 @@
+{
+  "artemis_wikiart_authorization": {
+    "status": "pending_human_action",
+    "expected_dir": "D:\\AutoResearch\\data\\restricted\\artemis",
+    "dir_exists": true,
+    "candidate_data_files": 0,
+    "has_terms_or_authorization_record": false,
+    "sample_files": []
+  },
+  "human_evaluation": {
+    "status": "pending_human_evaluators",
+    "minimum_raters": 2,
+    "search_dirs": [
+      "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\m02_human_audit_pack",
+      "D:\\AutoResearch\\data\\autoresearch_runs\\ar-20260604-163404-directed\\m02_human_audit_pack\\rater_exports"
+    ],
+    "rater_files_found": 0,
+    "complete_rater_files": 0,
+    "files": [],
+    "next_command": null
+  },
+  "overall_status": "pending_external_or_human_steps"
+}

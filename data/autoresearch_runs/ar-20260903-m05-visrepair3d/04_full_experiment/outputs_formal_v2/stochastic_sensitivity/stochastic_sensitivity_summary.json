@@ -1,0 +1,107 @@
+{
+  "scope": "post-hoc stochastic-baseline sensitivity on a deterministic stratified subset",
+  "selection": "first 1 SHA256-ranked case(s) per source x corruption x severity stratum",
+  "selected_cases": 30,
+  "strata": 30,
+  "repeats": 5,
+  "seed_offsets": [
+    1013,
+    2027,
+    3041,
+    4051,
+    5059
+  ],
+  "budget_per_run": 480,
+  "ours_fixed_success_rate": 1.0,
+  "methods": {
+    "random_feasible": {
+      "n_runs": 150,
+      "success_rate_at_0.005": 0.7666666666666667,
+      "median_schedule_loss": 0.0,
+      "hard_valid_rate": 1.0,
+      "ours_nonworse_rate": 1.0,
+      "baseline_strictly_better_rate": 0.0,
+      "best_of_repeats_success_rate_at_0.005": 0.8,
+      "best_of_repeats_median_schedule_loss": 0.0,
+      "ours_nonworse_rate_vs_best_of_repeats": 1.0,
+      "best_of_repeats_strictly_better_than_ours_rate": 0.0,
+      "by_repeat": {
+        "1": {
+          "n": 30,
+          "success_rate_at_0.005": 0.8,
+          "mean_schedule_loss": 0.023802238768021223,
+          "ours_nonworse_rate": 1.0
+        },
+        "2": {
+          "n": 30,
+          "success_rate_at_0.005": 0.7666666666666667,
+          "mean_schedule_loss": 0.018341128773934904,
+          "ours_nonworse_rate": 1.0
+        },
+        "3": {
+          "n": 30,
+          "success_rate_at_0.005": 0.7666666666666667,
+          "mean_schedule_loss": 0.020167829760750402,
+          "ours_nonworse_rate": 1.0
+        },
+        "4": {
+          "n": 30,
+          "success_rate_at_0.005": 0.7666666666666667,
+          "mean_schedule_loss": 0.01893222096210629,
+          "ours_nonworse_rate": 1.0
+        },
+        "5": {
+          "n": 30,
+          "success_rate_at_0.005": 0.7333333333333333,
+          "mean_schedule_loss": 0.021726828455451683,
+          "ours_nonworse_rate": 1.0
+        }
+      }
+    },
+    "simulated_annealing": {
+      "n_runs": 150,
+      "success_rate_at_0.005": 0.24,
+      "median_schedule_loss": 0.02040727785894975,
+      "hard_valid_rate": 1.0,
+      "ours_nonworse_rate": 1.0,
+      "baseline_strictly_better_rate": 0.0,
+      "best_of_repeats_success_rate_at_0.005": 0.6333333333333333,
+      "best_of_repeats_median_schedule_loss": 0.001250969684753196,
+      "ours_nonworse_rate_vs_best_of_repeats": 1.0,
+      "best_of_repeats_strictly_better_than_ours_rate": 0.0,
+      "by_repeat": {
+        "1": {
+          "n": 30,
+          "success_rate_at_0.005": 0.26666666666666666,
+          "mean_schedule_loss": 0.04058166902162221,
+          "ours_nonworse_rate": 1.0
+        },
+        "2": {
+          "n": 30,
+          "success_rate_at_0.005": 0.2,
+          "mean_schedule_loss": 0.026457641848153964,
+          "ours_nonworse_rate": 1.0
+        },
+        "3": {
+          "n": 30,
+          "success_rate_at_0.005": 0.23333333333333334,
+          "mean_schedule_loss": 0.02866160234834875,
+          "ours_nonworse_rate": 1.0
+        },
+        "4": {
+          "n": 30,
+          "success_rate_at_0.005": 0.23333333333333334,
+          "mean_schedule_loss": 0.041162418231688334,
+          "ours_nonworse_rate": 1.0
+        },
+        "5": {
+          "n": 30,
+          "success_rate_at_0.005": 0.26666666666666666,
+          "mean_schedule_loss": 0.04432839356339445,
+          "ours_nonworse_rate": 1.0
+        }
+      }
+    }
+  },
+  "source_experiment_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864"
+}

@@ -1,0 +1,12 @@
+{
+  "scope": "exact enumeration of no-op plus every single action in the shared formal action set",
+  "selection": "non-compound cases sorted by SHA256(case_id), then first max-cases",
+  "source_experiment_sha256": "b2943eb186c220aeb35db3e502292a64a450c29338311c00ca8d09820a5ae864",
+  "selected_case_ids_sha256": "ddb6f2c0adfd498a7f4c9f1ae57276cae4094076eda6c4ee32f47f488e7cb52d",
+  "selected_cases": 48,
+  "ours_one_edit_cases": 47,
+  "oracle_success_rate": 0.9791666666666666,
+  "ours_matches_oracle_loss_rate_all": 0.8333333333333334,
+  "ours_matches_oracle_loss_rate_when_ours_one_edit": 0.851063829787234,
+  "ours_matches_oracle_loss_and_cost_rate_when_ours_one_edit": 0.851063829787234
+}

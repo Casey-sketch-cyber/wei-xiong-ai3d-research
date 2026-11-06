@@ -1,0 +1,8 @@
+# Keep frozen evidence hashes stable across Windows and Linux checkouts.
+* -text
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pptx binary
+*.docx binary

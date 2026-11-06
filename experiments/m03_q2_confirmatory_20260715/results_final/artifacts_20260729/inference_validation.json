@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "model": "triposr",
+      "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/triposr/triposr_summary.json",
+      "success_key": "success",
+      "expected": 1020,
+      "observed": 1020,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "model": "instantmesh",
+      "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/instantmesh/instantmesh_summary.json",
+      "success_key": "mesh_success",
+      "expected": 1740,
+      "observed": 1740,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "model": "hunyuan21",
+      "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/hunyuan21/hunyuan21_summary.json",
+      "success_key": "success",
+      "expected": 1740,
+      "observed": 1740,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "model": "trellis",
+      "summary": "/root/autodl-tmp/m03_q2_confirmatory_20260715/inference/trellis/trellis_summary.json",
+      "success_key": "success",
+      "expected": 1740,
+      "observed": 1740,
+      "failed": 0,
+      "status": "pass"
+    }
+  ],
+  "all_pass": true,
+  "failures": []
+}

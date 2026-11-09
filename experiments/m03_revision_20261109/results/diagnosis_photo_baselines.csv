@@ -1,0 +1,5 @@
+model,n_records,median_solid_volume_ratio,median_voxel_iou,median_fscore_0.05,median_extent_relative_mae,median_front_silhouette_iou,share_best_view_silhouette_below_0.5
+triposr,120,1.075,0.173,0.284,0.29,0.37,0.442
+instantmesh,240,1.139,0.179,0.342,0.265,0.433,0.325
+hunyuan21,240,1.268,0.174,0.345,0.303,0.413,0.325
+trellis,240,0.898,0.091,0.302,0.337,0.372,0.446

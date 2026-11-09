@@ -4,6 +4,8 @@
 
 先读 [CLAUDE.md](CLAUDE.md) 和 [当前状态](handoff/CURRENT_STATE.md)，再开始修改。
 
+> **2026-11-09 更新：** M03 投 JCDE 被拒，当前工作是改稿。方案、诊断与逐步任务见 [revision_20261109/](revision_20261109/README.md)，执行清单为 [CODEX_TASKS.md](revision_20261109/CODEX_TASKS.md)，新代码在 [experiments/m03_revision_20261109/](experiments/m03_revision_20261109/)。
+
 | 方向 | 当前内容 | 首选入口 |
 | --- | --- | --- |
 | M03，主线论文 | 四模型、120 个对象、6,240 次重建；已有论文、图表、投稿文件及确认实验代码 | [LaTeX 正文](manuscripts/m03_jcde/01_manuscript/latex/main.tex) |

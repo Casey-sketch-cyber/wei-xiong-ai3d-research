@@ -13,3 +13,7 @@ Use existing protocols, code, numerical summaries, and real figure assets as the
 Keep raw data, meshes, weights, environments, caches, and credentials outside Git. Any new remote run must use the correct isolated project root and must not modify unrelated server files.
 
 After edits, run the checks that apply to those edits and document what was actually verified. Treat historical validation reports as dated evidence, not a current rerun.
+
+## Branches and merging
+
+Work on a branch (for the current revision: `revision-20261109`), not on `main`. After each completed stage, push the branch and keep one pull request open from it to `main`. **Do not merge your own work, and do not wait for the human to merge.** Claude reviews the PR (scheduled or on demand): if the stage passes, Claude merges it; if not, Claude leaves a PR comment saying what to change, and you fix it on the same branch before the next stage. After a merge, update the branch from `main` (`git pull origin main`) and keep working on it. Never force-push and never rewrite pushed history. Scientific choices that the revision plan leaves to the author still go to the author.

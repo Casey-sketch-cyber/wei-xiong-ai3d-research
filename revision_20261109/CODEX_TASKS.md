@@ -6,7 +6,7 @@
 
 ## 全局规则
 
-- 在新分支 `revision-20261109` 上工作；每个阶段一个提交，提交信息写清做了什么。
+- 在新分支 `revision-20261109` 上工作；每个阶段一个提交，提交信息写清做了什么。每完成一个阶段就推送，并保持一个从该分支到 `main` 的 PR。不要自己合并，也不用等作者：Claude 审查通过后合并，没通过就在 PR 里写明要改什么（见根目录 `AGENTS.md` 的 Branches and merging）。
 - 冻结目录和冻结脚本只读：`experiments/m03_q2_confirmatory_20260715/` 及服务器 `/root/autodl-tmp/m03_q2_confirmatory_20260715/` 下原有子目录。新服务器输出只写 `/root/autodl-tmp/m03_q2_confirmatory_20260715/revision_20261109/`。
 - 网格、权重、原始数据、凭据不进 Git。服务器连接信息从环境变量读取（见 `handoff/REMOTE_STORAGE.md`）。
 - 服务器上运行 Python 用 `python -I`。

@@ -1,19 +1,52 @@
-# Research handoff working rules
+# AGENTS.md：给所有 AI 助手的项目说明
 
-Read CLAUDE.md and handoff/CURRENT_STATE.md before editing this repository.
+> Codex、Cursor、Claude、Grok 等所有 AI 工具在本项目工作前，必须先读完本文件。
 
-## Current task: M03 revision after JCDE rejection (2026-11-09)
+## 项目概述
 
-M03 was rejected by JCDE. The active work is the revision plan in `revision_20261109/`. Start with `revision_20261109/README.md`, then follow `revision_20261109/CODEX_TASKS.md` step by step and log every step in `revision_20261109/DECISIONS.md`. Code for the revision lives in `experiments/m03_revision_20261109/`. The frozen confirmatory results stay read-only; the revision adds a per-sample registration protocol and reports the original protocol alongside it.
+研究现成的 AI 图像补全模型修复受损画作时是否可信：把真实破损形状移植到 CC0 完好名画上，用多个开源补全模型修复，与原画比较，分画种、分破损报告"自然度"和"忠实度"。目标是一篇开源三区或四区期刊论文。
 
-Use the current M03 four-model confirmatory evidence rather than superseded discovery-stage claims. Preserve the confirmed author order and correspondence. Keep M02, M03, and M05 scientifically separate.
+当前阶段：**选题与文献调研**。还没有实验代码。
 
-Use existing protocols, code, numerical summaries, and real figure assets as the source of evidence. Never fabricate data, references, completed human ratings, or experimental validation.
+## 研究规则（所有 AI 必须遵守）
 
-Keep raw data, meshes, weights, environments, caches, and credentials outside Git. Any new remote run must use the correct isolated project root and must not modify unrelated server files.
+1. **不依赖人评。** 作者找不到评分人。任何设计都不能依赖人工打分、用户研究或专家评分；评价一律用原画作标准答案的自动指标。
+2. **选题、文献树、创新点判断**按 [findInnovation 的 skill](https://github.com/Casey-sketch-cyber/findInnovation/blob/main/skills/research-innovation-points/SKILL.md) 执行，模板在 [findInnovation/templates](https://github.com/Casey-sketch-cyber/findInnovation/tree/main/templates)。
+3. **写论文**时先读并遵守 [paperwrite 的写作 skill](https://github.com/Casey-sketch-cyber/paperwrite/blob/main/skills/research-paper-story-writing/SKILL.md)。
+4. **文献必须核对。** 放进文献树或引用的每篇文献，都要打开原文页面核对标题、作者、年份和发表处；没核对的标"未核对原文"。不得编造文献、数据或实验结果。
+5. **文献树版本不覆盖。** `docs/literature-tree/literature-tree-v1.md` 是 Claude 的草稿，只读；纠错写到 `literature/audit-of-claude-v1.md`，修订另起 v2。
+6. **数据只用可公开的来源**：CC0 或明确允许研究使用的画作与破损标注；在 `docs/DECISIONS.md` 记录每个数据源的许可。图像、数据和模型权重不进 Git。
 
-After edits, run the checks that apply to those edits and document what was actually verified. Treat historical validation reports as dated evidence, not a current rerun.
+## 技术栈
 
-## Branches and merging
+待定。预计 Python，PyTorch 与 diffusers；补全模型候选见文献树。算力为单张 RTX 3090（24 GB），所有方案要能在这张卡上跑。
 
-Work on a branch (for the current revision: `revision-20261109`), not on `main`. After each completed stage, push the branch and keep one pull request open from it to `main`. **Do not merge your own work, and do not wait for the human to merge.** Claude reviews the PR (scheduled or on demand): if the stage passes, Claude merges it; if not, Claude leaves a PR comment saying what to change, and you fix it on the same branch before the next stage. After a merge, update the branch from `main` (`git pull origin main`) and keep working on it. Never force-push and never rewrite pushed history. Scientific choices that the revision plan leaves to the author still go to the author.
+## 环境与命令
+
+待补充（实验代码建立后填写安装、运行、测试命令）。
+
+## 目录结构
+
+```
+docs/literature-tree/   文献树各版本
+docs/PROGRESS.md        进度与待办
+docs/DECISIONS.md       决策记录
+docs/ARCHITECTURE.md    目录与数据流说明
+literature/             检索记录、文献表、核查记录
+```
+
+## 工作规则
+
+1. **开始前**：先读 `docs/PROGRESS.md`、`docs/ARCHITECTURE.md`、`docs/DECISIONS.md`。
+2. **分支与合并**：每个任务新建分支 `<工具名>/<任务简述>`（例如 `codex/verify-literature-tree`），做完后推送并创建 PR；不能创建 PR 时只推送分支也可以。**不要自己合并到 `main`，也不用等用户**：Claude 审查通过就合并，没通过就在 PR 里留言并在 `docs/PROGRESS.md` 的待办里登记原因。开工前先看有没有自己之前被退回的 PR，先把它改完。不要强制推送，不要改写已推送的历史。
+3. **范围**：只改与当前任务相关的文件。
+4. **依赖**：不要随意新增依赖；确实需要时，在提交说明里写明理由。
+5. **安全**：不要提交密钥、`.env`、图像数据、模型权重、AI 工具的缓存或对话记录。
+6. **验证**：提交前运行与改动相关的检查，并在 PR 里写明实际运行了什么。
+7. **结束时**：更新 `docs/PROGRESS.md`；重要取舍写进 `docs/DECISIONS.md`。
+8. **沟通**：始终用中文回复用户。
+
+## 当前注意事项
+
+- 旧的 M03 项目内容保存在分支 `archive/m03-ai3d-20261118` 和 `revision-20261109`，不要再往这两处提交。
+- 仓库名还是旧名 `wei-xiong-ai3d-research`，以后可能改名；文档里的链接用相对路径。

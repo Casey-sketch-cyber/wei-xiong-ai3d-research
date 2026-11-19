@@ -4,25 +4,43 @@
 
 ## 当前状态
 
-选题已定为"AI 补全模型修复画作的可信度评测"，文献树 v1 已起草，等待核查。没有实验代码。
+已完成 PR #3 的首轮审查修改，待 Claude 复审。先导拟在画布油画和木板油画上检验同类来源的真实掩码是否改变模型选择，并在相同程序掩码下独立比较两组。已固定判定标准，仍处于调研阶段。
 
 ## 待办
 
-- [ ] 核查文献树 v1：用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的被引列表排查"未见跨画种系统评测"和"画作修复里未见编造度量"两个判断；纠错写到 `literature/audit-of-claude-v1.md`
-- [ ] 核对 arXiv 条目的正式发表处，补进 `literature/papers.csv`
-- [ ] 核对 ARTeFACT 许可（论文写 CC，Hugging Face 显示 afl-3.0）、其中画作样本数量，以及能否移植掩码并公开
+- [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
+- [x] 核对文献表中 19 条 arXiv 记录，16 条找到正式发表处，另外 3 条仅确认预印本
+- [x] 核对 ARTeFACT 数据卡许可和样本元数据。418 条记录中 49 条标为 Painting
+- [ ] 查找 ARTeFACT 补充材料所述的逐图出处记录，核实油画技法、基底及各破损类可用掩码数，确认掩码的使用和公开分发授权
 - [ ] 统计 CC0 画作按画种的可得数量（大都会、芝加哥艺术博物馆、荷兰国立博物馆、美国国家美术馆、史密森尼）
-- [ ] 找绘画修复伦理的原则性文献，补充或替换威尼斯宪章
+- [x] 找到 ICOM-CC 术语决议和 AIC 补失指南，已写入 [核查记录](../literature/audit-of-claude-v1.md#指标和修复伦理)
 - [ ] 在 3090 上实测候选补全模型的显存：LaMa、MAT、SDXL Inpainting、BrushNet 或 PowerPaint、FLUX.1 Fill
-- [ ] 用 findInnovation 模板写 `docs/INNOVATION.md`
+- [x] 用 findInnovation 模板起草 [创新点评估](INNOVATION.md)
+- [x] 审查 1 已核实 InkRenew 的正确 DOI、卷期和文章号、作者单位及图 5，并补充薛文喆等的独立证据
+- [x] 审查 2 已选择形状来源真实性，真实掩码与目标画作逐件匹配技法和基底，并明确纸本与绢本的条件
+- [x] 审查 3 已写明掩码内 MAE 差中差、局部 LPIPS、按画作 bootstrap、排序判定、实用阈值和退路
+- [x] 审查 4 已注明 Controlled-300 在 35 幅上的固定家族和像素面积对照，并明确档案性质及项目区别
+- [x] 审查 5 已将画材和基底分层列为并列主问题，先用画布与木板油画比较基底分组
+- [x] 审查 6 已用 Imagest 表 2 核实，100 幅名画用于新模型对四个基线的总体比较
+- [ ] Claude 复审 PR #3。修订文献树时另起 v2
 
 ## 已知问题
 
-- 本轮检索时，arXiv 批量接口和 OpenAlex 接口不可用，没有做被引列表排查。
+- OpenAlex 与 Semantic Scholar 的引文覆盖范围不同。Rocafort 目前在两者均未返回前向引用。ARTeFACT 公开字段不足以确认画布、木板作品的油画技法及逐图许可，两组是否各有 15 个符合条件的供体待核实。
 
 ---
 
 ## 工作记录
+
+### 2026-11-18 · Codex · 按 Claude 审查修订 PR #3
+- 用 Crossref、出版社图 5 和作者单位核实 InkRenew。补核中文期刊正文、Controlled-300 发布快照及 Imagest 表 2。
+- 选择真实形状同技法、同基底移植。统一程序掩码下的分层比较单列为主问题。方案写明评分、区间、阈值、技术失败和缺供体时的处理。
+- 将审查六项处理结果写入待办，等待复审。供体逐件核查与 3090 实测仍待完成。
+
+### 2026-11-18 · Codex · 核查画作补全文献与研究定位
+- 追踪五个种子的前向引用，核对 Controlled-300、Imagest、MDTD-ArtIR、InkRenew、MAPGR 等直接先例；把引文覆盖和勘误写入 `literature/`。
+- 核实 arXiv 发表信息，补充 ICOM-CC 和 AIC 原文。读取 ARTeFACT 的 28 个元数据分片，确认 49 条 Painting 记录。
+- 用 findInnovation 模板草拟真实轮廓与合成轮廓的配对先导方案。主要待办为掩码授权、按画材统计开放画作、确认模型运行条件以及审查设计。
 
 ### 2026-11-18 · Claude · claude/painting-restoration-literature-tree
 - **完成**：仓库改为新方向；旧 M03 内容保存到分支 `archive/m03-ai3d-20261118`；按 findInnovation skill 起草文献树 v1（三条脉络、文献表 36 条、难点—解法树、四种情况判断）；建立检索记录和文献表；补齐协作文档。

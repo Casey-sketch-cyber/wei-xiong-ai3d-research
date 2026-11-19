@@ -21,6 +21,11 @@ experiments/
   prepare_artworks.py          从馆方 API 核实许可、采集图像和编制清单
   models.py                    LaMa 和扩散补全模型的加载及推理
   run_pilot.py                 裁片、掩码、推理、评分及作品级分析
+  run_followup.py              SDXL 敏感性和原尺度裁片先导
+  patch_design.py              原像素取样与三类两档程序掩码
+  additional_models.py        固定版本的 MAT 与 PowerPaint v1 适配
+  diagnostic_metrics.py       掩码色差和局部 DISTS 追算
+  analyze_followup.py         追加实验的同作品配对与分层汇总
 ```
 
 ## 计划中的数据流（草案，待定）
@@ -46,3 +51,19 @@ python -B experiments/run_pilot.py analyze --run-dir "$RUN" --model sdxl
 ```
 
 技术验证先在合成图上运行。先导的 `prepared.json` 固定作品分组、清单哈希、裁片和掩码哈希。按作品、模型和种子保存 PNG 和评分，重跑时复用成功记录。分析输出 `summary.json` 和作品级 `artwork_scores.csv`。本次清单在采集模型输出前审查，排除了馆方标为画作但属于木门的藏品 `cma-121867`。
+
+## 追加实验
+
+`run_followup.py prepare-sensitivity` 以 `--baseline` 指向初版运行目录，在新的 `--run-dir` 中冻结同一裁片和掩码。`prepare-native` 接收初版 `--manifest`，在 `--data-dir` 下载馆方原图并在新 `--run-dir` 冻结 16 幅原尺度裁片和 96 个条件。用 `smoke` 和 `run` 子命令逐个指定模型与 `--models-dir`。
+
+```bash
+python -B experiments/run_followup.py prepare-sensitivity --baseline "$BASELINE" --run-dir "$SENSITIVITY"
+python -B experiments/run_followup.py run --run-dir "$SENSITIVITY" --models-dir "$MODELS" --model sdxl_1024
+python -B experiments/run_followup.py run --run-dir "$SENSITIVITY" --models-dir "$MODELS" --model sdxl_empty
+python -B experiments/run_followup.py prepare-native --manifest "$DATA/artworks.csv" --data-dir "$NATIVE_DATA" --run-dir "$NATIVE"
+python -B experiments/run_followup.py run --run-dir "$NATIVE" --models-dir "$MODELS" --model lama
+```
+
+原尺度运行的模型名为 `lama`、`sdxl`、`mat`、`powerpaint`。MAT 另用 timm 1.0.15 和固定版作者源码，权重和代码版本见 `additional_models.py`。PowerPaint 推荐独立数据盘环境（Diffusers 0.27.0、Transformers 4.40.2、Hugging Face Hub 0.25.2 和 Accelerate 0.34.2），使用固定的作者源码与两个替换权重并验证 SHA-256。SDK 缓存继续放在 `$MODELS/huggingface`。实际加载前依次对每个可用模型运行合成图验证。
+
+`diagnostic_metrics.py --run-dir "$RUN" --output "$NEW_JSON"` 在输入目录之外补算诊断分，使用 scikit-image 0.25.2、DISTS-pytorch 0.1 及其固定 VGG16 权重。以 `analyze_followup.py --baseline "$BASE_SCORES" --sensitivity "$SENS_SCORES" --native "$NATIVE_SCORES" --native-plan "$NATIVE/prepared.json" --output "$SUMMARY"` 汇总。工作和数据清单相同的条件才进入同一配对分析。

@@ -70,7 +70,7 @@ def _load_lama(device: str, model_dir: Path) -> Inpaint:
     return run
 
 
-def _load_diffusion(model_name: str, device: str, model_dir: Path) -> Inpaint:
+def _load_diffusion(model_name: str, device: str, model_dir: Path, prompt: str) -> Inpaint:
     import torch
     from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
     from huggingface_hub import snapshot_download
@@ -106,7 +106,7 @@ def _load_diffusion(model_name: str, device: str, model_dir: Path) -> Inpaint:
         generator = torch.Generator(device=target).manual_seed(seed)
         with torch.inference_mode():
             output = pipeline(
-                prompt=DIFFUSION_PROMPT,
+                prompt=prompt,
                 image=Image.fromarray(damaged),
                 mask_image=Image.fromarray(mask.astype(np.uint8) * 255),
                 height=height,
@@ -127,10 +127,12 @@ def _load_diffusion(model_name: str, device: str, model_dir: Path) -> Inpaint:
     return run
 
 
-def load_model(model_name: str, device: str, model_dir: Path) -> Inpaint:
+def load_model(
+    model_name: str, device: str, model_dir: Path, *, prompt: str = DIFFUSION_PROMPT
+) -> Inpaint:
     """Load one model and return a callable producing an uncomposited RGB result."""
     if model_name == "lama":
         return _load_lama(device, model_dir)
     if model_name in DIFFUSION_CHECKPOINTS:
-        return _load_diffusion(model_name, device, model_dir)
+        return _load_diffusion(model_name, device, model_dir, prompt)
     raise ValueError(f"Unknown inpainting model: {model_name}")

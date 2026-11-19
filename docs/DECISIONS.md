@@ -4,6 +4,9 @@
 
 | 日期 | 决策 | 原因 | 放弃的方案 | 记录者 |
 |---|---|---|---|---|
+| 2026-11-19 | 以实际推理尺寸的潜空间网格扩张掩码，原洞用于合成和评分，另设共享遮挡范围对照 | 旧输出覆盖诊断显示 1% 裂缝和剥落漏过一半洞内像素，亮度分区未支持黑预填是主因。修正输入覆盖，并保留同样本、同种子可配对的历史产物。[诊断与修正报告](LATENT_ALIGNMENT.md) | 继续使用未经对齐的输入掩码解释模型差 | Codex |
+| 2026-11-19 | FLUX.1 Fill 原版仅做显存与下载权限预检 | 原版四模块全部按 BF16 常驻的纯参数下限约 31.43 GiB，服务器实测总容量为 24 GiB。官方固定版文件的匿名请求返回 HTTP 401。量化配合 CPU 卸载是另一配置，当前缺少授权后才能取得的整管线组件。[官方版本](https://huggingface.co/black-forest-labs/FLUX.1-Fill-dev/tree/358293da0354175698b67ec8299acf928313a78a) · [授权说明](https://huggingface.co/docs/hub/models-gated) | 以静态估算充当实际推理显存 | Codex |
+| 2026-11-19 | 初版五项复审按同一批 60 幅作品做单种子 SDXL 敏感性补跑，再用四组各 4 幅试跑原尺度裁片 | 先锁定分辨率与提示词的单因素变化，并在相同计分网格比较。原尺度试跑用程序裂缝、剥落、广片缺失及两个面积档，沿用固定掩码外合成 | 在看补跑结果之后改变初版主指标或合并两个协议的数字 | Codex |
 | 2026-11-18 | 优先执行程序掩码分层，加入纸本水彩和纸本水墨 | Claude 复审建议涵盖真正不同的画材。画布和木质基底两组均继续保留。ARTeFACT 的逐件技法、供体数量和许可待核 | 将 ARTeFACT 基底标签直接作为油画供体证明 | Codex |
 | 2026-11-18 | 程序掩码试验采用克利夫兰艺术博物馆标为 CC0 的开放图像 | 馆方开放 API 提供作品级许可、媒介字段与原图地址。使用明确标有 CC0 的记录并保存对象链接。[馆方许可与 API 说明](https://www.clevelandart.org/open-access-api) | 跨机构混合许可而不追溯逐件记录 | Codex |
 | 2026-11-18 | 固定公开发布的 LaMa 和 SDXL Inpainting，先在合成图验证 512 像素推理 | LaMa 校验 IOPaint 发布资产的 SHA-256。SDXL 使用研究用途的 OpenRAIL++ 模型卡所列快照，校验配置及 FP16 权重。权重保留在数据盘。[IOPaint 上游](https://github.com/Sanster/IOPaint/blob/main/iopaint/model/lama.py) · [SDXL 模型卡](https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0.1) | 效果评分后更换模型版本 | Codex |

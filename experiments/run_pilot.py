@@ -187,7 +187,7 @@ def model_output(model, pixels, mask, seed):
     return restored
 
 
-def smoke(args):
+def smoke(args, *, model_loader=None, predictor=model_output):
     from models import load_model
 
     args.run_dir.mkdir(parents=True, exist_ok=True)
@@ -196,10 +196,12 @@ def smoke(args):
     mask = program_mask(0)
     reset_memory(args.device)
     start = time.perf_counter()
-    model = load_model(args.model, args.device, args.models_dir)
+    if model_loader is None:
+        model_loader = load_model
+    model = model_loader(args.model, args.device, args.models_dir)
     load_seconds = time.perf_counter() - start
     start = time.perf_counter()
-    restored = model_output(model, pixels, mask, SEEDS[0])
+    restored = predictor(model, pixels, mask, SEEDS[0])
     memory = device_info(args.device)
     seconds = time.perf_counter() - start
     if np.array_equal(restored[mask], np.zeros_like(restored[mask])):
@@ -236,21 +238,25 @@ def masked_metrics(pixels, restored, mask, lpips_metric, device):
     return float(mae), float(distance)
 
 
-def run(args):
+def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_output):
     import lpips
 
     from models import load_model
 
-    cases = prepare(args.manifest, args.run_dir)
+    if cases is None:
+        cases = prepare(args.manifest, args.run_dir)
     score_dir = args.run_dir / "scores"
     output_dir = args.run_dir / "restored"
     failure_dir = args.run_dir / "failures"
     for directory in (score_dir, output_dir, failure_dir):
         directory.mkdir(exist_ok=True)
-    seeds = (SEEDS[0],) if args.model == "lama" else SEEDS
+    if seeds is None:
+        seeds = (SEEDS[0],) if args.model == "lama" else SEEDS
 
     reset_memory(args.device)
-    model = load_model(args.model, args.device, args.models_dir)
+    if model_loader is None:
+        model_loader = load_model
+    model = model_loader(args.model, args.device, args.models_dir)
     metric = lpips.LPIPS(net="alex", version="0.1", verbose=False).to(args.device).eval()
     complete, failures = 0, 0
     for case in cases:
@@ -271,7 +277,7 @@ def run(args):
             for attempt in range(attempts + 1, 3):
                 start = time.perf_counter()
                 try:
-                    restored = model_output(model, pixels, mask, seed)
+                    restored = predictor(model, pixels, mask, seed)
                     mae, distance = masked_metrics(pixels, restored, mask, metric, args.device)
                     save_png(output_path, restored)
                     write_json(score_path, {
@@ -294,6 +300,7 @@ def run(args):
     report = {"model": args.model, "completed": complete, "failed": failures, **device_info(args.device)}
     write_json(args.run_dir / f"run_{args.model}.json", report)
     print(json.dumps(report), flush=True)
+    return report
 
 
 def interval(samples):

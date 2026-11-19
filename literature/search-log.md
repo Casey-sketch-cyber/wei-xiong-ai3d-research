@@ -30,3 +30,6 @@
 | 2026-11-18 | 正式论文库及 arXiv | 对 `papers.csv` 的 19 条 arXiv 逐条核对标题和发表信息；搜索正式论文集、期刊卷期和 DOI | 16 条找到正式记录，3 条仅确认预印本。正式链接与核对范围已写入文献表。 | 书目核对 |
 | 2026-11-18 | 作者数据卡、会议正文、OSI、Parquet 元数据读取 | ARTeFACT WACV 2025、AFL-3.0，HF 修订版 `eabf09542f871c6c61147474408704152e08f831` 的 28 个分片 | 读取 `id/type/material`，418 个唯一 ID；Painting 49、Fresco 25、Lithograph 4。数据卡许可与论文中的底图许可表述适用于不同对象，逐图/掩码权利尚待核对。 | 破损样本与许可 |
 | 2026-11-18 | 发布机构原文 | ICOM-CC 2008 terminology for conservation；AIC Guidelines for Practice compensation for loss | 核对绘画补色、尊重原材料及记录、可辨识和可逆的实务要求。 | 修复伦理 |
+| 2026-11-18 | Crossref、出版社及作者单位 | `10.1057/s41599-026-07117-y`，InkRenew System implementation、图 5、Authors and Affiliations | 核实正式卷 13 第 1 期、文章号 1342、浙江大学宁波与杭州单位。出版社图 5 明确说明使用现存画作真实破损掩码。 | PR #3 审查 1 |
+| 2026-11-18 | 西北大学学报官网、PDF | `10.16152/j.cnki.xdxbzr.2025-01-013`，第 153 页图 2、第 156 页图 4 | 核实从真实残缺画作提取掩码并与完好绘画拼接，训练和测试与自由孔洞掩码混用。 | PR #3 审查 1 |
+| 2026-11-18 | Zenodo、作者仓库和出版社 | Controlled-300 §3 与冻结快照 cases.csv，Imagest 修复小节与表 2 | 对照样本表 525 条、35 幅画，同幅同家族五变体面积一致。Imagest 汇总新方法与四个基线。 | PR #3 审查 4–6 |

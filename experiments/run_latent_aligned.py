@@ -8,6 +8,7 @@ import numpy as np
 from PIL import Image
 
 from latent_aligned import aligned_prediction, grid_cover
+from models import load_model
 from run_followup import followup_model, prepared_dirs
 from run_pilot import SEEDS, read_json, run, sha256, smoke, write_json
 
@@ -20,7 +21,11 @@ ARMS = {
     "sensitivity-shared": ("sensitivity-v1", {"lama": FIRST_SEED}),
     "native": ("native-v2", {"sdxl": FIRST_SEED, "powerpaint": FIRST_SEED}),
     "native-shared": ("native-v2", {"lama": FIRST_SEED, "mat": FIRST_SEED}),
+    "official-baseline": ("procedural-v1", {"sdxl": FIRST_SEED}),
+    "official-1024": ("sensitivity-v1", {"sdxl_1024": FIRST_SEED}),
+    "official-native": ("native-v2", {"sdxl": FIRST_SEED}),
 }
+OFFICIAL_SDXL_SETTINGS = {"strength": 0.99, "num_inference_steps": 20, "guidance_scale": 8.0}
 
 
 def check_frozen_inputs(root, cases):
@@ -47,12 +52,14 @@ def freeze(arm, source, target):
     if not original_plan["cases"]:
         raise ValueError("No prepared cases")
     reference_digest = sha256(reference)
+    settings = OFFICIAL_SDXL_SETTINGS if arm.startswith("official-") else None
     lock = target / "prepared.json"
     if lock.exists():
         existing = read_json(lock)
         if (
             existing["protocol"] != PROTOCOL or existing["arm"] != arm
             or existing["reference_plan_sha256"] != reference_digest
+            or existing.get("inference_settings") != settings
         ):
             raise ValueError("Target already contains a different frozen plan")
         check_frozen_inputs(target, existing["cases"])
@@ -76,17 +83,24 @@ def freeze(arm, source, target):
             "reference_stride8_pixels": int(grid_cover(mask, 8).sum()),
             "reference_stride4_pixels": int(grid_cover(mask, 4).sum()),
         }
-    write_json(lock, {
+    prepared = {
         "protocol": PROTOCOL, "arm": arm, "reference_plan_sha256": reference_digest,
         "reference_protocol": expected_protocol, "model_seeds": {key: list(value) for key, value in models.items()},
         "input_mask_areas": input_areas, "cases": cases,
-    })
+    }
+    if settings is not None:
+        prepared["inference_settings"] = settings
+    write_json(lock, prepared)
     print(f"{arm}: froze {len(cases)} cases, {len(masks)} scoring masks", flush=True)
 
 
 def load_aligned_model(name, device, models_dir):
     # Resizing is controlled here, so load the native SDXL pipeline for the 1024 arm.
     return followup_model("sdxl" if name == "sdxl_1024" else name, device, models_dir)
+
+
+def load_official_sdxl(_name, device, models_dir):
+    return load_model("sdxl", device, models_dir, **OFFICIAL_SDXL_SETTINGS)
 
 
 def main():
@@ -110,8 +124,10 @@ def main():
     inference_size = 1024 if args.model == "sdxl_1024" else 512
     stride = 4 if args.arm == "sensitivity-shared" else 8
     predict = partial(aligned_prediction, inference_size=inference_size, stride=stride)
+    official = args.arm.startswith("official-")
+    model_loader = load_official_sdxl if official else load_aligned_model
     if args.stage == "smoke":
-        smoke(args, model_loader=load_aligned_model, predictor=predict)
+        smoke(args, model_loader=model_loader, predictor=predict)
         return
     prepared = read_json(args.run_dir / "prepared.json")
     if prepared["protocol"] != PROTOCOL or prepared["arm"] != args.arm:
@@ -119,9 +135,11 @@ def main():
     expected_seeds = models[args.model]
     if prepared["model_seeds"][args.model] != list(expected_seeds):
         raise ValueError("Run seed schedule differs from the frozen design")
+    if official and prepared.get("inference_settings") != OFFICIAL_SDXL_SETTINGS:
+        raise ValueError("Run settings differ from the frozen design")
     cases = prepared["cases"]
     check_frozen_inputs(args.run_dir, cases)
-    outcome = run(args, cases=cases, model_loader=load_aligned_model,
+    outcome = run(args, cases=cases, model_loader=model_loader,
                   seeds=expected_seeds, predictor=predict)
     if outcome["failed"]:
         raise SystemExit(2)

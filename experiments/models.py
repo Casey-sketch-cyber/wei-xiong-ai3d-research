@@ -70,7 +70,10 @@ def _load_lama(device: str, model_dir: Path) -> Inpaint:
     return run
 
 
-def _load_diffusion(model_name: str, device: str, model_dir: Path, prompt: str) -> Inpaint:
+def _load_diffusion(
+    model_name: str, device: str, model_dir: Path, prompt: str,
+    *, strength: float, num_inference_steps: int, guidance_scale: float,
+) -> Inpaint:
     import torch
     from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
     from huggingface_hub import snapshot_download
@@ -111,9 +114,9 @@ def _load_diffusion(model_name: str, device: str, model_dir: Path, prompt: str) 
                 mask_image=Image.fromarray(mask.astype(np.uint8) * 255),
                 height=height,
                 width=width,
-                strength=1.0,
-                num_inference_steps=DIFFUSION_STEPS,
-                guidance_scale=DIFFUSION_GUIDANCE,
+                strength=strength,
+                num_inference_steps=num_inference_steps,
+                guidance_scale=guidance_scale,
                 generator=generator,
                 output_type="np",
             )
@@ -128,11 +131,15 @@ def _load_diffusion(model_name: str, device: str, model_dir: Path, prompt: str) 
 
 
 def load_model(
-    model_name: str, device: str, model_dir: Path, *, prompt: str = DIFFUSION_PROMPT
+    model_name: str, device: str, model_dir: Path, *, prompt: str = DIFFUSION_PROMPT,
+    strength: float = 1.0, num_inference_steps: int = DIFFUSION_STEPS, guidance_scale: float = DIFFUSION_GUIDANCE,
 ) -> Inpaint:
     """Load one model and return a callable producing an uncomposited RGB result."""
     if model_name == "lama":
         return _load_lama(device, model_dir)
     if model_name in DIFFUSION_CHECKPOINTS:
-        return _load_diffusion(model_name, device, model_dir, prompt)
+        return _load_diffusion(
+            model_name, device, model_dir, prompt,
+            strength=strength, num_inference_steps=num_inference_steps, guidance_scale=guidance_scale,
+        )
     raise ValueError(f"Unknown inpainting model: {model_name}")

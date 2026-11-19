@@ -30,6 +30,8 @@ experiments/
   latent_aligned.py           扩张输入掩码并在原洞上合成
   run_latent_aligned.py       六组对齐重跑及共享输入对照
   analyze_aligned.py          修正前后同种子配对和四模型完整案例汇总
+  analyze_official.py         SDXL 模型卡参数的同尺寸配对、分辨率及模型比较
+  verify_official.py          核验模型卡运行产物及配对亮度偏移
 ```
 
 ## 计划中的数据流（草案，待定）
@@ -85,3 +87,17 @@ python -B experiments/diagnostic_metrics.py --run-dir "$ALIGNED" --output "$ALIG
 ```
 
 `analyze_aligned.py` 接收旧版、修正和共享输入的诊断评分 JSON。调用参数区分初版、敏感性和原尺度。原尺度分析另外读取旧 `prepared.json`，按画作及条件核对覆盖。
+
+## SDXL 模型卡参数敏感性
+
+在新的数据盘目录中运行 `official-baseline`、`official-1024` 和 `official-native`。三个组分别使用 `procedural-v1-qualified`、`sdxl-sensitivity-v1` 和 `native-v2` 的冻结计划。模型名分别为 `sdxl`、`sdxl_1024` 和 `sdxl`。运行计划记录模型卡三项参数，所有组用同一种子和原评分掩码。
+
+```bash
+python -B experiments/run_latent_aligned.py prepare --arm official-baseline --reference "$BASELINE" --run-dir "$NEW/official-baseline"
+python -B experiments/run_latent_aligned.py smoke --arm official-baseline --model sdxl --models-dir "$MODELS" --run-dir "$SMOKE"
+python -B experiments/run_latent_aligned.py run --arm official-baseline --model sdxl --models-dir "$MODELS" --run-dir "$NEW/official-baseline"
+python -B experiments/diagnostic_metrics.py --run-dir "$NEW/official-baseline" --output "$NEW/diagnostics/official-baseline.json"
+python -B experiments/verify_official.py --new-root "$NEW" --aligned-root "$ALIGNED_ROOT" --output "$NEW/diagnostics/verified-brightness.json"
+```
+
+三组均补齐诊断评分后运行核验。用 `analyze_official.py --help` 确认需传入同尺寸的历史网格修正评分、三组新评分、原输入和共享输入的像素模型评分及原尺度计划。[统计口径与上游设置](OFFICIAL_INFERENCE.md)

@@ -26,6 +26,10 @@ experiments/
   additional_models.py        固定版本的 MAT 与 PowerPaint v1 适配
   diagnostic_metrics.py       掩码色差和局部 DISTS 追算
   analyze_followup.py         追加实验的同作品配对与分层汇总
+  latent_mask_diagnostic.py   用旧输出诊断网格漏覆盖及分区亮度
+  latent_aligned.py           扩张输入掩码并在原洞上合成
+  run_latent_aligned.py       六组对齐重跑及共享输入对照
+  analyze_aligned.py          修正前后同种子配对和四模型完整案例汇总
 ```
 
 ## 计划中的数据流（草案，待定）
@@ -67,3 +71,17 @@ python -B experiments/run_followup.py run --run-dir "$NATIVE" --models-dir "$MOD
 原尺度运行的模型名为 `lama`、`sdxl`、`mat`、`powerpaint`。MAT 另用 timm 1.0.15 和固定版作者源码，权重和代码版本见 `additional_models.py`。PowerPaint 推荐独立数据盘环境（Diffusers 0.27.0、Transformers 4.40.2、Hugging Face Hub 0.25.2 和 Accelerate 0.34.2），使用固定的作者源码与两个替换权重并验证 SHA-256。SDK 缓存继续放在 `$MODELS/huggingface`。实际加载前依次对每个可用模型运行合成图验证。
 
 `diagnostic_metrics.py --run-dir "$RUN" --output "$NEW_JSON"` 在输入目录之外补算诊断分，使用 scikit-image 0.25.2、DISTS-pytorch 0.1 及其固定 VGG16 权重。以 `analyze_followup.py --baseline "$BASE_SCORES" --sensitivity "$SENS_SCORES" --native "$NATIVE_SCORES" --native-plan "$NATIVE/prepared.json" --output "$SUMMARY"` 汇总。工作和数据清单相同的条件才进入同一配对分析。
+
+## 潜空间网格修正
+
+用 `latent_mask_diagnostic.py --run-dir "$OLD" --output "$DIAG"` 读取旧输出并记录逐输出及分条件的漏采统计。修正的 `prepare` 阶段校验并复制旧计划中的参考裁片与计分掩码，保存其哈希和新模型输入的面积。六个 `--arm` 见 `run_latent_aligned.py`。PowerPaint 继续使用独立环境。
+
+```bash
+python -B -m unittest -v experiments.test_latent_aligned
+python -B experiments/run_latent_aligned.py prepare --arm baseline --reference "$BASELINE" --run-dir "$ALIGNED"
+python -B experiments/run_latent_aligned.py smoke --arm baseline --model sdxl --models-dir "$MODELS" --run-dir "$SMOKE"
+python -B experiments/run_latent_aligned.py run --arm baseline --model sdxl --models-dir "$MODELS" --run-dir "$ALIGNED"
+python -B experiments/diagnostic_metrics.py --run-dir "$ALIGNED" --output "$ALIGNED_SCORE"
+```
+
+`analyze_aligned.py` 接收旧版、修正和共享输入的诊断评分 JSON。调用参数区分初版、敏感性和原尺度。原尺度分析另外读取旧 `prepared.json`，按画作及条件核对覆盖。

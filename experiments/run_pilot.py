@@ -187,7 +187,7 @@ def model_output(model, pixels, mask, seed):
     return restored
 
 
-def smoke(args, *, model_loader=None):
+def smoke(args, *, model_loader=None, predictor=model_output):
     from models import load_model
 
     args.run_dir.mkdir(parents=True, exist_ok=True)
@@ -201,7 +201,7 @@ def smoke(args, *, model_loader=None):
     model = model_loader(args.model, args.device, args.models_dir)
     load_seconds = time.perf_counter() - start
     start = time.perf_counter()
-    restored = model_output(model, pixels, mask, SEEDS[0])
+    restored = predictor(model, pixels, mask, SEEDS[0])
     memory = device_info(args.device)
     seconds = time.perf_counter() - start
     if np.array_equal(restored[mask], np.zeros_like(restored[mask])):
@@ -238,7 +238,7 @@ def masked_metrics(pixels, restored, mask, lpips_metric, device):
     return float(mae), float(distance)
 
 
-def run(args, *, cases=None, model_loader=None, seeds=None):
+def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_output):
     import lpips
 
     from models import load_model
@@ -277,7 +277,7 @@ def run(args, *, cases=None, model_loader=None, seeds=None):
             for attempt in range(attempts + 1, 3):
                 start = time.perf_counter()
                 try:
-                    restored = model_output(model, pixels, mask, seed)
+                    restored = predictor(model, pixels, mask, seed)
                     mae, distance = masked_metrics(pixels, restored, mask, metric, args.device)
                     save_png(output_path, restored)
                     write_json(score_path, {

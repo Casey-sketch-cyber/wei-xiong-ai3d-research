@@ -40,6 +40,27 @@ def _mask_input(image: np.ndarray, mask: np.ndarray) -> np.ndarray:
     return damaged
 
 
+def _diffusion_input(image: np.ndarray, mask: np.ndarray, init_prefill: str) -> np.ndarray:
+    damaged = _mask_input(image, mask)
+    if init_prefill == "black":
+        return damaged
+    if init_prefill == "gray":
+        damaged[mask] = 128
+        return damaged
+    if init_prefill != "ring":
+        raise ValueError(f"Unknown initial fill: {init_prefill}")
+
+    from PIL import Image, ImageFilter
+
+    # The visible 8-pixel square-neighborhood shell excludes every hidden input pixel.
+    expanded = np.asarray(Image.fromarray(mask.astype(np.uint8)).filter(ImageFilter.MaxFilter(17))) > 0
+    ring = expanded & ~mask
+    if not ring.any():
+        raise ValueError("No visible pixels in the prefill ring")
+    damaged[mask] = np.rint(damaged[ring].mean(axis=0)).astype(np.uint8)
+    return damaged
+
+
 def _load_lama(device: str, model_dir: Path) -> Inpaint:
     import torch
 
@@ -72,7 +93,7 @@ def _load_lama(device: str, model_dir: Path) -> Inpaint:
 
 def _load_diffusion(
     model_name: str, device: str, model_dir: Path, prompt: str,
-    *, strength: float, num_inference_steps: int, guidance_scale: float,
+    *, strength: float, num_inference_steps: int, guidance_scale: float, init_prefill: str,
 ) -> Inpaint:
     import torch
     from diffusers import StableDiffusionInpaintPipeline, StableDiffusionXLInpaintPipeline
@@ -104,7 +125,9 @@ def _load_diffusion(
     pipeline.set_progress_bar_config(disable=True)
 
     def run(image: np.ndarray, mask: np.ndarray, seed: int) -> np.ndarray:
-        damaged = _mask_input(image, mask)
+        if init_prefill != "black" and mask.shape != (512, 512):
+            raise ValueError("The prefill experiment requires a 512 by 512 input")
+        damaged = _diffusion_input(image, mask, init_prefill)
         height, width = mask.shape
         generator = torch.Generator(device=target).manual_seed(seed)
         with torch.inference_mode():
@@ -133,13 +156,19 @@ def _load_diffusion(
 def load_model(
     model_name: str, device: str, model_dir: Path, *, prompt: str = DIFFUSION_PROMPT,
     strength: float = 1.0, num_inference_steps: int = DIFFUSION_STEPS, guidance_scale: float = DIFFUSION_GUIDANCE,
+    init_prefill: str = "black",
 ) -> Inpaint:
     """Load one model and return a callable producing an uncomposited RGB result."""
+    if init_prefill not in {"black", "gray", "ring"}:
+        raise ValueError(f"Unknown initial fill: {init_prefill}")
+    if init_prefill != "black" and (model_name != "sdxl" or strength != 0.99):
+        raise ValueError("The prefill experiment requires SDXL at strength 0.99")
     if model_name == "lama":
         return _load_lama(device, model_dir)
     if model_name in DIFFUSION_CHECKPOINTS:
         return _load_diffusion(
             model_name, device, model_dir, prompt,
             strength=strength, num_inference_steps=num_inference_steps, guidance_scale=guidance_scale,
+            init_prefill=init_prefill,
         )
     raise ValueError(f"Unknown inpainting model: {model_name}")

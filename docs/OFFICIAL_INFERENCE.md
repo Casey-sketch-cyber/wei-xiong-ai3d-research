@@ -8,6 +8,12 @@
 
 对局部 LPIPS 和 DISTS 采用原掩码外接框及 8 像素边界。亮度偏移为原洞内输出减参考的平均 Rec.709 加权 sRGB 值，范围按 0–1 归一化，正值表示偏亮。置信区间按作品重抽 10,000 次，为未做多重校正的 95% 百分位区间。
 
+### 黑色预填充如何进入初始化
+
+固定版 SDXL 有两条图像路径。作为 `image` 传入的受损图包含整个扩张域的 RGB 0，在标准化后的 `init_image` 中为 −1。若 strength 低于 1，管线编码整张 `init_image`，Euler 调度器用 `z_img + σ·ε` 初始化。按本快照的 β 配置，t=901 时 σ 约为 8.391。首次 UNet 调用将潜变量除以 √(1+σ²)，图像潜变量的系数约为 0.118。在独立的 `masked_image` 条件路径中，洞内标准化值被置为 0。历史 strength=1.0 的初始潜变量由纯噪声生成，仍保留洞外图像条件。[初始化和条件源码](https://github.com/huggingface/diffusers/blob/v0.35.2/src/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl_inpaint.py) · [Euler 缩放与加噪源码](https://github.com/huggingface/diffusers/blob/v0.35.2/src/diffusers/schedulers/scheduling_euler_discrete.py) · [固定调度器配置](https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0.1/resolve/115134f363124c53c7d878647567d04daf26e41e/scheduler/scheduler_config.json)
+
+因此，本报告的 0.99 结果对应预先填黑的受损图。若将含有计分真值的完整原图直接传入，初始化也会编码洞内内容。0.118 是潜变量缩放系数，实际输出中的明暗及 MAE 效应需由固定参数下的填色配对测量。用途与正文口径见后续报告。[预填充颜色对照](SDXL_PREFILL.md)
+
 ## 同尺寸结果
 
 216 个计划条件全部完成。下表各变化量为模型卡参数减历史参数。原尺度 96 个条件全部进入 SDXL 自身的配对。中心 512 的色差和 LPIPS 下降，MAE 与 DISTS 的变化区间覆盖零。中心 1024 的 MAE、两种色差及 DISTS 均升高。原尺度 512 的 MAE、LPIPS 和两种色差下降，DISTS 差的区间覆盖零。

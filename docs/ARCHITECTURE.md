@@ -32,6 +32,7 @@ experiments/
   analyze_aligned.py          修正前后同种子配对和四模型完整案例汇总
   analyze_official.py         SDXL 模型卡参数的同尺寸配对、分辨率及模型比较
   verify_official.py          核验模型卡运行产物及配对亮度偏移
+  analyze_prefill.py         核验三种预填充的逐图配对并汇总作品级指标
 ```
 
 ## 计划中的数据流（草案，待定）
@@ -101,3 +102,16 @@ python -B experiments/verify_official.py --new-root "$NEW" --aligned-root "$ALIG
 ```
 
 三组均补齐诊断评分后运行核验。用 `analyze_official.py --help` 确认需传入同尺寸的历史网格修正评分、三组新评分、原输入和共享输入的像素模型评分及原尺度计划。[统计口径与上游设置](OFFICIAL_INFERENCE.md)
+
+## SDXL 预填充颜色对照
+
+用 `run_latent_aligned.py` 准备并运行 `gray-baseline`、`ring-baseline`、`gray-native`、`ring-native`。中心两组复用 `procedural-v1-qualified` 的计划，原尺度两组复用 `native-v2`。模型均为 `sdxl`。锁文件记录 `init_prefill` 及固定参数，实际开始和结束时间写入每组的 `run_sdxl.json`。
+
+```bash
+python -B -m unittest -v experiments.test_latent_aligned experiments.test_sdxl_prefill
+python -B experiments/run_latent_aligned.py prepare --arm ring-native --reference "$NATIVE" --run-dir "$PREFILL/ring-native"
+python -B experiments/run_latent_aligned.py run --arm ring-native --model sdxl --models-dir "$MODELS" --run-dir "$PREFILL/ring-native"
+python -B experiments/analyze_prefill.py --new-root "$PREFILL" --official-root "$OFFICIAL" --output "$PREFILL/diagnostics/prefill-summary.json"
+```
+
+分析要求四个新组与两组历史黑色结果完整，以原洞内像素重算 MAE 和亮度偏移，并按作品配对汇总。可以传入 `--prereg-commit` 和 `--prereg-utc` 一并核对冻结方案早于实际推理。[填色对照结果](SDXL_PREFILL.md)

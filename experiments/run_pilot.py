@@ -6,6 +6,7 @@ import io
 import json
 import math
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -258,7 +259,11 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
         model_loader = load_model
     model = model_loader(args.model, args.device, args.models_dir)
     metric = lpips.LPIPS(net="alex", version="0.1", verbose=False).to(args.device).eval()
+    report_path = args.run_dir / f"run_{args.model}.json"
+    previous = read_json(report_path) if report_path.exists() else {}
+    started_at = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
     complete, failures = 0, 0
+    attempted = False
     for case in cases:
         case_id = case["case_id"]
         with Image.open(args.run_dir / "originals" / f"{case_id}.png") as image:
@@ -275,6 +280,7 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
                 continue
             attempts = read_json(failure_path)["attempts"] if failure_path.exists() else 0
             for attempt in range(attempts + 1, 3):
+                attempted = True
                 start = time.perf_counter()
                 try:
                     restored = predictor(model, pixels, mask, seed)
@@ -298,7 +304,12 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
             if not score_path.exists() or not output_path.exists():
                 failures += 1
     report = {"model": args.model, "completed": complete, "failed": failures, **device_info(args.device)}
-    write_json(args.run_dir / f"run_{args.model}.json", report)
+    if attempted:
+        report["started_at_utc"] = previous.get("started_at_utc", started_at)
+        report["finished_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
+    elif "started_at_utc" in previous and "finished_at_utc" in previous:
+        report.update(started_at_utc=previous["started_at_utc"], finished_at_utc=previous["finished_at_utc"])
+    write_json(report_path, report)
     print(json.dumps(report), flush=True)
     return report
 

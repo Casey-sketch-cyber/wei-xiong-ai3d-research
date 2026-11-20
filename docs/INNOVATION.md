@@ -1,7 +1,7 @@
 # 画作补全模型的形状来源与画材分层评估
 
 - 版本：v1.2，Codex，2026-11-19
-- 状态：程序掩码先导的修正结果见[潜空间掩码诊断与修正重跑](LATENT_ALIGNMENT.md)。本页记录 PR #5 和 PR #7 复审后分别在推理前固定的方案。
+- 状态：程序掩码先导见[潜空间掩码修正](LATENT_ALIGNMENT.md)、[模型卡设置对照](OFFICIAL_INFERENCE.md)及[预填充颜色对照](SDXL_PREFILL.md)。本页记录各轮在推理前固定的方案。
 - 依据：[文献树 v1](literature-tree/literature-tree-v1.md)及其[核查](../literature/audit-of-claude-v1.md)
 - 约束：单张 RTX 3090（24 GB），以短周期的评测论文为目标。使用开放许可的画作，不微调模型，使用基于原图和已知扰动的自动指标。
 

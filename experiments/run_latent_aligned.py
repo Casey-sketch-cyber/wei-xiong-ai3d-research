@@ -24,8 +24,13 @@ ARMS = {
     "official-baseline": ("procedural-v1", {"sdxl": FIRST_SEED}),
     "official-1024": ("sensitivity-v1", {"sdxl_1024": FIRST_SEED}),
     "official-native": ("native-v2", {"sdxl": FIRST_SEED}),
+    "gray-baseline": ("procedural-v1", {"sdxl": FIRST_SEED}),
+    "ring-baseline": ("procedural-v1", {"sdxl": FIRST_SEED}),
+    "gray-native": ("native-v2", {"sdxl": FIRST_SEED}),
+    "ring-native": ("native-v2", {"sdxl": FIRST_SEED}),
 }
 OFFICIAL_SDXL_SETTINGS = {"strength": 0.99, "num_inference_steps": 20, "guidance_scale": 8.0}
+PREFILL_ARMS = {"gray-baseline": "gray", "ring-baseline": "ring", "gray-native": "gray", "ring-native": "ring"}
 
 
 def check_frozen_inputs(root, cases):
@@ -52,7 +57,8 @@ def freeze(arm, source, target):
     if not original_plan["cases"]:
         raise ValueError("No prepared cases")
     reference_digest = sha256(reference)
-    settings = OFFICIAL_SDXL_SETTINGS if arm.startswith("official-") else None
+    init_prefill = PREFILL_ARMS.get(arm)
+    settings = OFFICIAL_SDXL_SETTINGS if arm.startswith("official-") or init_prefill else None
     lock = target / "prepared.json"
     if lock.exists():
         existing = read_json(lock)
@@ -60,6 +66,7 @@ def freeze(arm, source, target):
             existing["protocol"] != PROTOCOL or existing["arm"] != arm
             or existing["reference_plan_sha256"] != reference_digest
             or existing.get("inference_settings") != settings
+            or existing.get("init_prefill") != init_prefill
         ):
             raise ValueError("Target already contains a different frozen plan")
         check_frozen_inputs(target, existing["cases"])
@@ -90,6 +97,8 @@ def freeze(arm, source, target):
     }
     if settings is not None:
         prepared["inference_settings"] = settings
+    if init_prefill is not None:
+        prepared["init_prefill"] = init_prefill
     write_json(lock, prepared)
     print(f"{arm}: froze {len(cases)} cases, {len(masks)} scoring masks", flush=True)
 
@@ -99,8 +108,8 @@ def load_aligned_model(name, device, models_dir):
     return followup_model("sdxl" if name == "sdxl_1024" else name, device, models_dir)
 
 
-def load_official_sdxl(_name, device, models_dir):
-    return load_model("sdxl", device, models_dir, **OFFICIAL_SDXL_SETTINGS)
+def load_official_sdxl(_name, device, models_dir, *, init_prefill="black"):
+    return load_model("sdxl", device, models_dir, init_prefill=init_prefill, **OFFICIAL_SDXL_SETTINGS)
 
 
 def main():
@@ -124,8 +133,9 @@ def main():
     inference_size = 1024 if args.model == "sdxl_1024" else 512
     stride = 4 if args.arm == "sensitivity-shared" else 8
     predict = partial(aligned_prediction, inference_size=inference_size, stride=stride)
-    official = args.arm.startswith("official-")
-    model_loader = load_official_sdxl if official else load_aligned_model
+    init_prefill = PREFILL_ARMS.get(args.arm)
+    official = args.arm.startswith("official-") or init_prefill is not None
+    model_loader = partial(load_official_sdxl, init_prefill=init_prefill or "black") if official else load_aligned_model
     if args.stage == "smoke":
         smoke(args, model_loader=model_loader, predictor=predict)
         return
@@ -137,6 +147,8 @@ def main():
         raise ValueError("Run seed schedule differs from the frozen design")
     if official and prepared.get("inference_settings") != OFFICIAL_SDXL_SETTINGS:
         raise ValueError("Run settings differ from the frozen design")
+    if prepared.get("init_prefill") != init_prefill:
+        raise ValueError("Run fill differs from the frozen design")
     cases = prepared["cases"]
     check_frozen_inputs(args.run_dir, cases)
     outcome = run(args, cases=cases, model_loader=model_loader,

@@ -1,5 +1,7 @@
 # 潜空间掩码诊断与修正重跑
 
+本报告记录网格修正实验，采用当时的 SDXL 参数（strength 1.0、CFG 7.5、25 步）。使用 SDXL 结果时，应并列注明模型卡参数下的同尺寸对照。[官方推理设置敏感性](OFFICIAL_INFERENCE.md)
+
 ## 旧输出的覆盖诊断
 
 已核对固定版本的 SDXL Inpainting 和 PowerPaint 实现。两条管线将图像域掩码用最邻近插值缩到潜空间。对 512 推理，几何回放等价于从原掩码左上角每 8 像素取样，再将取样点还原为方块。1024 敏感性条件先放大掩码，折算到 512 计分网格为步长 4。诊断使用 796 份旧输出、参考图和原计分掩码。覆盖区和漏覆盖区均是原洞的子集。亮度为 0–1 sRGB 的 Rec.709 加权值，MAE 为归一化 RGB 的像素平均。表中按成功保存的输出在相应子集内汇总像素。每次输出的区内像素数、亮度、MAE 和近黑像素比例保存在诊断 JSON。[SDXL 固定版源码](https://github.com/huggingface/diffusers/blob/v0.35.2/src/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl_inpaint.py) · [PowerPaint 固定版源码](https://github.com/open-mmlab/PowerPaint/blob/5b4c3d52291709fcec2a1870d987da693fd3549c/powerpaint/pipelines/pipeline_PowerPaint.py)

@@ -9,8 +9,8 @@ from PIL import Image
 
 from latent_aligned import aligned_prediction, grid_cover
 from models import load_model
-from run_followup import followup_model, prepared_dirs
-from run_pilot import SEEDS, read_json, run, sha256, smoke, write_json
+from run_followup import NATIVE_MAIN_PROTOCOL, followup_model, prepared_dirs
+from run_pilot import SEEDS, model_output, read_json, run, sha256, smoke, write_json
 
 PROTOCOL = "latent-alignment-v1"
 FIRST_SEED = SEEDS[:1]
@@ -28,9 +28,17 @@ ARMS = {
     "ring-baseline": ("procedural-v1", {"sdxl": FIRST_SEED}),
     "gray-native": ("native-v2", {"sdxl": FIRST_SEED}),
     "ring-native": ("native-v2", {"sdxl": FIRST_SEED}),
+    "native-main": (NATIVE_MAIN_PROTOCOL, {"sdxl": FIRST_SEED, "powerpaint": FIRST_SEED}),
+    "native-main-shared": (NATIVE_MAIN_PROTOCOL, {"lama": FIRST_SEED, "mat": FIRST_SEED}),
+    "native-main-original": (NATIVE_MAIN_PROTOCOL, {"lama": FIRST_SEED, "mat": FIRST_SEED}),
 }
 OFFICIAL_SDXL_SETTINGS = {"strength": 0.99, "num_inference_steps": 20, "guidance_scale": 8.0}
 PREFILL_ARMS = {"gray-baseline": "gray", "ring-baseline": "ring", "gray-native": "gray", "ring-native": "ring"}
+NATIVE_MAIN_APERTURES = {
+    "native-main": "shared_grid8",
+    "native-main-shared": "shared_grid8",
+    "native-main-original": "original",
+}
 
 
 def check_frozen_inputs(root, cases):
@@ -58,6 +66,7 @@ def freeze(arm, source, target):
         raise ValueError("No prepared cases")
     reference_digest = sha256(reference)
     init_prefill = PREFILL_ARMS.get(arm)
+    input_aperture = NATIVE_MAIN_APERTURES.get(arm)
     settings = OFFICIAL_SDXL_SETTINGS if arm.startswith("official-") or init_prefill else None
     lock = target / "prepared.json"
     if lock.exists():
@@ -67,6 +76,7 @@ def freeze(arm, source, target):
             or existing["reference_plan_sha256"] != reference_digest
             or existing.get("inference_settings") != settings
             or existing.get("init_prefill") != init_prefill
+            or existing.get("input_aperture") != input_aperture
         ):
             raise ValueError("Target already contains a different frozen plan")
         check_frozen_inputs(target, existing["cases"])
@@ -99,6 +109,8 @@ def freeze(arm, source, target):
         prepared["inference_settings"] = settings
     if init_prefill is not None:
         prepared["init_prefill"] = init_prefill
+    if input_aperture is not None:
+        prepared["input_aperture"] = input_aperture
     write_json(lock, prepared)
     print(f"{arm}: froze {len(cases)} cases, {len(masks)} scoring masks", flush=True)
 
@@ -132,7 +144,10 @@ def main():
         parser.error(f"{args.stage} requires --models-dir and a model from {', '.join(models)}")
     inference_size = 1024 if args.model == "sdxl_1024" else 512
     stride = 4 if args.arm == "sensitivity-shared" else 8
-    predict = partial(aligned_prediction, inference_size=inference_size, stride=stride)
+    input_aperture = NATIVE_MAIN_APERTURES.get(args.arm)
+    predict = model_output if input_aperture == "original" else partial(
+        aligned_prediction, inference_size=inference_size, stride=stride,
+    )
     init_prefill = PREFILL_ARMS.get(args.arm)
     official = args.arm.startswith("official-") or init_prefill is not None
     model_loader = partial(load_official_sdxl, init_prefill=init_prefill or "black") if official else load_aligned_model
@@ -149,6 +164,8 @@ def main():
         raise ValueError("Run settings differ from the frozen design")
     if prepared.get("init_prefill") != init_prefill:
         raise ValueError("Run fill differs from the frozen design")
+    if prepared.get("input_aperture") != input_aperture:
+        raise ValueError("Run input aperture differs from the frozen design")
     cases = prepared["cases"]
     check_frozen_inputs(args.run_dir, cases)
     outcome = run(args, cases=cases, model_loader=model_loader,

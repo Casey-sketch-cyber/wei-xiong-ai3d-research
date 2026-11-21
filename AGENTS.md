@@ -22,7 +22,7 @@
 | 工具 | 负责 | 不做 |
 |---|---|---|
 | Gemini | 按 [`docs/paper/WRITING_BRIEF.md`](docs/paper/WRITING_BRIEF.md) 重写论文正文，产出 `docs/paper/draft-v2.md` | 跑实验、改实验文档、自己补文献 |
-| Codex | 配图（脚本在服务器生成，图像不进 Git）、文献检索与核对、新颖性检索、核对 Gemini 稿里的每个数字和引用 | 重写正文的故事和语气 |
+| Codex | 配图：teaser 和流程图用 PowerPoint 画（可编辑 `.pptx`，放 `docs/paper/figures/`），数据图用脚本在服务器生成、不进 Git；文献检索与核对、新颖性检索、核对 Gemini 稿里的每个数字和引用 | 重写正文的故事和语气 |
 | Claude | 审查所有 PR，合并或退回 | |
 
 `docs/PAPER_DRAFT.md` 是 v1 初稿，只读。

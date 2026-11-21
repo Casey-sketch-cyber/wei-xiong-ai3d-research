@@ -239,7 +239,7 @@ def masked_metrics(pixels, restored, mask, lpips_metric, device):
     return float(mae), float(distance)
 
 
-def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_output):
+def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_output, max_attempts=2):
     import lpips
 
     from models import load_model
@@ -279,7 +279,7 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
                 complete += 1
                 continue
             attempts = read_json(failure_path)["attempts"] if failure_path.exists() else 0
-            for attempt in range(attempts + 1, 3):
+            for attempt in range(attempts + 1, max_attempts + 1):
                 attempted = True
                 start = time.perf_counter()
                 try:

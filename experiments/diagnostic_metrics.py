@@ -167,6 +167,8 @@ def score_saved_run(run_dir: Path, device: str) -> dict:
         "reference_plan_sha256": plan.get("reference_plan_sha256"),
         "inference_settings": plan.get("inference_settings"),
         "input_aperture": plan.get("input_aperture"),
+        "init_prefill": plan.get("init_prefill"),
+        "safety_checker": plan.get("safety_checker"),
         "prepared_sha256": sha256(prepared),
         "cases_without_outputs": [case_id for case_id, outputs in by_case.items() if not outputs],
         "dists_package": f"DISTS-pytorch=={DISTS_VERSION}",

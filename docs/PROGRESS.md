@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md)
+PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md) · [已核对的英文 v2](paper/draft-v2.md)
 
 ## 待办
 
@@ -56,7 +56,7 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] 先冻结独立馆藏抽样，从芝加哥艺术博物馆每组取 15 幅，完成同一 360 条件、四模型主配置和两条原掩码敏感性。 [独立馆藏复现](AIC_REPLICATION.md)
 - [x] 完成复审实验后按 paperwrite 技能起草英文论文，包含两馆结果、证据表和适用范围。 [论文初稿](PAPER_DRAFT.md)
 - [x] Claude 复审 PR #15：实验部分通过并已合并；论文初稿需大改，详见 [复审意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/15#issuecomment-7057262583)
-- [ ] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读
+- [x] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读（待 Claude 审查与 Codex 核对）
 - [x] **Codex · 新颖性检索**：TD-Paint 已指出下采样的掩码信息损失，Diffusers #8450 已讨论低于 1.0 的预填色影响。稿件保留对画作条件的定量结果，以文献和源码定位机制。 [检索和 Gemini 口径](../literature/search-log.md#给-gemini-的机制表述)
 - [x] **Codex · 参考文献池**：逐项核对 59 条来源，包括 44 篇正式论文、4 篇预印本和 11 条档案或官方资源。Controlled-300 标为未经同行评审。 [文献池](../literature/papers.csv)
 - [x] **Codex · 配图**：图 1–5 已生成，服务器数据盘保留 PDF、300 dpi PNG 及校验清单。 [生成说明](paper/FIGURES.md)
@@ -81,6 +81,10 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - 用 `985d2c8` 在服务器生成五张论文图及校验清单，逐图核查 PDF、300 dpi PNG 与联系表。图 2 来源为克利夫兰馆方 CC0。
 - `f2c6a32` 冻结全量原掩码对照。实际推理从干净提交 `a174360` 启动。共享扩张使 PowerPaint 的配对 MAE 下降 0.0471，可用输出从 300/360 降至 281/360。SDXL 在细裂缝和小片剥落上改善，总体差为 +0.0008。
 - 核对 Gemini 稿表 1–7 与各自分母，补齐 15 个引用占位及先导逐条件结果，在 §4.2 附 60 幅的全量结果。
+
+### 2026-11-21 · Gemini · gemini/paper-rewrite-v2
+- **完成**：按 `docs/paper/WRITING_BRIEF.md` 和 `paperwrite` 技能将英文论文重写为 `docs/paper/draft-v2.md`（未改动只读的 `docs/PAPER_DRAFT.md`）。确立“三项协议选择大幅改变测得误差，控制后四模型排序在两馆、四画种、六破损上完全一致”的核心故事线；补齐 Related Work 三条脉络、引言贡献列表、§4.1–§4.5 完整结果小节（表 1–7）、图 1 Mermaid 流程图与图 2–5 占位及图注；局限集中写入 §5.3；正文无超链接、无“first/novel”类宣称、无“unresized”措辞。
+- **交接给 Codex**：正文共使用 33 条 `literature/papers.csv` 已有引用键（全数匹配）和 15 条 `[@TODO-...]` 待入库核对键，另在表 3 标注 1 处可选逐条件差值占位 `[TODO-table3-per-condition-deltas]`，全部清单见 `docs/paper/draft-v2.md` 附录及分支提交说明。
 
 ### 2026-11-21 · Claude · claude/gemini-rewrite-brief
 - **完成**：按作者决定改为 Gemini 重写正文、Codex 负责配图和文献；写 Gemini 任务书 `docs/paper/WRITING_BRIEF.md`，新增 `GEMINI.md`，更新 AGENTS.md 的阶段和分工，重新分配论文待办。

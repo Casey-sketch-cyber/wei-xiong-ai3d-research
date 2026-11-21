@@ -34,8 +34,10 @@ MODELS = [("LaMa", "#2F6FB5", "circle"), ("MAT", "#7FB2E0", "square"),
 PREFILL = [("black", "#000000", True), ("gray", "#808080", False), ("ring", None, False)]
 CAPTION = ("Three protocol choices change what is measured when AI inpainting is scored on museum paintings. "
            "(a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask "
-           "(red; 59.5% of 1% crack pixels across 60 works); a grid-aligned input reaches every hole pixel. (b) At SDXL "
-           "strength 0.99 the colour used to prefill the hole changes the result (inset: black, mid-gray, ring mean). "
+           "(red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel "
+           "and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). "
+           "(b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill "
+           "are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one paired case. "
            "(c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago "
            "conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four "
            "media and six losses.")
@@ -91,6 +93,11 @@ def image(x, y, w, h, href):
             f'<rect x="{x:.2f}" y="{y:.2f}" width="{w}" height="{h}" fill="none" stroke="{RULE}" stroke-width="0.5"/>')
 
 
+def ring_colour():
+    path = HERE / "ring_mean.json"
+    return json.loads(path.read_text(encoding="utf-8"))["hex"] if path.exists() else "#9C8466"
+
+
 def shield(cx, cy):
     s = 3.2
     return (f'<g data-symbol="shield"><path d="M{cx:.2f} {cy - s * 1.25:.2f} L{cx + s:.2f} {cy - s * 0.8:.2f} '
@@ -135,9 +142,7 @@ def build():
     BT, BG = 46, 6
     bx = [PB[0] + i * (BT + BG) for i in range(3)]
     by = TOPY + (T - BT) / 2 + 6
-    ring_fill = "#9C8466"
-    if (HERE / "ring_mean.json").exists():
-        ring_fill = json.loads((HERE / "ring_mean.json").read_text())["hex"]
+    ring_fill = ring_colour()
     p = place("SDXL", (PB[0], 0.5, PB[1], 8.5), size=S_BODY, font=FONT, bold=True)
     body.append(f'<g id="n:b-sdxl" data-kind="node" data-role="novel" data-parent="b">'
                 f'<path d="M{bx[0]:.2f} {by - 6:.2f} V{by - 8.5:.2f} H{bx[2] + BT:.2f} V{by - 6:.2f}" fill="none" '

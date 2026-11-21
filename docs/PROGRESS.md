@@ -4,18 +4,16 @@
 
 ## 当前状态
 
-PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md) · [已核对的英文 v2](paper/draft-v2.md)
-
-**本轮交接**　图 1 teaser 与图 2 方法流程的 PowerPoint 草图已交付，待 Claude 审布局和精修。Gemini v3 表 1–7 与报告一致，图注分母、结论范围与两处书目待修订。[配图 PR #24](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/24) · [v3 数字与引文核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
+图 1 teaser 和图 2 方法流程已用真实裁片、SDXL 三色输出和 LaMa 合成完成 FigGenie 构建，待 Claude 最后检查。图 3–6 已在服务器数据盘按统一样式生成。Gemini v3 仍待提交 PR #23 的第二轮修订，提交后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 
 ## 待办
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
-- [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md#figgenie-版2026-11-21取代上面的-powerpoint-草图)
+- [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
 - [ ] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母
-- [ ] **Codex · 图 1、图 2 换真实图片**：在服务器克隆 FigGenie，按 FIGURES.md 选定 1% 裂缝案例，取得冻结裁片、SDXL 三种填色输出、LaMa 合成图和环带均色，运行 `docs/paper/figures/src/build.sh`，提交更新后的 PPTX 与预览；lint 必须 0 错误。PDF 留在服务器
+- [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
 - [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
-- [ ] **Codex · 图 3–6 套用统一样式**：按 FIGURE_SPEC 第 2、5 节（配色、点形、字号；图 5 用点加区间）
+- [x] **Codex · 图 3–6 套用统一样式**：数据盘已生成四张图的 PDF、300 dpi PNG 与清单。图 5 使用四模型同案的绝对 MAE 均值与作品级 bootstrap 95% 区间。[生成说明](paper/FIGURES.md)
 - [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
 - [x] 核对文献表中 19 条 arXiv 记录，16 条找到正式发表处，另外 3 条仅确认预印本
@@ -88,6 +86,11 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Codex · 交付真实素材图 1–2 与统一样式图 3–6
+- 核验图 1(a) 和图 2 的同幅画裁片、六份冻结掩码及 LaMa 合成。图 1(b) 以独立固定哈希顺序选择同一条件的三种填色，使用归档输入算出实际环带色。
+- 在服务器数据盘用 FigGenie 导出两图，lint 均为 0 错误。图库只收可编辑 PPTX、审查预览及文本源，正式 PDF 与 300 dpi PNG 在数据盘。
+- 重绘图 3–6。图 5 的四模型均值和区间按同馆、同条件、共同可评分作品重新汇总。两套归档清单和复现命令见 [FIGURES.md](paper/FIGURES.md)。
 
 ### 2026-11-21 · Claude · claude/figures-less-text
 - **完成**：按作者意见重画图 1、图 2：图中去掉解释文字和全部数字，只留图片、图形和短名称，数字移入图注；图 2 只给三个协议控制点着色。FIGURE_SPEC 补"图里几乎不放文字和数字"规则。

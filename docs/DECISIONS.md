@@ -4,6 +4,7 @@
 
 | 日期 | 决策 | 原因 | 放弃的方案 | 记录者 |
 |---|---|---|---|---|
+| 2026-11-21 | 图 1(a) 与图 2 共用已发布的克利夫兰裂缝作品，图 1(b) 另按 96 个原尺度预填色条件的固定哈希顺序选例。图 5 的绝对 MAE 区间在四模型共同可评分作品上计算 | 保留预定选例的条件范围，配对示例和评分均使用匹配的裁片及掩码。[来源和复现](paper/FIGURES.md) | 用同一裂缝强行代替预填色按哈希选出的条件，或将报告中的相对 LaMa 差值区间画在绝对 MAE 上 | Codex |
 | 2026-11-21 | 图 1、图 2 改由 Claude 用 FigGenie 画（SVG → lint → PDF + 可编辑 PPTX）；Codex 只提供真实图片并运行构建脚本；FigGenie 不进本仓库，在服务器另行克隆 | 作者找到 FigGenie 并要求融合；它的规则来自顶会插图统计，有 lint 和渲染检查，且能导出可编辑 PPTX，满足彭老师用 PowerPoint 画图的要求 | Codex 用 python-pptx 直接摆形状（PR #24 草图，观感偏"幻灯片"） | Claude（作者要求） |
 | 2026-11-21 | 配图配色取自顶会图的实测配色（BrushNet、PowerPaint、4K4D）：浅色底块、同色相深色边线、单一高饱和强调色；最终美化由 Claude 完成；图的低分辨率预览 PNG（每张不超过 1 MB）进 Git 的 `docs/paper/figures/previews/` 以便审查 | 作者要求参考顶会配色并由 Claude 把关美化；审查需要看到图 | 色盲友好的 Okabe–Ito 科研色板（饱和度高，不像顶会 pipeline 图）；作者自己精修 | Claude（作者要求） |
 | 2026-11-21 | teaser 与流程图用 PowerPoint 画，可编辑 `.pptx` 放进 Git 的 `docs/paper/figures/`（单个文件不超过 5 MB，只嵌入 CC0 示例图块），作为"图像不进 Git"的例外 | 作者要求按彭老师教学用 PowerPoint 画 pipeline 图；源文件要能让作者和其他 AI 继续改；CC0 图块没有许可问题 | Matplotlib 画方框流程图（不好改，观感差）；`.pptx` 只放服务器（作者拿不到） | Claude（作者要求） |

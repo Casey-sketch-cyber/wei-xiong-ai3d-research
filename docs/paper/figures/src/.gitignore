@@ -5,4 +5,5 @@ fig.pdf
 fig.lint.*
 fig.preview.html
 assets.json
+ring_mean.json
 __pycache__/

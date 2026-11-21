@@ -1,26 +1,45 @@
 # 论文配图
 
-## PowerPoint 布局草图（当前编号）
+## 图 1–2（FigGenie）
 
-| 图 | 可编辑源文件 | 预览 | 成图尺寸 |
+| 图 | 可编辑源文件 | 审查预览 | 成图尺寸 |
 | --- | --- | --- | --- |
-| 1 · Teaser | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) | 17.4 × 7.15 cm |
-| 2 · 方法流程 | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) | 17.4 × 6 cm |
+| 1 · Teaser | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) | 495 × 141 pt |
+| 2 · 方法流程 | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) | 495 × 118 pt |
 
-按 [配图设计说明](FIGURE_SPEC.md) 提交布局供审查。两图的文字、形状、箭头和方块图均可在 PowerPoint 中编辑。画作、模型输出和图标位置使用占位形状。用 python-pptx 1.0.2 生成，Microsoft PowerPoint 导出 PDF，Poppler 从 PDF 生成 180 dpi 预览。
+| 面板 | 冻结例图、来源与取样 |
+| --- | --- |
+| 1(a) 与图 2 | 沿用已发布掩码覆盖图的 1% 裂缝条件 `oil_wood_14_crack_01`。使用同幅画的槽位 14 裁片和六个逐像素核验的掩码，流程的对齐输入与 LaMa 合成来自 `oil_wood_14_crack_05`。图 1(a) 单例漏覆盖 52.9%，全队列 60 幅的平均为 59.54%。*Cottages Near Larchant*，Théodore Rousseau。[CMA 1915.728，CC0](https://www.clevelandart.org/art/1915.728) |
+| 1(b) | 在原尺度 16 幅的 96 个条件中，以 `SHA256("museum-painting-figures-v1|" + case_id)` 排序，首个为 `oil_canvas_03_flake_01`。四舍五入后的实际环带色为 `#342822`，从该案例的扩张洞外八像素邻域计算。三种输出复用该案例的裁片与掩码，组级亮度数值使用全部 96 条条件。*Boy Drinking*，Annibale Carracci。[CMA 1994.4，CC0](https://www.clevelandart.org/art/1994.4) |
+
+`make_teaser_assets.py --archive` 以既有图清单、两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
+
+在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。保留原版布局的宽高比、短文字、标签与流程框对齐提示，交最后美化时核看。
 
 ```bash
-python -B experiments/make_ppt_figures.py --output-dir docs/paper/figures
+FIGGENIE="$FIGGENIE" FIGURE_ARCHIVE="$PROJECT" bash docs/paper/figures/src/build.sh
 ```
 
-| 图中数字 | 对应实验证据 |
-| --- | --- |
-| 1(a) · 59.5% 与 −45% | 克利夫兰 60 幅的 1% 裂缝平均漏覆盖为 59.54%。PowerPaint 的原洞 MAE 在 40 幅六条件齐全的配对作品上从 0.1055 降至 0.0583，约降 45%，两组均开启安全检查。[全量原掩码对照](../NATIVE_APERTURE.md) |
-| 1(b) · −0.085、+0.055、+0.034 | 固定 SDXL strength 0.99，16 幅 × 6 条件的掩码内平均亮度偏移。三值按黑色、中灰、环带均色排列，属于组级汇总。[SDXL 填色对照](../SDXL_PREFILL.md) |
-| 1(c) · 281/360、350/360 | PowerPaint v1 安全检查开启时的两馆可用量。克利夫兰拦截 79，芝加哥拦截 10。[克利夫兰主实验](../NATIVE_MAIN.md) · [芝加哥复现](../AIC_REPLICATION.md) |
-| 1(d) 与 2 | 排序仅概括共享扩张输入下的原洞 MAE。两馆各 60 幅、4 组各 15 幅、每幅 6 个条件，每馆每模型计划 360 条。流程图的 ΔE₀₀ 对应逐像素色差均值与掩码内平均 Lab 色的色差两种汇总。[克利夫兰主实验](../NATIVE_MAIN.md) · [芝加哥复现](../AIC_REPLICATION.md) |
+论文 PDF、300 dpi PNG、自包含 SVG 和清单位于服务器项目数据盘的 `paper/figgenie-20261121/publication/`。清单 SHA-256 为 `d3b9f3ce9a31a01f752e8976a768c44dd44dc73bde451fcaf234540002062e147`。风格参考图仍位于 `paper/figure-refs/`。
 
-风格参考位于服务器项目数据盘的 `paper/figure-refs/`，文件 `sources-20261121.json` 记录来源、尺寸与 SHA-256。六张参考图为 LDM 图 3、BrushNet 图 2 和图 3、PowerPaint 图 2、4K4D 图 2、MAT 图 8。参考缩略图仅供内部配图审查。
+## 图 3–6（数据图）
+
+| 图 | 文件名（PDF 与 PNG 共用） | 口径 |
+| --- | --- | --- |
+| 3 | `figure-3-examples` | 三种 5% 破损各一个冻结案例，按固定盐选取。每行统一放大范围，四模型格内标原洞 MAE。 |
+| 4 | `figure-4-latent-coverage` | 三种 1% 破损各一个冻结案例，显示最近邻取样的漏覆盖和整格扩张。 |
+| 5 | `figure-5-condition-mae` | 同馆、同条件下四模型共用可评分作品。点为绝对原洞 MAE 均值，区间为共同作品索引的 10,000 次 bootstrap 95% 百分位区间，纵轴为对数。 |
+| 6 | `figure-6-powerpaint-coverage` | 两馆四组每组 90 个计划条件，砖红斜线为拦截，条内数字为可评分数与计划数。 |
+
+```bash
+MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experiments/make_paper_figures.py \
+  --cma-root "$PROJECT/runs/native-main-20261120" \
+  --aic-root "$PROJECT/runs/aic-replication-20261121" \
+  --font-dir "$FIGGENIE/assets/fonts" \
+  --output-dir "$PROJECT/paper/figures-3-to-6-20261121-arimo"
+```
+
+PDF、300 dpi PNG、联系表与清单位于以上数据盘目录，使用 495 pt 通栏和 FigGenie 的 Arimo 字体。清单 SHA-256 为 `69f5875429f4f35200f6c73a3287a0dbc0252a56e3ff37448b3c19c864cf625dd`。[统一样式](../../experiments/paper_style.mplstyle)
 
 ## 既有 Matplotlib 图（旧编号）
 
@@ -52,13 +71,3 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 ```
 
 生成器逐一核对预定的两馆汇总哈希、原图、掩码及图 2 的四模型输出，记录完整注释和分母。已检查五个 PDF 的格式签名、PNG 尺寸与分辨率，并目视检查从服务器生成的联系表。清单为 `figure-manifest.json`，SHA-256 `ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326`。 [配图脚本](../../experiments/make_paper_figures.py)
-
-
-## FigGenie 版（2026-11-21，取代上面的 PowerPoint 草图）
-
-| 图 | 源文件 | 可编辑 PPTX | 预览 |
-| --- | --- | --- | --- |
-| 1 · Teaser | [src/fig1](figures/src/fig1/make_fig1.py) | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) |
-| 2 · 方法流程 | [src/fig2](figures/src/fig2/make_fig2.py) | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) |
-
-**当前预览中的画作裁片、SDXL 输出和合成图是占位图**；(a) 的掩码覆盖图和图 2 的六个掩码是真实几何，按冻结的种子规则重建（示例槽位 2，该掩码漏覆盖 57.8%，60 幅平均为 59.5%）。Codex 需按 FIGURES.md 的选例规则选定 1% 裂缝案例，取得其槽位、冻结裁片，以及同一条件下 SDXL 三种填色的输出和一张 LaMa 合成图，然后运行 [build.sh](figures/src/build.sh)。环带均色的色块应取该案例的实际 RGB，写进 `src/fig1/ring_mean.json`（`{"hex": "#RRGGBB"}`）。

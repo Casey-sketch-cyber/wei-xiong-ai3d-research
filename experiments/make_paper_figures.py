@@ -1,4 +1,4 @@
-"""Render five publication figures from the verified painting experiment archives."""
+"""Render publication figures 3–6 from the verified painting experiment archives."""
 
 import argparse
 import json
@@ -11,18 +11,21 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
-from matplotlib.font_manager import findfont
-from matplotlib.patches import FancyBboxPatch, Patch
-from matplotlib.ticker import MultipleLocator, PercentFormatter
+from matplotlib.font_manager import FontProperties, findfont, fontManager
+from matplotlib.lines import Line2D
+from matplotlib.patches import Patch, Rectangle
+from matplotlib.path import Path as MarkerPath
+from matplotlib.ticker import FuncFormatter, LogLocator, NullLocator, PercentFormatter
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from analyze_followup import CONDITIONS
-from audit_native_outputs import artwork_metadata, read_arm
+from analyze_native_main import ARMS
+from audit_native_outputs import artwork_metadata
 from latent_aligned import grid_cover
 from latent_mask_diagnostic import GRID_STRIDES, read_pixels, split_mask
 from patch_design import MASK_FAMILIES
 from run_followup import PAIRED_SEED
-from run_pilot import SIZE, STRATA, read_json, sha256
+from run_pilot import BOOTSTRAP_SEED, N_BOOTSTRAPS, SIZE, STRATA, read_json, sha256
 
 
 ARCHIVED_SUMMARIES = {
@@ -31,33 +34,21 @@ ARCHIVED_SUMMARIES = {
 }
 COHORTS = {"cma": "Cleveland", "aic": "Chicago"}
 MODELS = (
-    ("shared", "lama", "LaMa", "#0072B2", "o", "-"),
-    ("shared", "mat", "MAT", "#009E73", "s", "--"),
-    ("diffusion", "powerpaint", "PowerPaint", "#D55E00", "^", "-."),
-    ("diffusion", "sdxl", "SDXL", "#704A91", "D", ":"),
+    ("shared", "lama", "LaMa", "o"),
+    ("shared", "mat", "MAT", "s"),
+    ("diffusion", "powerpaint", "PowerPaint v1", "^"),
+    ("diffusion", "sdxl", "SDXL", "D"),
 )
-STYLES = {
-    "font.family": "DejaVu Sans",
-    "font.size": 8.5,
-    "axes.titlesize": 9.5,
-    "axes.labelsize": 9,
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.edgecolor": "#586572",
-    "axes.labelcolor": "#162533",
-    "xtick.color": "#162533",
-    "ytick.color": "#162533",
-    "text.color": "#162533",
-    "figure.facecolor": "white",
-    "pdf.fonttype": 42,
-}
+PAPER_WIDTH = 495 / 72
+PAPER_STYLE = Path(__file__).with_name("paper_style.mplstyle")
+INK = "#383848"
+OUTLINE = "#8898B8"
+MASK_COLORS = ("#F5F6F8", "#C00000", "#70AD47", "#DEEBF7")
 FAMILIES = {"crack": "Crack", "flake": "Flake", "loss": "Broad loss"}
 MATERIALS = {
     "oil_canvas": "Oil on canvas", "oil_wood": "Oil on wood",
     "watercolor_paper": "Watercolor on paper", "ink_paper": "Ink on paper",
 }
-COHORT_COLORS = ("#22558A", "#D07920")
-MASK_COLORS = ("#F1F3F4", "#B53D36", "#007681", "#BCE4E4")
 SELECTION_SALT = "museum-painting-figures-v1"
 
 
@@ -72,6 +63,27 @@ def load_summary(root, cohort):
             or summary["seed"] != PAIRED_SEED or sha256(plan) != summary["inputs_sha256"]["native_plan"]):
         raise ValueError(f"Unexpected cohort or source plan: {path}")
     return summary
+
+
+def load_main_arms(root, summary, cohort):
+    arms = {}
+    for key in ("shared", "diffusion"):
+        name, models, _ = ARMS[key]
+        if cohort == "aic":
+            name = name.replace("native-main", "aic-replication")
+        arm = root / name
+        diagnostic = root / "diagnostics" / f"{name}.json"
+        hashes = summary["inputs_sha256"]["arms"][key]
+        diagnostic_hash = sha256(diagnostic)
+        if diagnostic_hash != hashes["diagnostics"] or sha256(arm / "prepared.json") != hashes["prepared"]:
+            raise ValueError(f"Diagnostics or plan differ from the published summary: {cohort}/{key}")
+        diagnostic_rows = read_json(diagnostic)["rows"]
+        rows = {(row["case_id"], row["model"], row["seed"]): row for row in diagnostic_rows}
+        if len(rows) != len(diagnostic_rows) or any(model not in models or seed != PAIRED_SEED
+                                                    for _, model, seed in rows):
+            raise ValueError(f"Unexpected or duplicate scores in {diagnostic}")
+        arms[key] = arm, rows, diagnostic_hash
+    return arms
 
 
 def choose_examples(cases, arms, area):
@@ -174,7 +186,32 @@ def load_coverage_mask(prepared, case):
     return counts, (mask[detail], legacy_codes[detail], aligned_codes[detail])
 
 
-def plotted_counts(summary):
+def common_mae_by_condition(cases, arms):
+    by_condition = {condition: {} for condition in CONDITIONS}
+    case_ids = {case["case_id"] for case in cases}
+    if len(case_ids) != len(cases) or any(case_id not in case_ids for _, rows, _ in arms.values()
+                                        for case_id, _, _ in rows):
+        raise ValueError("Diagnostic case IDs do not match the frozen source plan")
+    for case in sorted(cases, key=lambda row: row["case_id"]):
+        case_id, artwork_id, stratum = (case[key] for key in ("case_id", "artwork_id", "stratum"))
+        rows = [arms[arm][1].get((case_id, model, PAIRED_SEED)) for arm, model, *_ in MODELS]
+        if any(row is None for row in rows):
+            continue
+        if any((row["artwork_id"], row["stratum"]) != (artwork_id, stratum) for row in rows):
+            raise ValueError(f"Diagnostic case identity mismatch: {case_id}")
+        condition = (case["family"], case["target_area"])
+        if artwork_id in by_condition[condition]:
+            raise ValueError(f"Multiple scores per artwork in the same condition: {artwork_id}/{condition}")
+        values = [row["masked_mae"] for row in rows]
+        if not all(np.isfinite(value) and 0 <= value <= 1 for value in values):
+            raise ValueError(f"Invalid MAE scores: {case_id}")
+        by_condition[condition][artwork_id] = values
+    return by_condition
+
+
+def plotted_counts(summary, cases, arms):
+    common = common_mae_by_condition(cases, arms)
+    models = [model for _, model, *_ in MODELS]
     planned_works = summary["planned_artworks"]
     matched = summary["primary"]["all_models"]
     powerpaint = summary["coverage"]["diffusion"]["powerpaint"]
@@ -189,11 +226,22 @@ def plotted_counts(summary):
         family, area = row["family"], row["target_area"]
         count = row["overall"]["n_artworks"]
         values = row["overall"]["metrics"]["masked_mae"]["model_means"]
-        if (not 0 < count <= planned_works or count != pp_conditions[family, area]
-                or set(values) != {model for _, model, *_ in MODELS}
-                or not all(np.isfinite(value) and 0 <= value <= 1 for value in values.values())):
+        work_scores = common[family, area]
+        if (not 2 <= count <= planned_works or count != pp_conditions[family, area]
+                or count != len(work_scores) or set(values) != set(models)):
             raise ValueError(f"Invalid common-model denominator or MAE: {family}/{area}")
-        per_condition.append({"family": family, "target_area": area, "matched_artworks": count, "masked_mae": values})
+        matrix = np.asarray(list(work_scores.values()))
+        means = matrix.mean(axis=0)
+        if not np.allclose(means, [values[model] for model in models], rtol=0, atol=1e-12):
+            raise ValueError(f"Recomputed common-model MAE does not match the archived summary: {family}/{area}")
+        # Sample the same artworks for all four columns within each condition.
+        rng = np.random.default_rng(BOOTSTRAP_SEED)
+        sample = rng.integers(count, size=(N_BOOTSTRAPS, count))
+        intervals = np.percentile(matrix[sample].mean(axis=1), [2.5, 97.5], axis=0).T
+        per_condition.append({
+            "family": family, "target_area": area, "matched_artworks": count,
+            "masked_mae": values, "masked_mae_ci95": dict(zip(models, intervals.tolist(), strict=True)),
+        })
     for stratum in STRATA:
         row = powerpaint["by_stratum"][stratum]
         usable, planned = row["completed_outputs"], row["planned_outputs"]
@@ -207,135 +255,134 @@ def plotted_counts(summary):
     return per_condition, coverage
 
 
-def workflow_figure():
-    fig, ax = plt.subplots(figsize=(7.2, 4.0))
-    fig.subplots_adjust(0.01, 0.02, 0.99, 0.99)
-    ax.set(xlim=(0, 1), ylim=(0, 1))
-    ax.axis("off")
-
-    def box(x, y, title, detail, face="#EEF3F8"):
-        width, height = 0.385, 0.127
-        ax.add_patch(FancyBboxPatch((x - width / 2, y - height / 2), width, height,
-                                    boxstyle="round,pad=0.004,rounding_size=0.012",
-                                    edgecolor="#648096", facecolor=face, linewidth=0.7))
-        ax.text(x, y + 0.022, title, ha="center", va="center", weight="bold", fontsize=9.3)
-        ax.text(x, y - 0.022, detail, ha="center", va="center", fontsize=8.05)
-
-    def arrow(start, end):
-        ax.annotate("", xy=end, xytext=start, arrowprops={
-            "arrowstyle": "->", "linewidth": 0.85, "color": "#48677C", "shrinkA": 0, "shrinkB": 0,
-        })
-
-    box(0.255, 0.904, "Cleveland Museum of Art", "60 CC0 works • published full-size files")
-    box(0.745, 0.904, "Art Institute of Chicago", "60 CC0 works • 1686 px-wide IIIF JPEG")
-    box(0.5, 0.704, "Freeze reference crops and masks", "512 × 512 pixels • six damage conditions")
-    box(0.255, 0.504, "Expand shared model input", "Hide every 8 × 8 cell touching the mask", "#E5F1F3")
-    box(0.745, 0.504, "Hold original crop and mask", "Original scoring region and visible pixels")
-    box(0.255, 0.304, "Run fixed configurations", "LaMa • MAT • PowerPaint • SDXL", "#E5F1F3")
-    box(0.745, 0.304, "Composite and score", "Use predictions only inside the original mask")
-    box(0.255, 0.104, "Record output coverage", "Available outputs / all planned conditions", "#F8EEE2")
-    box(0.745, 0.104, "Compare paired works", "Full-reference errors by collection", "#F8EEE2")
-    for x in (0.255, 0.745):
-        arrow((x, 0.837), (0.5 + (x - 0.5) * 0.45, 0.771))
-        arrow((0.5 + (x - 0.5) * 0.45, 0.637), (x, 0.571))
-        arrow((x, 0.437), (x, 0.371))
-        arrow((x, 0.237), (x, 0.171))
-    arrow((0.452, 0.304), (0.548, 0.304))
-    return fig
-
-
 def examples_figure(examples):
-    fig, axes = plt.subplots(3, 6, figsize=(7.2, 4.03))
-    fig.subplots_adjust(left=0.025, right=0.985, bottom=0.05, top=0.831, wspace=0.035, hspace=0.28)
+    fig, axes = plt.subplots(3, 6, figsize=(PAPER_WIDTH, 3.85))
+    fig.subplots_adjust(left=0.015, right=0.985, bottom=0.023, top=0.854, wspace=0.035, hspace=0.21)
     headings = ("Reference", "Scoring mask", *(label for _, _, label, *_ in MODELS))
-    for ax, title in zip(axes[0], headings, strict=True):
-        ax.text(0.5, 1.235, title, transform=ax.transAxes, ha="center", va="bottom", weight="bold")
+    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    for col, (ax, title) in enumerate(zip(axes[0], headings, strict=True)):
+        if col >= 2:
+            ax.add_patch(Rectangle((0.06, 1.161), 0.88, 0.019, transform=ax.transAxes,
+                                   facecolor=colors[col - 2], edgecolor="none", clip_on=False))
+        ax.text(0.5, 1.211, title, transform=ax.transAxes, ha="center", va="bottom", weight="bold",
+                fontsize=7.5)
     for row, (metadata, panels) in enumerate(examples):
         for col, (ax, pixels) in enumerate(zip(axes[row], panels, strict=True)):
             ax.imshow(pixels, cmap="gray" if col == 1 else None, vmin=0 if col == 1 else None,
                       vmax=1 if col == 1 else None, interpolation="none")
+            ax.add_patch(Rectangle((0, 0), 1, 1, transform=ax.transAxes,
+                                   facecolor="none", edgecolor="white", linewidth=0.75, zorder=3))
             ax.axis("off")
+            if col >= 2:
+                key = MODELS[col - 2][1]
+                value = metadata["outputs"][key]["masked_mae"]
+                ax.text(0.958, 0.052, f"MAE {value:.4f}", transform=ax.transAxes,
+                        ha="right", va="bottom", fontsize=6, zorder=4,
+                        bbox={"boxstyle": "square,pad=0.20", "facecolor": "white", "edgecolor": "none", "alpha": 0.94})
         axes[row, 0].text(0, 1.036,
                           f"{FAMILIES[metadata['family']]} · {metadata['target_area']:.0%} · {metadata['artwork_id']}",
-                          transform=axes[row, 0].transAxes, fontsize=8.1, va="bottom")
+                          transform=axes[row, 0].transAxes, fontsize=6.5, va="bottom")
     return fig
 
 
 def coverage_figure(examples):
-    fig, axes = plt.subplots(3, 3, figsize=(5.85, 5.32))
-    fig.subplots_adjust(left=0.047, right=0.982, bottom=0.136, top=0.90, wspace=0.08, hspace=0.25)
+    fig, axes = plt.subplots(3, 3, figsize=(PAPER_WIDTH, 4.96))
+    fig.subplots_adjust(left=0.061, right=0.96, bottom=0.126, top=0.90, wspace=0.072, hspace=0.24)
     titles = ("Original scoring mask", "Legacy nearest-neighbor grid", "Aligned 8 × 8 grid")
     for ax, title in zip(axes[0], titles, strict=True):
-        ax.text(0.5, 1.20, title, transform=ax.transAxes, ha="center", va="bottom", weight="bold")
+        ax.text(0.5, 1.16, title, transform=ax.transAxes, ha="center", va="bottom", weight="bold", fontsize=7.5)
     for row, (metadata, panels) in enumerate(examples):
         for col, (ax, pixels) in enumerate(zip(axes[row], panels, strict=True)):
-            cmap = ListedColormap((MASK_COLORS[0], "#182D3B") if col == 0 else MASK_COLORS)
+            cmap = ListedColormap((MASK_COLORS[0], INK) if col == 0 else MASK_COLORS)
             ax.imshow(pixels, cmap=cmap, vmin=0, vmax=1 if col == 0 else 3, interpolation="none")
             ax.set(xticks=[], yticks=[], xlim=(-0.5, pixels.shape[1] - 0.5), ylim=(pixels.shape[0] - 0.5, -0.5))
             for spine in ax.spines.values():
                 spine.set_visible(False)
         axes[row, 0].text(0.5, 1.026, f"{FAMILIES[metadata['family']]} · {metadata['target_area']:.0%}",
-                          transform=axes[row, 0].transAxes, ha="center", va="bottom", fontsize=8.1)
+                          transform=axes[row, 0].transAxes, ha="center", va="bottom")
         missed = metadata["legacy_missed_mask_pixels"] / metadata["mask_pixels"]
         axes[row, 1].text(0.5, 1.026, f"{missed:.1%} of scoring mask missed",
-                          transform=axes[row, 1].transAxes, ha="center", va="bottom", fontsize=8.1)
+                          transform=axes[row, 1].transAxes, ha="center", va="bottom")
         axes[row, 2].text(0.5, 1.026, "Full mask coverage",
-                          transform=axes[row, 2].transAxes, ha="center", va="bottom", fontsize=8.1)
+                          transform=axes[row, 2].transAxes, ha="center", va="bottom")
+    check = MarkerPath([(-0.55, -0.05), (-0.18, -0.41), (0.57, 0.45)])
     legend = [
-        Patch(facecolor=MASK_COLORS[2], label="Scored and reached"),
-        Patch(facecolor=MASK_COLORS[1], label="Scored and missed"),
-        Patch(facecolor=MASK_COLORS[3], edgecolor="#78A7AB", linewidth=0.4, label="Reached outside scoring mask"),
+        Line2D([], [], marker=check, markerfacecolor="none", markeredgecolor=MASK_COLORS[2], markeredgewidth=1.1,
+               linestyle="none", markersize=6, label="Covered scoring pixels"),
+        Line2D([], [], marker="x", color=MASK_COLORS[1], linestyle="none", markersize=5.5, label="Missed scoring pixels"),
+        Patch(facecolor=MASK_COLORS[3], edgecolor=OUTLINE, linewidth=0.75, label="Covered outside scoring mask"),
     ]
-    fig.legend(handles=legend, loc="lower center", bbox_to_anchor=(0.5, 0.043), ncols=3, frameon=False, fontsize=8)
+    fig.legend(handles=legend, loc="lower center", bbox_to_anchor=(0.5, 0.046), ncols=3, frameon=False)
     fig.text(0.5, 0.025, "The legacy grid samples the top-left pixel of each 8 × 8 cell.",
-             ha="center", va="center", fontsize=8)
+             ha="center", va="center")
     return fig
 
 
 def condition_figure(by_cohort):
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.38), sharey=True)
-    fig.subplots_adjust(left=0.092, right=0.989, bottom=0.248, top=0.882, wspace=0.104)
-    maximum = max(value for rows in by_cohort.values() for row in rows for value in row["masked_mae"].values())
+    fig, axes = plt.subplots(1, 2, figsize=(PAPER_WIDTH, 3.10), sharey=True)
+    fig.subplots_adjust(left=0.096, right=0.991, bottom=0.244, top=0.899, wspace=0.102)
+    intervals = [interval for rows in by_cohort.values() for row in rows
+                 for interval in row["masked_mae_ci95"].values()]
+    limits = (min(low for low, _ in intervals) * 0.82, max(high for _, high in intervals) * 1.17)
+    if limits[0] <= 0:
+        raise ValueError("Log-scale MAE chart requires positive interval endpoints")
+    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
     for ax, (cohort, rows) in zip(axes, by_cohort.items(), strict=True):
         xs = np.arange(len(rows))
-        for _, model, label, color, marker, line in MODELS:
-            ax.plot(xs, [row["masked_mae"][model] for row in rows],
-                    label=label, color=color, marker=marker, linestyle=line, linewidth=1.45, markersize=4.6)
+        for (_, model, label, marker), color, offset in zip(MODELS, colors, (-0.24, -0.08, 0.08, 0.24), strict=True):
+            means = np.asarray([row["masked_mae"][model] for row in rows])
+            lows, highs = np.asarray([row["masked_mae_ci95"][model] for row in rows]).T
+            pos = xs + offset
+            ax.vlines(pos, lows, highs, color=color, linewidth=0.85, zorder=2)
+            ax.hlines(lows, pos - 0.038, pos + 0.038, color=color, linewidth=0.75, zorder=2)
+            ax.hlines(highs, pos - 0.038, pos + 0.038, color=color, linewidth=0.75, zorder=2)
+            ax.plot(pos, means, label=label, color=color, marker=marker, linestyle="none",
+                    markersize=4.2, markeredgecolor=INK, markeredgewidth=0.38, zorder=3)
         ax.set_xticks(xs, [
             f"{'Loss' if row['family'] == 'loss' else FAMILIES[row['family']]}\n"
             f"{row['target_area']:.0%}\nn={row['matched_artworks']}" for row in rows
-        ], fontsize=7.8)
-        ax.tick_params(axis="x", length=0, pad=7)
-        ax.set(xlim=(-0.30, len(rows) - 0.70), ylim=(0, max(0.1, maximum * 1.12)))
-        ax.set_title(COHORTS[cohort], loc="left", fontweight="bold", pad=8)
-        ax.yaxis.set_major_locator(MultipleLocator(0.1))
+        ])
+        ax.tick_params(axis="x", length=0, pad=5)
+        ax.set(xlim=(-0.48, len(rows) - 0.52), yscale="log", ylim=limits)
+        ax.set_title(COHORTS[cohort], loc="left", fontweight="bold", pad=6)
+        ax.yaxis.set_major_locator(LogLocator(base=10, subs=(1, 2, 5)))
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:g}"))
+        ax.yaxis.set_minor_locator(NullLocator())
         ax.set_axisbelow(True)
-        ax.grid(axis="y", color="#DCE3E8", linewidth=0.6)
-    axes[0].set_ylabel("Mean masked MAE")
+        ax.grid(axis="y", color="#DCE3E8", linewidth=0.75)
+    axes[0].set_ylabel("Masked MAE (log scale)")
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, 0.018), ncols=4, frameon=False)
     return fig
 
 
 def powerpaint_figure(by_cohort):
-    fig, ax = plt.subplots(figsize=(6.5, 3.18))
-    fig.subplots_adjust(left=0.255, right=0.989, bottom=0.31, top=0.968)
+    fig, axes = plt.subplots(1, 2, figsize=(PAPER_WIDTH, 2.52), sharey=True)
+    fig.subplots_adjust(left=0.186, right=0.982, bottom=0.329, top=0.875, wspace=0.154)
     ys = np.arange(len(STRATA))
-    for cohort, rows, color, offset in zip(by_cohort, by_cohort.values(), COHORT_COLORS, (-0.18, 0.18), strict=True):
-        shares = [row["completed"] / row["planned"] for row in rows]
-        ax.barh(ys + offset, shares, height=0.33, color=color, label=COHORTS[cohort], zorder=3)
+    for ax, (cohort, rows) in zip(axes, by_cohort.items(), strict=True):
+        shares = np.asarray([row["completed"] / row["planned"] for row in rows])
+        ax.barh(ys, shares, height=0.61, color=MASK_COLORS[3], edgecolor=OUTLINE, linewidth=0.75, zorder=3)
+        ax.barh(ys, 1 - shares, left=shares, height=0.61, color=MASK_COLORS[1], edgecolor="white",
+                linewidth=0.5, hatch="///", zorder=4)
         for y, share, row in zip(ys, shares, rows, strict=True):
-            ax.text(share + 0.012, y + offset, f"{row['completed']}/{row['planned']}", va="center", fontsize=8.3)
-    ax.set_yticks(ys, [MATERIALS[stratum] for stratum in STRATA])
-    ax.set(xlim=(0, 1.15), xlabel="Available proportion of planned conditions", ylim=(len(ys) - 0.47, -0.53))
-    ax.set_xticks(np.arange(5) / 4)
-    ax.xaxis.set_major_formatter(PercentFormatter(1.0, decimals=0))
-    ax.tick_params(axis="y", length=0, pad=6)
-    ax.grid(axis="x", color="#DCE3E8", linewidth=0.6)
-    ax.spines["left"].set_visible(False)
-    ax.spines["bottom"].set_bounds(0, 1)
-    handles, labels = ax.get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, 0.012), ncols=2, frameon=False)
+            center = share / 2 if share >= 0.18 else (1 + share) / 2
+            ax.text(center, y, f"{row['completed']}/{row['planned']}", ha="center", va="center",
+                    color=INK if share >= 0.18 else "white", zorder=5)
+        ax.set(xlim=(0, 1), ylim=(len(ys) - 0.48, -0.52))
+        ax.set_xticks(np.arange(5) / 4)
+        ax.xaxis.set_major_formatter(PercentFormatter(1.0, decimals=0))
+        ax.tick_params(axis="y", length=0, pad=5)
+        ax.grid(axis="x", color="#DCE3E8", linewidth=0.75)
+        ax.spines["left"].set_visible(False)
+        ax.set_title(COHORTS[cohort], loc="left", fontweight="bold", pad=6)
+    axes[0].set_yticks(ys, [MATERIALS[stratum] for stratum in STRATA])
+    fig.supxlabel("Proportion of planned PowerPaint conditions", y=0.147, fontsize=6.5)
+    legend = [
+        Patch(facecolor=MASK_COLORS[3], edgecolor=OUTLINE, linewidth=0.75, label="Scored"),
+        Patch(facecolor=MASK_COLORS[1], edgecolor="white", hatch="///", label="Withheld"),
+    ]
+    fig.legend(handles=legend, loc="lower center", bbox_to_anchor=(0.5, 0.025), ncols=2, frameon=False)
     return fig
 
 
@@ -350,17 +397,17 @@ def save_figure(fig, stem, directory):
     return paths
 
 
-def save_preview(directory, outputs):
+def save_preview(directory, outputs, font_path):
     width, height, pad = 800, 478, 22
-    canvas = Image.new("RGB", (2 * (width + pad) + pad, 3 * (height + pad) + pad), "#EAF0F3")
+    canvas = Image.new("RGB", (2 * (width + pad) + pad, 2 * (height + pad) + pad), "#EAF0F3")
     draw = ImageDraw.Draw(canvas)
-    font = ImageFont.truetype(findfont("DejaVu Sans"), 19)
-    names = ("Workflow", "Restoration examples", "Latent mask coverage", "MAE by condition", "PowerPaint availability")
+    font = ImageFont.truetype(font_path, 19)
+    names = ("Restoration examples", "Latent mask coverage", "MAE by condition", "PowerPaint availability")
     for index, (name, files) in enumerate(zip(names, outputs.values(), strict=True)):
         x = pad + (index % 2) * (width + pad)
         y = pad + (index // 2) * (height + pad)
         draw.rectangle((x, y, x + width - 1, y + height - 1), fill="white")
-        draw.text((x + 14, y + 11), f"Figure {index + 1} · {name}", fill="#162533", font=font)
+        draw.text((x + 14, y + 11), f"Figure {index + 3} · {name}", fill=INK, font=font)
         with Image.open(directory / files["png"]["file"]) as image:
             fit = ImageOps.contain(image.convert("RGB"), (width - 16, height - 55))
             canvas.paste(fit, (x + (width - fit.width) // 2, y + 46))
@@ -374,48 +421,52 @@ def main():
     parser.add_argument("--cma-root", type=Path, required=True, help="Frozen Cleveland native-main run directory")
     parser.add_argument("--aic-root", type=Path, required=True, help="Frozen Chicago replication run directory")
     parser.add_argument("--output-dir", type=Path, required=True, help="New figure directory on the data disk")
+    parser.add_argument("--font-dir", type=Path, help="Arimo font directory from the pinned FigGenie checkout")
     args = parser.parse_args()
     roots = {"cma": args.cma_root.resolve(), "aic": args.aic_root.resolve()}
     output = args.output_dir.resolve()
     if output.exists() or any(output.is_relative_to(root) for root in roots.values()):
         parser.error("Figure directory must be new and outside the frozen runs")
+    if args.font_dir:
+        for style in ("Regular", "Bold"):
+            fontManager.addfont(args.font_dir / f"Arimo-{style}.ttf")
 
     summaries = {cohort: load_summary(root, cohort) for cohort, root in roots.items()}
-    cma = roots["cma"]
-    prepared = cma / "prepared"
-    source = read_json(prepared / "prepared.json")
-    source_hash = summaries["cma"]["inputs_sha256"]["native_plan"]
-    arms = {arm: read_arm(cma, arm, source, source_hash) for arm in ("shared", "diffusion")}
-    for arm, (root, _, diagnostic_hash) in arms.items():
-        hashes = summaries["cma"]["inputs_sha256"]["arms"][arm]
-        if diagnostic_hash != hashes["diagnostics"] or sha256(root / "prepared.json") != hashes["prepared"]:
-            raise ValueError(f"Cleveland diagnostics or plan differ from the published summary: {arm}")
-    examples = [load_example(prepared, arms, case) for case in choose_examples(source["cases"], arms, 0.05)]
-    masks = [load_coverage_mask(prepared, case) for case in choose_examples(source["cases"], arms, 0.01)]
+    plans = {cohort: read_json(root / "prepared" / "prepared.json") for cohort, root in roots.items()}
+    arms = {cohort: load_main_arms(root, summaries[cohort], cohort) for cohort, root in roots.items()}
+    prepared = roots["cma"] / "prepared"
+    cma_cases = plans["cma"]["cases"]
+    examples = [load_example(prepared, arms["cma"], case) for case in choose_examples(cma_cases, arms["cma"], 0.05)]
+    masks = [load_coverage_mask(prepared, case) for case in choose_examples(cma_cases, arms["cma"], 0.01)]
     by_damage, by_material = {}, {}
     for cohort, summary in summaries.items():
-        by_damage[cohort], by_material[cohort] = plotted_counts(summary)
+        by_damage[cohort], by_material[cohort] = plotted_counts(summary, plans[cohort]["cases"], arms[cohort])
 
     output.mkdir(parents=True)
     files = {}
-    with plt.rc_context(STYLES):
+    with plt.style.context(PAPER_STYLE):
+        font_path = findfont(FontProperties(family=plt.rcParams["font.sans-serif"]))
         for stem, draw in (
-            ("figure-1-workflow", workflow_figure),
-            ("figure-2-examples", lambda: examples_figure(examples)),
-            ("figure-3-latent-coverage", lambda: coverage_figure(masks)),
-            ("figure-4-condition-mae", lambda: condition_figure(by_damage)),
-            ("figure-5-powerpaint-coverage", lambda: powerpaint_figure(by_material)),
+            ("figure-3-examples", lambda: examples_figure(examples)),
+            ("figure-4-latent-coverage", lambda: coverage_figure(masks)),
+            ("figure-5-condition-mae", lambda: condition_figure(by_damage)),
+            ("figure-6-powerpaint-coverage", lambda: powerpaint_figure(by_material)),
         ):
             files[stem] = save_figure(draw(), stem, output)
-    preview = save_preview(output, files)
+    preview = save_preview(output, files, font_path)
     manifest = {
-        "protocol": "museum-painting-publication-figures-v1",
+        "protocol": "museum-painting-publication-figures-v2",
         "script_sha256": sha256(Path(__file__)), "matplotlib_version": matplotlib.__version__,
+        "style": {"file": PAPER_STYLE.name, "sha256": sha256(PAPER_STYLE),
+                  "resolved_font_family": FontProperties(fname=font_path).get_name(), "width_pt": 495},
         "inference_seed": PAIRED_SEED,
-        "summary_inputs": {cohort: {"file": filename, "sha256": digest}
-                           for cohort, (filename, digest) in ARCHIVED_SUMMARIES.items()},
-        "cma_plan_sha256": source_hash,
-        "cma_diagnostic_sha256": {name: info[2] for name, info in arms.items()},
+        "summary_inputs": {
+            cohort: {
+                "file": filename, "sha256": digest, "plan_sha256": summaries[cohort]["inputs_sha256"]["native_plan"],
+                "diagnostic_sha256": {arm: info[2] for arm, info in arms[cohort].items()},
+            }
+            for cohort, (filename, digest) in ARCHIVED_SUMMARIES.items()
+        },
         "illustrative_selection": {
             "rule": "In crack, flake, loss order, minimize SHA256(salt|case_id) among CC0 cases of the fixed area "
                     "with all four main outputs; use distinct artworks within each figure.",
@@ -426,13 +477,19 @@ def main():
                                     "and expand each sampled mask value to its block.",
         },
         "examples": [case for case, _ in examples], "latent_coverage_examples": [case for case, _ in masks],
+        "condition_mae_bootstrap": {
+            "method": "Unadjusted 95% percentile intervals for individual model means",
+            "resampling_unit": "Artwork with scores for all four models within the museum and mask condition",
+            "resamples": N_BOOTSTRAPS, "seed": BOOTSTRAP_SEED,
+            "shared_draws": "Identical resampled artwork indices for all four models within each condition",
+        },
         "damage_condition_mae": by_damage,
         "powerpaint_coverage": by_material, "figures": files, "preview": preview,
     }
     (output / "figure-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8",
     )
-    print(f"Verified archived inputs and wrote five figures plus a preview to {output}", flush=True)
+    print(f"Verified archived inputs and wrote figures 3–6 plus a preview to {output}", flush=True)
 
 
 if __name__ == "__main__":

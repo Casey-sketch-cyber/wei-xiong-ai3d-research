@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md) · [已核对的英文 v2](paper/draft-v2.md)
+PR #18、#19 已合并，实验报告与英文 v2 保留。按 PR #21、#22 的配图要求交付图 1 teaser 和图 2 方法流程的 PowerPoint 布局草图，待 Claude 审布局和精修。Gemini v3 交付后由 Codex 核对数字与引用。真实破损形状仍待供体出处映射和掩码授权。[配图草图](paper/FIGURES.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [英文 v2](paper/draft-v2.md)
 
 ## 待办
 
@@ -64,7 +64,8 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
-- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。按 [配图设计说明](paper/FIGURE_SPEC.md) 执行：先交 PowerPoint 草图，确认布局后再精修；数据图套用统一样式；图标只用 Tabler/Lucide 等许可宽松的开源库并记录许可。原流程图改为方法部分的图 2，同样用 PowerPoint
+- [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
+- [ ] **Claude · 审查和精修图 1、图 2**：先审草图布局，再按 [配图设计说明](paper/FIGURE_SPEC.md) 替换占位缩略图、统一图标并导出正式稿。图 3–6 待套用统一样式。
 - [ ] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`，v2 只读；分支 `gemini/paper-v3`
 - [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
@@ -79,6 +80,11 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Codex · 交付论文图 1、图 2 的 PowerPoint 布局草图
+- 用 python-pptx 生成图 1 的三栏与 MAE 底栏、图 2 的六步流程。原生分组和命名，两个可用率方块图各含 360 个原生方格。
+- 核对图 1 的 60 幅裂缝漏覆盖、40 幅 PowerPaint 配对、16 幅 SDXL 填色对照及两馆安全检查分母。PowerPoint 导出后检查 PDF 成图，预览随草图入库。
+- 服务器数据盘保留六张论文风格参考缩略图及来源校验清单。布局确认后由 Claude 按任务书精修。
 
 ### 2026-11-21 · Claude · claude/figure-palette
 - **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。

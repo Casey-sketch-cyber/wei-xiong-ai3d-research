@@ -11,7 +11,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ## 待办
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
-- [ ] **Claude · 审查和精修图 1、图 2**：先审草图布局，再按 [配图设计说明](paper/FIGURE_SPEC.md) 替换占位缩略图、统一图标并导出正式稿。图 3–6 待套用统一样式。
+- [ ] **Codex · 图 1、图 2 精修**：按 [PR #24 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/24#issuecomment-7063544152) 改布局（图 1 六条、图 2 五条），换真实缩略图和 Tabler 图标，导出 PDF 与预览 PNG，开 PR
+- [ ] **Claude · 图 1、图 2 最后美化**：Codex 精修后，直接调整 `.pptx` 的配色、间距和细节并导出正式稿
+- [ ] **Codex · 图 3–6 套用统一样式**：按 FIGURE_SPEC 第 2、5 节（配色、点形、字号；图 5 用点加区间）
 - [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
 - [x] 核对文献表中 19 条 arXiv 记录，16 条找到正式发表处，另外 3 条仅确认预印本
@@ -69,9 +71,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
-- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。按 [配图设计说明](paper/FIGURE_SPEC.md) 执行：先交 PowerPoint 草图，确认布局后再精修；数据图套用统一样式；图标只用 Tabler/Lucide 等许可宽松的开源库并记录许可。原流程图改为方法部分的图 2，同样用 PowerPoint
-- [ ] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`，v2 只读；分支 `gemini/paper-v3`
-- [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
+- [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
+- [ ] **Gemini · v3 第二轮**：在 `gemini/paper-v3` 分支上按 [Codex 核查五条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 和 [Claude 复审三条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063544413) 修改 `draft-v3.md`
+- [ ] **Codex · 复核 v3 第二轮**：只核对数字和引用，问题在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -84,6 +86,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/review-followups-pr23-24
+- **完成**：审查并合并 PR #24（图 1、图 2 布局草图），给出精修意见；审查 PR #23（论文 v3），九条修改均已落实，但需按 Codex 五条和 Claude 三条再改一轮，暂不合并。
 
 ### 2026-11-21 · Claude · claude/figure-palette
 - **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。

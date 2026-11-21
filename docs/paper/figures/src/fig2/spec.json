@@ -1,0 +1,237 @@
+{
+ "meta": {
+  "id": "fig2-pipeline",
+  "title": "Evaluation pipeline",
+  "family": "ai",
+  "venue": "cvpr",
+  "kind": "architecture",
+  "figure_kind": "whole-system",
+  "column": "double",
+  "width_pt": 495,
+  "max_height_pt": 144,
+  "template": "ai",
+  "direction": "left-right",
+  "palette": "office-pastel",
+  "font": "arial",
+  "step_markers": "none",
+  "language": "en",
+  "version": 1,
+  "caption_draft": "Evaluation pipeline. Crops from two open-access collections receive six procedural losses; every model sees the same 8x8-aligned input; generated pixels are kept only in the original hole and scored against the recorded crop, with planned, scored and withheld conditions counted per model. Letters mark where the three protocol choices of Figure 1 act.",
+  "ai": {
+   "kinds": [
+    "stage-pipeline"
+   ],
+   "variant": "stage-chain",
+   "subfield": "vision",
+   "arrangement": "pipeline-row",
+   "grouping": [
+    "framed-boxes",
+    "tinted-regions"
+   ],
+   "samples": "image",
+   "materials": [
+    "the Figure 1 case's crop, masks and a composite"
+   ]
+  }
+ },
+ "containers": [
+  {
+   "id": "cohorts",
+   "label": "Cohorts",
+   "role": "existing"
+  },
+  {
+   "id": "crops",
+   "label": "Crop + losses",
+   "role": "existing"
+  },
+  {
+   "id": "input",
+   "label": "Shared input",
+   "role": "novel"
+  },
+  {
+   "id": "models",
+   "label": "Models",
+   "role": "existing"
+  },
+  {
+   "id": "composite",
+   "label": "Composite",
+   "role": "existing"
+  },
+  {
+   "id": "score",
+   "label": "Score",
+   "role": "existing"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "museums",
+   "label": "CMA 60 AIC 60",
+   "kind": "icon",
+   "parent": "cohorts"
+  },
+  {
+   "id": "media",
+   "label": "oil on canvas oil on wood watercolour, paper ink, paper 15 works each",
+   "kind": "note",
+   "parent": "cohorts"
+  },
+  {
+   "id": "crop",
+   "label": "512 px, no resampling",
+   "kind": "image",
+   "parent": "crops",
+   "image": {
+    "src": "f2_crop.png",
+    "role": "data-thumbnail"
+   }
+  },
+  {
+   "id": "masks",
+   "label": "crack flake loss 1% 5%",
+   "kind": "image",
+   "parent": "crops",
+   "image": {
+    "src": "f2_mask_crack_5.png",
+    "role": "data-thumbnail"
+   }
+  },
+  {
+   "id": "aligned",
+   "label": "hole expanded to whole 8×8 cells same input for all four models",
+   "kind": "image",
+   "parent": "input",
+   "image": {
+    "src": "f2_input.png",
+    "role": "sample-input"
+   }
+  },
+  {
+   "id": "pixel",
+   "label": "pixel space LaMa MAT",
+   "kind": "module",
+   "parent": "models"
+  },
+  {
+   "id": "latent",
+   "label": "latent space PowerPaint v1 SDXL",
+   "kind": "module",
+   "parent": "models"
+  },
+  {
+   "id": "seed",
+   "label": "seed 2026 one RTX 3090",
+   "kind": "note",
+   "parent": "models"
+  },
+  {
+   "id": "output",
+   "label": "generated pixels kept only in the original hole",
+   "kind": "image",
+   "parent": "composite",
+   "image": {
+    "src": "f2_output.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "metric-mae",
+   "label": "MAE",
+   "kind": "module",
+   "parent": "score"
+  },
+  {
+   "id": "metric-de",
+   "label": "ΔE00",
+   "kind": "module",
+   "parent": "score"
+  },
+  {
+   "id": "metric-lpips",
+   "label": "LPIPS",
+   "kind": "module",
+   "parent": "score"
+  },
+  {
+   "id": "metric-dists",
+   "label": "DISTS",
+   "kind": "module",
+   "parent": "score"
+  },
+  {
+   "id": "ledger",
+   "label": "planned scored withheld",
+   "kind": "module",
+   "parent": "score"
+  },
+  {
+   "id": "stats",
+   "label": "per model, museum paired bootstrap over artworks",
+   "kind": "note",
+   "parent": "score"
+  }
+ ],
+ "edges": [
+  {
+   "id": "cohorts-crops",
+   "from": "cohorts",
+   "to": "crops",
+   "kind": "data"
+  },
+  {
+   "id": "crops-input",
+   "from": "crops",
+   "to": "input",
+   "kind": "data"
+  },
+  {
+   "id": "input-models",
+   "from": "input",
+   "to": "models",
+   "kind": "data"
+  },
+  {
+   "id": "models-composite",
+   "from": "models",
+   "to": "composite",
+   "kind": "data"
+  },
+  {
+   "id": "composite-score",
+   "from": "composite",
+   "to": "score",
+   "kind": "data"
+  }
+ ],
+ "annotations": [
+  {
+   "id": "timeline",
+   "kind": "label",
+   "text": "protocol committed before inference / inference / automatic scoring, no human raters"
+  },
+  {
+   "id": "mark-a",
+   "kind": "verdict",
+   "text": "a",
+   "anchor": "input"
+  },
+  {
+   "id": "mark-b",
+   "kind": "verdict",
+   "text": "b",
+   "anchor": "models"
+  },
+  {
+   "id": "mark-c",
+   "kind": "verdict",
+   "text": "c",
+   "anchor": "score"
+  }
+ ],
+ "legend": {
+  "mode": "none"
+ }
+}

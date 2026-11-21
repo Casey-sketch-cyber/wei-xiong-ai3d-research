@@ -12,6 +12,7 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md#figgenie-版2026-11-21取代上面的-powerpoint-草图)
+- [ ] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母
 - [ ] **Codex · 图 1、图 2 换真实图片**：在服务器克隆 FigGenie，按 FIGURES.md 选定 1% 裂缝案例，取得冻结裁片、SDXL 三种填色输出、LaMa 合成图和环带均色，运行 `docs/paper/figures/src/build.sh`，提交更新后的 PPTX 与预览；lint 必须 0 错误。PDF 留在服务器
 - [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
 - [ ] **Codex · 图 3–6 套用统一样式**：按 FIGURE_SPEC 第 2、5 节（配色、点形、字号；图 5 用点加区间）
@@ -87,6 +88,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/figures-less-text
+- **完成**：按作者意见重画图 1、图 2：图中去掉解释文字和全部数字，只留图片、图形和短名称，数字移入图注；图 2 只给三个协议控制点着色。FIGURE_SPEC 补"图里几乎不放文字和数字"规则。
 
 ### 2026-11-21 · Claude · claude/figgenie-figures
 - **完成**：按作者要求引入 FigGenie，用它重画图 1（teaser）和图 2（流程图），lint 均 0 错误，导出 PDF 与可编辑 PPTX（已去主题阴影）；新增 `experiments/make_teaser_assets.py` 与 `docs/paper/figures/src/build.sh`；FIGURE_SPEC 加"当前做法"一节调和规则。

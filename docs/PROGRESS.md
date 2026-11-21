@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 360 个条件和 PowerPaint 原拦截 79 个条件。芝加哥独立馆藏各组 15 幅，核验 2,150 个输出及 10 个安全拦截。两馆的四模型原洞 MAE 排序一致，MAT 与 LaMa 的总体差在预设实用幅度内。已完成英文论文初稿。真实破损形状仍待供体出处映射和掩码授权。 [克利夫兰主实验](NATIVE_MAIN.md) · [复审对照](NATIVE_REVIEW.md) · [独立馆藏](AIC_REPLICATION.md) · [论文初稿](PAPER_DRAFT.md)
+PR #17 已合并，进入写作分工阶段。Gemini 已按任务书完成英文论文重写 [论文 v2](paper/draft-v2.md)（分支 `gemini/paper-rewrite-v2`，待 Claude 审查及 Codex 核对数字/补全 `[@TODO-...]` 文献与配图）。两馆主实验与复审已完成，真实破损形状仍待供体出处映射和掩码授权。[克利夫兰主实验](NATIVE_MAIN.md) · [复审对照](NATIVE_REVIEW.md) · [独立馆藏](AIC_REPLICATION.md) · [论文初稿 v1](PAPER_DRAFT.md) · [论文 v2](paper/draft-v2.md)
 
 ## 待办
 
@@ -56,7 +56,7 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 - [x] 先冻结独立馆藏抽样，从芝加哥艺术博物馆每组取 15 幅，完成同一 360 条件、四模型主配置和两条原掩码敏感性。 [独立馆藏复现](AIC_REPLICATION.md)
 - [x] 完成复审实验后按 paperwrite 技能起草英文论文，包含两馆结果、证据表和适用范围。 [论文初稿](PAPER_DRAFT.md)
 - [x] Claude 复审 PR #15：实验部分通过并已合并；论文初稿需大改，详见 [复审意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/15#issuecomment-7057262583)
-- [ ] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读
+- [x] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读（待 Claude 审查与 Codex 核对）
 - [ ] **Codex · 新颖性检索**：在 diffusers 文档与 issue、BrushNet、PowerPaint、SD 系列补全论文中检索潜空间掩码漏覆盖和 strength<1 预填充泄漏是否已有报告，结果写进 `literature/search-log.md`，并在 PR 里告诉 Gemini 能否保留相应说法（PR #15 复审）
 - [ ] **Codex · 参考文献池**：按文献树 v2 补齐 30 篇以上，逐篇核对后写进 `literature/papers.csv`（`id` 列供正文 `[@id]` 引用）；Controlled-300 标明未经同行评审（PR #15 复审）
 - [ ] **Codex · 配图**：任务书所列图 1–5，脚本进 Git，图像留服务器（PR #15 复审）
@@ -75,6 +75,10 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Gemini · gemini/paper-rewrite-v2
+- **完成**：按 `docs/paper/WRITING_BRIEF.md` 和 `paperwrite` 技能将英文论文重写为 `docs/paper/draft-v2.md`（未改动只读的 `docs/PAPER_DRAFT.md`）。确立“三项协议选择大幅改变测得误差，控制后四模型排序在两馆、四画种、六破损上完全一致”的核心故事线；补齐 Related Work 三条脉络、引言贡献列表、§4.1–§4.5 完整结果小节（表 1–7）、图 1 Mermaid 流程图与图 2–5 占位及图注；局限集中写入 §5.3；正文无超链接、无“first/novel”类宣称、无“unresized”措辞。
+- **交接给 Codex**：正文共使用 33 条 `literature/papers.csv` 已有引用键（全数匹配）和 15 条 `[@TODO-...]` 待入库核对键，另在表 3 标注 1 处可选逐条件差值占位 `[TODO-table3-per-condition-deltas]`，全部清单见 `docs/paper/draft-v2.md` 附录及分支提交说明。
 
 ### 2026-11-21 · Claude · claude/gemini-rewrite-brief
 - **完成**：按作者决定改为 Gemini 重写正文、Codex 负责配图和文献；写 Gemini 任务书 `docs/paper/WRITING_BRIEF.md`，新增 `GEMINI.md`，更新 AGENTS.md 的阶段和分工，重新分配论文待办。

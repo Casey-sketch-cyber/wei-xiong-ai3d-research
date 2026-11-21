@@ -56,11 +56,12 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 - [x] 先冻结独立馆藏抽样，从芝加哥艺术博物馆每组取 15 幅，完成同一 360 条件、四模型主配置和两条原掩码敏感性。 [独立馆藏复现](AIC_REPLICATION.md)
 - [x] 完成复审实验后按 paperwrite 技能起草英文论文，包含两馆结果、证据表和适用范围。 [论文初稿](PAPER_DRAFT.md)
 - [x] Claude 复审 PR #15：实验部分通过并已合并；论文初稿需大改，详见 [复审意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/15#issuecomment-7057262583)
-- [ ] **论文修改 1 · 故事**：题目和摘要改为"三个常被忽略的协议选择（潜空间掩码覆盖、初始化预填充、拦截分母）对结论的影响，可能超过模型之间的差别；控制这三项后，两馆、四类画作上的排序一致"。"选模型不必看画种"写成对使用者的结论（PR #15 复审）
-- [ ] **论文修改 2 · 新颖性核查**：在 diffusers 文档与 issue、BrushNet、PowerPaint 等论文中检索，看潜空间掩码漏覆盖和 strength<1 预填充泄漏是否已有报告；有则引用，并把贡献定位为"在画作评测中量化其影响"（PR #15 复审）
-- [ ] **论文修改 3 · 结构**：补"相关工作"一节（文献树 v2 三条脉络，参考文献 30 篇以上，逐篇核对，Controlled-300 标明未经同行评审）；引言末尾列贡献；新增结果小节：潜空间漏覆盖及修正前后误差、预填充单变量对照、按破损类型和面积的结果（PR #15 复审）
-- [ ] **论文修改 4 · 配图**：示例对比图（原图、掩码、四个模型，裂缝、剥落、缺失各一例）、漏覆盖叠加示意图、按破损条件的 MAE 图、两馆各组 PowerPaint 可用率图；用脚本在服务器生成，图像不进 Git（PR #15 复审）
-- [ ] **论文修改 5 · 措辞**：芝加哥 1686 图档本身已缩小，"unresized crops" 改为 "crops taken without further resampling from each museum's published rendition"，并在局限里说明两馆像素尺度不同（PR #15 复审）
+- [ ] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读
+- [ ] **Codex · 新颖性检索**：在 diffusers 文档与 issue、BrushNet、PowerPaint、SD 系列补全论文中检索潜空间掩码漏覆盖和 strength<1 预填充泄漏是否已有报告，结果写进 `literature/search-log.md`，并在 PR 里告诉 Gemini 能否保留相应说法（PR #15 复审）
+- [ ] **Codex · 参考文献池**：按文献树 v2 补齐 30 篇以上，逐篇核对后写进 `literature/papers.csv`（`id` 列供正文 `[@id]` 引用）；Controlled-300 标明未经同行评审（PR #15 复审）
+- [ ] **Codex · 配图**：任务书所列图 1–5，脚本进 Git，图像留服务器（PR #15 复审）
+- [ ] **Codex · 核对 Gemini 稿**：v2 交稿后逐个核对数字和引用，补全 `[@TODO-…]`，不改故事和语气
+- [ ] **Codex · 可选实验**：潜空间漏覆盖目前只有 16 幅先导的修正前后对照。如时间允许，先冻结方案，再在克利夫兰 60×6 上对 PowerPaint 和 SDXL 补跑未扩张掩码（720 次），让第 4.2 节有主实验规模的证据
 - [ ] **流程**：以后每个运行记录写入 `git rev-parse HEAD` 和工作区是否有未提交改动（附 diff 哈希），保证推理时的代码可追溯（PR #15 复审：`2890673` 晚于推理开始）
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -74,6 +75,10 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/gemini-rewrite-brief
+- **完成**：按作者决定改为 Gemini 重写正文、Codex 负责配图和文献；写 Gemini 任务书 `docs/paper/WRITING_BRIEF.md`，新增 `GEMINI.md`，更新 AGENTS.md 的阶段和分工，重新分配论文待办。
+- **注意 / 坑**：任务书里修正了我在 PR #15 的说法：三个协议细节大幅改变测得的误差，但没有改变排名，不能写成"影响超过模型差别"。
 
 ### 2026-11-21 · Claude · claude/review-followups-pr15
 - **完成**：复审并合并 PR #15（克利夫兰复审、芝加哥复现、论文初稿）；核对 Kachkine 2025 与 Imagest 的 DOI；登记论文修改五项和运行记录流程一项。

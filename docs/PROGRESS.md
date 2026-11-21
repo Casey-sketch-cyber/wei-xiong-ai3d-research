@@ -64,7 +64,7 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
-- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。内容按 [任务书的图 1 规格](paper/WRITING_BRIEF.md#配图)，只展示三个协议细节和控制后的结论，不画整个流程。原流程图改为方法部分的图 2，同样用 PowerPoint
+- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。按 [配图设计说明](paper/FIGURE_SPEC.md) 执行：先交 PowerPoint 草图，确认布局后再精修；数据图套用统一样式；图标只用 Tabler/Lucide 等许可宽松的开源库并记录许可。原流程图改为方法部分的图 2，同样用 PowerPoint
 - [ ] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`，v2 只读；分支 `gemini/paper-v3`
 - [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
@@ -79,6 +79,10 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/figure-spec
+- **完成**：写配图设计说明 `docs/paper/FIGURE_SPEC.md`（参考画法、统一配色与字体、图 1–6 元素、图标来源、草图到精修的交付流程）；任务书的配图一节改为指向它。
+- **注意 / 坑**：彭老师写作模板第 1、6 步是画 pipeline 草图和美化 teaser，模板里的"论文画图模板"未公开。
 
 ### 2026-11-21 · Claude · claude/review-followups-pr18-19
 - **完成**：复审并合并 PR #18（配图、文献池、全量原掩码对照）和 #19（Gemini v2 与 Codex 核对）；登记 v3 九条修改；按作者要求改为用 PowerPoint 画 teaser 和流程图，并写图 1 规格。

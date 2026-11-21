@@ -89,7 +89,7 @@ def _load_mat(device: str, model_dir: Path) -> Inpaint:
     return run
 
 
-def _load_powerpaint(device: str, model_dir: Path) -> Inpaint:
+def _load_powerpaint(device: str, model_dir: Path, *, safety_checker_enabled: bool = True) -> Inpaint:
     import torch
     from diffusers import UNet2DConditionModel
     from huggingface_hub import snapshot_download
@@ -135,6 +135,8 @@ def _load_powerpaint(device: str, model_dir: Path) -> Inpaint:
         str(base), torch_dtype=dtype, variant="fp16", use_safetensors=True, local_files_only=True,
         unet=unet.eval(), text_encoder=text_encoder.eval(),
     )
+    if not safety_checker_enabled:
+        pipeline.safety_checker = None
     pipeline.tokenizer = tokenizer
     pipeline.to(target)
     pipeline.set_progress_bar_config(disable=True)

@@ -14,8 +14,9 @@ from analyze_aligned import DIFFUSION_NATIVE, PIXEL_NATIVE, combine
 from analyze_followup import CONDITIONS, METRICS, PROVENANCE, CaseScores, load_cases, match_native_plan, matched_native
 from analyze_prefill import utc_datetime
 from latent_mask_diagnostic import read_pixels
+from prepare_aic_replication import CATALOG_SHA256, candidate_rank
 from run_followup import NATIVE_MAIN_MANIFEST_SHA256, NATIVE_MAIN_PROTOCOL, NATIVE_MODELS, NATIVE_SEED, PAIRED_SEED
-from run_latent_aligned import PROTOCOL
+from run_latent_aligned import NATIVE_AIC_PROTOCOL, PROTOCOL
 from run_pilot import BOOTSTRAP_SEED, N_BOOTSTRAPS, SIZE, STRATA, WORKS_PER_STRATUM, read_json, sha256
 
 
@@ -28,12 +29,16 @@ POWERPAINT_SAFETY = "The PowerPaint base safety checker withheld the generated i
 MAX_ATTEMPTS = 2
 
 
-def validate_source(plan):
+def validate_source(plan, *, cohort="cma"):
+    aic = cohort == "aic"
+    protocol = NATIVE_AIC_PROTOCOL if aic else NATIVE_MAIN_PROTOCOL
     if (
-        plan["protocol"] != NATIVE_MAIN_PROTOCOL or plan["seed"] != PAIRED_SEED
-        or plan["manifest_sha256"] != NATIVE_MAIN_MANIFEST_SHA256
+        plan["protocol"] != protocol or plan["seed"] != PAIRED_SEED
+        or (not aic and plan["manifest_sha256"] != NATIVE_MAIN_MANIFEST_SHA256)
     ):
-        raise ValueError("Expected the frozen native-v3 source, CMA manifest and paired inference seed")
+        raise ValueError(f"Unexpected frozen source or paired inference seed for {cohort}")
+    if aic and (plan["catalog_sha256"] != CATALOG_SHA256 or plan["source_rendition"] != "aic_iiif_1686_jpeg"):
+        raise ValueError("Unexpected AIC catalog or image rendition in the frozen plan")
     index = match_native_plan(plan)
     work_strata = index[1]
     if Counter(work_strata.values()) != dict.fromkeys(STRATA, WORKS_PER_STRATUM):
@@ -42,7 +47,14 @@ def validate_source(plan):
     artwork_order = {}
     for stratum in STRATA:
         artwork_ids = sorted(artwork for artwork, group in work_strata.items() if group == stratum)
-        artwork_order[stratum] = [artwork_ids[position] for position in rng.permutation(len(artwork_ids))]
+        if aic:
+            if any(not uid.startswith("aic-") or not uid[4:].isdigit() for uid in artwork_ids):
+                raise ValueError(f"Invalid AIC object ID in {stratum}")
+            artwork_order[stratum] = sorted(
+                artwork_ids, key=lambda uid: (candidate_rank(stratum, int(uid[4:])), int(uid[4:])),
+            )
+        else:
+            artwork_order[stratum] = [artwork_ids[position] for position in rng.permutation(len(artwork_ids))]
     observed = {stratum: list(dict.fromkeys(case["artwork_id"] for case in plan["cases"] if case["stratum"] == stratum))
                 for stratum in STRATA}
     if artwork_order != plan["artwork_order_by_stratum"] or artwork_order != observed:
@@ -79,12 +91,16 @@ def verify_score(saved, diagnostic, case, model, original, mask, output_file):
         raise ValueError(f"Saved reconstruction metrics disagree: {output_file}")
 
 
-def verify_run(root, diagnostic_file, arm_key, source_cases, source_sha):
+def verify_run(root, diagnostic_file, arm_key, source_cases, source_sha, *, cohort="cma"):
     arm, models, aperture = ARMS[arm_key]
+    aic = cohort == "aic"
+    if aic:
+        arm = arm.replace("native-main", "aic-replication")
+    protocol = NATIVE_AIC_PROTOCOL if aic else NATIVE_MAIN_PROTOCOL
     plan_file = root / "prepared.json"
     plan = read_json(plan_file)
     if (
-        plan["protocol"] != PROTOCOL or plan["arm"] != arm or plan["reference_protocol"] != NATIVE_MAIN_PROTOCOL
+        plan["protocol"] != PROTOCOL or plan["arm"] != arm or plan["reference_protocol"] != protocol
         or plan["input_aperture"] != aperture or plan["reference_plan_sha256"] != source_sha
         or plan["cases"] != source_cases or plan["model_seeds"] != {model: [PAIRED_SEED] for model in models}
         or plan.get("inference_settings") is not None or plan.get("init_prefill") is not None
@@ -239,16 +255,16 @@ def pixel_aperture_comparison(original, shared, index, model):
     return matched_native(paired, *index, ("original", "shared"))
 
 
-def analyze(plan_file, run_dirs, diagnostic_files, prereg):
+def analyze(plan_file, run_dirs, diagnostic_files, prereg, *, cohort="cma"):
     source = read_json(plan_file)
-    index = validate_source(source)
+    index = validate_source(source, cohort=cohort)
     source_sha = sha256(plan_file)
     cases, coverage, runs, run_hashes = {}, {}, {}, {}
     metric_provenance = None
     mask_areas = None
     for key in ARMS:
         scores, statuses, run, diagnostics, hashes, input_areas = verify_run(
-            run_dirs[key], diagnostic_files[key], key, source["cases"], source_sha,
+            run_dirs[key], diagnostic_files[key], key, source["cases"], source_sha, cohort=cohort,
         )
         provenance = {field: diagnostics[field] for field in PROVENANCE}
         if metric_provenance is not None and provenance != metric_provenance:
@@ -258,7 +274,7 @@ def analyze(plan_file, run_dirs, diagnostic_files, prereg):
         metric_provenance, mask_areas = provenance, input_areas
         cases[key], runs[key], run_hashes[key] = scores, run, hashes
         coverage[key] = {model: summarize_coverage(entries) for model, entries in statuses.items()}
-        print(f"Verified {ARMS[key][0]} across {len(source['cases'])} planned cases", flush=True)
+        print(f"Verified {run_dirs[key].name} across {len(source['cases'])} planned cases", flush=True)
 
     start_key, end_key = "started_at_utc", "finished_at_utc"
     run_entries = [run for models in runs.values() for run in models.values()]
@@ -266,11 +282,24 @@ def analyze(plan_file, run_dirs, diagnostic_files, prereg):
     end = max((run[end_key] for run in run_entries), key=utc_datetime)
     if prereg is not None and utc_datetime(start) <= utc_datetime(prereg["committed_at_utc"]):
         raise ValueError("The recorded preregistration must precede all model inference runs")
+    cohort_provenance = {}
+    if cohort == "aic":
+        frozen_prereg = {"commit": source["prereg_commit"], "committed_at_utc": source["prereg_utc"]}
+        registered, acquired, prepared, started = (utc_datetime(time) for time in (
+            source["prereg_utc"], source["artwork_manifest_completed_utc"], source["prepared_utc"], start,
+        ))
+        if frozen_prereg != prereg or not registered < acquired <= prepared <= started:
+            raise ValueError("AIC inference must follow the frozen sampling, acquisition and preparation")
+        cohort_provenance = {key: source[key] for key in (
+            "collection", "source_rendition", "catalog_sha256", "candidate_order_sha256", "manifest_sha256",
+            "artwork_manifest_completed_utc", "prepared_utc",
+        )}
 
     primary = combine(cases["shared"], cases["diffusion"], PIXEL_NATIVE)
     original = combine(cases["original"], cases["diffusion"], PIXEL_NATIVE)
     return {
         "protocol": "native-main-paired-summary-v1",
+        **({"cohort": cohort, "cohort_provenance": cohort_provenance} if cohort_provenance else {}),
         "seed": PAIRED_SEED,
         "planned_artworks": len(index[1]),
         "planned_cases_per_model": len(index[0]),
@@ -293,6 +322,7 @@ def analyze(plan_file, run_dirs, diagnostic_files, prereg):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--native-plan", type=Path, required=True)
+    parser.add_argument("--cohort", choices=("cma", "aic"), default="cma")
     for identifier in ARMS:
         parser.add_argument(f"--{identifier}-run", type=Path, required=True)
         parser.add_argument(f"--{identifier}-diagnostics", type=Path, required=True)
@@ -307,7 +337,7 @@ def main():
     prereg = None if args.prereg_commit is None else {"commit": args.prereg_commit, "committed_at_utc": args.prereg_utc}
     run_dirs = {key: getattr(args, f"{key}_run") for key in ARMS}
     diagnostics = {key: getattr(args, f"{key}_diagnostics") for key in ARMS}
-    report = analyze(args.native_plan, run_dirs, diagnostics, prereg)
+    report = analyze(args.native_plan, run_dirs, diagnostics, prereg, cohort=args.cohort)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     temporary = NamedTemporaryFile(dir=args.output.parent, delete=False, mode="w", encoding="utf-8")
     staged = Path(temporary.name)

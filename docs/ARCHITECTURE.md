@@ -129,3 +129,35 @@ python -B experiments/diagnostic_metrics.py --run-dir "$NATIVE/native-main" --ou
 ```
 
 三路评分完成后，用 `analyze_native_main.py --help` 查看所需的源计划、三处执行目录、各组追算指标和汇总文件参数。PowerPaint 的安全失败状态应与 `failures/` 和运行计数匹配，逐图列入计划分母。运行记录带有 UTC 起止，可传入 `--prereg-commit` 与 `--prereg-utc` 核对实际顺序。[主实验报告](NATIVE_MAIN.md)
+
+## 克利夫兰复审对照
+
+使用独立的数据盘目录 `$REVIEW` 并保留原来的 `$NATIVE`。运行时使用同一 GPU 和固定权重。SDXL 执行组是 `native-review-sdxl`，从 `$NATIVE/prepared` 冻结输入。PowerPaint 的 `native-review-pp-replay` 同时读取源计划和 `$NATIVE/native-main` 的失败记录，校验确切的 79 条旧拦截，使用单次执行预算。该组使用 PowerPaint 的独立环境。
+
+```bash
+python -B experiments/run_latent_aligned.py prepare --arm native-review-sdxl \
+  --reference "$NATIVE/prepared" --run-dir "$REVIEW/native-review-sdxl"
+python -B experiments/run_latent_aligned.py run --arm native-review-sdxl --model sdxl \
+  --models-dir "$MODELS" --run-dir "$REVIEW/native-review-sdxl"
+python -B experiments/run_latent_aligned.py prepare --arm native-review-pp-replay \
+  --reference "$NATIVE/prepared" --blocked-reference "$NATIVE/native-main" --run-dir "$REVIEW/native-review-pp-replay"
+"$POWERPAINT_PYTHON" -B experiments/run_latent_aligned.py run --arm native-review-pp-replay --model powerpaint \
+  --reference "$NATIVE/prepared" --blocked-reference "$NATIVE/native-main" \
+  --models-dir "$MODELS" --run-dir "$REVIEW/native-review-pp-replay"
+```
+
+用 `diagnostic_metrics.py` 为两组评分，再用 `analyze_native_review.py --help` 查看各档案、评分、冻结时间和输出参数。抽样检查由 `audit_native_outputs.py` 读取原主实验的冻结计划、两组评分、运行日志和已保存输出，生成四张联系表与核验 JSON。 [复审报告](NATIVE_REVIEW.md)
+
+## 芝加哥独立馆藏复现
+
+`prepare_aic_replication.py freeze` 读取固定馆方导出，先生成 `candidate-order.json` 并记录 SHA-256。使用该哈希约束后续 `acquire` 和 `prepare`。图像、逐件资格记录与许可证依据随作品清单存放在数据盘。
+
+```bash
+python -B experiments/prepare_aic_replication.py freeze --snapshot "$CATALOG" --data-dir "$AIC_DATA" \
+  --prereg-commit "$PREREG_COMMIT" --prereg-utc "$PREREG_UTC"
+python -B experiments/prepare_aic_replication.py acquire --data-dir "$AIC_DATA" --candidate-sha256 "$CANDIDATE_SHA"
+python -B experiments/prepare_aic_replication.py prepare --data-dir "$AIC_DATA" --candidate-sha256 "$CANDIDATE_SHA" \
+  --run-dir "$AIC_RUN/prepared"
+```
+
+用 `run_latent_aligned.py prepare` 从同一 `$AIC_RUN/prepared` 建立 `aic-replication`、`aic-replication-shared`、`aic-replication-original`。三个目录接收的模型和对应的克利夫兰执行组一致。主比较的 PowerPaint 仍使用安全检查。评分后用 `analyze_native_main.py --cohort aic`，传入对应的三组运行与评分路径，以及 `--prereg-commit "$PREREG_COMMIT" --prereg-utc "$PREREG_UTC"`，核对冻结时间。 [独立馆藏报告](AIC_REPLICATION.md)

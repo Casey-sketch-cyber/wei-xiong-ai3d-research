@@ -1,22 +1,22 @@
 {
  "meta": {
   "id": "fig1-teaser",
-  "title": "Three protocol choices and the ordering under the controlled protocol",
+  "title": "Three protocol choices and the model ordering",
   "family": "ai",
   "venue": "cvpr",
   "kind": "architecture",
   "column": "double",
   "width_pt": 495,
-  "max_height_pt": 172,
+  "max_height_pt": 141,
   "template": "ai",
   "direction": "left-right",
   "palette": "verdict-contrast",
   "font": "arial",
   "step_markers": "none",
   "figure_kind": "comparison",
-  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling misses part of a 1% crack; a grid-aligned input reaches every hole pixel. (b) At SDXL strength 0.99 the hole's prefill colour shifts luminance bias and error. (c) PowerPaint's safety checker withholds outputs at different rates in two museums. (d) Under the controlled protocol the masked-MAE ordering is the same in both museums, four media and six losses.",
+  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; 59.5% of 1% crack pixels across 60 works); a grid-aligned input reaches every hole pixel. (b) At SDXL strength 0.99 the colour used to prefill the hole changes the result (inset: black, mid-gray, ring mean). (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
   "language": "en",
-  "version": 1,
+  "version": 2,
   "ai": {
    "kinds": [
     "contribution-mosaic",
@@ -33,36 +33,35 @@
    "samples": "image",
    "materials": [
     "frozen 512 crop of one 1% crack case (server archive)",
-    "SDXL strength-0.99 outputs of one condition with black, mid-gray and ring-mean prefill (server archive)",
-    "numbers from the experiment reports"
+    "SDXL strength-0.99 outputs of one condition with black, mid-gray and ring-mean prefill (server archive)"
    ]
   }
  },
  "panels": [
   {
    "id": "a",
-   "label": "What the model is asked to fill",
+   "label": "Mask alignment",
    "panel_label": "(a)",
    "axis": "narrative",
    "order": 0
   },
   {
    "id": "b",
-   "label": "What fills the hole first",
+   "label": "Hole prefill",
    "panel_label": "(b)",
    "axis": "narrative",
    "order": 1
   },
   {
    "id": "c",
-   "label": "Which outputs get scored",
+   "label": "Withheld outputs",
    "panel_label": "(c)",
    "axis": "narrative",
    "order": 2
   },
   {
    "id": "d",
-   "label": "Under the controlled protocol",
+   "label": "Model ordering",
    "panel_label": "(d)",
    "axis": "narrative",
    "order": 3
@@ -78,7 +77,7 @@
  "nodes": [
   {
    "id": "a-crop",
-   "label": "scoring mask",
+   "label": "",
    "kind": "image",
    "panel": "a",
    "image": {
@@ -88,7 +87,7 @@
   },
   {
    "id": "a-zoom-default",
-   "label": "default: 8× nearest",
+   "label": "default",
    "kind": "image",
    "panel": "a",
    "image": {
@@ -98,7 +97,7 @@
   },
   {
    "id": "a-zoom-aligned",
-   "label": "grid-aligned",
+   "label": "aligned",
    "kind": "image",
    "panel": "a",
    "image": {
@@ -107,26 +106,14 @@
    }
   },
   {
-   "id": "a-missed",
-   "label": "59.5% of 1% crack pixels missed by default",
+   "id": "b-sdxl",
+   "label": "SDXL",
    "kind": "note",
-   "panel": "a"
-  },
-  {
-   "id": "a-gain",
-   "label": "grid-aligned input: PowerPaint MAE −45%",
-   "kind": "note",
-   "panel": "a"
-  },
-  {
-   "id": "b-prefill-black",
-   "label": "black",
-   "kind": "slot",
    "panel": "b"
   },
   {
    "id": "b-out-black",
-   "label": "−0.085 MAE 0.151",
+   "label": "",
    "kind": "image",
    "panel": "b",
    "image": {
@@ -135,14 +122,8 @@
    }
   },
   {
-   "id": "b-prefill-mid-gray",
-   "label": "mid-gray",
-   "kind": "slot",
-   "panel": "b"
-  },
-  {
-   "id": "b-out-mid-gray",
-   "label": "+0.055 MAE 0.130",
+   "id": "b-out-gray",
+   "label": "",
    "kind": "image",
    "panel": "b",
    "image": {
@@ -151,14 +132,8 @@
    }
   },
   {
-   "id": "b-prefill-ring",
-   "label": "ring mean",
-   "kind": "slot",
-   "panel": "b"
-  },
-  {
    "id": "b-out-ring",
-   "label": "+0.034 MAE 0.098",
+   "label": "",
    "kind": "image",
    "panel": "b",
    "image": {
@@ -167,27 +142,20 @@
    }
   },
   {
-   "id": "b-sdxl",
-   "label": "SDXL",
-   "sublabel": "strength 0.99",
-   "kind": "compute",
-   "panel": "b"
-  },
-  {
    "id": "c-waffle-cma",
-   "label": "78% CMA: 281/360 scored",
+   "label": "CMA",
    "kind": "chart",
    "panel": "c"
   },
   {
    "id": "c-waffle-aic",
-   "label": "97% AIC: 350/360 scored",
+   "label": "AIC",
    "kind": "chart",
    "panel": "c"
   },
   {
    "id": "d-title",
-   "label": "(d) Under the controlled protocol masked MAE · 2 museums × 4 media × 6 losses",
+   "label": "(d) Model ordering",
    "kind": "note",
    "panel": "d"
   },
@@ -216,44 +184,7 @@
    "panel": "d"
   }
  ],
- "edges": [
-  {
-   "id": "b-prefill-black-in",
-   "from": "b-prefill-black",
-   "to": "b-sdxl",
-   "kind": "data"
-  },
-  {
-   "id": "b-out-black-in",
-   "from": "b-sdxl",
-   "to": "b-out-black",
-   "kind": "data"
-  },
-  {
-   "id": "b-prefill-mid-gray-in",
-   "from": "b-prefill-mid-gray",
-   "to": "b-sdxl",
-   "kind": "data"
-  },
-  {
-   "id": "b-out-mid-gray-in",
-   "from": "b-sdxl",
-   "to": "b-out-mid-gray",
-   "kind": "data"
-  },
-  {
-   "id": "b-prefill-ring-in",
-   "from": "b-prefill-ring",
-   "to": "b-sdxl",
-   "kind": "data"
-  },
-  {
-   "id": "b-out-ring-in",
-   "from": "b-sdxl",
-   "to": "b-out-ring",
-   "kind": "data"
-  }
- ],
+ "edges": [],
  "annotations": [
   {
    "id": "a-zoom",
@@ -263,36 +194,26 @@
    "leader": true
   },
   {
-   "id": "b-heads",
-   "kind": "label",
-   "text": "prefill / SDXL output / bias"
-  },
-  {
    "id": "c-head",
    "kind": "label",
-   "text": "PowerPaint v1 safety checker"
-  },
-  {
-   "id": "c-key",
-   "kind": "label",
-   "text": "scored / withheld"
+   "text": "safety checker"
   },
   {
    "id": "cap-a",
    "kind": "label",
-   "text": "(a) What the model is asked to fill",
+   "text": "(a) Mask alignment",
    "anchor": "a"
   },
   {
    "id": "cap-b",
    "kind": "label",
-   "text": "(b) What fills the hole first",
+   "text": "(b) Hole prefill",
    "anchor": "b"
   },
   {
    "id": "cap-c",
    "kind": "label",
-   "text": "(c) Which outputs get scored",
+   "text": "(c) Withheld outputs",
    "anchor": "c"
   },
   {
@@ -304,5 +225,5 @@
  "legend": {
   "mode": "none"
  },
- "notes": "Teaser drawn with FigGenie conventions; numbers cited in docs/paper/FIGURE_SPEC.md."
+ "notes": "Pictures carry the message; numbers are in the caption only. ai.bare is deliberate (author rule: the figure shows what is new, the text explains)."
 }

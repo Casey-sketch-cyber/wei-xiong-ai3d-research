@@ -33,6 +33,7 @@ experiments/
   analyze_official.py         SDXL 模型卡参数的同尺寸配对、分辨率及模型比较
   verify_official.py          核验模型卡运行产物及配对亮度偏移
   analyze_prefill.py         核验三种预填充的逐图配对并汇总作品级指标
+  analyze_native_main.py     核验原尺度主实验、拦截分母和作品级模型配对
 ```
 
 ## 计划中的数据流（草案，待定）
@@ -115,3 +116,16 @@ python -B experiments/analyze_prefill.py --new-root "$PREFILL" --official-root "
 ```
 
 分析要求四个新组与两组历史黑色结果完整，以原洞内像素重算 MAE 和亮度偏移，并按作品配对汇总。可以传入 `--prereg-commit` 和 `--prereg-utc` 一并核对冻结方案早于实际推理。[填色对照结果](SDXL_PREFILL.md)
+
+## 原尺度主实验
+
+用 `prepare-native-main` 核对注册清单摘要，按固定顺序为四组各 15 幅建立 `native-v3` 源计划。随后在三个执行目录使用同一计划。`native-main` 跑 SDXL 和 PowerPaint，`native-main-shared` 跑扩张掩码的 LaMa 和 MAT，`native-main-original` 跑原始输入掩码的 LaMa 和 MAT。PowerPaint 使用已冻结的独立环境。
+
+```bash
+python -B experiments/run_followup.py prepare-native-main --manifest "$MANIFEST" --data-dir "$NATIVE_DATA" --run-dir "$NATIVE/prepared"
+python -B experiments/run_latent_aligned.py prepare --arm native-main --reference "$NATIVE/prepared" --run-dir "$NATIVE/native-main"
+python -B experiments/run_latent_aligned.py run --arm native-main --model sdxl --models-dir "$MODELS" --run-dir "$NATIVE/native-main"
+python -B experiments/diagnostic_metrics.py --run-dir "$NATIVE/native-main" --output "$NATIVE/diagnostics/native-main.json"
+```
+
+三路评分完成后，用 `analyze_native_main.py --help` 查看所需的源计划、三处执行目录、各组追算指标和汇总文件参数。PowerPaint 的安全失败状态应与 `failures/` 和运行计数匹配，逐图列入计划分母。运行记录带有 UTC 起止，可传入 `--prereg-commit` 与 `--prereg-utc` 核对实际顺序。[主实验报告](NATIVE_MAIN.md)

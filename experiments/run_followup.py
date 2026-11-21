@@ -11,11 +11,13 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from run_pilot import SIZE, STRATA, model_output, read_json, run, save_png, sha256, smoke, write_json
+from run_pilot import SIZE, STRATA, WORKS_PER_STRATUM, model_output, read_json, run, save_png, sha256, smoke, write_json
 
 NATIVE_SEED = 20261119
 PAIRED_SEED = 2026
 NATIVE_WORKS = 4
+NATIVE_MAIN_PROTOCOL = "native-v3"
+NATIVE_MAIN_MANIFEST_SHA256 = "528d5d7cdc2fb90db95970f47a216c482fa3ad37ae3d43bfe68d7882faf6a83c"
 SENSITIVITY_MODELS = ("sdxl_1024", "sdxl_empty")
 NATIVE_MODELS = ("lama", "sdxl", "mat", "powerpaint")
 
@@ -78,7 +80,7 @@ def cma_original(artwork, data_dir, baseline_source_dir):
                     image.verify()
                 atomic_write(destination, payload)
             return destination, full, "full"
-        except (OSError, ValueError) as error:
+        except (OSError, ValueError, Image.DecompressionBombError) as error:
             print(f"{object_id}: full rendition unavailable ({type(error).__name__})", flush=True)
     source = (baseline_source_dir / artwork["image_path"]).resolve()
     if not source.is_relative_to(baseline_source_dir.resolve()):
@@ -86,13 +88,18 @@ def cma_original(artwork, data_dir, baseline_source_dir):
     return source, artwork["image_url"], "baseline_rendition"
 
 
-def prepare_native(manifest, data_dir, run_dir):
+def prepare_native(manifest, data_dir, run_dir, *, main_cohort=False):
     from patch_design import MASK_AREAS, MASK_FAMILIES, design_mask, native_crop
 
     lock = run_dir / "prepared.json"
     source_sha = sha256(manifest)
+    protocol = NATIVE_MAIN_PROTOCOL if main_cohort else "native-v2"
+    work_count = WORKS_PER_STRATUM if main_cohort else NATIVE_WORKS
+    if main_cohort and source_sha != NATIVE_MAIN_MANIFEST_SHA256:
+        raise ValueError("Main experiment requires the preregistered CMA manifest hash")
     if lock.is_file():
-        if read_json(lock)["manifest_sha256"] != source_sha:
+        saved = read_json(lock)
+        if saved["manifest_sha256"] != source_sha or saved["protocol"] != protocol:
             raise ValueError("Native directory already uses another manifest")
         return
     prepared_dirs(run_dir)
@@ -101,18 +108,20 @@ def prepare_native(manifest, data_dir, run_dir):
         source_works = list(csv.DictReader(stream))
     rng = np.random.default_rng(NATIVE_SEED)
     selected = []
+    artwork_order = {}
     for index, group in enumerate(STRATA):
         works = sorted((row for row in source_works if row["stratum"] == group),
                        key=lambda row: row["artwork_id"])
-        if len(works) != 15 or any(row["rights"] != "CC0" for row in works):
+        if len(works) != WORKS_PER_STRATUM or any(row["rights"] != "CC0" for row in works):
             raise ValueError(f"Malformed source stratum: {group}")
-        selected.extend((index, slot, works[position])
-                        for slot, position in enumerate(rng.permutation(len(works))[:NATIVE_WORKS]))
-    if len({art["artwork_id"] for _, _, art in selected}) != 16:
-        raise ValueError("Native sample must have 16 unique works")
+        ordered = [works[position] for position in rng.permutation(len(works))[:work_count]]
+        artwork_order[group] = [art["artwork_id"] for art in ordered]
+        selected.extend((index, slot, art) for slot, art in enumerate(ordered))
+    if len({art["artwork_id"] for _, _, art in selected}) != len(STRATA) * work_count:
+        raise ValueError(f"Native sample must have {len(STRATA) * work_count} unique works")
 
     mask_records = {}
-    for slot in range(NATIVE_WORKS):
+    for slot in range(work_count):
         for family_index, family in enumerate(MASK_FAMILIES):
             for area_index, area in enumerate(MASK_AREAS):
                 seed = NATIVE_SEED + slot * 100 + family_index * 10 + area_index
@@ -122,11 +131,16 @@ def prepare_native(manifest, data_dir, run_dir):
                 save_png(path, mask.astype(np.uint8) * 255)
                 mask_records[(slot, family, area)] = (name, sha256(path), int(mask.sum()), seed)
 
+    def resolve_source(entry):
+        artwork = entry[2]
+        source = cma_original(artwork, data_dir, manifest.parent)
+        if main_cohort:
+            print(f"Resolved CMA source: {artwork['artwork_id']} ({source[2]})", flush=True)
+        return source
+
     cases = []
-    with ThreadPoolExecutor(max_workers=4) as pool:
-        sources = list(pool.map(
-            lambda entry: cma_original(entry[2], data_dir, manifest.parent), selected
-        ))
+    with ThreadPoolExecutor(max_workers=12 if main_cohort else 4) as pool:
+        sources = list(pool.map(resolve_source, selected))
     for (group_index, slot, artwork), (source, url, rendition) in zip(selected, sources):
         crop_seed = NATIVE_SEED + 1000 + group_index * 100 + slot
         pixels, (left, top) = native_crop(source, crop_seed)
@@ -148,8 +162,10 @@ def prepare_native(manifest, data_dir, run_dir):
                     "mask_sha256": mask_hash,
                 })
         print(f"Prepared native crop: {artwork['artwork_id']} ({rendition})", flush=True)
-    write_json(lock, {"protocol": "native-v2", "manifest_sha256": source_sha,
-                      "seed": PAIRED_SEED, "cases": cases})
+    plan = {"protocol": protocol, "manifest_sha256": source_sha, "seed": PAIRED_SEED, "cases": cases}
+    if main_cohort:
+        plan["artwork_order_by_stratum"] = artwork_order
+    write_json(lock, plan)
     print(f"Prepared {len(cases)} conditions across {len(selected)} artworks", flush=True)
 
 
@@ -196,7 +212,7 @@ def frozen_cases(run_dir, model):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("stage", choices=("prepare-sensitivity", "prepare-native", "smoke", "run"))
+    parser.add_argument("stage", choices=("prepare-sensitivity", "prepare-native", "prepare-native-main", "smoke", "run"))
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--baseline", type=Path)
     parser.add_argument("--manifest", type=Path)
@@ -210,10 +226,10 @@ def main():
             parser.error("prepare-sensitivity requires --baseline")
         freeze_sensitivity(args.baseline, args.run_dir)
         return
-    if args.stage == "prepare-native":
+    if args.stage in {"prepare-native", "prepare-native-main"}:
         if args.manifest is None or args.data_dir is None:
-            parser.error("prepare-native requires --manifest and --data-dir")
-        prepare_native(args.manifest, args.data_dir, args.run_dir)
+            parser.error(f"{args.stage} requires --manifest and --data-dir")
+        prepare_native(args.manifest, args.data_dir, args.run_dir, main_cohort=args.stage == "prepare-native-main")
         return
     if args.model is None or args.models_dir is None:
         parser.error("smoke and run require --model and --models-dir")

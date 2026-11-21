@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 360 个条件和 PowerPaint 原拦截 79 个条件。芝加哥独立馆藏各组 15 幅，核验 2,150 个输出及 10 个安全拦截。两馆的四模型原洞 MAE 排序一致，MAT 与 LaMa 的总体差在预设实用幅度内。已完成英文论文初稿。真实破损形状仍待供体出处映射和掩码授权。 [克利夫兰主实验](NATIVE_MAIN.md) · [复审对照](NATIVE_REVIEW.md) · [独立馆藏](AIC_REPLICATION.md) · [论文初稿](PAPER_DRAFT.md)
+PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md)
 
 ## 待办
 
@@ -57,11 +57,11 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 - [x] 完成复审实验后按 paperwrite 技能起草英文论文，包含两馆结果、证据表和适用范围。 [论文初稿](PAPER_DRAFT.md)
 - [x] Claude 复审 PR #15：实验部分通过并已合并；论文初稿需大改，详见 [复审意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/15#issuecomment-7057262583)
 - [ ] **Gemini · 重写论文**：按 [任务书](paper/WRITING_BRIEF.md) 把 v1 重写为 `docs/paper/draft-v2.md`，分支 `gemini/paper-rewrite-v2`。v1 只读
-- [ ] **Codex · 新颖性检索**：在 diffusers 文档与 issue、BrushNet、PowerPaint、SD 系列补全论文中检索潜空间掩码漏覆盖和 strength<1 预填充泄漏是否已有报告，结果写进 `literature/search-log.md`，并在 PR 里告诉 Gemini 能否保留相应说法（PR #15 复审）
-- [ ] **Codex · 参考文献池**：按文献树 v2 补齐 30 篇以上，逐篇核对后写进 `literature/papers.csv`（`id` 列供正文 `[@id]` 引用）；Controlled-300 标明未经同行评审（PR #15 复审）
-- [ ] **Codex · 配图**：任务书所列图 1–5，脚本进 Git，图像留服务器（PR #15 复审）
-- [ ] **Codex · 核对 Gemini 稿**：v2 交稿后逐个核对数字和引用，补全 `[@TODO-…]`，不改故事和语气
-- [ ] **Codex · 可选实验**：潜空间漏覆盖目前只有 16 幅先导的修正前后对照。如时间允许，先冻结方案，再在克利夫兰 60×6 上对 PowerPaint 和 SDXL 补跑未扩张掩码（720 次），让第 4.2 节有主实验规模的证据
+- [x] **Codex · 新颖性检索**：TD-Paint 已指出下采样的掩码信息损失，Diffusers #8450 已讨论低于 1.0 的预填色影响。稿件保留对画作条件的定量结果，以文献和源码定位机制。 [检索和 Gemini 口径](../literature/search-log.md#给-gemini-的机制表述)
+- [x] **Codex · 参考文献池**：逐项核对 59 条来源，包括 44 篇正式论文、4 篇预印本和 11 条档案或官方资源。Controlled-300 标为未经同行评审。 [文献池](../literature/papers.csv)
+- [x] **Codex · 配图**：图 1–5 已生成，服务器数据盘保留 PDF、300 dpi PNG 及校验清单。 [生成说明](paper/FIGURES.md)
+- [x] **Codex · 核对 Gemini 稿**：在作者提交 `67a0d6d` 上核对 v2 表 1–7、证据范围和所有引用。补全 15 个引用占位和表 3 的逐条件差值，附经验证的图注及全量对照结果，成果在 `codex/verify-gemini-v2`。
+- [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
 - [ ] **流程**：以后每个运行记录写入 `git rev-parse HEAD` 和工作区是否有未提交改动（附 diff 哈希），保证推理时的代码可追溯（PR #15 复审：`2890673` 晚于推理开始）
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -75,6 +75,12 @@ PR #13 已合并。四项复审均完成。克利夫兰补齐 SDXL 环带均色 
 ---
 
 ## 工作记录
+
+### 2026-11-20 · Codex · 完成文献、配图、v2 核对和 60 幅原掩码补跑
+- 核对 TD-Paint 与 Diffusers 既有机制讨论，文献池补至 59 条。Gemini 稿 51 个引用键均解析，Controlled-300 标明为非同行评审档案。
+- 用 `985d2c8` 在服务器生成五张论文图及校验清单，逐图核查 PDF、300 dpi PNG 与联系表。图 2 来源为克利夫兰馆方 CC0。
+- `f2c6a32` 冻结全量原掩码对照。实际推理从干净提交 `a174360` 启动。共享扩张使 PowerPaint 的配对 MAE 下降 0.0471，可用输出从 300/360 降至 281/360。SDXL 在细裂缝和小片剥落上改善，总体差为 +0.0008。
+- 核对 Gemini 稿表 1–7 与各自分母，补齐 15 个引用占位及先导逐条件结果，在 §4.2 附 60 幅的全量结果。
 
 ### 2026-11-21 · Claude · claude/gemini-rewrite-brief
 - **完成**：按作者决定改为 Gemini 重写正文、Codex 负责配图和文献；写 Gemini 任务书 `docs/paper/WRITING_BRIEF.md`，新增 `GEMINI.md`，更新 AGENTS.md 的阶段和分工，重新分配论文待办。

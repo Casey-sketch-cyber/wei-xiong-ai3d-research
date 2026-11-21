@@ -16,6 +16,7 @@ from run_pilot import SEEDS, model_output, read_json, run, sha256, smoke, write_
 PROTOCOL = "latent-alignment-v1"
 FIRST_SEED = SEEDS[:1]
 NATIVE_AIC_PROTOCOL = "native-aic-v1"
+UNEXPANDED_DIFFUSION = "native-main-unexpanded-diffusion"
 POWERPAINT_REPLAY = "native-review-pp-replay"
 POWERPAINT_BLOCK = "The PowerPaint base safety checker withheld the generated image"
 ARMS = {
@@ -35,6 +36,7 @@ ARMS = {
     "native-main": (NATIVE_MAIN_PROTOCOL, {"sdxl": FIRST_SEED, "powerpaint": FIRST_SEED}),
     "native-main-shared": (NATIVE_MAIN_PROTOCOL, {"lama": FIRST_SEED, "mat": FIRST_SEED}),
     "native-main-original": (NATIVE_MAIN_PROTOCOL, {"lama": FIRST_SEED, "mat": FIRST_SEED}),
+    UNEXPANDED_DIFFUSION: (NATIVE_MAIN_PROTOCOL, {"sdxl": FIRST_SEED, "powerpaint": FIRST_SEED}),
     "native-review-sdxl": (NATIVE_MAIN_PROTOCOL, {"sdxl": FIRST_SEED}),
     POWERPAINT_REPLAY: (NATIVE_MAIN_PROTOCOL, {"powerpaint": FIRST_SEED}),
     "aic-replication": (NATIVE_AIC_PROTOCOL, {"sdxl": FIRST_SEED, "powerpaint": FIRST_SEED}),
@@ -50,6 +52,7 @@ NATIVE_MAIN_APERTURES = {
     "native-main": "shared_grid8",
     "native-main-shared": "shared_grid8",
     "native-main-original": "original",
+    UNEXPANDED_DIFFUSION: "original",
     "native-review-sdxl": "shared_grid8",
     POWERPAINT_REPLAY: "shared_grid8",
     "aic-replication": "shared_grid8",
@@ -116,6 +119,7 @@ def freeze(arm, source, target, blocked_reference=None):
         blocked_powerpaint(blocked_reference, reference_digest, original_plan["cases"])
         if arm == POWERPAINT_REPLAY else {}
     )
+    metadata = {"safety_checker": "enabled"} if arm == UNEXPANDED_DIFFUSION else replay
     init_prefill = PREFILL_ARMS.get(arm)
     input_aperture = NATIVE_MAIN_APERTURES.get(arm)
     settings = OFFICIAL_SDXL_SETTINGS if arm.startswith("official-") or init_prefill else None
@@ -128,7 +132,7 @@ def freeze(arm, source, target, blocked_reference=None):
             or existing.get("inference_settings") != settings
             or existing.get("init_prefill") != init_prefill
             or existing.get("input_aperture") != input_aperture
-            or any(existing.get(key) != value for key, value in replay.items())
+            or any(existing.get(key) != value for key, value in metadata.items())
         ):
             raise ValueError("Target already contains a different frozen plan")
         check_frozen_inputs(target, existing["cases"])
@@ -156,7 +160,7 @@ def freeze(arm, source, target, blocked_reference=None):
     prepared = {
         "protocol": PROTOCOL, "arm": arm, "reference_plan_sha256": reference_digest,
         "reference_protocol": expected_protocol, "model_seeds": {key: list(value) for key, value in models.items()},
-        "input_mask_areas": input_areas, "cases": cases, **replay,
+        "input_mask_areas": input_areas, "cases": cases, **metadata,
     }
     if settings is not None:
         prepared["inference_settings"] = settings
@@ -229,6 +233,10 @@ def main():
         raise ValueError("Run fill differs from the frozen design")
     if prepared.get("input_aperture") != input_aperture:
         raise ValueError("Run input aperture differs from the frozen design")
+    if args.arm == UNEXPANDED_DIFFUSION and (
+        prepared.get("safety_checker") != "enabled" or prepared.get("inference_settings") is not None
+    ):
+        raise ValueError("Unexpanded diffusion requires the main inference settings and safety checker")
     cases = prepared["cases"]
     if replay:
         source = args.reference / "prepared.json"

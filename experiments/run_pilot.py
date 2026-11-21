@@ -8,9 +8,15 @@ import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from uuid import uuid4
 
 import numpy as np
 from PIL import Image, ImageCms, ImageDraw, ImageOps
+
+if __package__:
+    from .code_provenance import capture_code_provenance
+else:
+    from code_provenance import capture_code_provenance
 
 STRATA = ("oil_canvas", "oil_wood", "watercolor_paper", "ink_paper")
 SIZE = 512
@@ -192,6 +198,7 @@ def smoke(args, *, model_loader=None, predictor=model_output):
     from models import load_model
 
     args.run_dir.mkdir(parents=True, exist_ok=True)
+    provenance = capture_code_provenance()
     yy, xx = np.mgrid[:SIZE, :SIZE]
     pixels = np.stack((xx % 256, yy % 256, (xx + yy) % 256), axis=-1).astype(np.uint8)
     mask = program_mask(0)
@@ -212,6 +219,7 @@ def smoke(args, *, model_loader=None, predictor=model_output):
     report = {
         "model": args.model, "resolution": SIZE, "mask_type": "procedural",
         "load_seconds": round(load_seconds, 2), "inference_seconds": round(seconds, 2),
+        "code_provenance": provenance,
         **memory,
     }
     write_json(args.run_dir / f"smoke_{args.model}.json", report)
@@ -240,6 +248,7 @@ def masked_metrics(pixels, restored, mask, lpips_metric, device):
 
 
 def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_output, max_attempts=2):
+    provenance = capture_code_provenance()
     import lpips
 
     from models import load_model
@@ -253,6 +262,16 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
         directory.mkdir(exist_ok=True)
     if seeds is None:
         seeds = (SEEDS[0],) if args.model == "lama" else SEEDS
+
+    execution_id = uuid4().hex
+    provenance_dir = args.run_dir / "provenance" / args.model
+    provenance_dir.mkdir(parents=True, exist_ok=True)
+    invocation = {
+        "execution_id": execution_id,
+        "recorded_at_utc": datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
+        "code_provenance": provenance,
+    }
+    write_json(provenance_dir / f"{execution_id}.json", invocation)
 
     reset_memory(args.device)
     if model_loader is None:
@@ -291,6 +310,7 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
                         "model": args.model, "seed": seed, "mask_type": "procedural",
                         "masked_mae": mae, "local_lpips": distance,
                         "mask_pixels": int(mask.sum()), "attempts": attempt,
+                        "execution_id": execution_id,
                         "seconds": round(time.perf_counter() - start, 3),
                     })
                     failure_path.unlink(missing_ok=True)
@@ -303,7 +323,8 @@ def run(args, *, cases=None, model_loader=None, seeds=None, predictor=model_outp
                     print(f"{stem}: attempt {attempt}: {error}", flush=True)
             if not score_path.exists() or not output_path.exists():
                 failures += 1
-    report = {"model": args.model, "completed": complete, "failed": failures, **device_info(args.device)}
+    report = {"model": args.model, "completed": complete, "failed": failures,
+              **invocation, **device_info(args.device)}
     if attempted:
         report["started_at_utc"] = previous.get("started_at_utc", started_at)
         report["finished_at_utc"] = datetime.now(timezone.utc).isoformat(timespec="milliseconds")

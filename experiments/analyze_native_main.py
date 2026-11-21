@@ -91,8 +91,8 @@ def verify_score(saved, diagnostic, case, model, original, mask, output_file):
         raise ValueError(f"Saved reconstruction metrics disagree: {output_file}")
 
 
-def verify_run(root, diagnostic_file, arm_key, source_cases, source_sha, *, cohort="cma"):
-    arm, models, aperture = ARMS[arm_key]
+def verify_run(root, diagnostic_file, arm_key, source_cases, source_sha, *, cohort="cma", arm_spec=None):
+    arm, models, aperture = ARMS[arm_key] if arm_spec is None else arm_spec
     aic = cohort == "aic"
     if aic:
         arm = arm.replace("native-main", "aic-replication")

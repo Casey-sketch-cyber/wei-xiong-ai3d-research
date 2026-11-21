@@ -80,6 +80,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 
 ## 工作记录
 
+### 2026-11-21 · Claude · claude/figure-palette
+- **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。
+
 ### 2026-11-21 · Claude · claude/figure-spec
 - **完成**：写配图设计说明 `docs/paper/FIGURE_SPEC.md`（参考画法、统一配色与字体、图 1–6 元素、图标来源、草图到精修的交付流程）；任务书的配图一节改为指向它。
 - **注意 / 坑**：彭老师写作模板第 1、6 步是画 pipeline 草图和美化 teaser，模板里的"论文画图模板"未公开。

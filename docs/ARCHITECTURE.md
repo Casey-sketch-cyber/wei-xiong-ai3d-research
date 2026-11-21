@@ -161,3 +161,7 @@ python -B experiments/prepare_aic_replication.py prepare --data-dir "$AIC_DATA" 
 ```
 
 用 `run_latent_aligned.py prepare` 从同一 `$AIC_RUN/prepared` 建立 `aic-replication`、`aic-replication-shared`、`aic-replication-original`。三个目录接收的模型和对应的克利夫兰执行组一致。主比较的 PowerPaint 仍使用安全检查。评分后用 `analyze_native_main.py --cohort aic`，传入对应的三组运行与评分路径，以及 `--prereg-commit "$PREREG_COMMIT" --prereg-utc "$PREREG_UTC"`，核对冻结时间。 [独立馆藏报告](AIC_REPLICATION.md)
+
+## 论文配图与全量原掩码对照
+
+两馆论文图由 `make_paper_figures.py` 读取已核验的实验档案，在数据盘生成五张图和哈希清单。克利夫兰全量原掩码对照在独立目录运行 `native-main-unexpanded-diffusion`，以已归档共享扩张组作配对参照。推理记录带 Git 提交、工作区状态和代码摘要。 [配图与产物](paper/FIGURES.md) · [原掩码结果](NATIVE_APERTURE.md) · [运行命令与溯源字段](RUN_PROVENANCE.md)

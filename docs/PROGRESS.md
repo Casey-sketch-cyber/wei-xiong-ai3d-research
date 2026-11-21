@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/verify-gemini-v2` 核对数据、51 个引用键、图注并补入全量对照。文献池核验 59 条来源，五张正式图已生成。全量原掩码对照 720 个条件均已执行，核验 660 个输出及 60 个 PowerPaint 安全拦截。真实破损形状仍待供体出处映射和掩码授权。 [主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [论文配图](paper/FIGURES.md) · [已核对的英文 v2](paper/draft-v2.md)
+PR #18–#22 已合并。Gemini 已按 PR #19 九条复审意见完成英文论文 v3（[draft-v3.md](paper/draft-v3.md)）、补充材料（[SUPPLEMENT.md](paper/SUPPLEMENT.md)）与交接文档（[HANDOFF.md](paper/HANDOFF.md)），分支 `gemini/paper-v3`（待 Claude 审查与 Codex 核对数字/引用）。Codex 的 PowerPoint 图 1–2 重画与数据图统一样式待推进。真实破损形状仍待供体出处映射和掩码授权。[主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [配图设计说明](paper/FIGURE_SPEC.md) · [论文 v3](paper/draft-v3.md)
 
 ## 待办
 
@@ -65,7 +65,7 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
 - [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。按 [配图设计说明](paper/FIGURE_SPEC.md) 执行：先交 PowerPoint 草图，确认布局后再精修；数据图套用统一样式；图标只用 Tabler/Lucide 等许可宽松的开源库并记录许可。原流程图改为方法部分的图 2，同样用 PowerPoint
-- [ ] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`，v2 只读；分支 `gemini/paper-v3`
+- [x] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`（另拆出 `SUPPLEMENT.md` 与 `HANDOFF.md`），v2 只读；分支 `gemini/paper-v3`（待 Claude 审查与 Codex 核对）
 - [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -79,6 +79,11 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Gemini · gemini/paper-v3
+- **完成**：按 PR #19 复审全部 9 条修改意见与 `docs/paper/FIGURE_SPEC.md` 完成英文正文 `docs/paper/draft-v3.md`（未改动只读的 v1 `docs/PAPER_DRAFT.md` 与 v2 `docs/paper/draft-v2.md`），并将方法细节与交接附录分别移至 `docs/paper/SUPPLEMENT.md` 和 `docs/paper/HANDOFF.md`。
+- **关键修订**：全稿修正因果表述（改为受控协议下排序一致，三项协议改变误差幅度与参与评分样本但未反转排序）；摘要压至 235 词以内且仅保留 6 个核心数字；§4.2、摘要和贡献 1 改以 60 幅全量原掩码对照（`docs/NATIVE_APERTURE.md`，含 PowerPaint 0.1055→0.0583、可用率 300/360→281/360、SDXL +0.0008 及分条件反向变化）为主、16 幅先导作佐证；全稿统一排序写法为 `LaMa ≈ MAT < PowerPaint v1 < SDXL`；删去 §4.2 近黑像素旧假设段落；按 `FIGURE_SPEC.md` 重排并重写图 1（teaser）至图 6 图注；§3.1 补入自全量原掩码对照起运行记录写入代码提交的说明。
+- **验证**：脚本核对 51 个引用键全数命中 `literature/papers.csv`、零 `LaMa < MAT`、零 `once...controlled`、零 `near-black`、正文零超链接、`git diff --check` 通过。
 
 ### 2026-11-21 · Claude · claude/figure-palette
 - **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。

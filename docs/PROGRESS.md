@@ -62,7 +62,11 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 - [x] **Codex · 配图**：图 1–5 已生成，服务器数据盘保留 PDF、300 dpi PNG 及校验清单。 [生成说明](paper/FIGURES.md)
 - [x] **Codex · 核对 Gemini 稿**：在作者提交 `67a0d6d` 上核对 v2 表 1–7、证据范围和所有引用。补全 15 个引用占位和表 3 的逐条件差值，附经验证的图注及全量对照结果，成果在 `codex/verify-gemini-v2`。
 - [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
-- [ ] **流程**：以后每个运行记录写入 `git rev-parse HEAD` 和工作区是否有未提交改动（附 diff 哈希），保证推理时的代码可追溯（PR #15 复审：`2890673` 晚于推理开始）
+- [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
+- [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
+- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。内容按 [任务书的图 1 规格](paper/WRITING_BRIEF.md#配图)，只展示三个协议细节和控制后的结论，不画整个流程。原流程图改为方法部分的图 2，同样用 PowerPoint
+- [ ] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`，v2 只读；分支 `gemini/paper-v3`
+- [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -75,6 +79,10 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/review-followups-pr18-19
+- **完成**：复审并合并 PR #18（配图、文献池、全量原掩码对照）和 #19（Gemini v2 与 Codex 核对）；登记 v3 九条修改；按作者要求改为用 PowerPoint 画 teaser 和流程图，并写图 1 规格。
+- **注意 / 坑**：v2 把"控制三项后排序一致"写成了因果，v3 必须改；第 4.2 节要以 60 幅全量对照为主。
 
 ### 2026-11-20 · Codex · 完成文献、配图、v2 核对和 60 幅原掩码补跑
 - 核对 TD-Paint 与 Diffusers 既有机制讨论，文献池补至 59 条。Gemini 稿 51 个引用键均解析，Controlled-300 标明为非同行评审档案。

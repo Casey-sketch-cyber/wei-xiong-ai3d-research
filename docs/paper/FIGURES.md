@@ -52,3 +52,13 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 ```
 
 生成器逐一核对预定的两馆汇总哈希、原图、掩码及图 2 的四模型输出，记录完整注释和分母。已检查五个 PDF 的格式签名、PNG 尺寸与分辨率，并目视检查从服务器生成的联系表。清单为 `figure-manifest.json`，SHA-256 `ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326`。 [配图脚本](../../experiments/make_paper_figures.py)
+
+
+## FigGenie 版（2026-11-21，取代上面的 PowerPoint 草图）
+
+| 图 | 源文件 | 可编辑 PPTX | 预览 |
+| --- | --- | --- | --- |
+| 1 · Teaser | [src/fig1](figures/src/fig1/make_fig1.py) | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) |
+| 2 · 方法流程 | [src/fig2](figures/src/fig2/make_fig2.py) | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) |
+
+**当前预览中的画作裁片、SDXL 输出和合成图是占位图**；(a) 的掩码覆盖图和图 2 的六个掩码是真实几何，按冻结的种子规则重建（示例槽位 2，该掩码漏覆盖 57.8%，60 幅平均为 59.5%）。Codex 需按 FIGURES.md 的选例规则选定 1% 裂缝案例，取得其槽位、冻结裁片，以及同一条件下 SDXL 三种填色的输出和一张 LaMa 合成图，然后运行 [build.sh](figures/src/build.sh)。环带均色的色块应取该案例的实际 RGB，写进 `src/fig1/ring_mean.json`（`{"hex": "#RRGGBB"}`）。

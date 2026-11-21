@@ -11,8 +11,9 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ## 待办
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
-- [ ] **Codex · 图 1、图 2 精修**：按 [PR #24 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/24#issuecomment-7063544152) 改布局（图 1 六条、图 2 五条），换真实缩略图和 Tabler 图标，导出 PDF 与预览 PNG，开 PR
-- [ ] **Claude · 图 1、图 2 最后美化**：Codex 精修后，直接调整 `.pptx` 的配色、间距和细节并导出正式稿
+- [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md#figgenie-版2026-11-21取代上面的-powerpoint-草图)
+- [ ] **Codex · 图 1、图 2 换真实图片**：在服务器克隆 FigGenie，按 FIGURES.md 选定 1% 裂缝案例，取得冻结裁片、SDXL 三种填色输出、LaMa 合成图和环带均色，运行 `docs/paper/figures/src/build.sh`，提交更新后的 PPTX 与预览；lint 必须 0 错误。PDF 留在服务器
+- [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
 - [ ] **Codex · 图 3–6 套用统一样式**：按 FIGURE_SPEC 第 2、5 节（配色、点形、字号；图 5 用点加区间）
 - [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
@@ -86,6 +87,10 @@ PR #17 已合并。Gemini 交付英文 v2（`67a0d6d`），Codex 在 `codex/veri
 ---
 
 ## 工作记录
+
+### 2026-11-21 · Claude · claude/figgenie-figures
+- **完成**：按作者要求引入 FigGenie，用它重画图 1（teaser）和图 2（流程图），lint 均 0 错误，导出 PDF 与可编辑 PPTX（已去主题阴影）；新增 `experiments/make_teaser_assets.py` 与 `docs/paper/figures/src/build.sh`；FIGURE_SPEC 加"当前做法"一节调和规则。
+- **注意 / 坑**：预览里画作和模型输出是占位图；svg2pptx 默认引用主题阴影，必须跑 `pptx_noshadow.py`；PPTX 中 ΔE 的下标会变成普通文字。
 
 ### 2026-11-21 · Claude · claude/review-followups-pr23-24
 - **完成**：审查并合并 PR #24（图 1、图 2 布局草图），给出精修意见；审查 PR #23（论文 v3），九条修改均已落实，但需按 Codex 五条和 Claude 三条再改一轮，暂不合并。

@@ -1,0 +1,308 @@
+{
+ "meta": {
+  "id": "fig1-teaser",
+  "title": "Three protocol choices and the ordering under the controlled protocol",
+  "family": "ai",
+  "venue": "cvpr",
+  "kind": "architecture",
+  "column": "double",
+  "width_pt": 495,
+  "max_height_pt": 172,
+  "template": "ai",
+  "direction": "left-right",
+  "palette": "verdict-contrast",
+  "font": "arial",
+  "step_markers": "none",
+  "figure_kind": "comparison",
+  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling misses part of a 1% crack; a grid-aligned input reaches every hole pixel. (b) At SDXL strength 0.99 the hole's prefill colour shifts luminance bias and error. (c) PowerPaint's safety checker withholds outputs at different rates in two museums. (d) Under the controlled protocol the masked-MAE ordering is the same in both museums, four media and six losses.",
+  "language": "en",
+  "version": 1,
+  "ai": {
+   "kinds": [
+    "contribution-mosaic",
+    "side-by-side-contrast"
+   ],
+   "variant": "finding-cards",
+   "subfield": "vision",
+   "subfield2": "generative",
+   "arrangement": "panels-row",
+   "grouping": [
+    "whitespace",
+    "tinted-regions"
+   ],
+   "samples": "image",
+   "materials": [
+    "frozen 512 crop of one 1% crack case (server archive)",
+    "SDXL strength-0.99 outputs of one condition with black, mid-gray and ring-mean prefill (server archive)",
+    "numbers from the experiment reports"
+   ]
+  }
+ },
+ "panels": [
+  {
+   "id": "a",
+   "label": "What the model is asked to fill",
+   "panel_label": "(a)",
+   "axis": "narrative",
+   "order": 0
+  },
+  {
+   "id": "b",
+   "label": "What fills the hole first",
+   "panel_label": "(b)",
+   "axis": "narrative",
+   "order": 1
+  },
+  {
+   "id": "c",
+   "label": "Which outputs get scored",
+   "panel_label": "(c)",
+   "axis": "narrative",
+   "order": 2
+  },
+  {
+   "id": "d",
+   "label": "Under the controlled protocol",
+   "panel_label": "(d)",
+   "axis": "narrative",
+   "order": 3
+  }
+ ],
+ "containers": [
+  {
+   "id": "d-band",
+   "label": "",
+   "role": "boundary"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a-crop",
+   "label": "scoring mask",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_crop.png",
+    "role": "sample-input"
+   }
+  },
+  {
+   "id": "a-zoom-default",
+   "label": "default: 8× nearest",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_zoom_default.png",
+    "role": "illustration"
+   }
+  },
+  {
+   "id": "a-zoom-aligned",
+   "label": "grid-aligned",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_zoom_aligned.png",
+    "role": "illustration"
+   }
+  },
+  {
+   "id": "a-missed",
+   "label": "59.5% of 1% crack pixels missed by default",
+   "kind": "note",
+   "panel": "a"
+  },
+  {
+   "id": "a-gain",
+   "label": "grid-aligned input: PowerPaint MAE −45%",
+   "kind": "note",
+   "panel": "a"
+  },
+  {
+   "id": "b-prefill-black",
+   "label": "black",
+   "kind": "slot",
+   "panel": "b"
+  },
+  {
+   "id": "b-out-black",
+   "label": "−0.085 MAE 0.151",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_black.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "b-prefill-mid-gray",
+   "label": "mid-gray",
+   "kind": "slot",
+   "panel": "b"
+  },
+  {
+   "id": "b-out-mid-gray",
+   "label": "+0.055 MAE 0.130",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_gray.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "b-prefill-ring",
+   "label": "ring mean",
+   "kind": "slot",
+   "panel": "b"
+  },
+  {
+   "id": "b-out-ring",
+   "label": "+0.034 MAE 0.098",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_ring.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "b-sdxl",
+   "label": "SDXL",
+   "sublabel": "strength 0.99",
+   "kind": "compute",
+   "panel": "b"
+  },
+  {
+   "id": "c-waffle-cma",
+   "label": "78% CMA: 281/360 scored",
+   "kind": "chart",
+   "panel": "c"
+  },
+  {
+   "id": "c-waffle-aic",
+   "label": "97% AIC: 350/360 scored",
+   "kind": "chart",
+   "panel": "c"
+  },
+  {
+   "id": "d-title",
+   "label": "(d) Under the controlled protocol masked MAE · 2 museums × 4 media × 6 losses",
+   "kind": "note",
+   "panel": "d"
+  },
+  {
+   "id": "d-lama",
+   "label": "LaMa",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-mat",
+   "label": "MAT",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-powerpaint",
+   "label": "PowerPaint v1",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-sdxl",
+   "label": "SDXL",
+   "kind": "module",
+   "panel": "d"
+  }
+ ],
+ "edges": [
+  {
+   "id": "b-prefill-black-in",
+   "from": "b-prefill-black",
+   "to": "b-sdxl",
+   "kind": "data"
+  },
+  {
+   "id": "b-out-black-in",
+   "from": "b-sdxl",
+   "to": "b-out-black",
+   "kind": "data"
+  },
+  {
+   "id": "b-prefill-mid-gray-in",
+   "from": "b-prefill-mid-gray",
+   "to": "b-sdxl",
+   "kind": "data"
+  },
+  {
+   "id": "b-out-mid-gray-in",
+   "from": "b-sdxl",
+   "to": "b-out-mid-gray",
+   "kind": "data"
+  },
+  {
+   "id": "b-prefill-ring-in",
+   "from": "b-prefill-ring",
+   "to": "b-sdxl",
+   "kind": "data"
+  },
+  {
+   "id": "b-out-ring-in",
+   "from": "b-sdxl",
+   "to": "b-out-ring",
+   "kind": "data"
+  }
+ ],
+ "annotations": [
+  {
+   "id": "a-zoom",
+   "kind": "zoom",
+   "text": "zoom",
+   "anchor": "a-crop",
+   "leader": true
+  },
+  {
+   "id": "b-heads",
+   "kind": "label",
+   "text": "prefill / SDXL output / bias"
+  },
+  {
+   "id": "c-head",
+   "kind": "label",
+   "text": "PowerPaint v1 safety checker"
+  },
+  {
+   "id": "c-key",
+   "kind": "label",
+   "text": "scored / withheld"
+  },
+  {
+   "id": "cap-a",
+   "kind": "label",
+   "text": "(a) What the model is asked to fill",
+   "anchor": "a"
+  },
+  {
+   "id": "cap-b",
+   "kind": "label",
+   "text": "(b) What fills the hole first",
+   "anchor": "b"
+  },
+  {
+   "id": "cap-c",
+   "kind": "label",
+   "text": "(c) Which outputs get scored",
+   "anchor": "c"
+  },
+  {
+   "id": "d-order",
+   "kind": "label",
+   "text": "≈ < <"
+  }
+ ],
+ "legend": {
+  "mode": "none"
+ },
+ "notes": "Teaser drawn with FigGenie conventions; numbers cited in docs/paper/FIGURE_SPEC.md."
+}

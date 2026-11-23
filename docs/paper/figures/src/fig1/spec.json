@@ -7,16 +7,16 @@
   "kind": "architecture",
   "column": "double",
   "width_pt": 495,
-  "max_height_pt": 141,
+  "max_height_pt": 226,
   "template": "ai",
-  "direction": "left-right",
+  "direction": "mixed",
   "palette": "verdict-contrast",
   "font": "arial",
   "step_markers": "none",
   "figure_kind": "comparison",
-  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). (b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one paired case. (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
+  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). (b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one 5% broad-loss case, enlarged around the hole. (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
   "language": "en",
-  "version": 2,
+  "version": 3,
   "ai": {
    "kinds": [
     "contribution-mosaic",
@@ -25,7 +25,7 @@
    "variant": "finding-cards",
    "subfield": "vision",
    "subfield2": "generative",
-   "arrangement": "panels-row",
+   "arrangement": "panels-grid",
    "grouping": [
     "whitespace",
     "tinted-regions"
@@ -33,7 +33,7 @@
    "samples": "image",
    "materials": [
     "frozen 512 crop of one 1% crack case (server archive)",
-    "SDXL strength-0.99 outputs of one condition with black, mid-gray and ring-mean prefill (server archive)"
+    "SDXL strength-0.99 outputs of one 5% broad-loss condition with black, mid-gray and ring-mean prefill, enlarged around the hole (server archive)"
    ]
   }
  },
@@ -69,7 +69,7 @@
  ],
  "containers": [
   {
-   "id": "d-band",
+   "id": "d-box",
    "label": "",
    "role": "boundary"
   }
@@ -104,12 +104,6 @@
     "src": "a_zoom_aligned.png",
     "role": "illustration"
    }
-  },
-  {
-   "id": "b-sdxl",
-   "label": "SDXL",
-   "kind": "note",
-   "panel": "b"
   },
   {
    "id": "b-out-black",
@@ -154,12 +148,6 @@
    "panel": "c"
   },
   {
-   "id": "d-title",
-   "label": "(d) Model ordering",
-   "kind": "note",
-   "panel": "d"
-  },
-  {
    "id": "d-lama",
    "label": "LaMa",
    "kind": "module",
@@ -194,9 +182,19 @@
    "leader": true
   },
   {
+   "id": "b-sdxl",
+   "kind": "label",
+   "text": "SDXL"
+  },
+  {
    "id": "c-head",
    "kind": "label",
    "text": "safety checker"
+  },
+  {
+   "id": "d-order",
+   "kind": "label",
+   "text": "≈ < <"
   },
   {
    "id": "cap-a",
@@ -217,9 +215,10 @@
    "anchor": "c"
   },
   {
-   "id": "d-order",
+   "id": "cap-d",
    "kind": "label",
-   "text": "≈ < <"
+   "text": "(d) Model ordering",
+   "anchor": "d"
   }
  ],
  "legend": {

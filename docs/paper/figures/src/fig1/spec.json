@@ -14,7 +14,7 @@
   "font": "arial",
   "step_markers": "none",
   "figure_kind": "comparison",
-  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; 59.5% of 1% crack pixels across 60 works); a grid-aligned input reaches every hole pixel. (b) At SDXL strength 0.99 the colour used to prefill the hole changes the result (inset: black, mid-gray, ring mean). (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
+  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). (b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one paired case. (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
   "language": "en",
   "version": 2,
   "ai": {

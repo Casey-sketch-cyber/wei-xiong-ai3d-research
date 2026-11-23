@@ -11,6 +11,7 @@ placeholder is written so the layout can be reviewed.
 """
 
 import argparse
+from hashlib import sha256
 import json
 from pathlib import Path
 
@@ -19,9 +20,15 @@ from PIL import Image, ImageDraw
 
 from patch_design import MASK_AREAS, MASK_FAMILIES, design_mask
 from latent_aligned import grid_cover
+from latent_mask_diagnostic import digest, read_pixels
+from models import _diffusion_input
 
 NATIVE_SEED = 20261119  # run_followup.NATIVE_SEED
 STRIDE = 8
+SELECTION_SALT = "museum-painting-figures-v1"
+FIRST_FIGURES_SHA = "ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326"
+CMA_SUMMARY_SHA = "babeef02a7057d0abdce298caefacd9c1fab830e2db96924345d8fbb8b57c419"
+PREFILL_SUMMARY_SHA = "e18163e5dddc67fb2596dcb2af30577412d1e13cf3b7664fba33fe1b7384521d"
 RIGHT = (112, 173, 71)    # covered pixels  #70AD47
 WRONG = (192, 0, 0)       # missed pixels   #C00000
 CELL = (68, 114, 196)     # latent cell edges #4472C4
@@ -29,6 +36,97 @@ CELL = (68, 114, 196)     # latent cell edges #4472C4
 
 def mask_seed(slot: int, family: str, area: float) -> int:
     return NATIVE_SEED + slot * 100 + MASK_FAMILIES.index(family) * 10 + MASK_AREAS.index(area)
+
+
+def checked_json(path: Path, expected_sha256: str) -> dict:
+    if digest(path) != expected_sha256:
+        raise ValueError(f"Frozen JSON checksum mismatch: {path}")
+    return json.loads(path.read_bytes())
+
+
+def artwork_files(directory: Path, case: dict) -> tuple[Path, np.ndarray, np.ndarray]:
+    crop_path = directory / "originals" / f"{case['case_id']}.png"
+    crop = read_pixels(crop_path, case["crop_sha256"])
+    mask = read_pixels(directory / "masks" / case["mask_file"], case["mask_sha256"]) > 0
+    if case["rights"] != "CC0" or crop.shape != (512, 512, 3) or mask.shape != crop.shape[:2]:
+        raise ValueError(f"Unexpected frozen artwork or mask: {case['case_id']}")
+    return crop_path, crop, mask
+
+
+def verify_output(path: Path, digest_value: str, crop: np.ndarray, mask: np.ndarray) -> None:
+    output = read_pixels(path, digest_value)
+    if output.shape != crop.shape or not np.array_equal(output[~mask], crop[~mask]):
+        raise ValueError(f"Output does not preserve the frozen crop outside the scoring mask: {path}")
+
+
+def archive_inputs(project: Path, args: argparse.Namespace) -> dict:
+    """Select and verify the two distinct published examples before rendering."""
+    published = checked_json(project / "paper/figures-20261121/figure-manifest.json", FIRST_FIGURES_SHA)
+    alignment = next(row for row in published["latent_coverage_examples"] if row["family"] == "crack")
+    cma = project / "runs/native-main-20261120"
+    summary = checked_json(cma / "diagnostics/native-main-summary.json", CMA_SUMMARY_SHA)
+    inputs = summary["inputs_sha256"]
+    prepared = cma / "prepared"
+    plan = checked_json(prepared / "prepared.json", inputs["native_plan"])
+    by_id = {row["case_id"]: row for row in plan["cases"]}
+    example = by_id[alignment["case_id"]]
+    case_prefix = example["case_id"].removesuffix("_crack_01")
+    args.slot = int(case_prefix.rsplit("_", 1)[1])
+    args.crop, crop, _ = artwork_files(prepared, example)
+    if example["mask_sha256"] != alignment["mask_sha256"]:
+        raise ValueError("The published alignment example differs from the frozen run")
+    for family in MASK_FAMILIES:
+        for area in MASK_AREAS:
+            case = by_id[f"{case_prefix}_{family}_{int(area * 100):02d}"]
+            _, _, mask = artwork_files(prepared, case)
+            seed = mask_seed(args.slot, family, area)
+            if (case["artwork_id"] != example["artwork_id"] or case["crop_sha256"] != example["crop_sha256"]
+                    or case["mask_seed"] != seed or not np.array_equal(mask, design_mask(family, area, seed))):
+                raise ValueError(f"Reconstructed Figure 2 mask does not match the freeze: {case['case_id']}")
+
+    composite_id = f"{case_prefix}_crack_05"
+    _, _, score_mask = artwork_files(prepared, by_id[composite_id])
+    lama = checked_json(cma / "diagnostics/native-main-shared.json", inputs["arms"]["shared"]["diagnostics"])
+    composite = next(row for row in lama["rows"] if row["case_id"] == composite_id and row["model"] == "lama")
+    args.composite = cma / "native-main-shared/restored" / f"{composite_id}__lama__s2026.png"
+    verify_output(args.composite, composite["restored_sha256"], crop, score_mask)
+
+    prefill = project / "runs/sdxl-prefill-20261120"
+    prefill_summary = checked_json(prefill / "diagnostics/prefill-summary.json", PREFILL_SUMMARY_SHA)
+    sample = min(prefill_summary["cohorts"]["native"]["rows"], key=lambda row: sha256(
+        f"{SELECTION_SALT}|{row['case_id']}".encode()).hexdigest())
+    prefill_id = sample["case_id"]
+    arms = {"black": project / "runs/official-inference-20261119/official-native",
+            "gray": prefill / "gray-native", "ring": prefill / "ring-native"}
+    locks = {name: json.loads((root / "prepared.json").read_bytes()) for name, root in arms.items()}
+    cases = {name: next(row for row in lock["cases"] if row["case_id"] == prefill_id)
+             for name, lock in locks.items()}
+    black_case = cases["black"]
+    _, prefill_crop, prefill_mask = artwork_files(arms["black"], black_case)
+    for name, root in arms.items():
+        case = cases[name]
+        if (locks[name]["reference_plan_sha256"] != locks["black"]["reference_plan_sha256"]
+                or case["artwork_id"] != sample["artwork_id"]
+                or any(case[key] != black_case[key] for key in ("crop_sha256", "mask_sha256"))):
+            raise ValueError(f"Mismatched SDXL prefill trial: {name}")
+        artwork_files(root, case)
+        path = root / "restored" / f"{prefill_id}__sdxl__s2026.png"
+        verify_output(path, sample["scores"][name]["restored_sha256"], prefill_crop, prefill_mask)
+        setattr(args, f"sdxl_{name}", path)
+    enlarged = grid_cover(prefill_mask, STRIDE)
+    ring_rgb = _diffusion_input(prefill_crop, enlarged, "ring")[enlarged][0]
+    ring_hex = "#" + "".join(f"{value:02X}" for value in ring_rgb)
+    (args.out / "ring_mean.json").write_text(json.dumps({"hex": ring_hex}) + "\n", encoding="utf-8")
+
+    return {
+        "alignment_case": {key: example[key] for key in
+                           ("case_id", "artwork_id", "title", "artist", "source_url", "crop_sha256", "mask_sha256")},
+        "composite_case": {"case_id": composite_id, "sha256": composite["restored_sha256"]},
+        "prefill_case": {key: black_case[key] for key in
+                         ("case_id", "artwork_id", "title", "artist", "source_url", "crop_sha256", "mask_sha256")},
+        "prefill_outputs": sample["scores"],
+        "ring_mean": ring_hex,
+    }
 
 
 def nearest_cover(mask: np.ndarray) -> np.ndarray:
@@ -99,6 +197,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", type=Path, required=True, help="Figure 1 folder")
     ap.add_argument("--out-fig2", type=Path, help="Figure 2 folder (default: ../fig2 next to --out)")
+    ap.add_argument("--archive", type=Path, help="Project data disk with the frozen experimental archives")
     ap.add_argument("--slot", type=int, default=0)
     ap.add_argument("--crop", type=Path)
     ap.add_argument("--sdxl-black", type=Path)
@@ -108,6 +207,7 @@ def main() -> None:
     ap.add_argument("--cells", type=int, default=6)
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
+    provenance = archive_inputs(args.archive, args) if args.archive else {}
 
     seed = mask_seed(args.slot, "crack", 0.01)
     mask = design_mask("crack", 0.01, seed)
@@ -150,7 +250,7 @@ def main() -> None:
     Image.fromarray(np.uint8(out)).resize((256, 256), Image.LANCZOS).save(fig2 / "f2_output.png")
 
     missed = float((mask & ~nearest).sum() / mask.sum())
-    info = {"slot": args.slot, "mask_seed": seed, "mask_pixels": int(mask.sum()), "missed_fraction_this_mask": missed,
+    info = {**provenance, "slot": args.slot, "mask_seed": seed, "mask_pixels": int(mask.sum()), "missed_fraction_this_mask": missed,
             "zoom_window_yx": [int(y), int(x)], "zoom_cells": args.cells,
             "placeholders": [k for k, v in {"crop": args.crop, "sdxl_black": args.sdxl_black,
                                             "sdxl_gray": args.sdxl_gray, "sdxl_ring": args.sdxl_ring,

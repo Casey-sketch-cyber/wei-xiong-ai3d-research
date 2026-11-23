@@ -119,7 +119,7 @@ def build():
                     f'stroke-width="0.5"/>{rows}</g>')
         nodes.append({"id": gid, "label": " ".join(m[0] for m in models), "kind": "module", "parent": "models"})
     sw = "".join(f'<rect x="{x + SW / 2 - 9.5 + 7 * i:.2f}" y="96" width="5" height="5" fill="{c}" '
-                 f'stroke="{F.BLUE}" stroke-width="0.6"/>' for i, c in enumerate(("#000000", "#808080", "#9C8466")))
+                 f'stroke="{F.BLUE}" stroke-width="0.6"/>' for i, c in enumerate(("#000000", "#808080", F.ring_colour())))
     body.append(f'<g id="n:prefill" data-kind="node" data-role="novel" data-parent="models">{sw}</g>')
     nodes.append({"id": "prefill", "label": "", "kind": "icon", "parent": "models"})
     body.append(f'<g id="a:mark-b" data-kind="annotation" data-anchor="models">{badge(x + SW - 7, TOP + 7, "b")}</g>')
@@ -172,13 +172,14 @@ def build():
                      "max_height_pt": H, "template": "ai", "direction": "left-right", "palette": "office-pastel",
                      "font": F.FONT, "step_markers": "none", "language": "en", "version": 2,
                      "caption_draft": "Evaluation pipeline. Crops from two open-access collections (60 works each, "
-                     "four media) receive six procedural losses. Every model sees the same input, with the hole "
-                     "expanded to whole 8x8 cells (a); diffusion models use a stated prefill (b); generated pixels "
+                     "15 works per medium) receive six procedural losses per artwork. The four models share the same "
+                     "aperture, expanded to whole 8x8 cells (a); the SDXL sensitivity varies prefill (b); generated pixels "
                      "are kept only in the original hole and scored against the recorded crop, and planned, scored "
-                     "and withheld conditions are counted per model (c). Coloured parts are the protocol controls.",
+                     "and withheld conditions are counted against 360 planned per model per museum (c). "
+                     "Coloured parts are the protocol controls.",
                      "ai": {"kinds": ["stage-pipeline"], "variant": "stage-chain", "subfield": "vision",
                             "arrangement": "pipeline-row", "grouping": ["framed-boxes"],
-                            "samples": "image", "materials": ["the Figure 1 case's crop, masks and a composite"]}},
+                            "samples": "image", "materials": ["the Figure 1(a) crop, its masks and a LaMa composite"]}},
             "containers": containers, "nodes": nodes, "edges": edges, "annotations": annotations,
             "legend": {"mode": "none"},
             "notes": "Pictures and short names only; ai.bare is deliberate (the figure shows what is new)."}

@@ -4,11 +4,11 @@
 
 ## 当前状态
 
-图 1 teaser 和图 2 方法流程已用真实裁片、SDXL 三色输出和 LaMa 合成完成 FigGenie 构建，待 Claude 最后检查。图 3–6 已在服务器数据盘按统一样式生成。Gemini v3 仍待提交 PR #23 的第二轮修订，提交后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
+图 1 已按 Claude 的 2 × 2 布局重建，图 2 已按单栏两行蛇形布局重建。图 1(b) 使用预先固定规则选出的 5% 广片缺失案例，三种填色采用同一放大窗口。论文版 PDF 和 300 dpi PNG 在服务器数据盘，待 Claude 检查新版。Gemini v3 仍待提交 PR #23 的第二轮修订，之后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 
 ## 待办
 
-- [ ] **Codex · 重跑图 1、图 2**（2026-11-23）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 跑 `docs/paper/figures/src/build.sh`。1(b) 按新规则改选 `_loss_05` 条件，并放大到洞周围（规则见 FIGURES.md 末节）。提交 PPTX 与预览，在 PR 里写明选中的 case_id
+- [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
@@ -88,6 +88,10 @@
 ---
 
 ## 工作记录
+
+### 2026-11-23 · Codex · 用固定广片缺失例重建图 1 与图 2
+- 从 16 个冻结的 5% 广片缺失条件按指定盐值选中 `watercolor_paper_02_loss_05`。按输出差异确定同一 251 × 251 px 窗口，验证全部 13,107 个差异像素均在计分洞内。
+- 在数据盘重跑 FigGenie，图 1 为 2 × 2 通栏，图 2 为单栏两行。审查版 PPTX 和预览入库，论文版 PDF、300 dpi PNG、自包含 SVG 与清单保存在 `paper/figgenie-20261123/publication/`。
 
 ### 2026-11-23 · Claude · claude/figures-grid-layout
 - **完成**：审查并合并 PR #28（真实素材的图 1–6）。按作者意见把图 1 改为 2 × 2、图 2 改为单栏两行蛇形。1(b) 改为在 5% 广片缺失中选例，并放大到洞周围（`hole_window`）。

@@ -4,10 +4,19 @@
 
 ## 当前状态
 
-PR #18–#22 已合并。Gemini 已按 PR #19 九条复审意见完成英文论文 v3（[draft-v3.md](paper/draft-v3.md)）、补充材料（[SUPPLEMENT.md](paper/SUPPLEMENT.md)）与交接文档（[HANDOFF.md](paper/HANDOFF.md)），分支 `gemini/paper-v3`（待 Claude 审查与 Codex 核对数字/引用）。Codex 的 PowerPoint 图 1–2 重画与数据图统一样式待推进。真实破损形状仍待供体出处映射和掩码授权。[主实验](NATIVE_MAIN.md) · [独立馆藏](AIC_REPLICATION.md) · [全量原掩码对照](NATIVE_APERTURE.md) · [文献池](../literature/papers.csv) · [配图设计说明](paper/FIGURE_SPEC.md) · [论文 v3](paper/draft-v3.md)
+图 1 teaser 和图 2 方法流程已用真实裁片、SDXL 三色输出和 LaMa 合成完成 FigGenie 构建，待 Claude 最后检查。图 3–6 已在服务器数据盘按统一样式生成。Gemini v3 仍待提交 PR #23 的第二轮修订，提交后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 
 ## 待办
 
+- [ ] **Codex · 重跑图 1、图 2**（2026-11-23）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 跑 `docs/paper/figures/src/build.sh`。1(b) 按新规则改选 `_loss_05` 条件，并放大到洞周围（规则见 FIGURES.md 末节）。提交 PPTX 与预览，在 PR 里写明选中的 case_id
+
+- [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
+- [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
+- [ ] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母
+- [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
+- [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
+- [x] **Codex · 图 3–6 套用统一样式**：数据盘已生成四张图的 PDF、300 dpi PNG 与清单。图 5 使用四模型同案的绝对 MAE 均值与作品级 bootstrap 95% 区间。[生成说明](paper/FIGURES.md)
+- [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
 - [x] 核对文献表中 19 条 arXiv 记录，16 条找到正式发表处，另外 3 条仅确认预印本
 - [x] 核对 ARTeFACT 数据卡许可和样本元数据。418 条记录中 49 条标为 Painting
@@ -64,9 +73,10 @@ PR #18–#22 已合并。Gemini 已按 PR #19 九条复审意见完成英文论�
 - [x] **Codex · 可选实验**：先冻结方案，再在克利夫兰 60×6 上完成 PowerPaint 和 SDXL 的 720 个原掩码条件，按两组共同可用条件汇总。 [原掩码全量对照](NATIVE_APERTURE.md)
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
-- [ ] **Codex · 图 1 用 PowerPoint 重画**（作者要求，按彭老师教学）：做成可编辑的 `.pptx`（用 python-pptx 生成原生形状、文本框和箭头，不要整页贴图），存到 `docs/paper/figures/figure-1-teaser.pptx`，再导出 PDF 供论文使用。按 [配图设计说明](paper/FIGURE_SPEC.md) 执行：先交 PowerPoint 草图，确认布局后再精修；数据图套用统一样式；图标只用 Tabler/Lucide 等许可宽松的开源库并记录许可。原流程图改为方法部分的图 2，同样用 PowerPoint
-- [x] **Gemini · v3**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，写 `docs/paper/draft-v3.md`（另拆出 `SUPPLEMENT.md` 与 `HANDOFF.md`），v2 只读；分支 `gemini/paper-v3`（待 Claude 审查与 Codex 核对）
-- [ ] **Codex · 核对 v3**：只核对数字和引用；措辞有事实问题就在 PR 里指出，由 Gemini 改，不直接改写语气
+- [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
+- [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
+- [ ] **Gemini · v3 第二轮**：在 `gemini/paper-v3` 分支上按 [Codex 核查五条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 和 [Claude 复审三条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063544413) 修改 `draft-v3.md`
+- [ ] **Codex · 复核 v3 第二轮**：只核对数字和引用，问题在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -80,6 +90,25 @@ PR #18–#22 已合并。Gemini 已按 PR #19 九条复审意见完成英文论�
 
 ## 工作记录
 
+### 2026-11-23 · Claude · claude/figures-grid-layout
+- **完成**：审查并合并 PR #28（真实素材的图 1–6）。按作者意见把图 1 改为 2 × 2、图 2 改为单栏两行蛇形。1(b) 改为在 5% 广片缺失中选例，并放大到洞周围（`hole_window`）。
+- **注意 / 坑**：本地预览用的是从 PPTX 中取出的旧素材，正式稿需由 Codex 在服务器重跑。
+
+### 2026-11-21 · Codex · 交付真实素材图 1–2 与统一样式图 3–6
+- 核验图 1(a) 和图 2 的同幅画裁片、六份冻结掩码及 LaMa 合成。图 1(b) 以独立固定哈希顺序选择同一条件的三种填色，使用归档输入算出实际环带色。
+- 在服务器数据盘用 FigGenie 导出两图，lint 均为 0 错误。图库只收可编辑 PPTX、审查预览及文本源，正式 PDF 与 300 dpi PNG 在数据盘。
+- 重绘图 3–6。图 5 的四模型均值和区间按同馆、同条件、共同可评分作品重新汇总。两套归档清单和复现命令见 [FIGURES.md](paper/FIGURES.md)。
+
+### 2026-11-21 · Claude · claude/figures-less-text
+- **完成**：按作者意见重画图 1、图 2：图中去掉解释文字和全部数字，只留图片、图形和短名称，数字移入图注；图 2 只给三个协议控制点着色。FIGURE_SPEC 补"图里几乎不放文字和数字"规则。
+
+### 2026-11-21 · Claude · claude/figgenie-figures
+- **完成**：按作者要求引入 FigGenie，用它重画图 1（teaser）和图 2（流程图），lint 均 0 错误，导出 PDF 与可编辑 PPTX（已去主题阴影）；新增 `experiments/make_teaser_assets.py` 与 `docs/paper/figures/src/build.sh`；FIGURE_SPEC 加"当前做法"一节调和规则。
+- **注意 / 坑**：预览里画作和模型输出是占位图；svg2pptx 默认引用主题阴影，必须跑 `pptx_noshadow.py`；PPTX 中 ΔE 的下标会变成普通文字。
+
+### 2026-11-21 · Claude · claude/review-followups-pr23-24
+- **完成**：审查并合并 PR #24（图 1、图 2 布局草图），给出精修意见；审查 PR #23（论文 v3），九条修改均已落实，但需按 Codex 五条和 Claude 三条再改一轮，暂不合并。
+
 ### 2026-11-21 · Gemini · gemini/paper-v3
 - **完成**：按 PR #19 复审全部 9 条修改意见与 `docs/paper/FIGURE_SPEC.md` 完成英文正文 `docs/paper/draft-v3.md`（未改动只读的 v1 `docs/PAPER_DRAFT.md` 与 v2 `docs/paper/draft-v2.md`），并将方法细节与交接附录分别移至 `docs/paper/SUPPLEMENT.md` 和 `docs/paper/HANDOFF.md`。
 - **关键修订**：全稿修正因果表述（改为受控协议下排序一致，三项协议改变误差幅度与参与评分样本但未反转排序）；摘要压至 235 词以内且仅保留 6 个核心数字；§4.2、摘要和贡献 1 改以 60 幅全量原掩码对照（`docs/NATIVE_APERTURE.md`，含 PowerPaint 0.1055→0.0583、可用率 300/360→281/360、SDXL +0.0008 及分条件反向变化）为主、16 幅先导作佐证；全稿统一排序写法为 `LaMa ≈ MAT < PowerPaint v1 < SDXL`；删去 §4.2 近黑像素旧假设段落；按 `FIGURE_SPEC.md` 重排并重写图 1（teaser）至图 6 图注；§3.1 补入自全量原掩码对照起运行记录写入代码提交的说明。
@@ -87,6 +116,12 @@ PR #18–#22 已合并。Gemini 已按 PR #19 九条复审意见完成英文论�
 
 ### 2026-11-21 · Claude · claude/figure-palette
 - **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。
+
+### 2026-11-21 · Codex · 交付论文图 1、图 2 的 PowerPoint 布局草图
+- 用 python-pptx 生成图 1 的三栏与 MAE 底栏、图 2 的六步流程。原生分组和命名，两个可用率方块图各含 360 个原生方格。
+- 核对图 1 的 60 幅裂缝漏覆盖、40 幅 PowerPaint 配对、16 幅 SDXL 填色对照及两馆安全检查分母。PowerPoint 导出后检查 PDF 成图，预览随草图入库。
+- 服务器数据盘保留六张论文风格参考缩略图及来源校验清单。布局确认后由 Claude 按任务书精修。
+- 核对 v3 表 1–7 和 51 个引用键，在服务器归档复核两馆八个分层和克利夫兰 40 幅共同配对样本的 MAE 排序。图注分母、结论范围及两处书目已在 [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 留言。
 
 ### 2026-11-21 · Claude · claude/figure-spec
 - **完成**：写配图设计说明 `docs/paper/FIGURE_SPEC.md`（参考画法、统一配色与字体、图 1–6 元素、图标来源、草图到精修的交付流程）；任务书的配图一节改为指向它。

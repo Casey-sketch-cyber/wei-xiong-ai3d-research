@@ -1,4 +1,47 @@
-# 论文图 1–5 的生成与核验
+# 论文配图
+
+## 图 1–2（FigGenie）
+
+| 图 | 可编辑源文件 | 审查预览 | 成图尺寸 |
+| --- | --- | --- | --- |
+| 1 · Teaser | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) | 495 × 226 pt（通栏，2 × 2） |
+| 2 · 方法流程 | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) | 243 × 235 pt（单栏，两行蛇形） |
+
+| 面板 | 冻结例图、来源与取样 |
+| --- | --- |
+| 1(a) 与图 2 | 沿用已发布掩码覆盖图的 1% 裂缝条件 `oil_wood_14_crack_01`。使用同幅画的槽位 14 裁片和六个逐像素核验的掩码，流程的对齐输入与 LaMa 合成来自 `oil_wood_14_crack_05`。图 1(a) 单例漏覆盖 52.9%，全队列 60 幅的平均为 59.54%。*Cottages Near Larchant*，Théodore Rousseau。[CMA 1915.728，CC0](https://www.clevelandart.org/art/1915.728) |
+| 1(b) | 在原尺度 16 幅的 96 个条件中，以 `SHA256("museum-painting-figures-v1|" + case_id)` 排序，首个为 `oil_canvas_03_flake_01`。四舍五入后的实际环带色为 `#342822`，从该案例的扩张洞外八像素邻域计算。三种输出复用该案例的裁片与掩码，组级亮度数值使用全部 96 条条件。*Boy Drinking*，Annibale Carracci。[CMA 1994.4，CC0](https://www.clevelandart.org/art/1994.4) |
+
+`make_teaser_assets.py --archive` 以既有图清单、两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
+
+在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。保留原版布局的宽高比、短文字、标签与流程框对齐提示，交最后美化时核看。
+
+```bash
+FIGGENIE="$FIGGENIE" FIGURE_ARCHIVE="$PROJECT" bash docs/paper/figures/src/build.sh
+```
+
+论文 PDF、300 dpi PNG、自包含 SVG 和清单位于服务器项目数据盘的 `paper/figgenie-20261121/publication/`。清单 SHA-256 为 `d3b9f3ce9a31a01f752e8976a768c44dd44dc73bde451fcaf234540002062e147`。风格参考图仍位于 `paper/figure-refs/`。
+
+## 图 3–6（数据图）
+
+| 图 | 文件名（PDF 与 PNG 共用） | 口径 |
+| --- | --- | --- |
+| 3 | `figure-3-examples` | 三种 5% 破损各一个冻结案例，按固定盐选取。每行统一放大范围，四模型格内标原洞 MAE。 |
+| 4 | `figure-4-latent-coverage` | 三种 1% 破损各一个冻结案例，显示最近邻取样的漏覆盖和整格扩张。 |
+| 5 | `figure-5-condition-mae` | 同馆、同条件下四模型共用可评分作品。点为绝对原洞 MAE 均值，区间为共同作品索引的 10,000 次 bootstrap 95% 百分位区间，纵轴为对数。 |
+| 6 | `figure-6-powerpaint-coverage` | 两馆四组每组 90 个计划条件，砖红斜线为拦截，条内数字为可评分数与计划数。 |
+
+```bash
+MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experiments/make_paper_figures.py \
+  --cma-root "$PROJECT/runs/native-main-20261120" \
+  --aic-root "$PROJECT/runs/aic-replication-20261121" \
+  --font-dir "$FIGGENIE/assets/fonts" \
+  --output-dir "$PROJECT/paper/figures-3-to-6-20261121-arimo"
+```
+
+PDF、300 dpi PNG、联系表与清单位于以上数据盘目录，使用 495 pt 通栏和 FigGenie 的 Arimo 字体。清单 SHA-256 为 `69f5875429f4f35200f6c73a3287a0dbc0252a56e3ff37448b3c19c864cf625dd`。[统一样式](../../experiments/paper_style.mplstyle)
+
+## 既有 Matplotlib 图（旧编号）
 
 五张图从已核验的克利夫兰和芝加哥主实验档案生成。每张均有 PDF 和 300 dpi PNG。文件与图像清单都在服务器数据盘项目的 `paper/figures-20261121/`，生成日志在 `logs/paper-figures-20261121/render.log`。
 
@@ -28,3 +71,10 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 ```
 
 生成器逐一核对预定的两馆汇总哈希、原图、掩码及图 2 的四模型输出，记录完整注释和分母。已检查五个 PDF 的格式签名、PNG 尺寸与分辨率，并目视检查从服务器生成的联系表。清单为 `figure-manifest.json`，SHA-256 `ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326`。 [配图脚本](../../experiments/make_paper_figures.py)
+
+
+### 2026-11-23 版面与 1(b) 选例修订（Claude）
+
+- **版面**：作者认为两图太长（宽高比 3.5 和 4.2；FigGenie 统计的同类顶会图中位数为 2.1–2.7）。图 1 改为 2 × 2，宽高比 2.2；图 2 改为单栏两行，第二行从右向左，宽高比 1.0。
+- **1(b) 选例规则**（先写定，再在服务器运行，不看结果挑图）：原例 `oil_canvas_03_flake_01` 的洞只占 1%，缩到 46 pt 后三种填色看不出差别。新规则只在 5% 广片缺失（`case_id` 以 `_loss_05` 结尾）的条件里，用同一盐值 `museum-painting-figures-v1` 取第一个。三张输出按三者有差异的像素（即生成的洞）求方形窗口，四周留 35% 的边距，最小 96 px，放大显示。
+- 当前仓库里的预览和 PPTX 用的是旧素材，从 PR #28 的 PPTX 中取出；1(b) 仍是旧例且未放大。需要 Codex 在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。

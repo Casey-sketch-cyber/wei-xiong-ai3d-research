@@ -1,0 +1,228 @@
+{
+ "meta": {
+  "id": "fig1-teaser",
+  "title": "Three protocol choices and the model ordering",
+  "family": "ai",
+  "venue": "cvpr",
+  "kind": "architecture",
+  "column": "double",
+  "width_pt": 495,
+  "max_height_pt": 226,
+  "template": "ai",
+  "direction": "mixed",
+  "palette": "verdict-contrast",
+  "font": "arial",
+  "step_markers": "none",
+  "figure_kind": "comparison",
+  "caption_draft": "Three protocol choices change what is measured when AI inpainting is scored on museum paintings. (a) Default 8x nearest-neighbour mask downsampling leaves part of a thin crack outside the model's mask (red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). (b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one 5% broad-loss case, enlarged around the hole. (c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four media and six losses.",
+  "language": "en",
+  "version": 3,
+  "ai": {
+   "kinds": [
+    "contribution-mosaic",
+    "side-by-side-contrast"
+   ],
+   "variant": "finding-cards",
+   "subfield": "vision",
+   "subfield2": "generative",
+   "arrangement": "panels-grid",
+   "grouping": [
+    "whitespace",
+    "tinted-regions"
+   ],
+   "samples": "image",
+   "materials": [
+    "frozen 512 crop of one 1% crack case (server archive)",
+    "SDXL strength-0.99 outputs of one 5% broad-loss condition with black, mid-gray and ring-mean prefill, enlarged around the hole (server archive)"
+   ]
+  }
+ },
+ "panels": [
+  {
+   "id": "a",
+   "label": "Mask alignment",
+   "panel_label": "(a)",
+   "axis": "narrative",
+   "order": 0
+  },
+  {
+   "id": "b",
+   "label": "Hole prefill",
+   "panel_label": "(b)",
+   "axis": "narrative",
+   "order": 1
+  },
+  {
+   "id": "c",
+   "label": "Withheld outputs",
+   "panel_label": "(c)",
+   "axis": "narrative",
+   "order": 2
+  },
+  {
+   "id": "d",
+   "label": "Model ordering",
+   "panel_label": "(d)",
+   "axis": "narrative",
+   "order": 3
+  }
+ ],
+ "containers": [
+  {
+   "id": "d-box",
+   "label": "",
+   "role": "boundary"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a-crop",
+   "label": "",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_crop.png",
+    "role": "sample-input"
+   }
+  },
+  {
+   "id": "a-zoom-default",
+   "label": "default",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_zoom_default.png",
+    "role": "illustration"
+   }
+  },
+  {
+   "id": "a-zoom-aligned",
+   "label": "aligned",
+   "kind": "image",
+   "panel": "a",
+   "image": {
+    "src": "a_zoom_aligned.png",
+    "role": "illustration"
+   }
+  },
+  {
+   "id": "b-out-black",
+   "label": "",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_black.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "b-out-gray",
+   "label": "",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_gray.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "b-out-ring",
+   "label": "",
+   "kind": "image",
+   "panel": "b",
+   "image": {
+    "src": "b_out_ring.png",
+    "role": "sample-output"
+   }
+  },
+  {
+   "id": "c-waffle-cma",
+   "label": "CMA",
+   "kind": "chart",
+   "panel": "c"
+  },
+  {
+   "id": "c-waffle-aic",
+   "label": "AIC",
+   "kind": "chart",
+   "panel": "c"
+  },
+  {
+   "id": "d-lama",
+   "label": "LaMa",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-mat",
+   "label": "MAT",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-powerpaint",
+   "label": "PowerPaint v1",
+   "kind": "module",
+   "panel": "d"
+  },
+  {
+   "id": "d-sdxl",
+   "label": "SDXL",
+   "kind": "module",
+   "panel": "d"
+  }
+ ],
+ "edges": [],
+ "annotations": [
+  {
+   "id": "a-zoom",
+   "kind": "zoom",
+   "text": "zoom",
+   "anchor": "a-crop",
+   "leader": true
+  },
+  {
+   "id": "b-sdxl",
+   "kind": "label",
+   "text": "SDXL"
+  },
+  {
+   "id": "c-head",
+   "kind": "label",
+   "text": "safety checker"
+  },
+  {
+   "id": "d-order",
+   "kind": "label",
+   "text": "≈ < <"
+  },
+  {
+   "id": "cap-a",
+   "kind": "label",
+   "text": "(a) Mask alignment",
+   "anchor": "a"
+  },
+  {
+   "id": "cap-b",
+   "kind": "label",
+   "text": "(b) Hole prefill",
+   "anchor": "b"
+  },
+  {
+   "id": "cap-c",
+   "kind": "label",
+   "text": "(c) Withheld outputs",
+   "anchor": "c"
+  },
+  {
+   "id": "cap-d",
+   "kind": "label",
+   "text": "(d) Model ordering",
+   "anchor": "d"
+  }
+ ],
+ "legend": {
+  "mode": "none"
+ },
+ "notes": "Pictures carry the message; numbers are in the caption only. ai.bare is deliberate (author rule: the figure shows what is new, the text explains)."
+}

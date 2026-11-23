@@ -8,6 +8,8 @@
 
 ## 待办
 
+- [ ] **Codex · 重跑图 1、图 2**（2026-11-23）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 跑 `docs/paper/figures/src/build.sh`。1(b) 按新规则改选 `_loss_05` 条件，并放大到洞周围（规则见 FIGURES.md 末节）。提交 PPTX 与预览，在 PR 里写明选中的 case_id
+
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
 - [ ] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母
@@ -86,6 +88,10 @@
 ---
 
 ## 工作记录
+
+### 2026-11-23 · Claude · claude/figures-grid-layout
+- **完成**：审查并合并 PR #28（真实素材的图 1–6）。按作者意见把图 1 改为 2 × 2、图 2 改为单栏两行蛇形。1(b) 改为在 5% 广片缺失中选例，并放大到洞周围（`hole_window`）。
+- **注意 / 坑**：本地预览用的是从 PPTX 中取出的旧素材，正式稿需由 Codex 在服务器重跑。
 
 ### 2026-11-21 · Codex · 交付真实素材图 1–2 与统一样式图 3–6
 - 核验图 1(a) 和图 2 的同幅画裁片、六份冻结掩码及 LaMa 合成。图 1(b) 以独立固定哈希顺序选择同一条件的三种填色，使用归档输入算出实际环带色。

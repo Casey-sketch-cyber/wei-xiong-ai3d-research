@@ -18,7 +18,7 @@ from measure_text import width_of  # noqa: E402
 
 FONT = "arial"
 STACK = "Arimo, 'Liberation Sans', Arial, Helvetica, sans-serif"
-W, H = 495, 141
+W, H = 495, 226
 S_BODY, S_TITLE, S_BIG = 6.5, 7.5, 9.0
 
 INK, MUTED, RULE = "#262626", "#595959", "#A6A6A6"
@@ -37,7 +37,8 @@ CAPTION = ("Three protocol choices change what is measured when AI inpainting is
            "(red; mean 59.5% of 1%-crack pixels across 60 Cleveland works). Grid alignment reaches every hole pixel "
            "and lowers PowerPaint masked MAE by about 45% over 40 complete paired works (240 conditions). "
            "(b) At SDXL strength 0.99, the mean signed luminance shifts for black, mid-gray and ring-mean prefill "
-           "are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one paired case. "
+           "are -0.085, +0.055 and +0.034 over 16 works and six conditions per work. The tiles show one 5% broad-loss "
+           "case, enlarged around the hole. "
            "(c) PowerPaint's safety checker withholds outputs (red) in 79 of 360 Cleveland and 10 of 360 Chicago "
            "conditions. (d) Under the controlled protocol, the masked-MAE ordering is the same in two museums, four "
            "media and six losses.")
@@ -107,14 +108,17 @@ def shield(cx, cy):
 
 
 def build():
+    """2 x 2 grid: (a) mask alignment | (b) hole prefill / (c) withheld outputs | (d) model ordering."""
     nodes, edges, panels, annotations = [], [], [], []
     body = []
-    TOPY, CAPY = 11.5, 99
-    PA, PB, PC = (0, 190), (201, 150), (362, 133)
+    CW, GAPX = 240, 15
+    LX, RX = 0, CW + GAPX
+    R1, R2 = 0, 114
+    IMG = 11.5
+    T, G = 74, 9
 
-    # ---------------- (a) mask alignment: three equal tiles ----------------
-    T, G = 60, 5
-    xs = [PA[0] + i * (T + G) for i in range(3)]
+    # ---------------- (a) mask alignment ----------------
+    xs = [LX + i * (T + G) for i in range(3)]
     tiles = [("a-crop", "", "a_crop.png", None), ("a-zoom-default", "default", "a_zoom_default.png", False),
              ("a-zoom-aligned", "aligned", "a_zoom_aligned.png", True)]
     assets = json.loads((HERE / "assets.json").read_text())
@@ -122,104 +126,108 @@ def build():
     zw = assets["zoom_cells"] * 8
     k = T / 512
     for x, (nid, label, href, ok) in zip(xs, tiles):
-        g = [image(x, TOPY, T, T, href)]
+        g = [image(x, R1 + IMG, T, T, href)]
         if label:
             lw = tw(label, S_BODY) + 9
             lx0 = x + (T - lw) / 2
-            g += [verdict(lx0 + 3.6, 4.9, ok), text(lx0 + 9, 7.2, label, fill=MUTED)]
+            g += [verdict(lx0 + 3.6, R1 + 4.9, ok), text(lx0 + 9, R1 + 7.2, label, fill=MUTED)]
         body.append(f'<g id="n:{nid}" data-kind="node" data-role="{"novel" if ok else "existing"}" '
                     f'data-parent="a">{"".join(g)}</g>')
         nodes.append({"id": nid, "label": label, "kind": "image", "panel": "a",
                       "image": {"src": href, "role": "illustration" if label else "sample-input"}})
-    sx, sy, sw = xs[0] + zx * k, TOPY + zy * k, zw * k
+    sx, sy, sw = xs[0] + zx * k, R1 + IMG + zy * k, zw * k
     body.append(f'<g id="a:a-zoom" data-kind="annotation" data-anchor="a-crop">'
-                f'<path d="M{sx + sw:.2f} {sy:.2f} L{xs[1]:.2f} {TOPY:.2f} M{sx + sw:.2f} {sy + sw:.2f} '
-                f'L{xs[1]:.2f} {TOPY + T:.2f}" fill="none" stroke="{BLUE}" stroke-width="0.45" '
+                f'<path d="M{sx + sw:.2f} {sy:.2f} L{xs[1]:.2f} {R1 + IMG:.2f} M{sx + sw:.2f} {sy + sw:.2f} '
+                f'L{xs[1]:.2f} {R1 + IMG + T:.2f}" fill="none" stroke="{BLUE}" stroke-width="0.45" '
                 f'stroke-dasharray="1.6 1.2"/></g>')
     annotations.append({"id": "a-zoom", "kind": "zoom", "text": "zoom", "anchor": "a-crop", "leader": True})
 
-    # ---------------- (b) hole prefill: three outputs, prefill as inset swatch ----------------
-    BT, BG = 46, 6
-    bx = [PB[0] + i * (BT + BG) for i in range(3)]
-    by = TOPY + (T - BT) / 2 + 6
+    # ---------------- (b) hole prefill ----------------
+    bx = [RX + i * (T + G) for i in range(3)]
+    body.append(f'<g id="a:b-sdxl" data-kind="annotation">'
+                f'<text x="{RX + CW / 2:.2f}" y="{R1 + 7.2:.2f}" font-size="{S_BODY}" font-weight="bold" '
+                f'fill="{BLUE}" text-anchor="middle">SDXL</text></g>')
+    annotations.append({"id": "b-sdxl", "kind": "label", "text": "SDXL"})
     ring_fill = ring_colour()
-    p = place("SDXL", (PB[0], 0.5, PB[1], 8.5), size=S_BODY, font=FONT, bold=True)
-    body.append(f'<g id="n:b-sdxl" data-kind="node" data-role="novel" data-parent="b">'
-                f'<path d="M{bx[0]:.2f} {by - 6:.2f} V{by - 8.5:.2f} H{bx[2] + BT:.2f} V{by - 6:.2f}" fill="none" '
-                f'stroke="{BLUE}" stroke-width="0.6"/>'
-                f'<text x="{PB[0] + PB[1] / 2:.2f}" y="{p["y"]:.2f}" font-size="{S_BODY}" font-weight="bold" '
-                f'fill="{BLUE}" text-anchor="middle" data-label="outside">SDXL</text></g>')
-    nodes.append({"id": "b-sdxl", "label": "SDXL", "kind": "note", "panel": "b"})
     for x, (name, fill, bad) in zip(bx, PREFILL):
         fill = fill or ring_fill
-        oid = f"b-out-{name}"
-        href = f"b_out_{name}.png"
-        frame = (f'<rect x="{x + 0.45:.2f}" y="{by + 0.45:.2f}" width="{BT - 0.9}" height="{BT - 0.9}" fill="none" '
-                 f'stroke="{RED}" stroke-width="0.9"/>' if bad else "")
-        inset = (f'<rect x="{x + 2.5:.2f}" y="{by + 2.5:.2f}" width="10" height="10" fill="{fill}" stroke="#FFFFFF" '
-                 f'stroke-width="0.9"/>')
+        oid, href = f"b-out-{name}", f"b_out_{name}.png"
+        frame = (f'<rect x="{x + 0.45:.2f}" y="{R1 + IMG + 0.45:.2f}" width="{T - 0.9}" height="{T - 0.9}" '
+                 f'fill="none" stroke="{RED}" stroke-width="0.9"/>' if bad else "")
+        inset = (f'<rect x="{x + 3:.2f}" y="{R1 + IMG + 3:.2f}" width="12" height="12" fill="{fill}" '
+                 f'stroke="#FFFFFF" stroke-width="1"/>')
         body.append(f'<g id="n:{oid}" data-kind="node" data-role="output" data-parent="b">'
-                    f'{image(x, by, BT, BT, href)}{frame}{inset}</g>')
+                    f'{image(x, R1 + IMG, T, T, href)}{frame}{inset}</g>')
         nodes.append({"id": oid, "label": "", "kind": "image", "panel": "b",
                       "image": {"src": href, "role": "sample-output"}})
 
-    # ---------------- (c) withheld outputs: two waffles ----------------
-    cell, gap, cols, nrows = 2.9, 0.5, 18, 20
+    # ---------------- (c) withheld outputs ----------------
+    cell, gap, cols, nrows = 3.2, 0.55, 18, 20
     ww = cols * (cell + gap) - gap
-    wgap = PC[1] - 2 * ww
+    wh = nrows * (cell + gap) - gap
+    inner = 24
+    x_first = LX + (CW - 2 * ww - inner) / 2
     title = "safety checker"
     t_w = tw(title, S_BODY)
-    hx0 = PC[0] + (PC[1] - t_w - 9) / 2
-    body.append(f'<g id="a:c-head" data-kind="annotation">{shield(hx0 + 3.2, 4.6)}'
-                f'{text(hx0 + 9, 7.2, title, fill=MUTED)}</g>')
+    hx0 = LX + (CW - t_w - 9) / 2
+    body.append(f'<g id="a:c-head" data-kind="annotation">{shield(hx0 + 3.2, R2 + 4.6)}'
+                f'{text(hx0 + 9, R2 + 7.2, title, fill=MUTED)}</g>')
     annotations.append({"id": "c-head", "kind": "label", "text": title})
     for j, (name, ok, _pct) in enumerate(COHORTS):
-        x0 = PC[0] + j * (ww + wgap)
+        x0 = x_first + j * (ww + inner)
+        y0 = R2 + IMG
         cells = "".join(
-            f'<rect x="{x0 + (i % cols) * (cell + gap):.2f}" y="{TOPY + (i // cols) * (cell + gap):.2f}" '
+            f'<rect x="{x0 + (i % cols) * (cell + gap):.2f}" y="{y0 + (i // cols) * (cell + gap):.2f}" '
             f'width="{cell}" height="{cell}" fill="{"#D0D4DA" if i < ok else RED}"/>' for i in range(cols * nrows))
-        bottom = TOPY + nrows * (cell + gap) - gap
         body.append(f'<g id="n:c-waffle-{name.lower()}" data-kind="node" data-role="chart" data-parent="c" '
                     f'data-scale="data">{cells}'
-                    f'{text(x0 + ww / 2, bottom + 8.5, name, fill=MUTED, anchor="middle", extra=chr(32) + "data-label=" + chr(34) + "outside" + chr(34))}</g>')
+                    f'{text(x0 + ww / 2, y0 + wh + 8.5, name, fill=MUTED, anchor="middle", extra=chr(32) + "data-label=" + chr(34) + "outside" + chr(34))}</g>')
         nodes.append({"id": f"c-waffle-{name.lower()}", "label": name, "kind": "chart", "panel": "c"})
 
-    # ---------------- captions, separators ----------------
-    caps = [("a", "(a) Mask alignment", PA), ("b", "(b) Hole prefill", PB), ("c", "(c) Withheld outputs", PC)]
-    for pid, cap, (x0, w0) in caps:
-        body.append(f'<g id="a:cap-{pid}" data-kind="annotation">'
-                    f'{centred(cap, (x0, CAPY - 7, w0, 10), S_TITLE, INK, True)}</g>')
-        annotations.append({"id": f"cap-{pid}", "kind": "label", "text": cap, "anchor": pid})
-    for x in (195.5, 356.5):
-        body.append(f'<line x1="{x}" y1="2" x2="{x}" y2="{CAPY + 2}" stroke="{RULE}" stroke-width="0.5" '
-                    f'stroke-dasharray="2 1.6"/>')
-
-    # ---------------- (d) model ordering band ----------------
-    dy0, dh = 110, 30
-    widths = [tw(n, S_TITLE, True) + 17 for n, _, _ in MODELS]
+    # ---------------- (d) model ordering: two lines that read like a sentence ----------------
+    bh = 56
+    by0 = R2 + IMG + (wh - bh) / 2
+    body.append(f'<g id="c:d-box" data-kind="container" data-role="boundary">'
+                f'<rect x="{RX}" y="{by0:.2f}" width="{CW}" height="{bh:.2f}" rx="3" fill="{GREEN_TINT}"/></g>')
     SYM = 18
-    total = sum(widths) + SYM * 3
-    label = "(d) Model ordering"
-    x = 8 + tw(label, S_TITLE, True) + (W - 16 - tw(label, S_TITLE, True) - total) / 2
-    body.append(f'<g id="c:d-band" data-kind="container" data-role="boundary">'
-                f'<rect x="0" y="{dy0}" width="{W}" height="{dh}" rx="3" fill="{GREEN_TINT}"/></g>')
-    body.append(f'<g id="n:d-title" data-kind="node" data-role="note" data-parent="d">'
-                f'{text(8, dy0 + 17.6, label, S_TITLE, INK, True)}</g>')
-    nodes.append({"id": "d-title", "label": label, "kind": "note", "panel": "d"})
-    syms = []
-    for i, ((name, col, shape), w0) in enumerate(zip(MODELS, widths)):
-        nid = "d-" + name.split()[0].lower()
-        body.append(f'<g id="n:{nid}" data-kind="node" data-role="module" data-parent="d">'
-                    f'<rect x="{x:.2f}" y="{dy0 + 8:.2f}" width="{w0:.2f}" height="14" rx="2" fill="#FFFFFF" '
-                    f'stroke="{RULE}" stroke-width="0.5"/>{marker(shape, x + 6.5, dy0 + 15, 2.3, col)}'
-                    f'{text(x + 11.5, dy0 + 17.7, name, S_TITLE, INK, True)}</g>')
-        nodes.append({"id": nid, "label": name, "kind": "module", "panel": "d"})
-        x += w0
-        if i < 3:
-            syms.append(text(x + SYM / 2, dy0 + 18.2, "\u2248" if i == 0 else "<", S_BIG, INK, True, "middle"))
+
+    def line(items, cy, lead=None):
+        widths = [tw(n, S_TITLE, True) + 17 for n, _, _ in items]
+        total = sum(widths) + SYM * (len(items) - 1) + (SYM if lead else 0)
+        x = RX + (CW - total) / 2
+        syms = []
+        if lead:
+            syms.append(text(x + SYM / 2, cy + 3.2, lead, S_BIG, INK, True, "middle"))
             x += SYM
+        for i, ((name, col, shape), w0) in enumerate(zip(items, widths)):
+            nid = "d-" + name.split()[0].lower()
+            body.append(f'<g id="n:{nid}" data-kind="node" data-role="module" data-parent="d">'
+                        f'<rect x="{x:.2f}" y="{cy - 7:.2f}" width="{w0:.2f}" height="14" rx="2" fill="#FFFFFF" '
+                        f'stroke="{RULE}" stroke-width="0.5"/>{marker(shape, x + 6.5, cy, 2.3, col)}'
+                        f'{text(x + 11.5, cy + 2.7, name, S_TITLE, INK, True)}</g>')
+            nodes.append({"id": nid, "label": name, "kind": "module", "panel": "d"})
+            x += w0
+            if i < len(items) - 1:
+                syms.append(text(x + SYM / 2, cy + 3.2, "\u2248" if name == "LaMa" else "<", S_BIG, INK, True,
+                                 "middle"))
+                x += SYM
+        return syms
+    syms = line(MODELS[:2], by0 + bh * 0.33) + line(MODELS[2:], by0 + bh * 0.67, lead="<")
     body.append(f'<g id="a:d-order" data-kind="annotation">{"".join(syms)}</g>')
     annotations.append({"id": "d-order", "kind": "label", "text": "\u2248 < <"})
+
+    # ---------------- captions, separators ----------------
+    caps = [("a", "(a) Mask alignment", LX, R1 + 98), ("b", "(b) Hole prefill", RX, R1 + 98),
+            ("c", "(c) Withheld outputs", LX, R2 + 107), ("d", "(d) Model ordering", RX, R2 + 107)]
+    for pid, cap, x0, cy in caps:
+        body.append(f'<g id="a:cap-{pid}" data-kind="annotation">'
+                    f'{centred(cap, (x0, cy - 7, CW, 10), S_TITLE, INK, True)}</g>')
+        annotations.append({"id": f"cap-{pid}", "kind": "label", "text": cap, "anchor": pid})
+    xm = CW + GAPX / 2
+    body.append(f'<line x1="{xm}" y1="2" x2="{xm}" y2="{H - 2}" stroke="{RULE}" stroke-width="0.5" '
+                f'stroke-dasharray="2 1.6"/>')
+    body.append(f'<line x1="2" y1="{R2 - 6}" x2="{W - 2}" y2="{R2 - 6}" stroke="{RULE}" stroke-width="0.5" '
+                f'stroke-dasharray="2 1.6"/>')
 
     for pid, lab in (("a", "Mask alignment"), ("b", "Hole prefill"), ("c", "Withheld outputs"),
                      ("d", "Model ordering")):
@@ -230,23 +238,24 @@ def build():
             f'orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0.6 L5.4 3 L0 5.4 Z" '
             f'fill="{MUTED}"/></marker></defs>')
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}pt" height="{H}pt" '
-           f'font-family="{STACK}" font-size="{S_BODY}" data-spec="fig1-teaser" data-spec-version="1">'
+           f'font-family="{STACK}" font-size="{S_BODY}" data-spec="fig1-teaser" data-spec-version="3">'
            f'{defs}<rect x="0" y="0" width="{W}" height="{H}" fill="#FFFFFF"/>{"".join(body)}</svg>')
     spec = {
         "meta": {"id": "fig1-teaser", "title": "Three protocol choices and the model ordering",
                  "family": "ai", "venue": "cvpr", "kind": "architecture", "column": "double", "width_pt": W,
-                 "max_height_pt": H, "template": "ai", "direction": "left-right", "palette": "verdict-contrast",
+                 "max_height_pt": H, "template": "ai", "direction": "mixed", "palette": "verdict-contrast",
                  "font": FONT, "step_markers": "none", "figure_kind": "comparison",
-                 "caption_draft": CAPTION, "language": "en", "version": 2,
+                 "caption_draft": CAPTION, "language": "en", "version": 3,
                  "ai": {"kinds": ["contribution-mosaic", "side-by-side-contrast"], "variant": "finding-cards",
-                        "subfield": "vision", "subfield2": "generative", "arrangement": "panels-row",
+                        "subfield": "vision", "subfield2": "generative", "arrangement": "panels-grid",
                         "grouping": ["whitespace", "tinted-regions"], "samples": "image",
                         "materials": ["frozen 512 crop of one 1% crack case (server archive)",
-                                      "SDXL strength-0.99 outputs of one condition with black, mid-gray and ring-mean "
-                                      "prefill (server archive)"]}},
-        "panels": panels, "containers": [{"id": "d-band", "label": "", "role": "boundary"}], "nodes": nodes,
+                                      "SDXL strength-0.99 outputs of one 5% broad-loss condition with black, mid-gray "
+                                      "and ring-mean prefill, enlarged around the hole (server archive)"]}},
+        "panels": panels, "containers": [{"id": "d-box", "label": "", "role": "boundary"}], "nodes": nodes,
         "edges": edges, "annotations": annotations, "legend": {"mode": "none"},
-        "notes": "Pictures carry the message; numbers are in the caption only. ai.bare is deliberate (author rule: the figure shows what is new, the text explains)."}
+        "notes": "Pictures carry the message; numbers are in the caption only. ai.bare is deliberate (author rule: "
+                 "the figure shows what is new, the text explains)."}
     return svg, spec
 
 

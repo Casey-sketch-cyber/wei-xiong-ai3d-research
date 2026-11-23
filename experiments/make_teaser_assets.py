@@ -26,6 +26,7 @@ from models import _diffusion_input
 NATIVE_SEED = 20261119  # run_followup.NATIVE_SEED
 STRIDE = 8
 SELECTION_SALT = "museum-painting-figures-v1"
+PREFILL_SUFFIX = "_loss_05"
 FIRST_FIGURES_SHA = "ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326"
 CMA_SUMMARY_SHA = "babeef02a7057d0abdce298caefacd9c1fab830e2db96924345d8fbb8b57c419"
 PREFILL_SUMMARY_SHA = "e18163e5dddc67fb2596dcb2af30577412d1e13cf3b7664fba33fe1b7384521d"
@@ -93,8 +94,10 @@ def archive_inputs(project: Path, args: argparse.Namespace) -> dict:
 
     prefill = project / "runs/sdxl-prefill-20261120"
     prefill_summary = checked_json(prefill / "diagnostics/prefill-summary.json", PREFILL_SUMMARY_SHA)
-    sample = min(prefill_summary["cohorts"]["native"]["rows"], key=lambda row: sha256(
-        f"{SELECTION_SALT}|{row['case_id']}".encode()).hexdigest())
+    # Figure 1(b) is shown zoomed on the hole, so the example is drawn from the 5% broad-loss conditions only
+    # (rule fixed before rerunning, 2026-11-23); within them the first case by the same salted hash.
+    rows = [row for row in prefill_summary["cohorts"]["native"]["rows"] if row["case_id"].endswith(PREFILL_SUFFIX)]
+    sample = min(rows, key=lambda row: sha256(f"{SELECTION_SALT}|{row['case_id']}".encode()).hexdigest())
     prefill_id = sample["case_id"]
     arms = {"black": project / "runs/official-inference-20261119/official-native",
             "gray": prefill / "gray-native", "ring": prefill / "ring-native"}
@@ -185,6 +188,25 @@ def zoom_tile(crop: np.ndarray, mask: np.ndarray, cells_on: np.ndarray, y: int, 
     return img
 
 
+def hole_window(images: list, min_side: int = 96, pad: float = 0.35) -> tuple[int, int, int, int]:
+    """Square window around the pixels where the outputs differ, i.e. the generated hole.
+
+    The composites keep the original crop outside the hole, so any pixel that differs between the prefill arms is
+    inside it. The window is padded so some context remains, and kept inside the image.
+    """
+    stack = np.stack([img.astype(int) for img in images])
+    hole = (np.abs(stack - stack[0]).max(axis=(0, 3)) > 0)
+    if not hole.any():
+        return 0, 0, images[0].shape[0], images[0].shape[1]
+    ys, xs = np.nonzero(hole)
+    cy, cx = (ys.min() + ys.max()) / 2, (xs.min() + xs.max()) / 2
+    side = int(max(min_side, (1 + 2 * pad) * max(np.ptp(ys) + 1, np.ptp(xs) + 1)))
+    side = min(side, *images[0].shape[:2])
+    y0 = int(np.clip(round(cy - side / 2), 0, images[0].shape[0] - side))
+    x0 = int(np.clip(round(cx - side / 2), 0, images[0].shape[1] - side))
+    return y0, x0, y0 + side, x0 + side
+
+
 def crop_with_mask(crop: np.ndarray, mask: np.ndarray, y: int, x: int, w: int) -> Image.Image:
     rgb = crop.astype(float).copy()
     rgb[mask] = 255
@@ -220,10 +242,14 @@ def main() -> None:
     zoom_tile(crop, mask, nearest, y, x, args.cells, 8, False).save(args.out / "a_zoom_default.png")
     zoom_tile(crop, mask, aligned, y, x, args.cells, 8, True).save(args.out / "a_zoom_aligned.png")
 
+    outs = {}
     for name, path, seed_ in (("b_out_black", args.sdxl_black, 2), ("b_out_gray", args.sdxl_gray, 3),
                               ("b_out_ring", args.sdxl_ring, 4)):
-        img = Image.open(path).convert("RGB") if path else placeholder(256, seed_)
-        img.resize((256, 256), Image.LANCZOS).save(args.out / f"{name}.png")
+        outs[name] = np.asarray(Image.open(path).convert("RGB") if path else placeholder(512, seed_))
+    box = hole_window(list(outs.values())) if all((args.sdxl_black, args.sdxl_gray, args.sdxl_ring)) else None
+    for name, arr in outs.items():
+        tile = Image.fromarray(arr if box is None else arr[box[0]:box[2], box[1]:box[3]])
+        tile.resize((256, 256), Image.LANCZOS).save(args.out / f"{name}.png")
 
     # Figure 2: the same crop, the six masks of this slot, the shared aligned input and a composited output
     fig2 = args.out_fig2 or args.out.parent / "fig2"

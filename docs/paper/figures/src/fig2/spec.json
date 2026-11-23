@@ -6,16 +6,16 @@
   "venue": "cvpr",
   "kind": "architecture",
   "figure_kind": "whole-system",
-  "column": "double",
-  "width_pt": 495,
-  "max_height_pt": 118,
+  "column": "single",
+  "width_pt": 243,
+  "max_height_pt": 235,
   "template": "ai",
-  "direction": "left-right",
+  "direction": "mixed",
   "palette": "office-pastel",
   "font": "arial",
   "step_markers": "none",
   "language": "en",
-  "version": 2,
+  "version": 3,
   "caption_draft": "Evaluation pipeline. Crops from two open-access collections (60 works each, 15 works per medium) receive six procedural losses per artwork. The four models share the same aperture, expanded to whole 8x8 cells (a); the SDXL sensitivity varies prefill (b); generated pixels are kept only in the original hole and scored against the recorded crop, and planned, scored and withheld conditions are counted against 360 planned per model per museum (c). Coloured parts are the protocol controls.",
   "ai": {
    "kinds": [
@@ -23,7 +23,7 @@
    ],
    "variant": "stage-chain",
    "subfield": "vision",
-   "arrangement": "pipeline-row",
+   "arrangement": "bands",
    "grouping": [
     "framed-boxes"
    ],

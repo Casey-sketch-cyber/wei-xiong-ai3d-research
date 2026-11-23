@@ -4,8 +4,8 @@
 
 | 图 | 可编辑源文件 | 审查预览 | 成图尺寸 |
 | --- | --- | --- | --- |
-| 1 · Teaser | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) | 495 × 141 pt |
-| 2 · 方法流程 | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) | 495 × 118 pt |
+| 1 · Teaser | [PPTX](figures/figure-1-teaser.pptx) | [PNG](figures/previews/figure-1-teaser.png) | 495 × 226 pt（通栏，2 × 2） |
+| 2 · 方法流程 | [PPTX](figures/figure-2-pipeline.pptx) | [PNG](figures/previews/figure-2-pipeline.png) | 243 × 235 pt（单栏，两行蛇形） |
 
 | 面板 | 冻结例图、来源与取样 |
 | --- | --- |
@@ -71,3 +71,10 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 ```
 
 生成器逐一核对预定的两馆汇总哈希、原图、掩码及图 2 的四模型输出，记录完整注释和分母。已检查五个 PDF 的格式签名、PNG 尺寸与分辨率，并目视检查从服务器生成的联系表。清单为 `figure-manifest.json`，SHA-256 `ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326`。 [配图脚本](../../experiments/make_paper_figures.py)
+
+
+### 2026-11-23 版面与 1(b) 选例修订（Claude）
+
+- **版面**：作者认为两图太长（宽高比 3.5 和 4.2；FigGenie 统计的同类顶会图中位数为 2.1–2.7）。图 1 改为 2 × 2，宽高比 2.2；图 2 改为单栏两行，第二行从右向左，宽高比 1.0。
+- **1(b) 选例规则**（先写定，再在服务器运行，不看结果挑图）：原例 `oil_canvas_03_flake_01` 的洞只占 1%，缩到 46 pt 后三种填色看不出差别。新规则只在 5% 广片缺失（`case_id` 以 `_loss_05` 结尾）的条件里，用同一盐值 `museum-painting-figures-v1` 取第一个。三张输出按三者有差异的像素（即生成的洞）求方形窗口，四周留 35% 的边距，最小 96 px，放大显示。
+- 当前仓库里的预览和 PPTX 用的是旧素材，从 PR #28 的 PPTX 中取出；1(b) 仍是旧例且未放大。需要 Codex 在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。

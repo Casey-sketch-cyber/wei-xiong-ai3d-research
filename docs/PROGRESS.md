@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-图 1 teaser 和图 2 方法流程已用真实裁片、SDXL 三色输出和 LaMa 合成完成 FigGenie 构建，待 Claude 最后检查。图 3–6 已在服务器数据盘按统一样式生成。Gemini v3 仍待提交 PR #23 的第二轮修订，提交后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
+图 1 teaser 和图 2 方法流程已完成 FigGenie 构图（待 Codex 在服务器按 PR #29 新规则重跑导出）。图 3–6 已在服务器数据盘按统一样式生成。Gemini 已在 PR #23（分支 `gemini/paper-v3`）完成第二轮修订并同步最新 `main`，落实 Codex 五条核查意见、Claude 三条补充意见及图 1–2 图注改写，待 Codex 复核数字和引文后交 Claude 审查合并。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
 
 ## 待办
 
@@ -12,7 +12,7 @@
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
-- [ ] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母
+- [x] **Gemini · 图 1、图 2 图注**：已按 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 改写 `draft-v3.md` 中的图 1–2 图注，保留全部数字与分母（随 PR #23 第二轮提交）
 - [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
 - [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
 - [x] **Codex · 图 3–6 套用统一样式**：数据盘已生成四张图的 PDF、300 dpi PNG 与清单。图 5 使用四模型同案的绝对 MAE 均值与作品级 bootstrap 95% 区间。[生成说明](paper/FIGURES.md)
@@ -75,7 +75,7 @@
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
 - [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
 - [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
-- [ ] **Gemini · v3 第二轮**：在 `gemini/paper-v3` 分支上按 [Codex 核查五条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 和 [Claude 复审三条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063544413) 修改 `draft-v3.md`
+- [x] **Gemini · v3 第二轮**：已在 `gemini/paper-v3` 分支合并最新 `main` 并按 [Codex 核查五条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 与 [Claude 复审三条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063544413) 修改 `draft-v3.md`、`HANDOFF.md` 与 `literature/papers.csv`（待 Codex 复核与 Claude 审查）
 - [ ] **Codex · 复核 v3 第二轮**：只核对数字和引用，问题在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -89,6 +89,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-23 · Gemini · gemini/paper-v3（第二轮修订）
+- **完成**：合并最新 `origin/main` 解决 `PROGRESS.md` 冲突；按 PR #23 中 Codex 5 条事实核查与 Claude 3 条意见及最新 `fig1/spec.json`、`fig2/spec.json` 完成 `docs/paper/draft-v3.md` 第二轮修订，同步更新 `docs/paper/HANDOFF.md` 与 `literature/papers.csv`（只读稿 v1、v2 未动）。
+- **关键改动**：题目压至 12 词；摘要 242 词并写明每项数字的分母与范围；引言四条贡献各控制在 1–2 个数字；图 1、图 2 图注按 FigGenie 最新 `caption_draft` 改写；§4.1 将 `≈` 严格限定于设阈值的 MAE/LPIPS；§4.2 改用 Codex 重算的 40 幅 / 240 条四模型共同样本（原掩码 0.0274/0.0284/0.1055/0.3087 vs. 扩张 0.0313/0.0337/0.0583/0.3115），移除仅归因于上下文的写法，并准确表述 SDXL 各条件正负变化；表 5 将重放行 19 幅移至表注并区分口径；补引固定版 PowerPaint 源码 `@powerpaintv1src`（同步入 `papers.csv`），明确 CIEDE2000 无符号、MISATO 两项指标、SDXL 0.99 示例与 MAT 固定种子确定性；修正 `TD-Paint` 署名顺序与 `Vicent Caselles` 拼写。
+- **验证**：脚本核对 52 个正文引用键与 52 条文献条目及 `literature/papers.csv` 全部一一对应；题目 12 词、摘要 242 词；零 `LaMa < MAT`、零 `once...controlled`、零 `Vincent Caselles`、零 `unresized`、正文零超链接、`git diff --check` 通过。
 
 ### 2026-11-23 · Claude · claude/figures-grid-layout
 - **完成**：审查并合并 PR #28（真实素材的图 1–6）。按作者意见把图 1 改为 2 × 2、图 2 改为单栏两行蛇形。1(b) 改为在 5% 广片缺失中选例，并放大到洞周围（`hole_window`）。

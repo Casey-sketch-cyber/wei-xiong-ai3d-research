@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-图 1 已按 Claude 的 2 × 2 布局重建，图 2 已按单栏两行蛇形布局重建。图 1(b) 使用预先固定规则选出的 5% 广片缺失案例，三种填色采用同一放大窗口。论文版 PDF 和 300 dpi PNG 在服务器数据盘，待 Claude 检查新版。Gemini v3 仍待提交 PR #23 的第二轮修订，之后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
+图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成 Claude 第二轮复审的三处措辞修改并同步最新 `main`，待 Codex 复核第二轮数字/引文后交 Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
 
 **11 月 24 日交接**　图 1、图 2 以 Arimo 的分数像素定位重导，服务器留存 PDF 与 300 dpi PNG。图 2 正式版含右下角标记。已复核论文 v3 第二轮指定数字与 52 个引用键，三处统计和部署表述已在 PR #23 留言，待 Gemini 修订、Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)
 
@@ -14,7 +14,7 @@
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
-- [x] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母（v3 第二轮已完成）
+- [x] **Gemini · 图 1、图 2 图注**：已按 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 改写 `draft-v3.md` 中的图 1–2 图注，保留全部数字与分母（v3 第二轮已完成）
 - [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
 - [x] **Claude · 图 1、图 2 最后检查**：PR #30 真实素材已审；图 2 标记移到右下角（PR #31）
 - [x] **Codex · 正式版 PDF 字距**：确认 Arimo 已嵌入。通过 SVG 精确定位修正 Chromium 整数像素推进，从最新主线重建图 1 和图 2。[正式版及校验清单](paper/FIGURES.md)
@@ -78,8 +78,9 @@
 - [x] **流程**：运行记录写入代码提交、工作区状态和 diff 哈希（PR #18 完成，见 [RUN_PROVENANCE](RUN_PROVENANCE.md)）
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
 - [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
+- [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
 - [x] **Gemini · v3 第二轮**：已完成
-- [ ] **Gemini · v3 三处措辞**：按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把 "preregistered" 改为 "pre-specified"（首次写全为 "committed to version control before each inference run"）；摘要末句与 §4.5 标题的 "invariant" 限定在本研究范围内
+- [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [ ] **Codex · 复核 v3 第二轮**：逐个核对第二轮新增或改动的数字（52.9%、0.1137、+0.0269、−0.0034、+0.0369、+0.0266、§4.2 的八个共同样本均值）和新增引文，在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -94,6 +95,13 @@
 
 ## 工作记录
 
+### 2026-11-24 · Gemini · gemini/paper-v3（三处措辞微调）
+- **完成**：合并最新 `origin/main`（PR #30–#32）解决 `PROGRESS.md` 冲突；按 PR #23 Claude 第二轮复审意见完成 `docs/paper/draft-v3.md` 全部三处措辞修改并同步 `HANDOFF.md`（只读稿 v1、v2 未动）：
+  1. 全部 6 处 `preregistered`/`Preregistering` 改为 `pre-specified`（引言首次出现写全为 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一全文 `pre-specified` 连字符）；
+  2. 摘要末句改为 `In these cohorts, the best-performing model did not depend on painting medium, whereas reporting these three choices is essential for reproducible comparison.`；
+  3. §4.5 标题改为 `Rankings held across damage geometries and painting media, whereas between-group contrasts varied across collections`（并同步收束 §4.5 结句的 `invariant`）。
+- **验证**：脚本核对 0 处 `preregister*`、0 处 `prespecified`、0 处 `invariant`、题目 12 词、摘要 247 词、52 个引用键与 `papers.csv` 及文末条目一一对应，`git diff --check` 通过。
+
 ### 2026-11-24 · Claude · claude/review-followups-pr23-30
 - **完成**：审查并合并 PR #30（新版布局的图 1、图 2）与 PR #31（图 2 标记位置）；审查 PR #23 第二轮，八条已落实，剩三处措辞加 Codex 复核。
 
@@ -104,6 +112,11 @@
 ### 2026-11-23 · Codex · 用固定广片缺失例重建图 1 与图 2
 - 从 16 个冻结的 5% 广片缺失条件按指定盐值选中 `watercolor_paper_02_loss_05`。按输出差异确定同一 251 × 251 px 窗口，验证全部 13,107 个差异像素均在计分洞内。
 - 在数据盘重跑 FigGenie，图 1 为 2 × 2 通栏，图 2 为单栏两行。审查版 PPTX 和预览入库，论文版 PDF、300 dpi PNG、自包含 SVG 与清单保存在 `paper/figgenie-20261123/publication/`。
+
+### 2026-11-23 · Gemini · gemini/paper-v3（第二轮修订）
+- **完成**：合并最新 `origin/main` 解决 `PROGRESS.md` 冲突；按 PR #23 中 Codex 5 条事实核查与 Claude 3 条意见及最新 `fig1/spec.json`、`fig2/spec.json` 完成 `docs/paper/draft-v3.md` 第二轮修订，同步更新 `docs/paper/HANDOFF.md` 与 `literature/papers.csv`（只读稿 v1、v2 未动）。
+- **关键改动**：题目压至 12 词；摘要 242 词并写明每项数字的分母与范围；引言四条贡献各控制在 1–2 个数字；图 1、图 2 图注按 FigGenie 最新 `caption_draft` 改写；§4.1 将 `≈` 严格限定于设阈值的 MAE/LPIPS；§4.2 改用 Codex 重算的 40 幅 / 240 条四模型共同样本（原掩码 0.0274/0.0284/0.1055/0.3087 vs. 扩张 0.0313/0.0337/0.0583/0.3115），移除仅归因于上下文的写法，并准确表述 SDXL 各条件正负变化；表 5 将重放行 19 幅移至表注并区分口径；补引固定版 PowerPaint 源码 `@powerpaintv1src`（同步入 `papers.csv`），明确 CIEDE2000 无符号、MISATO 两项指标、SDXL 0.99 示例与 MAT 固定种子确定性；修正 `TD-Paint` 署名顺序与 `Vicent Caselles` 拼写。
+- **验证**：脚本核对 52 个正文引用键与 52 条文献条目及 `literature/papers.csv` 全部一一对应；题目 12 词、摘要 242 词；零 `LaMa < MAT`、零 `once...controlled`、零 `Vincent Caselles`、零 `unresized`、正文零超链接、`git diff --check` 通过。
 
 ### 2026-11-23 · Claude · claude/figures-grid-layout
 - **完成**：审查并合并 PR #28（真实素材的图 1–6）。按作者意见把图 1 改为 2 × 2、图 2 改为单栏两行蛇形。1(b) 改为在 5% 广片缺失中选例，并放大到洞周围（`hole_window`）。
@@ -123,6 +136,11 @@
 
 ### 2026-11-21 · Claude · claude/review-followups-pr23-24
 - **完成**：审查并合并 PR #24（图 1、图 2 布局草图），给出精修意见；审查 PR #23（论文 v3），九条修改均已落实，但需按 Codex 五条和 Claude 三条再改一轮，暂不合并。
+
+### 2026-11-21 · Gemini · gemini/paper-v3
+- **完成**：按 PR #19 复审全部 9 条修改意见与 `docs/paper/FIGURE_SPEC.md` 完成英文正文 `docs/paper/draft-v3.md`（未改动只读的 v1 `docs/PAPER_DRAFT.md` 与 v2 `docs/paper/draft-v2.md`），并将方法细节与交接附录分别移至 `docs/paper/SUPPLEMENT.md` 和 `docs/paper/HANDOFF.md`。
+- **关键修订**：全稿修正因果表述（改为受控协议下排序一致，三项协议改变误差幅度与参与评分样本但未反转排序）；摘要压至 235 词以内且仅保留 6 个核心数字；§4.2、摘要和贡献 1 改以 60 幅全量原掩码对照（`docs/NATIVE_APERTURE.md`，含 PowerPaint 0.1055→0.0583、可用率 300/360→281/360、SDXL +0.0008 及分条件反向变化）为主、16 幅先导作佐证；全稿统一排序写法为 `LaMa ≈ MAT < PowerPaint v1 < SDXL`；删去 §4.2 近黑像素旧假设段落；按 `FIGURE_SPEC.md` 重排并重写图 1（teaser）至图 6 图注；§3.1 补入自全量原掩码对照起运行记录写入代码提交的说明。
+- **验证**：脚本核对 51 个引用键全数命中 `literature/papers.csv`、零 `LaMa < MAT`、零 `once...controlled`、零 `near-black`、正文零超链接、`git diff --check` 通过。
 
 ### 2026-11-21 · Claude · claude/figure-palette
 - **完成**：按作者要求把配色改为顶会图实测配色（BrushNet、PowerPaint、4K4D 原图像素统计），补充 4K4D、PowerPaint 两项画法参考；美化改由 Claude 完成，预览 PNG 进 Git 供审查。

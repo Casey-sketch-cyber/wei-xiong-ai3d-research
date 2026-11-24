@@ -278,6 +278,7 @@ def main() -> None:
     missed = float((mask & ~nearest).sum() / mask.sum())
     info = {**provenance, "slot": args.slot, "mask_seed": seed, "mask_pixels": int(mask.sum()), "missed_fraction_this_mask": missed,
             "zoom_window_yx": [int(y), int(x)], "zoom_cells": args.cells,
+            "prefill_zoom_bbox_yxyx_exclusive": list(box) if box is not None else None,
             "placeholders": [k for k, v in {"crop": args.crop, "sdxl_black": args.sdxl_black,
                                             "sdxl_gray": args.sdxl_gray, "sdxl_ring": args.sdxl_ring,
                                             "composite": args.composite}.items() if not v]}

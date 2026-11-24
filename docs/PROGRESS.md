@@ -4,17 +4,18 @@
 
 ## 当前状态
 
-图 1 teaser 和图 2 方法流程已完成 FigGenie 构图（待 Codex 在服务器按 PR #29 新规则重跑导出）。图 3–6 已在服务器数据盘按统一样式生成。Gemini 已在 PR #23（分支 `gemini/paper-v3`）完成第二轮修订并同步最新 `main`，落实 Codex 五条核查意见、Claude 三条补充意见及图 1–2 图注改写，待 Codex 复核数字和引文后交 Claude 审查合并。真实破损实验仍待供体出处映射和掩码授权。[论文配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
+图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成前两轮修订，正落实 Claude 第二轮复审的三处措辞微调，待 Codex 复核第二轮数字/引文后合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
 
 ## 待办
 
-- [ ] **Codex · 重跑图 1、图 2**（2026-11-23）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 跑 `docs/paper/figures/src/build.sh`。1(b) 按新规则改选 `_loss_05` 条件，并放大到洞周围（规则见 FIGURES.md 末节）。提交 PPTX 与预览，在 PR 里写明选中的 case_id
+- [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
 - [x] ~~Codex · 图 1、图 2 精修~~：改由 Claude 用 FigGenie 重画（作者决定），见 [FIGURES.md](paper/FIGURES.md)
-- [x] **Gemini · 图 1、图 2 图注**：已按 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 改写 `draft-v3.md` 中的图 1–2 图注，保留全部数字与分母（随 PR #23 第二轮提交）
+- [x] **Gemini · 图 1、图 2 图注**：已按 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 改写 `draft-v3.md` 中的图 1–2 图注，保留全部数字与分母（v3 第二轮已完成）
 - [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
-- [ ] **Claude · 图 1、图 2 最后检查**：真实图片放入后看渲染结果，必要时调整 `make_fig*.py`
+- [x] **Claude · 图 1、图 2 最后检查**：PR #30 真实素材已审；图 2 标记移到右下角（PR #31）
+- [ ] **Codex · 正式版 PDF 字距**：服务器预览字距偏宽，疑似缺 Arimo / Liberation Sans；确认 `paper/figgenie-20261123/publication/` 的 PDF 字距正常，否则装 `fonts-liberation` 后重跑 `build.sh`（PR #30 复审）
 - [x] **Codex · 图 3–6 套用统一样式**：数据盘已生成四张图的 PDF、300 dpi PNG 与清单。图 5 使用四模型同案的绝对 MAE 均值与作品级 bootstrap 95% 区间。[生成说明](paper/FIGURES.md)
 - [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
@@ -75,8 +76,9 @@
 - [x] Claude 复审 PR #18、#19，均已合并；v2 作为草稿保留，修改意见见 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993)
 - [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
 - [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
-- [x] **Gemini · v3 第二轮**：已在 `gemini/paper-v3` 分支合并最新 `main` 并按 [Codex 核查五条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708) 与 [Claude 复审三条](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063544413) 修改 `draft-v3.md`、`HANDOFF.md` 与 `literature/papers.csv`（待 Codex 复核与 Claude 审查）
-- [ ] **Codex · 复核 v3 第二轮**：只核对数字和引用，问题在 PR #23 留言
+- [x] **Gemini · v3 第二轮**：已完成
+- [ ] **Gemini · v3 三处措辞**：按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把 "preregistered" 改为 "pre-specified"（首次写全为 "committed to version control before each inference run"）；摘要末句与 §4.5 标题的 "invariant" 限定在本研究范围内
+- [ ] **Codex · 复核 v3 第二轮**：逐个核对第二轮新增或改动的数字（52.9%、0.1137、+0.0269、−0.0034、+0.0369、+0.0266、§4.2 的八个共同样本均值）和新增引文，在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -89,6 +91,13 @@
 ---
 
 ## 工作记录
+
+### 2026-11-24 · Claude · claude/review-followups-pr23-30
+- **完成**：审查并合并 PR #30（新版布局的图 1、图 2）与 PR #31（图 2 标记位置）；审查 PR #23 第二轮，八条已落实，剩三处措辞加 Codex 复核。
+
+### 2026-11-23 · Codex · 用固定广片缺失例重建图 1 与图 2
+- 从 16 个冻结的 5% 广片缺失条件按指定盐值选中 `watercolor_paper_02_loss_05`。按输出差异确定同一 251 × 251 px 窗口，验证全部 13,107 个差异像素均在计分洞内。
+- 在数据盘重跑 FigGenie，图 1 为 2 × 2 通栏，图 2 为单栏两行。审查版 PPTX 和预览入库，论文版 PDF、300 dpi PNG、自包含 SVG 与清单保存在 `paper/figgenie-20261123/publication/`。
 
 ### 2026-11-23 · Gemini · gemini/paper-v3（第二轮修订）
 - **完成**：合并最新 `origin/main` 解决 `PROGRESS.md` 冲突；按 PR #23 中 Codex 5 条事实核查与 Claude 3 条意见及最新 `fig1/spec.json`、`fig2/spec.json` 完成 `docs/paper/draft-v3.md` 第二轮修订，同步更新 `docs/paper/HANDOFF.md` 与 `literature/papers.csv`（只读稿 v1、v2 未动）。

@@ -10,17 +10,17 @@
 | 面板 | 冻结例图、来源与取样 |
 | --- | --- |
 | 1(a) 与图 2 | 沿用已发布掩码覆盖图的 1% 裂缝条件 `oil_wood_14_crack_01`。使用同幅画的槽位 14 裁片和六个逐像素核验的掩码，流程的对齐输入与 LaMa 合成来自 `oil_wood_14_crack_05`。图 1(a) 单例漏覆盖 52.9%，全队列 60 幅的平均为 59.54%。*Cottages Near Larchant*，Théodore Rousseau。[CMA 1915.728，CC0](https://www.clevelandart.org/art/1915.728) |
-| 1(b) | 在原尺度 16 幅的 96 个条件中，以 `SHA256("museum-painting-figures-v1|" + case_id)` 排序，首个为 `oil_canvas_03_flake_01`。四舍五入后的实际环带色为 `#342822`，从该案例的扩张洞外八像素邻域计算。三种输出复用该案例的裁片与掩码，组级亮度数值使用全部 96 条条件。*Boy Drinking*，Annibale Carracci。[CMA 1994.4，CC0](https://www.clevelandart.org/art/1994.4) |
+| 1(b) | 从原尺度 16 个 `_loss_05` 条件中，按 `SHA256("museum-painting-figures-v1|" + case_id)` 取首项 `watercolor_paper_02_loss_05`。黑色、中灰和环带三种输出使用同一 251 × 251 px 窗口（半开 `y0,x0,y1,x1 = 261,80,512,331`），覆盖完整计分洞。扩张洞外八像素环带的实测色为 `#CFCDBE`。图注的组级亮度仍按 16 幅 × 6 条件汇总。*Lighthouse Village (also known as Cape Elizabeth)*，Edward Hopper。[CMA 1930.851，CC0](https://www.clevelandart.org/art/1930.851) |
 
 `make_teaser_assets.py --archive` 以既有图清单、两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
 
-在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。保留原版布局的宽高比、短文字、标签与流程框对齐提示，交最后美化时核看。
+在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。保留已审布局及短标签，图 2 的单栏蛇形流程按阶段框连线。色差指标在 PDF 中保留下标，FigGenie 转出的可编辑 PPTX 显示为同行的 ΔE00。
 
 ```bash
 FIGGENIE="$FIGGENIE" FIGURE_ARCHIVE="$PROJECT" bash docs/paper/figures/src/build.sh
 ```
 
-论文 PDF、300 dpi PNG、自包含 SVG 和清单位于服务器项目数据盘的 `paper/figgenie-20261121/publication/`。清单 SHA-256 为 `d3b9f3ce9a31a01f752e8976a768c44dd44dc73bde451fcaf234540002062e147`。风格参考图仍位于 `paper/figure-refs/`。
+最新版 PDF、300 dpi PNG、自包含 SVG 与清单位于服务器项目数据盘的 `paper/figgenie-20261123/publication/`。清单 SHA-256 为 `c32fd464e5d87ef7d47b6df032a07dda741158ed297af7387a181425fea6387e`。风格参考图仍位于 `paper/figure-refs/`。
 
 ## 图 3–6（数据图）
 
@@ -76,5 +76,5 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 ### 2026-11-23 版面与 1(b) 选例修订（Claude）
 
 - **版面**：作者认为两图太长（宽高比 3.5 和 4.2；FigGenie 统计的同类顶会图中位数为 2.1–2.7）。图 1 改为 2 × 2，宽高比 2.2；图 2 改为单栏两行，第二行从右向左，宽高比 1.0。
-- **1(b) 选例规则**（先写定，再在服务器运行，不看结果挑图）：原例 `oil_canvas_03_flake_01` 的洞只占 1%，缩到 46 pt 后三种填色看不出差别。新规则只在 5% 广片缺失（`case_id` 以 `_loss_05` 结尾）的条件里，用同一盐值 `museum-painting-figures-v1` 取第一个。三张输出按三者有差异的像素（即生成的洞）求方形窗口，四周留 35% 的边距，最小 96 px，放大显示。
-- 当前仓库里的预览和 PPTX 用的是旧素材，从 PR #28 的 PPTX 中取出；1(b) 仍是旧例且未放大。需要 Codex 在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。
+- **1(b) 选例规则**（先写定，再在服务器运行，不看结果挑图）：原例 `oil_canvas_03_flake_01` 的洞只占 1%，缩到 46 pt 后三种填色看不出差别。新规则只在 5% 广片缺失（`case_id` 以 `_loss_05` 结尾）的条件里，用同一盐值 `museum-painting-figures-v1` 取第一个。三张输出按三者有差异的像素（即生成的洞）求方形窗口，按洞的最大边长向两侧各加 35% 边距，窗口最小 96 px 并限制在裁片内。
+- 通过 `FIGURE_ARCHIVE` 重建的预览和 PPTX 已使用新版布局与放大窗口。清单保留三个源输出和三张缩略图的哈希以及共同窗口坐标。

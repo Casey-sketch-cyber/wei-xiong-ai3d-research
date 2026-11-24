@@ -14,13 +14,13 @@
 
 `make_teaser_assets.py --archive` 以既有图清单、两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
 
-在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。保留已审布局及短标签，图 2 的单栏蛇形流程按阶段框连线。色差指标在 PDF 中保留下标，FigGenie 转出的可编辑 PPTX 显示为同行的 ΔE00。
+在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。图 2 的单栏蛇形流程保留三个阶段框右下角的 a、b、c 标记。SVG 使用 `text-rendering="geometricPrecision"`，让 Chromium 按分数像素定位字形。正式 PDF 的标签推进宽度与 Arimo 度量的中位绝对相对差，图 1 从 6.62% 降至 0.01%，图 2 从 7.81% 降至 0.01%。已检查嵌入字体、可搜索文字与 PDF 渲染。色差指标在 PDF 中保留下标，FigGenie 转出的可编辑 PPTX 显示为同行的 ΔE00。
 
 ```bash
 FIGGENIE="$FIGGENIE" FIGURE_ARCHIVE="$PROJECT" bash docs/paper/figures/src/build.sh
 ```
 
-最新版 PDF、300 dpi PNG、自包含 SVG 与清单位于服务器项目数据盘的 `paper/figgenie-20261123/publication/`。清单 SHA-256 为 `c32fd464e5d87ef7d47b6df032a07dda741158ed297af7387a181425fea6387e`。风格参考图仍位于 `paper/figure-refs/`。
+最新版 PDF、300 dpi PNG、自包含 SVG 与清单位于服务器项目数据盘的 `paper/figgenie-20261124/publication/`。清单 SHA-256 为 `8462fd939b6ef90bc7db9cf8a9ebf1cf8cf014491aefe327d625a53c108f2474`。风格参考图仍位于 `paper/figure-refs/`。
 
 ## 图 3–6（数据图）
 

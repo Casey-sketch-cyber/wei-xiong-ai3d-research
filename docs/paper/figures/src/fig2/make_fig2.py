@@ -175,6 +175,7 @@ def build():
             f'orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0.6 L5.4 3 L0 5.4 Z" '
             f'fill="{F.MUTED}"/></marker></defs>')
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}pt" height="{H}pt" '
+           'text-rendering="geometricPrecision" '
            f'font-family="{F.STACK}" font-size="{F.S_BODY}" data-spec="fig2-pipeline" data-spec-version="3">'
            f'{defs}<rect x="0" y="0" width="{W}" height="{H}" fill="#FFFFFF"/>{"".join(body)}</svg>')
     spec = {"meta": {"id": "fig2-pipeline", "title": "Evaluation pipeline", "family": "ai", "venue": "cvpr",

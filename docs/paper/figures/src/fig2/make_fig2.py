@@ -108,7 +108,7 @@ def build():
                 f'{F.image(x + (SW - s3) / 2, CY - s3 / 2 + 2, s3, s3, "f2_input.png")}</g>')
     nodes.append({"id": "aligned", "label": "", "kind": "image", "parent": "input",
                   "image": {"src": "f2_input.png", "role": "sample-input"}})
-    body.append(f'<g id="a:mark-a" data-kind="annotation" data-anchor="input">{badge(x + SW - 7, TOP + 7, "a")}</g>')
+    body.append(f'<g id="a:mark-a" data-kind="annotation" data-anchor="input">{badge(x + SW - 7, BOT - 7, "a")}</g>')
     annotations.append({"id": "mark-a", "kind": "verdict", "text": "a", "anchor": "input"})
 
     # 4 models: pixel space (grey) and latent space (white) with the prefill control coloured
@@ -126,7 +126,7 @@ def build():
                  f'stroke="{F.BLUE}" stroke-width="0.6"/>' for i, c in enumerate(("#000000", "#808080", F.ring_colour())))
     body.append(f'<g id="n:prefill" data-kind="node" data-role="novel" data-parent="models">{sw}</g>')
     nodes.append({"id": "prefill", "label": "", "kind": "icon", "parent": "models"})
-    body.append(f'<g id="a:mark-b" data-kind="annotation" data-anchor="models">{badge(x + SW - 7, TOP + D + 7, "b")}</g>')
+    body.append(f'<g id="a:mark-b" data-kind="annotation" data-anchor="models">{badge(x + SW - 7, BOT + D - 7, "b")}</g>')
     annotations.append({"id": "mark-b", "kind": "verdict", "text": "b", "anchor": "models"})
 
     # 5 composite
@@ -155,7 +155,7 @@ def build():
                 f'<rect x="{lx0}" y="{ly0}" width="{SW - 12}" height="{3 * (c + g) - g + 6:.2f}" rx="2" '
                 f'fill="{F.BLUE_TINT}" stroke="{F.BLUE}" stroke-width="0.5"/>{cells}</g>')
     nodes.append({"id": "ledger", "label": "", "kind": "icon", "parent": "score"})
-    body.append(f'<g id="a:mark-c" data-kind="annotation" data-anchor="score">{badge(x + SW - 7, TOP + D + 7, "c")}</g>')
+    body.append(f'<g id="a:mark-c" data-kind="annotation" data-anchor="score">{badge(x + SW - 7, BOT + D - 7, "c")}</g>')
     annotations.append({"id": "mark-c", "kind": "verdict", "text": "c", "anchor": "score"})
 
     for i in range(5):

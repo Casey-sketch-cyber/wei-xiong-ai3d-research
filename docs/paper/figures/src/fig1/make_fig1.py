@@ -237,7 +237,9 @@ def build():
     defs = (f'<defs><marker id="arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" '
             f'orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 0.6 L5.4 3 L0 5.4 Z" '
             f'fill="{MUTED}"/></marker></defs>')
+    # Preserve fractional glyph placement when Chromium exports print-size text.
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}pt" height="{H}pt" '
+           'text-rendering="geometricPrecision" '
            f'font-family="{STACK}" font-size="{S_BODY}" data-spec="fig1-teaser" data-spec-version="3">'
            f'{defs}<rect x="0" y="0" width="{W}" height="{H}" fill="#FFFFFF"/>{"".join(body)}</svg>')
     spec = {

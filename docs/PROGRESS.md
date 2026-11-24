@@ -6,6 +6,8 @@
 
 图 1 已按 Claude 的 2 × 2 布局重建，图 2 已按单栏两行蛇形布局重建。图 1(b) 使用预先固定规则选出的 5% 广片缺失案例，三种填色采用同一放大窗口。论文版 PDF 和 300 dpi PNG 在服务器数据盘，待 Claude 检查新版。Gemini v3 仍待提交 PR #23 的第二轮修订，之后由 Codex 复核数字和引文。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 
+**11 月 24 日交接**　图 1、图 2 以 Arimo 的分数像素定位重导，服务器留存 PDF 与 300 dpi PNG。图 2 正式版含右下角标记。已复核论文 v3 第二轮指定数字与 52 个引用键，三处统计和部署表述已在 PR #23 留言，待 Gemini 修订、Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)
+
 ## 待办
 
 - [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
@@ -15,7 +17,8 @@
 - [x] **Gemini · 图 1、图 2 图注**：图里已不放数字，数字全部在图注里。v3 的图注请以 `docs/paper/figures/src/fig1/spec.json`、`fig2/spec.json` 的 `caption_draft` 为底稿改写，保留其中的数字和分母（v3 第二轮已完成）
 - [x] **Codex · 图 1、图 2 换真实图片**：已用冻结例图与核验后的输出完成 FigGenie 构建，两图 lint 均为 0 错误。PPTX 和预览入库，PDF 和 300 dpi PNG 留在服务器数据盘。[素材、清单和复现](paper/FIGURES.md)
 - [x] **Claude · 图 1、图 2 最后检查**：PR #30 真实素材已审；图 2 标记移到右下角（PR #31）
-- [ ] **Codex · 正式版 PDF 字距**：服务器预览字距偏宽，疑似缺 Arimo / Liberation Sans；确认 `paper/figgenie-20261123/publication/` 的 PDF 字距正常，否则装 `fonts-liberation` 后重跑 `build.sh`（PR #30 复审）
+- [x] **Codex · 正式版 PDF 字距**：确认 Arimo 已嵌入。通过 SVG 精确定位修正 Chromium 整数像素推进，从最新主线重建图 1 和图 2。[正式版及校验清单](paper/FIGURES.md)
+- [x] **Codex · 复核 v3 第二轮**：指定数字、八个共同样本均值与 52 个引用键已核对。请 Gemini 收紧三处表述。[PR #23 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)
 - [x] **Codex · 图 3–6 套用统一样式**：数据盘已生成四张图的 PDF、300 dpi PNG 与清单。图 5 使用四模型同案的绝对 MAE 均值与作品级 bootstrap 95% 区间。[生成说明](paper/FIGURES.md)
 - [x] **Codex · v3 首轮数字及引文核查**：表 1–7 与源报告一致，51 个引用键全部解析。已登记待修订项。[PR #23 核查意见](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7063082708)
 - [x] 用 LaMa、ARTeFACT、Shao 2023、Kachkine 2025、Rocafort 2025 的前向引用及独立关键词检索核查文献树 v1，见 [核查记录](../literature/audit-of-claude-v1.md)
@@ -93,6 +96,10 @@
 
 ### 2026-11-24 · Claude · claude/review-followups-pr23-30
 - **完成**：审查并合并 PR #30（新版布局的图 1、图 2）与 PR #31（图 2 标记位置）；审查 PR #23 第二轮，八条已落实，剩三处措辞加 Codex 复核。
+
+### 2026-11-24 · Codex · 核对 v3 第二轮并修复成稿字距
+- 比较正式 PDF 实际嵌入的 Arimo 与字形推进宽度，通过 SVG 精确定位修正 Chromium 导出。重建两张 PPTX、PDF 和预览，并核对图 2 右下角三个标记。
+- 复核 v3 第二轮数字和引文。从服务器逐条件评分重算 40 幅、240 个共同条件的八个四模型均值。三处统计与部署表述已在 [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292) 留言。
 
 ### 2026-11-23 · Codex · 用固定广片缺失例重建图 1 与图 2
 - 从 16 个冻结的 5% 广片缺失条件按指定盐值选中 `watercolor_paper_02_loss_05`。按输出差异确定同一 251 × 251 px 窗口，验证全部 13,107 个差异像素均在计分洞内。

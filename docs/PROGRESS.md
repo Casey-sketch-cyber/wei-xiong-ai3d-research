@@ -81,7 +81,10 @@
 - [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
 - [x] **Gemini · v3 第二轮**：已完成
 - [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
-- [ ] **Codex · 复核 v3 第二轮**：逐个核对第二轮新增或改动的数字（52.9%、0.1137、+0.0269、−0.0034、+0.0369、+0.0266、§4.2 的八个共同样本均值）和新增引文，在 PR #23 留言
+- [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
+- [ ] **Gemini · 投稿稿 v4**：以 v3 为底稿写 `docs/paper/draft-v4.md`，分支 `gemini/paper-v4`。先改 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)（表 5 与 §4.4 的重放与等权说明；0.0725 和 0.1137 的范围；§2 限定为所测管线），再补投稿必需的声明：数据可得性（CC0 馆藏与掩码生成代码）、代码可得性、利益冲突、作者贡献，以及**生成式 AI 使用声明**（写作和代码由 Claude、Gemini、Codex 辅助，作者审阅并负责）
+- [ ] **Codex · 核对 v4**：只核对数字、引文与声明里的事实（仓库地址、许可证、数据来源）
+- [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -94,6 +97,9 @@
 ---
 
 ## 工作记录
+
+### 2026-11-24 · Claude · claude/after-v3
+- **完成**：合并 PR #33（图 1、图 2 字距修复）和 PR #23（论文 v3，Codex 已复核数字与引文）；登记投稿稿 v4 待办（三处口径、投稿声明含生成式 AI 使用声明、作者通读与选刊）。
 
 ### 2026-11-24 · Gemini · gemini/paper-v3（三处措辞微调）
 - **完成**：合并最新 `origin/main`（PR #30–#32）解决 `PROGRESS.md` 冲突；按 PR #23 Claude 第二轮复审意见完成 `docs/paper/draft-v3.md` 全部三处措辞修改并同步 `HANDOFF.md`（只读稿 v1、v2 未动）：

@@ -9,7 +9,7 @@ Non-manuscript tracking document moved out of `docs/paper/draft-v3.md` per Claud
 | --- | --- | --- |
 | 1 | Remove causal overclaim ("once controlled, ordering is identical") | Replaced throughout Abstract, Contribution 4, §4.1, §6, and Figure 1 caption with non-causal framing (*"Under the controlled protocol, …; these choices altered error magnitudes and the scored sample without reversing the ordering."*). |
 | 2 | Lead §4.2, Abstract, and Contribution 1 with full 60-work Cleveland comparison (`docs/NATIVE_APERTURE.md`) | Promoted full 60-work data (59.54% mean missed 1% crack pixels; PowerPaint 0.1055 → 0.0583, −0.0471 [−0.0589, −0.0360] on 40 complete paired works / 240 conditions with safety checker on; availability 300/360 → 281/360; SDXL +0.0008 overall with condition-dependent decreases and increases) into Abstract, Contribution 1, §4.2, and Table 3; moved 16-work pilot table to `docs/paper/SUPPLEMENT.md` (Table S1). |
-| 3 | Compress Abstract to ≤ 250 words with few headline numbers | Abstract compressed to 242 words with 6 headline result metrics and explicit denominators/scopes. |
+| 3 | Compress Abstract to ≤ 250 words with few headline numbers | Abstract compressed to 247 words (≤ 250) with 6 headline result metrics and explicit denominators/scopes. |
 | 4 | Move Methods implementation minutiae to Supplementary Information | Moved MAT `noise_const` details, AIC IIIF redirect/candidate tallies, CMA wooden door exclusion & crop coordinates, SHA-256 digests, checkpoint revision hashes, FLUX.1 Fill pre-screening, and Euler `t = 901` / `0.118` derivation into `docs/paper/SUPPLEMENT.md`. |
 | 5 | Unify ordering notation as `LaMa ≈ MAT < PowerPaint v1 < SDXL` | Standardized across all MAE/LPIPS ordering statements; zero occurrences of `LaMa < MAT`. |
 | 6 | Remove §4.2 "near-black pixels" paragraph | Deleted the legacy hypothesis paragraph from §4.2. |
@@ -28,6 +28,7 @@ Non-manuscript tracking document moved out of `docs/paper/draft-v3.md` per Claud
 | E1 | Claude #1: Shorten Title to ≤ 12 words | Shortened to 12 words: *Three Protocol Choices Shape Measured Fidelity of AI Inpainting on Museum Paintings*. |
 | E2 | Claude #2: Limit Introduction contributions to 1–2 numbers each | Trimmed all four bullets to 1–2 quantitative figures each, moving CIs and granular denominators to Results. |
 | E3 | Claude #3: Tighten Figure 1 caption & align Fig 1–2 with `spec.json` | Rewrote Figure 1 caption (4 compact panel sentences matching `fig1/spec.json` `caption_draft` with exact denominators) and Figure 2 caption (matching `fig2/spec.json` `caption_draft`). |
+| E4 | Claude Round-2 #1–3: Replace `preregistered` and bound `invariant` | Replaced all 6 occurrences of `preregistered`/`Preregistering` with `pre-specified` (first occurrence: *"pre-specified protocol, committed to version control before each inference run"*, plus §3.1 heading and consistent hyphenation); revised Abstract final sentence to *"In these cohorts, the best-performing model did not depend on painting medium..."* and §4.5 heading/closing to *"Rankings held across..."*. |
 
 ---
 

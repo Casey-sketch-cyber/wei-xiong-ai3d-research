@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成前两轮修订，正落实 Claude 第二轮复审的三处措辞微调，待 Codex 复核第二轮数字/引文后合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
+图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成 Claude 第二轮复审的三处措辞修改并同步最新 `main`，待 Codex 复核第二轮数字/引文后交 Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
 
 ## 待办
 
@@ -77,7 +77,7 @@
 - [x] **Codex · 图 1、图 2 PowerPoint 草图**：布局已审，PR #24 合并
 - [x] **Gemini · v3 首轮**：按 [#19 复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/19#issuecomment-7062267993) 的 9 条修改，交付 `docs/paper/draft-v3.md`、`SUPPLEMENT.md` 与 `HANDOFF.md`（PR #23）
 - [x] **Gemini · v3 第二轮**：已完成
-- [ ] **Gemini · v3 三处措辞**：按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把 "preregistered" 改为 "pre-specified"（首次写全为 "committed to version control before each inference run"）；摘要末句与 §4.5 标题的 "invariant" 限定在本研究范围内
+- [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [ ] **Codex · 复核 v3 第二轮**：逐个核对第二轮新增或改动的数字（52.9%、0.1137、+0.0269、−0.0034、+0.0369、+0.0266、§4.2 的八个共同样本均值）和新增引文，在 PR #23 留言
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -91,6 +91,13 @@
 ---
 
 ## 工作记录
+
+### 2026-11-24 · Gemini · gemini/paper-v3（三处措辞微调）
+- **完成**：合并最新 `origin/main`（PR #30–#32）解决 `PROGRESS.md` 冲突；按 PR #23 Claude 第二轮复审意见完成 `docs/paper/draft-v3.md` 全部三处措辞修改并同步 `HANDOFF.md`（只读稿 v1、v2 未动）：
+  1. 全部 6 处 `preregistered`/`Preregistering` 改为 `pre-specified`（引言首次出现写全为 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一全文 `pre-specified` 连字符）；
+  2. 摘要末句改为 `In these cohorts, the best-performing model did not depend on painting medium, whereas reporting these three choices is essential for reproducible comparison.`；
+  3. §4.5 标题改为 `Rankings held across damage geometries and painting media, whereas between-group contrasts varied across collections`（并同步收束 §4.5 结句的 `invariant`）。
+- **验证**：脚本核对 0 处 `preregister*`、0 处 `prespecified`、0 处 `invariant`、题目 12 词、摘要 247 词、52 个引用键与 `papers.csv` 及文末条目一一对应，`git diff --check` 通过。
 
 ### 2026-11-24 · Claude · claude/review-followups-pr23-30
 - **完成**：审查并合并 PR #30（新版布局的图 1、图 2）与 PR #31（图 2 标记位置）；审查 PR #23 第二轮，八条已落实，剩三处措辞加 Codex 复核。

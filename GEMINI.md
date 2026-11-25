@@ -1,1 +1,1 @@
-请先阅读并遵守本项目根目录的 `AGENTS.md`，所有项目说明和工作规则都在那里。当前你的任务见 `docs/paper/WRITING_BRIEF.md`。
+请先阅读并遵守本项目根目录的 `AGENTS.md`，所有项目说明和工作规则都在那里。当前你的任务见 `docs/paper/SUBMISSION_APPLSCI.md`（投 *Applied Sciences* 的投稿版）。早先的重写任务书 `docs/paper/WRITING_BRIEF.md` 只作背景参考。

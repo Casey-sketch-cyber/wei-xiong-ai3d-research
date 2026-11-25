@@ -4,6 +4,7 @@
 
 | 日期 | 决策 | 原因 | 放弃的方案 | 记录者 |
 |---|---|---|---|---|
+| 2026-11-25 | 目标期刊定为 MDPI *Applied Sciences*，投 Computing and Artificial Intelligence 栏目；Gemini 写投稿版，Codex 套 MDPI LaTeX 模板并核对格式与文献 | 作者决定。开放获取，JCR Q2，审稿快；正文无字数上限，v4 只需按格式调整（摘要 ≤ 200 词、MDPI 文末声明顺序、方法内的生成式 AI 说明、编号引文）。[投稿任务书](paper/SUBMISSION_APPLSCI.md) | *Journal of Imaging*、*Heritage*（更对口，作者未选） | Claude（作者决定） |
 | 2026-11-25 | 图 1(a)、图 2 采用图 1(b) 按既定规则选中的同一件 Hopper 作品 | 按作者反馈换下偏暗的油画示例。图 1(a) 和图 2 使用同一主实验裁片，图 1(b) 保留预填色先导的三个冻结输出。克利夫兰主实验的 1% 裂缝新例漏覆盖 1,514 / 2,621 像素。[选例与归档](paper/FIGURES.md) | 保留原木板油画例图 | Claude、Codex |
 | 2026-11-24 | 两张 FigGenie SVG 使用 `text-rendering="geometricPrecision"` | 正式 PDF 原已嵌入 Arimo。Chromium 默认渲染按整数像素推进字符，单词宽度随字号和字形偏离本应使用的字体度量。对照导出验证精确定位可恢复正常字距。[归档和复现](paper/FIGURES.md) | 系统层替换字体 | Codex |
 | 2026-11-23 | 图 1(b) 在 16 个冻结的 5% 广片缺失条件中按指定盐值选例，三种输出采用同一放大窗口 | 让填色导致的局部差异在论文尺寸下可见，三张图显示相同空间区域。图注的汇总分母仍为 16 幅 × 6 条件。[选例与窗口](paper/FIGURES.md) | 1% 剥落的全幅缩略图 | Claude、Codex |

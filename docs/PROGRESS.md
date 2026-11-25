@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。现按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)：Gemini 写投稿版 `draft-v5-applsci.md` 与 cover letter，Codex 套 MDPI LaTeX 模板并核对格式与参考文献，两者可同时开工；之后 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
+作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)，Gemini 已完成 `docs/paper/draft-v5-applsci.md` 与 `docs/paper/cover-letter-applsci.md`（分支 `gemini/paper-v5-applsci`，待 Claude 审查）；Codex 同步负责套 MDPI LaTeX 模板并核对格式与参考文献；之后 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v5](paper/draft-v5-applsci.md) · [投稿信](paper/cover-letter-applsci.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
 
 ## 待办
 
@@ -85,7 +85,7 @@
 - [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`，修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)、补齐五项投稿声明，并按 [Codex 四项核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893) 修订；PR #36 已合并
 - [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
-- [ ] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 写 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3 生成式 AI 说明、MDPI 文末声明顺序）和 `cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`
+- [x] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 完成 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3.5 生成式 AI 说明、MDPI 10 项文末顺序、PR #38 核实权重版本与溯源表述）和 `docs/paper/cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`（待 Claude 审查）
 - [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`。PR #38 的权重版本写进 bib；PR #38 本身请关闭（v4 只读）
 - [ ] **作者 · 投稿前**：通读投稿版；填署名、单位、基金与 CRediT；确认利益冲突、AI 声明、归档数据访问方式与项目许可证；从候选中选 3 位审稿人；在 SuSy 提交
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
@@ -100,6 +100,15 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Gemini · gemini/paper-v5-applsci（MDPI Applied Sciences 投稿版与 Cover Letter）
+- **完成**：以只读 v4 为底稿按 [投稿任务书](paper/SUBMISSION_APPLSCI.md) 产出 `docs/paper/draft-v5-applsci.md` 与 `docs/paper/cover-letter-applsci.md`，并同步更新 `docs/paper/HANDOFF.md`（只读稿 v1–v4 均未改动）：
+  1. 摘要压至 200 词以内单段无小标题，保留三项协议核心数字、可控排序与“必须报告”结论，首次出现缩写均写全称；新增 2 句 `Featured Application`（无新数字）；关键词沿用 6 个并改为 MDPI 分号分隔；
+  2. §3 末尾新增 `3.5 Use of Generative AI Tools`（写清 Claude/Gemini/Codex 用途、作者决策权及全部数字由确定性脚本从冻结输出复算）；§6 标题改为 `Conclusions`；
+  3. 按 MDPI 10 项固定顺序改写文末声明（`Supplementary Materials`、`Author Contributions`、`Funding`、`Institutional Review Board Statement`、`Informed Consent Statement`、`Data Availability Statement`、`Acknowledgments`、`Conflicts of Interest`、`Abbreviations`、`References`），将 `Code Availability` 并入 `Data Availability Statement`，采用 PR #38 核实的权重发布件版本（`big-lama.pt`、`Places_512_FullData_G.pth`、PowerPaint `5b4c3d5`/`b4174b7`、SDXL `115134f`）及“有记录的运行”溯源表述，并按 MDPI 模板在 `Acknowledgments` 写 AI 声明；所有待作者确认项均用斜体标注；
+  4. 统一图 1–6、表 1–7 标题为“短标题 + 说明”，解释全部符号（`↓`、`n`、`*`、`—`），并在摘要、正文、图 1、表 1 首次出现处补全缩写；图 1 保留 `57.8%` 与 `59.5%`；
+  5. 起草一页以内的英文 `docs/paper/cover-letter-applsci.md`（覆盖意义与已有工作关系、契合 Computing and Artificial Intelligence 栏目、未发表/未一稿多投声明与全体作者同意声明，不推荐审稿人，署名与日期留斜体占位）。
+- **验证**：脚本核对摘要 193 词（≤ 200）、表 1–7 全部 59 行数据数值与 v4 逐行一致、52 个 `[@key]` 引用键与 v4 及 `literature/papers.csv` 及文末 52 条文献一一对应、10 项文末顺序准确、只读稿 v1–v4 零改动、`git diff --check` 通过。
 
 ### 2026-11-25 · Claude · claude/pr38-followup
 - **审查 PR #38**：权重版本与溯源说法核对无误，但改的是已合并只读的 v4，未合并，请 Codex 关闭。其内容已转入投稿任务书：Gemini 写进 v5 的 Data Availability，Codex 写进 `references.bib`。

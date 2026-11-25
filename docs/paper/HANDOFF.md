@@ -1,6 +1,30 @@
-# Manuscript Handoff & Self-Review (v4 Submission Candidate)
+# Manuscript Handoff & Self-Review (v5 *Applied Sciences* Submission)
 
-Non-manuscript tracking document for `docs/paper/draft-v4.md` (with `docs/PAPER_DRAFT.md` v1, `docs/paper/draft-v2.md` v2, and `docs/paper/draft-v3.md` v3 preserved read-only).
+Non-manuscript tracking document for `docs/paper/draft-v5-applsci.md` and `docs/paper/cover-letter-applsci.md` (with `docs/PAPER_DRAFT.md` v1, `docs/paper/draft-v2.md` v2, `docs/paper/draft-v3.md` v3, and `docs/paper/draft-v4.md` v4 preserved read-only).
+
+## −1. v4 → v5 MDPI *Applied Sciences* Adaptations (`docs/paper/SUBMISSION_APPLSCI.md`)
+
+| # | Requirement (`SUBMISSION_APPLSCI.md`) | Action Taken in `draft-v5-applsci.md` & `cover-letter-applsci.md` |
+| --- | --- | --- |
+| 1 | Abstract ≤ 200 words, single paragraph, no subheadings, abbreviations spelled out | Compressed Abstract to 193 whitespace words (≤ 200), single unstructured paragraph, keeping one headline figure per protocol choice (`59.5%` / `about 45%`, `0.0725`, `21.9%` vs. `2.8%`), controlled ordering, scoped medium takeaway, and mandatory reporting; spelled out LaMa, MAT, SDXL, and MAE on first use. |
+| 2 | Keywords (3–10) & Featured Application (1–2 sentences, no new numbers) | Retained exact 6 keywords (semicolon-separated per MDPI); added a 2-sentence `## Featured Application` before Abstract with zero new numbers. |
+| 3 | Section order & `6. Conclusions` | Kept `Introduction` → `Related Work` (unchanged length) → `Materials and Methods` → `Results` → `Discussion` → `6. Conclusions`. |
+| 4 | New §3.5 `Use of Generative AI Tools` | Added `### 3.5 Use of Generative AI Tools` specifying Claude/Gemini/Codex assistance (literature organization, experimental/figure code, statistical verification scripts, English drafting/editing), author authority over research questions/protocols/interpretation, and deterministic script recomputation of all reported numbers from frozen run outputs. |
+| 5 | 10-item MDPI back-matter order + PR #38 weights/provenance | Replaced `## Declarations` with exact MDPI order: `Supplementary Materials` (citing Note S1–S3 and Table S1), `Author Contributions` (MDPI initials placeholders), `Funding`, `Institutional Review Board Statement`, `Informed Consent Statement`, `Data Availability Statement` (merged Code Availability; preserved three-layer split; added PR #38 verified weights `big-lama.pt`, `Places_512_FullData_G.pth`, `5b4c3d5`/`b4174b7`, `115134f` and `"where recorded"` provenance wording), `Acknowledgments` (exact MDPI AI template matching §3.5), `Conflicts of Interest`, `Abbreviations` table, and unchanged 52 `References`. |
+| 6 | Figures 1–6 & Tables 1–7 MDPI caption style + first-use abbreviations | Rewrote all Figure 1–6 and Table 1–7 captions to `"Short title. Explanation."`, defined all symbols (`↓`, `n`, `*`, `—`), spelled out abbreviations on first appearance across Abstract, Main Text, Figure 1, and Table 1, and kept Figure 1 (`57.8%` / `59.5%`) and all 59 numeric data rows across Tables 1–7 identical to v4. *(Layout note for Codex/Claude: §4.4 currently cites Figure 6 before §4.5 cites Figure 5 to keep `FIGURES.md` file numbering intact; confirm during LaTeX layout whether to swap Figure 5/6 numbering or §4.4/§4.5 order to satisfy strict first-mention order.)* |
+| 7 | Cover letter (`docs/paper/cover-letter-applsci.md`, ≤ 1 page) | Drafted concise English cover letter (398 words, ≤ 1 page) to *Applied Sciences* (*Computing and Artificial Intelligence* section) covering significance/precedents, section fit, unpublished/not-under-consideration statement, and author approval statement, with no reviewer recommendations and italicized author placeholders. |
+
+### Items Requiring Author Confirmation Prior to Submission (Italicized in v5 & Cover Letter)
+1. Author full name(s), institutional affiliation(s), and correspondence email (`draft-v5-applsci.md` front matter & `cover-letter-applsci.md`).
+2. Submission date (`cover-letter-applsci.md`).
+3. Specific generative AI tool version details and exact scope of personal review (`§3.5` and `Acknowledgments`).
+4. Author initials and final NISO CRediT roles (`Author Contributions`).
+5. Funding statement (`"This research received no external funding."` in `Funding`).
+6. Repository URL renaming and standalone open-source `LICENSE` / release terms (`Data Availability Statement`).
+7. Experiment server archive access mechanism (e.g., public data deposit vs. availability upon reasonable request) (`Data Availability Statement`).
+8. Additional non-author acknowledgments, if any (`Acknowledgments`).
+9. Conflicts of interest statement (`"The author declares no conflicts of interest."` in `Conflicts of Interest`).
+10. Publisher-assigned Supplementary Materials URL (`Supplementary Materials`, inserted at production).
 
 ## 0. v3 → v4 Submission-Candidate Revisions (PR #34 Checklist)
 

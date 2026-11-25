@@ -9,10 +9,10 @@
 
 | 面板 | 冻结例图、来源与取样 |
 | --- | --- |
-| 1(a) 与图 2 | 沿用已发布掩码覆盖图的 1% 裂缝条件 `oil_wood_14_crack_01`。使用同幅画的槽位 14 裁片和六个逐像素核验的掩码，流程的对齐输入与 LaMa 合成来自 `oil_wood_14_crack_05`。图 1(a) 单例漏覆盖 52.9%，全队列 60 幅的平均为 59.54%。*Cottages Near Larchant*，Théodore Rousseau。[CMA 1915.728，CC0](https://www.clevelandart.org/art/1915.728) |
+| 1(a) 与图 2 | 使用与 1(b) 同一件作品（`cma-173965`）在克利夫兰主实验的槽位 02 裁片。图 1(a) 使用 `watercolor_paper_02_crack_01`，默认下采样漏覆盖 1,514 / 2,621 个计分像素（57.8%），60 幅的平均为 59.54%。图 2 使用该裁片的六个掩码，对齐输入与 LaMa 合成取自 `watercolor_paper_02_crack_05`。*Lighthouse Village (also known as Cape Elizabeth)*，Edward Hopper。[CMA 1930.851，CC0](https://www.clevelandart.org/art/1930.851) |
 | 1(b) | 从原尺度 16 个 `_loss_05` 条件中，按 `SHA256("museum-painting-figures-v1|" + case_id)` 取首项 `watercolor_paper_02_loss_05`。黑色、中灰和环带三种输出使用同一 251 × 251 px 窗口（半开 `y0,x0,y1,x1 = 261,80,512,331`），覆盖完整计分洞。扩张洞外八像素环带的实测色为 `#CFCDBE`。图注的组级亮度仍按 16 幅 × 6 条件汇总。*Lighthouse Village (also known as Cape Elizabeth)*，Edward Hopper。[CMA 1930.851，CC0](https://www.clevelandart.org/art/1930.851) |
 
-`make_teaser_assets.py --archive` 以既有图清单、两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
+`make_teaser_assets.py --archive` 以主实验与预填色实验两份冻结汇总及输出哈希定位素材，核验合成与预填色输出在原洞外保留原裁片像素。图形和文字在 PPTX 中可编辑，画作与模型输出保留为单独图片。图注供 Gemini 改写，以 [图 1 spec](figures/src/fig1/spec.json) 和 [图 2 spec](figures/src/fig2/spec.json) 的 `caption_draft` 为准。
 
 在数据盘使用 FigGenie 固定版本 `c136a6aeefc6f6fe11fc615a5199cca57be3322a`，运行时 `python3` 需能导入 NumPy、Pillow、lxml、python-pptx、fontTools 和 Playwright，Chromium 的依赖放在数据盘。两张图 FigGenie lint 均为 0 错误。图 2 的单栏蛇形流程保留三个阶段框右下角的 a、b、c 标记。SVG 使用 `text-rendering="geometricPrecision"`，让 Chromium 按分数像素定位字形。正式 PDF 的标签推进宽度与 Arimo 度量的中位绝对相对差，图 1 从 6.62% 降至 0.01%，图 2 从 7.81% 降至 0.01%。已检查嵌入字体、可搜索文字与 PDF 渲染。色差指标在 PDF 中保留下标，FigGenie 转出的可编辑 PPTX 显示为同行的 ΔE00。
 
@@ -20,7 +20,7 @@
 FIGGENIE="$FIGGENIE" FIGURE_ARCHIVE="$PROJECT" bash docs/paper/figures/src/build.sh
 ```
 
-最新版 PDF、300 dpi PNG、自包含 SVG 与清单位于服务器项目数据盘的 `paper/figgenie-20261124/publication/`。清单 SHA-256 为 `8462fd939b6ef90bc7db9cf8a9ebf1cf8cf014491aefe327d625a53c108f2474`。风格参考图仍位于 `paper/figure-refs/`。
+最新版 PDF、300 dpi PNG、自包含 SVG 与清单位于服务器项目数据盘的 `paper/figgenie-20261124-hopper/publication/`。清单 SHA-256 为 `1fb96806a40d1a70bc6122c3715429e7ba29f46d200c9c3da8a56eaeb7c108ac`。风格参考图仍位于 `paper/figure-refs/`。
 
 ## 图 3–6（数据图）
 
@@ -85,4 +85,4 @@ MPLCONFIGDIR="$PROJECT/cache/matplotlib" "$PROJECT/venv/bin/python" -B experimen
 - **原因**：作者反映原例（一幅很暗的木板油画）太黑，细裂缝和六种掩码都看不清。
 - **规则**（先写定，再在服务器运行，不按亮度挑图）：图 1(a) 和图 2 改用 1(b) 已按既定规则选中的那件作品。在克利夫兰主实验计划中，取同一 `artwork_id` 的 1% 裂缝条件作 1(a)，同一裁片的六种掩码和 5% 裂缝 LaMa 合成图作图 2。这样三处展示的是同一幅画。
 - **画法**：1(a) 的裁片缩略图上，洞的颜色随画面明暗切换，亮画用黑色、暗画用白色，与图 2 的输入一致。
-- **对正文的影响**：图 1 图注里的单例漏覆盖比例（原为 52.9%）会变，需由 Codex 重算后告知 Gemini；60 幅平均 59.5% 不变。图 4（数据图）的选例不变。
+- **构建与核验（Codex）**：图 1(a) 和图 2 使用主实验从馆方大图制作的裁片，图 1(b) 使用预填色先导从馆方备选图制作的裁片。图 1(b) 的裁片、掩码、三张输出及预览图块的哈希均与上版相同。图 1(a) 的放大窗左上角为 `(y, x) = (224, 344)`，单例的漏覆盖率为 57.8%，已交接给 Gemini 更新 v4 图注。60 幅的均值仍为 59.5%。两张正式 PDF 已检查 Arimo 嵌入、可搜索文字和渲染，两份可编辑 PPTX 已在 PowerPoint 开启并导出复检。[v4 核对与交接](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)

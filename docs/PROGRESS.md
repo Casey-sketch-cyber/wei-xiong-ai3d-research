@@ -4,13 +4,11 @@
 
 ## 当前状态
 
-图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成 Claude 第二轮复审的三处措辞修改并同步最新 `main`，待 Codex 复核第二轮数字/引文后交 Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
-
-**11 月 24 日交接**　图 1、图 2 以 Arimo 的分数像素定位重导，服务器留存 PDF 与 300 dpi PNG。图 2 正式版含右下角标记。已复核论文 v3 第二轮指定数字与 52 个引用键，三处统计和部署表述已在 PR #23 留言，待 Gemini 修订、Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)
+图 1(a)、图 2 已换用图 1(b) 的 Hopper 作品，重新生成预览与可编辑 PPTX，正式 PDF 与 300 dpi PNG 已归档。v3 已合并。已复核投稿稿 v4 的数值、引文与声明，Gemini 待同步图 1 图注的 57.8% 及数据、代码可得性措辞。利益冲突、CRediT 和作者审阅声明待作者确认。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v4 核对与图注交接](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 
 ## 待办
 
-- [ ] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25，作者反映原例太黑）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。新规则是沿用 1(b) 的作品，见 FIGURES.md 末节。提交 PPTX 与预览；在 PR 里写明新例的 case_id 和该例的漏覆盖比例，并告知 Gemini 更新图 1 图注
+- [x] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25）：服务器重跑 `build.sh` 后已验收 PowerPoint 和 PDF。1(a) 新例 `watercolor_paper_02_crack_01` 漏覆盖 57.8%，已在 PR #36 告知 Gemini。[素材与清单](paper/FIGURES.md)
 
 - [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
 
@@ -85,7 +83,7 @@
 - [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
 - [ ] **Gemini · 投稿稿 v4**：以 v3 为底稿写 `docs/paper/draft-v4.md`，分支 `gemini/paper-v4`。先改 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)（表 5 与 §4.4 的重放与等权说明；0.0725 和 0.1137 的范围；§2 限定为所测管线），再补投稿必需的声明：数据可得性（CC0 馆藏与掩码生成代码）、代码可得性、利益冲突、作者贡献，以及**生成式 AI 使用声明**（写作和代码由 Claude、Gemini、Codex 辅助，作者审阅并负责）
-- [ ] **Codex · 核对 v4**：只核对数字、引文与声明里的事实（仓库地址、许可证、数据来源）
+- [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。图注、数据和代码可得性、许可证名称及作者确认项已交给 Gemini。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -99,6 +97,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Codex · 重建 Hopper 例图并核对投稿稿 v4
+- 用同一克利夫兰主实验裁片重建图 1(a) 与图 2，逐像素重算默认掩码漏覆盖 1,514 / 2,621（57.8%）。核对图 1(b) 三张预览图块与上版哈希相同，图 1 图注更新值已交 Gemini。
+- 验收两张正式 PDF 的渲染、文字和嵌入字体，并在 PowerPoint 开启两份可编辑文件。服务器清单含两张图的素材与成品哈希。[正式版归档](paper/FIGURES.md)
+- 核过 v4 的 65 行表格数值、52 个引文键与投稿声明。把公开文件范围、SDXL 权重许可和作者确认项写入 [PR #36](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)。
 
 ### 2026-11-25 · Claude · claude/brighter-example
 - **完成**：作者反映图 1(a)、图 2 的素材太黑。改为沿用 1(b) 已选中的作品（同一 artwork_id 的 1% 裂缝条件），洞的叠加色按画面明暗切换。`make_teaser_assets.py` 已改，待 Codex 在服务器重跑。

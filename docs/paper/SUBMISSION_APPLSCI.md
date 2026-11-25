@@ -74,7 +74,7 @@
 1. **模板。** 从 [MDPI LaTeX 页](https://www.mdpi.com/authors/latex) 下载官方模板，设 `\documentclass[applsci,article,submit,pdftex,moreauthors]{Definitions/mdpi}`，单作者时去掉 `moreauthors`。模板只用于投稿，不得用于预印本服务器。用 LaTeX 是因为图是矢量 PDF，公式和表格也更容易控制。如果作者要 Word 版，再用 [Word 模板](https://mdpi-res.com/files/word-templates/applsci-template.dot) 另出一份。
 2. **文献**（`references.bib`）。
    - 52 个键都要有条目，与 `literature/papers.csv` 和 v4 文末一一对应。
-   - 写全文章标题，有 DOI 的都填上；软件、模型卡、GitHub 版本写清版本号或 commit 和访问日期。
+   - 写全文章标题，有 DOI 的都填上；软件、模型卡、GitHub 版本写清版本号或 commit 和访问日期。四个权重发布件按 PR #38 核实的版本建条目（PowerPaint 权重 `b4174b7`、SDXL `115134f`、IOPaint 的 LaMa/MAT 发布页）。
    - 用模板自带的 MDPI 编号格式，按首次出现排序。引用用方括号、放在标点前，例如 `[1–3]`。图表说明里的引用也参与编号。
    - 检查有没有正文没引用的条目，或引用了却没有条目的键。
 3. **格式核对。**

@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-v3 已合并（只读）。投稿稿 **v4 已合并**（PR #36，`docs/paper/draft-v4.md`）：Codex 三处口径修正、图 1(a) Hopper 单例 57.8%、数据/代码可得性三层边界、SDXL 许可名与五项投稿声明均已落实。图 1(a)、图 2 已换用 1(b) 的 Hopper 作品重建（PR #37），正式 PDF 与 300 dpi PNG 已归档。下一步由作者通读 v4、补全署名与各项“待作者确认”占位并选定目标期刊。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md)
+作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。现按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)：Gemini 写投稿版 `draft-v5-applsci.md` 与 cover letter，Codex 套 MDPI LaTeX 模板并核对格式与参考文献，两者可同时开工；之后 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
 
 ## 待办
 
@@ -84,7 +84,10 @@ v3 已合并（只读）。投稿稿 **v4 已合并**（PR #36，`docs/paper/dra
 - [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
 - [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`，修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)、补齐五项投稿声明，并按 [Codex 四项核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893) 修订；PR #36 已合并
 - [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
-- [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
+- [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
+- [ ] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 写 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3 生成式 AI 说明、MDPI 文末声明顺序）和 `cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`
+- [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`
+- [ ] **作者 · 投稿前**：通读投稿版；填署名、单位、基金与 CRediT；确认利益冲突、AI 声明、归档数据访问方式与项目许可证；从候选中选 3 位审稿人；在 SuSy 提交
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -97,6 +100,9 @@ v3 已合并（只读）。投稿稿 **v4 已合并**（PR #36，`docs/paper/dra
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Claude · claude/applsci-target
+- **完成**：审查并合并 PR #37（Hopper 例图）与 PR #36（投稿稿 v4，解决 PROGRESS 冲突）。按作者决定定投 *Applied Sciences*，查阅作者须知后写 [投稿任务书](paper/SUBMISSION_APPLSCI.md)，给 Gemini 与 Codex 派活，同步 GEMINI.md、AGENTS.md 与决策记录。
 
 ### 2026-11-25 · Gemini · gemini/paper-v4（按 PR #36 Codex 核查修订四项）
 - **完成**：在 PR #36（`gemini/paper-v4`）逐条落实 Codex 四项事实核查意见并同步 `docs/paper/HANDOFF.md`：

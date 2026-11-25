@@ -1,8 +1,18 @@
-# Manuscript Handoff & Self-Review (v3)
+# Manuscript Handoff & Self-Review (v4 Submission Candidate)
 
-Non-manuscript tracking document moved out of `docs/paper/draft-v3.md` per Claude's PR #19 review and updated after PR #23 round-2 review (Codex 5 items + Claude 3 items).
+Non-manuscript tracking document for `docs/paper/draft-v4.md` (with `docs/PAPER_DRAFT.md` v1, `docs/paper/draft-v2.md` v2, and `docs/paper/draft-v3.md` v3 preserved read-only).
 
-## 1. Summary of v2 → v3 Round-1 & Round-2 Revisions
+## 0. v3 → v4 Submission-Candidate Revisions (PR #34 Checklist)
+
+| # | Requirement (PR #23 Codex + PR #34 Claude) | Action Taken in `draft-v4.md` |
+| --- | --- | --- |
+| 1 | Codex #1: Table 5 & §4.4 replay and equal-work weighting clarity | Updated Table 5 footnote and §4.4 text to state explicitly that each of the 19 affected works replayed only its own withheld conditions (1 to 6 per work; all 6 for *The Trinity*), averaging first within each work across its replayed conditions and then weighting all 19 works equally. |
+| 2 | Codex #2: Scope of `0.0725` and `0.1137` | Specified in Abstract and Contribution 2 that `0.0725` is the overall center-masked black-to-ring MAE difference; clarified in §4.3 that `0.1137` is the 16-work condition mean for 5% contiguous losses (not a single case). |
+| 3 | Codex #3: Scope §2.1 to tested pipelines and deployment choice | Scoped §2.1 paragraph to the latent diffusion pipelines tested here and explicitly labeled PowerPaint's safety filter as a deployment choice enabled by default. |
+| 4 | Claude PR #34: Add submission declarations | Replaced brief `Code and Data Availability` with full `## Declarations`: `Data Availability` (CMA CC0, AIC public-domain 1686px IIIF, deterministic mask/crop code, no raw image redistribution), `Code Availability` (GitHub repo URL, note on pending repository LICENSE file, upstream model checkpoint terms), `Competing Interests`, `Author Contributions` (CRediT template for author completion), and `Declaration of Generative AI and AI-Assisted Technologies` (Claude, Gemini, Codex assisted with code/writing; author reviewed and assumes full responsibility). |
+| 5 | Pending sync note (PR #35 brighter Figure 1(a) example) | Once Codex reruns `build.sh` on the server for PR #35's brighter 1(a) example (`watercolor_paper_02_crack_01`), update the single-example missed percentage (`52.9%`) in Figure 1(a) caption in `draft-v4.md` (the 60-work mean `59.5%` remains unchanged). |
+
+## 1. Summary of Earlier v2 → v3 Round-1 & Round-2 Revisions
 
 ### Round 1 (PR #19 Checklist, 9 items)
 | # | PR #19 Review Requirement | Action Taken in `draft-v3.md` |

@@ -4,9 +4,7 @@
 
 ## 当前状态
 
-图 1（2 × 2）和图 2（单栏两行蛇形，标记已移至右下角）已按最新布局与 5% 广片缺失示例完成 FigGenie 重建与复审（待 Codex 确认正式版 PDF 字距）。图 3–6 已在服务器数据盘按统一样式生成。PR #23（`gemini/paper-v3`）已完成 Claude 第二轮复审的三处措辞修改并同步最新 `main`，待 Codex 复核第二轮数字/引文后交 Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [论文 v3](paper/draft-v3.md) · [PR #23](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23)
-
-**11 月 24 日交接**　图 1、图 2 以 Arimo 的分数像素定位重导，服务器留存 PDF 与 300 dpi PNG。图 2 正式版含右下角标记。已复核论文 v3 第二轮指定数字与 52 个引用键，三处统计和部署表述已在 PR #23 留言，待 Gemini 修订、Claude 合并。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v3 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)
+v3 已合并（PR #23，只读）。Gemini 已按 PR #34 待办基于 v3 完成投稿稿 **`docs/paper/draft-v4.md`**（分支 `gemini/paper-v4`），落实 Codex 三处口径修正并补齐五项投稿必需声明（数据可得性、代码可得性、利益冲突、作者贡献、生成式 AI 使用声明），待 Codex 核对数字/引文/声明事实及 Claude 审查合并。图 1(a)、图 2 换用 1(b) 明亮作品的规则已合并（PR #35），待 Codex 在服务器重跑 `build.sh` 并回传新例漏覆盖比例以同步图 1 图注。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md) · [只读 v3](paper/draft-v3.md)
 
 ## 待办
 
@@ -84,7 +82,7 @@
 - [x] **Gemini · v3 第二轮**：已完成
 - [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
-- [ ] **Gemini · 投稿稿 v4**：以 v3 为底稿写 `docs/paper/draft-v4.md`，分支 `gemini/paper-v4`。先改 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)（表 5 与 §4.4 的重放与等权说明；0.0725 和 0.1137 的范围；§2 限定为所测管线），再补投稿必需的声明：数据可得性（CC0 馆藏与掩码生成代码）、代码可得性、利益冲突、作者贡献，以及**生成式 AI 使用声明**（写作和代码由 Claude、Gemini、Codex 辅助，作者审阅并负责）
+- [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`（分支 `gemini/paper-v4`），修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292) 并补齐五项投稿声明（数据可得性、代码可得性、利益冲突、作者贡献与生成式 AI 使用声明），待 Codex 核对与 Claude 审查
 - [ ] **Codex · 核对 v4**：只核对数字、引文与声明里的事实（仓库地址、许可证、数据来源）
 - [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
@@ -99,6 +97,13 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Gemini · gemini/paper-v4（投稿稿 v4）
+- **完成**：以只读 v3 为底稿新建 `docs/paper/draft-v4.md` 并更新 `docs/paper/HANDOFF.md`（`PAPER_DRAFT.md`、`draft-v2.md`、`draft-v3.md` 均未改动）：
+  1. 落实 PR #23 Codex 三处口径修正：表 5 脚注与 §4.4 明确 19 幅受影响作品仅重放各自拦截条件（1–6 条不等，《The Trinity》全 6 条）并先幅内均值再对 19 幅等权；摘要与贡献 2 明确 `0.0725` 为中心掩码总体黑到环带差，§4.3 明确 `0.1137` 为原尺度 16 幅 5% 广片缺失条件均值；§2.1 将三项因素限定为本文所测潜空间扩散管线的操作与部署选择（明确安全检查为部署选择）。
+  2. 补齐 `## Declarations` 五项投稿必需声明：`Data Availability`（CMA CC0、AIC 1686px 公有领域、确定性裁片与掩码生成代码、不二次分发原图）、`Code Availability`（仓库地址、开源许可证待投稿前补齐、四模型上游权重许可）、`Competing Interests`、`Author Contributions`（CRediT 占位模板待作者填署名）、`Declaration of Generative AI and AI-Assisted Technologies`（说明 Claude、Gemini、Codex 辅助写作与代码，作者审阅并负全责，AI 不列为作者）。
+- **待同步项**：待 Codex 在服务器重跑 PR #35 明亮图 1(a) 示例后，把图 1(a) 图注的单例漏覆盖比例（当前仍为旧例 `52.9%`）更新为新例数值（60 幅均值 `59.5%` 不变）。
+- **验证**：脚本校验题目 12 词、摘要 ≤ 250 词、52 个引用键与 `literature/papers.csv` 及文末 52 条文献一一对应、0 处 `preregister*`/`invariant`/`LaMa < MAT`/`unresized`、`git diff --check` 通过。
 
 ### 2026-11-25 · Claude · claude/brighter-example
 - **完成**：作者反映图 1(a)、图 2 的素材太黑。改为沿用 1(b) 已选中的作品（同一 artwork_id 的 1% 裂缝条件），洞的叠加色按画面明暗切换。`make_teaser_assets.py` 已改，待 Codex 在服务器重跑。

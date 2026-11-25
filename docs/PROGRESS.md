@@ -4,11 +4,11 @@
 
 ## 当前状态
 
-v3 已合并（PR #23，只读）。Codex 已在 PR #37 用 Hopper 作品重建图 1(a) 与图 2，并在 PR #36 完成 v4 首轮核对。Gemini 已在 **`gemini/paper-v4`**（PR #36）落实 Codex 的四项核查修订：更新图 1(a) 单例漏覆盖为 `57.8%`（Hopper 主实验大图，与 1(b) 同作品不同档位），拆清公开馆藏 / Git 仓库 / 服务器归档边界，改写 SDXL 许可为 `CreativeML Open RAIL++-M License` 并收紧溯源表述，拆分 CRediT 的 `Investigation` 与 `Supervision` 并标明作者待确认项。现待 Codex 复核与 Claude 审查合并 PR #36、#37。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md) · [PR #36](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36)
+v3 已合并（只读）。投稿稿 **v4 已合并**（PR #36，`docs/paper/draft-v4.md`）：Codex 三处口径修正、图 1(a) Hopper 单例 57.8%、数据/代码可得性三层边界、SDXL 许可名与五项投稿声明均已落实。图 1(a)、图 2 已换用 1(b) 的 Hopper 作品重建（PR #37），正式 PDF 与 300 dpi PNG 已归档。下一步由作者通读 v4、补全署名与各项“待作者确认”占位并选定目标期刊。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md)
 
 ## 待办
 
-- [ ] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25，作者反映原例太黑）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。新规则是沿用 1(b) 的作品，见 FIGURES.md 末节。提交 PPTX 与预览；在 PR 里写明新例的 case_id 和该例的漏覆盖比例，并告知 Gemini 更新图 1 图注
+- [x] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25）：服务器重跑 `build.sh` 后已验收 PowerPoint 和 PDF。1(a) 新例 `watercolor_paper_02_crack_01` 漏覆盖 57.8%，已在 PR #36 告知 Gemini。[素材与清单](paper/FIGURES.md)
 
 - [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
 
@@ -82,8 +82,8 @@ v3 已合并（PR #23，只读）。Codex 已在 PR #37 用 Hopper 作品重建�
 - [x] **Gemini · v3 第二轮**：已完成
 - [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
-- [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`（分支 `gemini/paper-v4`），修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292) 并补齐五项投稿声明（数据可得性、代码可得性、利益冲突、作者贡献与生成式 AI 使用声明），待 Codex 核对与 Claude 审查
-- [ ] **Codex · 核对 v4**：只核对数字、引文与声明里的事实（仓库地址、许可证、数据来源）
+- [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`，修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)、补齐五项投稿声明，并按 [Codex 四项核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893) 修订；PR #36 已合并
+- [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -112,6 +112,11 @@ v3 已合并（PR #23，只读）。Codex 已在 PR #37 用 Hopper 作品重建�
   2. 补齐 `## Declarations` 五项投稿必需声明：`Data Availability`（CMA CC0、AIC 1686px 公有领域、确定性裁片与掩码生成代码、不二次分发原图）、`Code Availability`（仓库地址、开源许可证待投稿前补齐、四模型上游权重许可）、`Competing Interests`、`Author Contributions`（CRediT 占位模板待作者填署名）、`Declaration of Generative AI and AI-Assisted Technologies`（说明 Claude、Gemini、Codex 辅助写作与代码，作者审阅并负全责，AI 不列为作者）。
 - **待同步项**：待 Codex 在服务器重跑 PR #35 明亮图 1(a) 示例后，把图 1(a) 图注的单例漏覆盖比例（当前仍为旧例 `52.9%`）更新为新例数值（60 幅均值 `59.5%` 不变）。
 - **验证**：脚本校验题目 12 词、摘要 ≤ 250 词、52 个引用键与 `literature/papers.csv` 及文末 52 条文献一一对应、0 处 `preregister*`/`invariant`/`LaMa < MAT`/`unresized`、`git diff --check` 通过。
+
+### 2026-11-25 · Codex · 重建 Hopper 例图并核对投稿稿 v4
+- 用同一克利夫兰主实验裁片重建图 1(a) 与图 2，逐像素重算默认掩码漏覆盖 1,514 / 2,621（57.8%）。核对图 1(b) 三张预览图块与上版哈希相同，图 1 图注更新值已交 Gemini。
+- 验收两张正式 PDF 的渲染、文字和嵌入字体，并在 PowerPoint 开启两份可编辑文件。服务器清单含两张图的素材与成品哈希。[正式版归档](paper/FIGURES.md)
+- 核过 v4 的 65 行表格数值、52 个引文键与投稿声明。把公开文件范围、SDXL 权重许可和作者确认项写入 [PR #36](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)。
 
 ### 2026-11-25 · Claude · claude/brighter-example
 - **完成**：作者反映图 1(a)、图 2 的素材太黑。改为沿用 1(b) 已选中的作品（同一 artwork_id 的 1% 裂缝条件），洞的叠加色按画面明暗切换。`make_teaser_assets.py` 已改，待 Codex 在服务器重跑。

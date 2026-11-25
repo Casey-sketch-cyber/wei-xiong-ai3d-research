@@ -27,7 +27,6 @@ NATIVE_SEED = 20261119  # run_followup.NATIVE_SEED
 STRIDE = 8
 SELECTION_SALT = "museum-painting-figures-v1"
 PREFILL_SUFFIX = "_loss_05"
-FIRST_FIGURES_SHA = "ae3791716c3a9eaf7dbe6734876aa7a9cccf1e9fa155c8cfc529782e6b7d5326"
 CMA_SUMMARY_SHA = "babeef02a7057d0abdce298caefacd9c1fab830e2db96924345d8fbb8b57c419"
 PREFILL_SUMMARY_SHA = "e18163e5dddc67fb2596dcb2af30577412d1e13cf3b7664fba33fe1b7384521d"
 RIGHT = (112, 173, 71)    # covered pixels  #70AD47
@@ -61,7 +60,7 @@ def verify_output(path: Path, digest_value: str, crop: np.ndarray, mask: np.ndar
 
 
 def archive_inputs(project: Path, args: argparse.Namespace) -> dict:
-    """Select and verify the two distinct published examples before rendering."""
+    """Select one artwork for both figures and verify its frozen pilot and main-study assets."""
     prefill = project / "runs/sdxl-prefill-20261120"
     prefill_summary = checked_json(prefill / "diagnostics/prefill-summary.json", PREFILL_SUMMARY_SHA)
     # Figure 1(b) is shown zoomed on the hole, so the example is drawn from the 5% broad-loss conditions only
@@ -279,8 +278,10 @@ def main() -> None:
     out[edge] = (68, 114, 196)
     Image.fromarray(np.uint8(out)).resize((256, 256), Image.LANCZOS).save(fig2 / "f2_output.png")
 
-    missed = float((mask & ~nearest).sum() / mask.sum())
-    info = {**provenance, "slot": args.slot, "mask_seed": seed, "mask_pixels": int(mask.sum()), "missed_fraction_this_mask": missed,
+    mask_pixels = int(mask.sum())
+    missed_pixels = int((mask & ~nearest).sum())
+    info = {**provenance, "slot": args.slot, "mask_seed": seed, "mask_pixels": mask_pixels,
+            "missed_mask_pixels": missed_pixels, "missed_fraction_this_mask": missed_pixels / mask_pixels,
             "zoom_window_yx": [int(y), int(x)], "zoom_cells": args.cells,
             "prefill_zoom_bbox_yxyx_exclusive": list(box) if box is not None else None,
             "placeholders": [k for k, v in {"crop": args.crop, "sdxl_black": args.sdxl_black,

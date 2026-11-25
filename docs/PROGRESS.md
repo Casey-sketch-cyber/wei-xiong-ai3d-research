@@ -10,6 +10,8 @@
 
 ## 待办
 
+- [ ] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25，作者反映原例太黑）：拉取最新 main，在服务器上用 `FIGURE_ARCHIVE` 重跑 `build.sh`。新规则是沿用 1(b) 的作品，见 FIGURES.md 末节。提交 PPTX 与预览；在 PR 里写明新例的 case_id 和该例的漏覆盖比例，并告知 Gemini 更新图 1 图注
+
 - [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
 
 - [x] **Codex · 图 1、图 2 PowerPoint 布局草图**：交付可编辑的 teaser 和方法流程图，按最终双栏宽度检查 PDF 并附 PNG 预览。五篇论文的六张参考缩略图位于服务器数据盘的 `paper/figure-refs/`。[布局与数字来源](paper/FIGURES.md)
@@ -97,6 +99,9 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Claude · claude/brighter-example
+- **完成**：作者反映图 1(a)、图 2 的素材太黑。改为沿用 1(b) 已选中的作品（同一 artwork_id 的 1% 裂缝条件），洞的叠加色按画面明暗切换。`make_teaser_assets.py` 已改，待 Codex 在服务器重跑。
 
 ### 2026-11-24 · Claude · claude/after-v3
 - **完成**：合并 PR #33（图 1、图 2 字距修复）和 PR #23（论文 v3，Codex 已复核数字与引文）；登记投稿稿 v4 待办（三处口径、投稿声明含生成式 AI 使用声明、作者通读与选刊）。

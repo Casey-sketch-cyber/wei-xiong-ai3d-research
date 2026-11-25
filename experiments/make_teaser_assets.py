@@ -62,36 +62,6 @@ def verify_output(path: Path, digest_value: str, crop: np.ndarray, mask: np.ndar
 
 def archive_inputs(project: Path, args: argparse.Namespace) -> dict:
     """Select and verify the two distinct published examples before rendering."""
-    published = checked_json(project / "paper/figures-20261121/figure-manifest.json", FIRST_FIGURES_SHA)
-    alignment = next(row for row in published["latent_coverage_examples"] if row["family"] == "crack")
-    cma = project / "runs/native-main-20261120"
-    summary = checked_json(cma / "diagnostics/native-main-summary.json", CMA_SUMMARY_SHA)
-    inputs = summary["inputs_sha256"]
-    prepared = cma / "prepared"
-    plan = checked_json(prepared / "prepared.json", inputs["native_plan"])
-    by_id = {row["case_id"]: row for row in plan["cases"]}
-    example = by_id[alignment["case_id"]]
-    case_prefix = example["case_id"].removesuffix("_crack_01")
-    args.slot = int(case_prefix.rsplit("_", 1)[1])
-    args.crop, crop, _ = artwork_files(prepared, example)
-    if example["mask_sha256"] != alignment["mask_sha256"]:
-        raise ValueError("The published alignment example differs from the frozen run")
-    for family in MASK_FAMILIES:
-        for area in MASK_AREAS:
-            case = by_id[f"{case_prefix}_{family}_{int(area * 100):02d}"]
-            _, _, mask = artwork_files(prepared, case)
-            seed = mask_seed(args.slot, family, area)
-            if (case["artwork_id"] != example["artwork_id"] or case["crop_sha256"] != example["crop_sha256"]
-                    or case["mask_seed"] != seed or not np.array_equal(mask, design_mask(family, area, seed))):
-                raise ValueError(f"Reconstructed Figure 2 mask does not match the freeze: {case['case_id']}")
-
-    composite_id = f"{case_prefix}_crack_05"
-    _, _, score_mask = artwork_files(prepared, by_id[composite_id])
-    lama = checked_json(cma / "diagnostics/native-main-shared.json", inputs["arms"]["shared"]["diagnostics"])
-    composite = next(row for row in lama["rows"] if row["case_id"] == composite_id and row["model"] == "lama")
-    args.composite = cma / "native-main-shared/restored" / f"{composite_id}__lama__s2026.png"
-    verify_output(args.composite, composite["restored_sha256"], crop, score_mask)
-
     prefill = project / "runs/sdxl-prefill-20261120"
     prefill_summary = checked_json(prefill / "diagnostics/prefill-summary.json", PREFILL_SUMMARY_SHA)
     # Figure 1(b) is shown zoomed on the hole, so the example is drawn from the 5% broad-loss conditions only
@@ -120,6 +90,40 @@ def archive_inputs(project: Path, args: argparse.Namespace) -> dict:
     ring_rgb = _diffusion_input(prefill_crop, enlarged, "ring")[enlarged][0]
     ring_hex = "#" + "".join(f"{value:02X}" for value in ring_rgb)
     (args.out / "ring_mean.json").write_text(json.dumps({"hex": ring_hex}) + "\n", encoding="utf-8")
+
+    cma = project / "runs/native-main-20261120"
+    summary = checked_json(cma / "diagnostics/native-main-summary.json", CMA_SUMMARY_SHA)
+    inputs = summary["inputs_sha256"]
+    prepared = cma / "prepared"
+    plan = checked_json(prepared / "prepared.json", inputs["native_plan"])
+    by_id = {row["case_id"]: row for row in plan["cases"]}
+    # Figure 1(a) and Figure 2 use the artwork already chosen for Figure 1(b), so all three show one painting
+    # (rule fixed 2026-11-25 before rerunning; the earlier example, a dark oil on wood, made thin masks hard to see).
+    matches = [row for row in plan["cases"]
+               if row["artwork_id"] == sample["artwork_id"] and row["case_id"].endswith("_crack_01")]
+    if len(matches) != 1:
+        raise ValueError(f"Figure 1(b) artwork {sample['artwork_id']} has {len(matches)} 1% crack cases in the main plan")
+    example = matches[0]
+    case_prefix = example["case_id"].removesuffix("_crack_01")
+    args.slot = int(case_prefix.rsplit("_", 1)[1])
+    args.crop, crop, _ = artwork_files(prepared, example)
+    if example["mask_seed"] != mask_seed(args.slot, "crack", 0.01):
+        raise ValueError("The Figure 1(a) mask seed does not follow the frozen seed rule")
+    for family in MASK_FAMILIES:
+        for area in MASK_AREAS:
+            case = by_id[f"{case_prefix}_{family}_{int(area * 100):02d}"]
+            _, _, mask = artwork_files(prepared, case)
+            seed = mask_seed(args.slot, family, area)
+            if (case["artwork_id"] != example["artwork_id"] or case["crop_sha256"] != example["crop_sha256"]
+                    or case["mask_seed"] != seed or not np.array_equal(mask, design_mask(family, area, seed))):
+                raise ValueError(f"Reconstructed Figure 2 mask does not match the freeze: {case['case_id']}")
+
+    composite_id = f"{case_prefix}_crack_05"
+    _, _, score_mask = artwork_files(prepared, by_id[composite_id])
+    lama = checked_json(cma / "diagnostics/native-main-shared.json", inputs["arms"]["shared"]["diagnostics"])
+    composite = next(row for row in lama["rows"] if row["case_id"] == composite_id and row["model"] == "lama")
+    args.composite = cma / "native-main-shared/restored" / f"{composite_id}__lama__s2026.png"
+    verify_output(args.composite, composite["restored_sha256"], crop, score_mask)
 
     return {
         "alignment_case": {key: example[key] for key in
@@ -209,7 +213,7 @@ def hole_window(images: list, min_side: int = 96, pad: float = 0.35) -> tuple[in
 
 def crop_with_mask(crop: np.ndarray, mask: np.ndarray, y: int, x: int, w: int) -> Image.Image:
     rgb = crop.astype(float).copy()
-    rgb[mask] = 255
+    rgb[mask] = 0 if crop.mean() > 128 else 255          # the hole in black on light paintings, white on dark ones
     img = Image.fromarray(np.uint8(rgb))
     ImageDraw.Draw(img).rectangle([x - 1, y - 1, x + w, y + w], outline=(68, 114, 196), width=4)
     return img

@@ -45,7 +45,7 @@
    9. Abbreviations：可选，列出 MAE、LPIPS、DISTS、ΔE00、CMA、AIC、VAE、CFG 等；
    10. References。
 
-   v4 的 Code Availability 并入 Data Availability Statement，或者放进 Supplementary Materials 的说明里。MDPI 没有单独的代码声明栏目。
+   v4 的 Code Availability 并入 Data Availability Statement，或者放进 Supplementary Materials 的说明里。MDPI 没有单独的代码声明栏目。权重部分采用 [PR #38](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/38) 里 Codex 核实过的写法：LaMa、MAT 用 IOPaint 发布件，PowerPaint 源码 `5b4c3d5` / 权重 `b4174b7`，SDXL 权重 `115134f`；溯源旁车文件只说“有记录的运行”。
 7. **引文。** 继续用 `[@key]`，不要自己改成编号，编号由 Codex 的 BibTeX 生成。不要新增引文；如果确实需要，写 `[@TODO-…]` 并在 PR 里列出。
 8. **图表。**
    - 每张图、每个表的说明都写成“一句短标题 + 说明”。

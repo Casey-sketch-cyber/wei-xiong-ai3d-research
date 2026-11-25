@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-图 1(a)、图 2 已换用图 1(b) 的 Hopper 作品，重新生成预览与可编辑 PPTX，正式 PDF 与 300 dpi PNG 已归档。v3 已合并。已复核投稿稿 v4 的数值、引文与声明，Gemini 待同步图 1 图注的 57.8% 及数据、代码可得性措辞。利益冲突、CRediT 和作者审阅声明待作者确认。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [v4 核对与图注交接](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
+v3 已合并（只读）。投稿稿 **v4 已合并**（PR #36，`docs/paper/draft-v4.md`）：Codex 三处口径修正、图 1(a) Hopper 单例 57.8%、数据/代码可得性三层边界、SDXL 许可名与五项投稿声明均已落实。图 1(a)、图 2 已换用 1(b) 的 Hopper 作品重建（PR #37），正式 PDF 与 300 dpi PNG 已归档。下一步由作者通读 v4、补全署名与各项“待作者确认”占位并选定目标期刊。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md)
 
 ## 待办
 
@@ -82,8 +82,8 @@
 - [x] **Gemini · v3 第二轮**：已完成
 - [x] **Gemini · v3 三处措辞**：已按 [PR #23 第二轮复审](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129366479) 把全部 6 处 `preregistered` 改为 `pre-specified`（首次写全 `pre-specified protocol, committed to version control before each inference run`，含 §3.1 标题并统一连字符），并将摘要末句与 §4.5 标题/结句的 `invariant` 限定在本研究范围内
 - [x] **Codex · 复核 v3 第二轮**：数字与 52 条引文一致（PR #23 留言）；v3 已合并，只读
-- [ ] **Gemini · 投稿稿 v4**：以 v3 为底稿写 `docs/paper/draft-v4.md`，分支 `gemini/paper-v4`。先改 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)（表 5 与 §4.4 的重放与等权说明；0.0725 和 0.1137 的范围；§2 限定为所测管线），再补投稿必需的声明：数据可得性（CC0 馆藏与掩码生成代码）、代码可得性、利益冲突、作者贡献，以及**生成式 AI 使用声明**（写作和代码由 Claude、Gemini、Codex 辅助，作者审阅并负责）
-- [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。图注、数据和代码可得性、许可证名称及作者确认项已交给 Gemini。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
+- [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`，修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)、补齐五项投稿声明，并按 [Codex 四项核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893) 修订；PR #36 已合并
+- [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [ ] **作者 · 通读 v4 并定目标期刊**：作者亲自通读全文；选定期刊后，按其模板排版，并按字数与图表上限调整
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -97,6 +97,21 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Gemini · gemini/paper-v4（按 PR #36 Codex 核查修订四项）
+- **完成**：在 PR #36（`gemini/paper-v4`）逐条落实 Codex 四项事实核查意见并同步 `docs/paper/HANDOFF.md`：
+  1. 图 1 图注单例漏覆盖由 `52.9%` 更新为 `57.8%`（Hopper *Lighthouse Village* 主实验大图裁片 `watercolor_paper_02_crack_01`；并注明 1(b) 为同作品预填色实验备选图裁片，60 幅平均仍为 `59.5%`）；
+  2. `Data Availability` 明确区分三层来源（公开馆藏、Git 仓库脚本与汇总、服务器归档中的 `prepared.json` / 清单 / 完整 JSON 汇总），并留作者确认归档访问方式占位；
+  3. `Code Availability` 将 SDXL 权重许可改写为 `CreativeML Open RAIL++-M License`（按模型卡注明研究用途），LaMa/MAT/PowerPaint 各自指向所用发布工件，收紧 Git 与归档运行溯源表述（注明历史非 Git 运行提交字段可为空），并标明仓库许可证待作者确认；
+  4. `Author Contributions` 按 NISO CRediT 拆分 `Investigation` 与 `Supervision`，并在利益冲突、作者贡献与生成式 AI 声明中清晰标明待作者投稿前确认项。
+- **验证**：脚本校验题目 12 词、摘要 248 词、图 1(a) `57.8%`、52 个引用键与 `papers.csv` 及文末 52 条文献一一对应、`git diff --check` 通过。
+
+### 2026-11-25 · Gemini · gemini/paper-v4（投稿稿 v4）
+- **完成**：以只读 v3 为底稿新建 `docs/paper/draft-v4.md` 并更新 `docs/paper/HANDOFF.md`（`PAPER_DRAFT.md`、`draft-v2.md`、`draft-v3.md` 均未改动）：
+  1. 落实 PR #23 Codex 三处口径修正：表 5 脚注与 §4.4 明确 19 幅受影响作品仅重放各自拦截条件（1–6 条不等，《The Trinity》全 6 条）并先幅内均值再对 19 幅等权；摘要与贡献 2 明确 `0.0725` 为中心掩码总体黑到环带差，§4.3 明确 `0.1137` 为原尺度 16 幅 5% 广片缺失条件均值；§2.1 将三项因素限定为本文所测潜空间扩散管线的操作与部署选择（明确安全检查为部署选择）。
+  2. 补齐 `## Declarations` 五项投稿必需声明：`Data Availability`（CMA CC0、AIC 1686px 公有领域、确定性裁片与掩码生成代码、不二次分发原图）、`Code Availability`（仓库地址、开源许可证待投稿前补齐、四模型上游权重许可）、`Competing Interests`、`Author Contributions`（CRediT 占位模板待作者填署名）、`Declaration of Generative AI and AI-Assisted Technologies`（说明 Claude、Gemini、Codex 辅助写作与代码，作者审阅并负全责，AI 不列为作者）。
+- **待同步项**：待 Codex 在服务器重跑 PR #35 明亮图 1(a) 示例后，把图 1(a) 图注的单例漏覆盖比例（当前仍为旧例 `52.9%`）更新为新例数值（60 幅均值 `59.5%` 不变）。
+- **验证**：脚本校验题目 12 词、摘要 ≤ 250 词、52 个引用键与 `literature/papers.csv` 及文末 52 条文献一一对应、0 处 `preregister*`/`invariant`/`LaMa < MAT`/`unresized`、`git diff --check` 通过。
 
 ### 2026-11-25 · Codex · 重建 Hopper 例图并核对投稿稿 v4
 - 用同一克利夫兰主实验裁片重建图 1(a) 与图 2，逐像素重算默认掩码漏覆盖 1,514 / 2,621（57.8%）。核对图 1(b) 三张预览图块与上版哈希相同，图 1 图注更新值已交 Gemini。

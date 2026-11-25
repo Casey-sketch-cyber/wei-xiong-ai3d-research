@@ -86,7 +86,7 @@
 - [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
 - [ ] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 写 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3 生成式 AI 说明、MDPI 文末声明顺序）和 `cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`
-- [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`
+- [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`。PR #38 的权重版本写进 bib；PR #38 本身请关闭（v4 只读）
 - [ ] **作者 · 投稿前**：通读投稿版；填署名、单位、基金与 CRediT；确认利益冲突、AI 声明、归档数据访问方式与项目许可证；从候选中选 3 位审稿人；在 SuSy 提交
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -100,6 +100,9 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Claude · claude/pr38-followup
+- **审查 PR #38**：权重版本与溯源说法核对无误，但改的是已合并只读的 v4，未合并，请 Codex 关闭。其内容已转入投稿任务书：Gemini 写进 v5 的 Data Availability，Codex 写进 `references.bib`。
 
 ### 2026-11-25 · Claude · claude/applsci-target
 - **完成**：审查并合并 PR #37（Hopper 例图）与 PR #36（投稿稿 v4，解决 PROGRESS 冲突）。按作者决定定投 *Applied Sciences*，查阅作者须知后写 [投稿任务书](paper/SUBMISSION_APPLSCI.md)，给 Gemini 与 Codex 派活，同步 GEMINI.md、AGENTS.md 与决策记录。

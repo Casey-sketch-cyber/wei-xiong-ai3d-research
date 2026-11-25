@@ -1,0 +1,19 @@
+\begin{table}[!htb]
+\caption{Univariate effect of hole prefill color on SDXL Inpainting (Protocol Factor 2). All arms fix \texttt{strength\ =\ 0.99}, CFG 8.0, 20 requested steps (19 effective), 512 resolution, and seed 2026. Signed luminance bias is output minus reference in normalized \texttt{{[}0,\ 1{]}} Rec. 709 sRGB (0 denotes neutral); down arrows (\ensuremath{\downarrow}) indicate lower error is better, and em dashes (---) mark the black-prefill reference rows.}\label{table:4}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.180\linewidth-2.160\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.115\linewidth-1.380\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.105\linewidth-1.260\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.105\linewidth-1.260\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.160\linewidth-1.920\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.335\linewidth-4.020\tabcolsep\relax}}
+\toprule
+\textbf{Protocol (works \ensuremath{\times} conditions)} & \textbf{Prefill color} & \textbf{Masked MAE \ensuremath{\downarrow}} & \textbf{Local LPIPS \ensuremath{\downarrow}} & \textbf{Signed luminance bias (0 neutral)} & \textbf{Paired MAE vs. black [95\% CI]} \\
+\midrule
+Center 5\% mask (60 \ensuremath{\times} 1) & Black (RGB 0) & 0.2342 & 0.4734 & \ensuremath{-}0.1685 & — \\
+Center 5\% mask (60 \ensuremath{\times} 1) & Mid-gray (RGB 128) & 0.1777 & 0.4569 & +0.0251 & \ensuremath{-}0.0566 [\ensuremath{-}0.0851, \ensuremath{-}0.0287] \\
+Center 5\% mask (60 \ensuremath{\times} 1) & 8-px ring mean & 0.1618 & 0.4566 & +0.0188 & \ensuremath{-}0.0725 [\ensuremath{-}0.0998, \ensuremath{-}0.0475] \\
+Native-scale pilot (16 \ensuremath{\times} 6) & Black (RGB 0) & 0.1513 & 0.4208 & \ensuremath{-}0.0847 & — \\
+Native-scale pilot (16 \ensuremath{\times} 6) & Mid-gray (RGB 128) & 0.1302 & 0.4059 & +0.0553 & \ensuremath{-}0.0211 [\ensuremath{-}0.0777, 0.0315] \\
+Native-scale pilot (16 \ensuremath{\times} 6) & 8-px ring mean & 0.0981 & 0.3781 & +0.0339 & \ensuremath{-}0.0532 [\ensuremath{-}0.1029, \ensuremath{-}0.0123] \\
+\bottomrule
+\end{tabular}
+\end{table}

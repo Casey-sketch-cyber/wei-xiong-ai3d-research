@@ -1,0 +1,21 @@
+\begin{table}[!htb]
+\caption{Mean full-reference reconstruction distances across both museum cohorts. Results are evaluated under the shared 8 \ensuremath{\times} 8 expanded input aperture and scored strictly inside the original mask (or its 8-pixel padded bounding box for perceptual metrics) for Large Mask Inpainting (LaMa), Mask-Aware Transformer (MAT), PowerPaint v1, and Stable Diffusion XL (SDXL) Inpainting. Metrics report masked mean absolute error (MAE), local Learned Perceptual Image Patch Similarity (LPIPS), pixel-pair mean and masked mean-Lab CIEDE2000 (\ensuremath{\Delta E_{00}}) in CIE 1976 L\emph{a}b* (CIELAB) space, and local Deep Image Structure and Texture Similarity (DISTS). Complete four-model denominators comprise \texttt{n\ =\ 41} works (246 conditions) in Cleveland and \texttt{n\ =\ 54} works (324 conditions) in Chicago; down arrows (\ensuremath{\downarrow}) indicate that lower values reflect closer fidelity.}\label{table:1}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.170\linewidth-2.380\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.155\linewidth-2.170\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.112\linewidth-1.568\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.112\linewidth-1.568\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.155\linewidth-2.170\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.166\linewidth-2.324\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.130\linewidth-1.820\tabcolsep\relax}}
+\toprule
+\textbf{Collection (complete works)} & \textbf{Model} & \textbf{Masked MAE \ensuremath{\downarrow}} & \textbf{Local LPIPS \ensuremath{\downarrow}} & \textbf{Pixel-pair mean \ensuremath{\Delta E_{00}} \ensuremath{\downarrow}} & \textbf{Mean-Lab \ensuremath{\Delta E_{00}} \ensuremath{\downarrow}} & \textbf{Local DISTS \ensuremath{\downarrow}} \\
+\midrule
+Cleveland (n = 41) & LaMa & 0.0315 & 0.0643 & 3.7305 & 0.7947 & 0.0491 \\
+Cleveland (n = 41) & MAT & 0.0339 & 0.0761 & 3.9414 & 0.7154 & 0.0542 \\
+Cleveland (n = 41) & PowerPaint v1 & 0.0581 & 0.1696 & 6.2781 & 3.5030 & 0.1417 \\
+Cleveland (n = 41) & SDXL (main) & 0.3076 & 0.4930 & 31.9019 & 30.5106 & 0.3391 \\
+Chicago (n = 54) & LaMa & 0.0387 & 0.0685 & 4.1787 & 0.9272 & 0.0570 \\
+Chicago (n = 54) & MAT & 0.0421 & 0.0773 & 4.4747 & 0.9173 & 0.0595 \\
+Chicago (n = 54) & PowerPaint v1 & 0.0650 & 0.1482 & 6.9000 & 3.1668 & 0.1234 \\
+Chicago (n = 54) & SDXL (main) & 0.2709 & 0.4181 & 28.2618 & 26.4494 & 0.2906 \\
+\bottomrule
+\end{tabular}
+\end{table}

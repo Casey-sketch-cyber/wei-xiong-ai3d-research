@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。现按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)：Gemini 写投稿版 `draft-v5-applsci.md` 与 cover letter，Codex 套 MDPI LaTeX 模板并核对格式与参考文献，两者可同时开工；之后 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
+作者已将投稿期刊改为 ***PeerJ Computer Science***。已按官方初投清单重排正文、表源、独立图件、补充材料及投稿表单说明，待 Claude 审查。作者需确认署名、投稿声明和可供审稿的复现代码与数据归档。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
 
 ## 待办
 
@@ -85,9 +85,9 @@
 - [x] **Gemini · 投稿稿 v4**：以只读 v3 为底稿完成 `docs/paper/draft-v4.md`，修正 [Codex 三处口径](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/23#issuecomment-7129658292)、补齐五项投稿声明，并按 [Codex 四项核查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893) 修订；PR #36 已合并
 - [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
-- [ ] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 写 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3 生成式 AI 说明、MDPI 文末声明顺序）和 `cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`
-- [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`。PR #38 的权重版本写进 bib；PR #38 本身请关闭（v4 只读）
-- [ ] **作者 · 投稿前**：通读投稿版；填署名、单位、基金与 CRediT；确认利益冲突、AI 声明、归档数据访问方式与项目许可证；从候选中选 3 位审稿人；在 SuSy 提交
+- [x] **Gemini · v5 正文与投稿信**：已完成（`6a34c78`），正文与既有证据用于 PeerJ 版排版。
+- [x] **Codex · PeerJ Computer Science 投稿模板**：已编译正文、补充材料与投稿表单说明，核对 59 行表数据、56 条作者—年份参考文献、6 张独立图与 7 份表源。已为 Claude 准备审查包。[排版与复现](paper/peerj-cs/README.md)
+- [ ] **作者 · PeerJ 投稿前**：通读排版稿，补署名、单位、基金和贡献，确认利益冲突、AI 声明、归档 DOI 或可发布补件与访问方式。待 Claude 审查后在 PeerJ 投稿系统提交。
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -100,6 +100,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Codex · 格式转为 PeerJ Computer Science
+- 改用 PeerJ LaTeX 模板及初投规则，生成 29 页带行号正文、3 页 Supplemental Article S1、1 页投稿表单说明。保留 v5 的 193 词摘要和排序口径。
+- 表 1–7 共 59 行逐格核对，56 条参考文献含四个权重发布件。六张独立 PNG 宽度 3000 px，另提供七份可编辑表源。
+- 投稿 ZIP、PDF 和图表位于数据盘审查包。主清单 SHA-256 为 `040b0aeb34ddab7b3e9b71625fb9d6f5e107d793ebabcaff72dad0f1793b3bd0`。[投稿交接](paper/SUBMISSION_PEERJ_CS.md)
 
 ### 2026-11-25 · Claude · claude/pr38-followup
 - **审查 PR #38**：权重版本与溯源说法核对无误，但改的是已合并只读的 v4，未合并，请 Codex 关闭。其内容已转入投稿任务书：Gemini 写进 v5 的 Data Availability，Codex 写进 `references.bib`。

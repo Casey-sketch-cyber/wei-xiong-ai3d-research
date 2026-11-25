@@ -1,0 +1,19 @@
+\begin{table}[!htb]
+\caption{Artwork-level paired reconstruction differences relative to LaMa. Values report candidate minus LaMa differences with unadjusted 95\% bootstrap percentile confidence intervals (CI; 10,000 artwork resamples); positive values indicate higher error than LaMa.}\label{table:2}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.110\linewidth-1.100\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.170\linewidth-1.700\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.110\linewidth-1.100\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.305\linewidth-3.050\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.305\linewidth-3.050\tabcolsep\relax}}
+\toprule
+\textbf{Collection} & \textbf{Candidate model} & \textbf{Complete works} & \textbf{Masked MAE difference [95\% CI]} & \textbf{Local LPIPS difference [95\% CI]} \\
+\midrule
+Cleveland & MAT & 60 & +0.0022 [0.0015, 0.0030] & +0.0102 [0.0070, 0.0135] \\
+Cleveland & PowerPaint v1 & 41 & +0.0266 [0.0203, 0.0337] & +0.1053 [0.0800, 0.1333] \\
+Cleveland & SDXL (main) & 60 & +0.2690 [0.2203, 0.3186] & +0.4258 [0.3893, 0.4623] \\
+Chicago & MAT & 60 & +0.0032 [0.0023, 0.0041] & +0.0088 [0.0066, 0.0110] \\
+Chicago & PowerPaint v1 & 54 & +0.0263 [0.0221, 0.0310] & +0.0797 [0.0625, 0.0990] \\
+Chicago & SDXL (main) & 60 & +0.2480 [0.2035, 0.2956] & +0.3695 [0.3304, 0.4104] \\
+\bottomrule
+\end{tabular}
+\end{table}

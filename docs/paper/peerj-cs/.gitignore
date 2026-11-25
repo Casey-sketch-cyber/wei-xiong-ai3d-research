@@ -1,0 +1,13 @@
+/figures/
+/build/
+wlpeerj.cls
+*.aux
+*.bbl
+*.blg
+*.fls
+*.log
+*.out
+*.pdf
+*.zip
+*.png
+!preview-first-page.png

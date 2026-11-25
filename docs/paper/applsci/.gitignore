@@ -1,0 +1,17 @@
+/Definitions/
+/figures/
+/build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.pdf
+*.zip
+*.gz
+*.png
+!preview-first-page.png

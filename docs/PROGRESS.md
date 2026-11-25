@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。现按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)：Gemini 写投稿版 `draft-v5-applsci.md` 与 cover letter，Codex 套 MDPI LaTeX 模板并核对格式与参考文献，两者可同时开工；之后 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
+作者已选定投 MDPI ***Applied Sciences***（Computing and Artificial Intelligence 栏目）。v4 已合并（只读），图 1–2 已用 Hopper 作品重建。现按 [投稿任务书](paper/SUBMISSION_APPLSCI.md)：Gemini 的 v5 正文和投稿信已发布在 `6a34c78`。Codex 已按 MDPI 模板编译正文、补充材料和投稿信，验证 56 条编号引文、表 1–7 和 600 dpi 图件。投稿版待 Claude 审查。作者需补署名、基金、CRediT 与各项待确认声明，并推荐 3 位审稿人。真实破损实验仍待供体出处映射和掩码授权。[投稿任务书](paper/SUBMISSION_APPLSCI.md) · [投稿稿 v4](paper/draft-v4.md) · [配图与清单](paper/FIGURES.md)
 
 ## 待办
 
@@ -86,7 +86,7 @@
 - [x] **Codex · 核对 v4**：表 1–7 数值、52 个引文键和声明事实已复核。[PR #36 复核](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36#issuecomment-7156517893)
 - [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
 - [ ] **Gemini · Applied Sciences 投稿版**：按 [任务书·正文要求](paper/SUBMISSION_APPLSCI.md#正文要求gemini) 写 `docs/paper/draft-v5-applsci.md`（摘要 ≤ 200 词、Featured Application、§3 生成式 AI 说明、MDPI 文末声明顺序）和 `cover-letter-applsci.md`，分支 `gemini/paper-v5-applsci`
-- [ ] **Codex · MDPI 模板、格式与文献**：按 [任务书·模板、格式与文献](paper/SUBMISSION_APPLSCI.md#模板格式与文献codex) 套 `applsci` LaTeX 模板，建 52 条 `references.bib`（全题名、DOI、版本），核对格式，导出 600 dpi 图，列审稿人候选，分支 `codex/applsci-template`。PR #38 的权重版本写进 bib；PR #38 本身请关闭（v4 只读）
+- [x] **Codex · MDPI 模板、格式与文献**：基于 Gemini `6a34c78` 完成排版，56 条参考文献含既有 52 个键和 4 条权重发布件。编译、表 1–7 数字和图件编号已核对，6 位审稿人初选名单随 PR 提供，单位与近三年合作由作者确认。PR #38 已关闭。[投稿版与复现说明](paper/applsci/README.md)
 - [ ] **作者 · 投稿前**：通读投稿版；填署名、单位、基金与 CRediT；确认利益冲突、AI 声明、归档数据访问方式与项目许可证；从候选中选 3 位审稿人；在 SuSy 提交
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
@@ -100,6 +100,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Codex · Applied Sciences 模板与投稿图件
+- 按 MDPI ACS 模板排版 Gemini v5，正文 25 页、补充 3 页、投稿信 1 页。编译无未解析引文或溢出，7 张主表维持 8.5 pt 并逐格核对数值。
+- 参考文献共 56 条，编号按首次引用。已核 40 个 DOI，并补入 PR #38 的四种模型权重。
+- 图件按实际引用调整第 5、6 图序号。六份矢量 PDF、600 dpi PNG 与投稿包在数据盘。清单 SHA-256 为 `37e9ba035da392e8ced5cb3113c5098de875ed51cda911b4e88369150f4f7891`。
 
 ### 2026-11-25 · Claude · claude/pr38-followup
 - **审查 PR #38**：权重版本与溯源说法核对无误，但改的是已合并只读的 v4，未合并，请 Codex 关闭。其内容已转入投稿任务书：Gemini 写进 v5 的 Data Availability，Codex 写进 `references.bib`。

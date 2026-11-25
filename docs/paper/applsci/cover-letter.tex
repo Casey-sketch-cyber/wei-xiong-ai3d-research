@@ -1,0 +1,34 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo,amsmath,amssymb,parskip}
+\setlength{\emergencystretch}{1.8em}
+\pagestyle{empty}
+\begin{document}
+\emph{Date: {[}Month DD, YYYY --- to be completed by the author{]}}
+
+To the Editorial Office and Editor-in-Chief\\
+\emph{Applied Sciences} (MDPI)\\
+Section: Computing and Artificial Intelligence
+
+Dear Editors,
+
+We are pleased to submit our original research article, \textbf{"Three Protocol Choices Shape Measured Fidelity of AI Inpainting on Museum Paintings,"} for consideration as an Article in \emph{Applied Sciences} under the section \textbf{Computing and Artificial Intelligence}.
+
+Off-the-shelf image inpainting models are increasingly evaluated for visualizing localized losses in digitized museum paintings, yet published benchmarks rarely document low-level pipeline details that can substantially alter full-reference error scores and effective sample coverage. Building on prior multi-model painting-inpainting studies and recent technical observations on latent-space mask quantization and diffusion initialization, our manuscript systematically quantifies three protocol choices---8\ensuremath{\times} nearest-neighbor latent-space mask downsampling, hole prefill color under partial-strength denoising, and safety-filter denominator accounting---across four pinned models (LaMa, MAT, PowerPaint v1, and SDXL Inpainting) and 120 open-access paintings from two independent museum collections (the Cleveland Museum of Art and the Art Institute of Chicago), stratified across four physical medium-and-support groups and six procedural damage conditions. We show that while these three protocol choices can shift measured error far beyond practical margins and substantially alter sample availability, the controlled ranking (LaMa \(\approx\) MAT \(\!<\!\) PowerPaint v1 \(\!<\!\) SDXL) held identically across both museums, all four painting media, and all six damage conditions.
+
+This work aligns directly with the \textbf{Computing and Artificial Intelligence} section of \emph{Applied Sciences}. It addresses applied computer vision and generative AI benchmarking, diagnoses concrete architectural and deployment mechanisms in widely used pixel-space and latent diffusion pipelines, and delivers actionable reporting standards and model-selection guidance for museum digitization and cultural-heritage computing workflows. All experimental protocols, code, and checksums are documented for transparent reproducibility.
+
+We confirm that \textbf{neither the manuscript nor any part of its content has been published previously or is under consideration for publication elsewhere.} We further confirm that \textbf{all authors have read and approved the manuscript and agree to its submission to \emph{Applied Sciences}.} The use of generative AI tools during code development, verification, and manuscript preparation is transparently disclosed in both Section 3.5 and the Acknowledgments in accordance with MDPI guidelines.
+
+\emph{Before submission, confirm the publication and submission statements and disclose any prior submission to an MDPI journal, including the former manuscript ID if applicable.}
+
+Thank you for your time and consideration.
+
+Sincerely,
+
+\emph{{[}Author Full Name --- to be completed by the author{]}}\\
+\emph{{[}Department / Institution --- to be completed by the author{]}}\\
+\emph{{[}City, Country --- to be completed by the author{]}}\\
+\emph{{[}Corresponding Email Address --- to be completed by the author{]}}
+\end{document}

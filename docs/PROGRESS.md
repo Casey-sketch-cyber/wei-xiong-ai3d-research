@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-v3 已合并（PR #23，只读）。Gemini 已按 PR #34 待办基于 v3 完成投稿稿 **`docs/paper/draft-v4.md`**（分支 `gemini/paper-v4`），落实 Codex 三处口径修正并补齐五项投稿必需声明（数据可得性、代码可得性、利益冲突、作者贡献、生成式 AI 使用声明），待 Codex 核对数字/引文/声明事实及 Claude 审查合并。图 1(a)、图 2 换用 1(b) 明亮作品的规则已合并（PR #35），待 Codex 在服务器重跑 `build.sh` 并回传新例漏覆盖比例以同步图 1 图注。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md) · [只读 v3](paper/draft-v3.md)
+v3 已合并（PR #23，只读）。Codex 已在 PR #37 用 Hopper 作品重建图 1(a) 与图 2，并在 PR #36 完成 v4 首轮核对。Gemini 已在 **`gemini/paper-v4`**（PR #36）落实 Codex 的四项核查修订：更新图 1(a) 单例漏覆盖为 `57.8%`（Hopper 主实验大图，与 1(b) 同作品不同档位），拆清公开馆藏 / Git 仓库 / 服务器归档边界，改写 SDXL 许可为 `CreativeML Open RAIL++-M License` 并收紧溯源表述，拆分 CRediT 的 `Investigation` 与 `Supervision` 并标明作者待确认项。现待 Codex 复核与 Claude 审查合并 PR #36、#37。真实破损实验仍待供体出处映射和掩码授权。[配图与清单](paper/FIGURES.md) · [投稿稿 v4](paper/draft-v4.md) · [PR #36](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/36)
 
 ## 待办
 
@@ -97,6 +97,14 @@ v3 已合并（PR #23，只读）。Gemini 已按 PR #34 待办基于 v3 完成�
 ---
 
 ## 工作记录
+
+### 2026-11-25 · Gemini · gemini/paper-v4（按 PR #36 Codex 核查修订四项）
+- **完成**：在 PR #36（`gemini/paper-v4`）逐条落实 Codex 四项事实核查意见并同步 `docs/paper/HANDOFF.md`：
+  1. 图 1 图注单例漏覆盖由 `52.9%` 更新为 `57.8%`（Hopper *Lighthouse Village* 主实验大图裁片 `watercolor_paper_02_crack_01`；并注明 1(b) 为同作品预填色实验备选图裁片，60 幅平均仍为 `59.5%`）；
+  2. `Data Availability` 明确区分三层来源（公开馆藏、Git 仓库脚本与汇总、服务器归档中的 `prepared.json` / 清单 / 完整 JSON 汇总），并留作者确认归档访问方式占位；
+  3. `Code Availability` 将 SDXL 权重许可改写为 `CreativeML Open RAIL++-M License`（按模型卡注明研究用途），LaMa/MAT/PowerPaint 各自指向所用发布工件，收紧 Git 与归档运行溯源表述（注明历史非 Git 运行提交字段可为空），并标明仓库许可证待作者确认；
+  4. `Author Contributions` 按 NISO CRediT 拆分 `Investigation` 与 `Supervision`，并在利益冲突、作者贡献与生成式 AI 声明中清晰标明待作者投稿前确认项。
+- **验证**：脚本校验题目 12 词、摘要 248 词、图 1(a) `57.8%`、52 个引用键与 `papers.csv` 及文末 52 条文献一一对应、`git diff --check` 通过。
 
 ### 2026-11-25 · Gemini · gemini/paper-v4（投稿稿 v4）
 - **完成**：以只读 v3 为底稿新建 `docs/paper/draft-v4.md` 并更新 `docs/paper/HANDOFF.md`（`PAPER_DRAFT.md`、`draft-v2.md`、`draft-v3.md` 均未改动）：

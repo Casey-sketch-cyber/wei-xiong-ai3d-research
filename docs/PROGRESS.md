@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-作者已将投稿期刊改为 ***PeerJ Computer Science***。已按官方初投清单重排正文、表源、独立图件、补充材料及投稿表单说明，待 Claude 审查。作者需确认署名、投稿声明和可供审稿的复现代码与数据归档。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
+作者已将投稿期刊改为 ***PeerJ Computer Science***。已按官方初投清单重排正文、表源、独立图件、补充材料及投稿表单说明，待 Claude 审查。已填三位作者与通讯作者，已记录全体同意投稿并链接公开复现代码。投稿前仍待具体声明与评审数据归档。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
 
 ## 待办
 
@@ -87,7 +87,7 @@
 - [x] **作者 · 定目标期刊**：MDPI *Applied Sciences*（2026-11-25）
 - [x] **Gemini · v5 正文与投稿信**：已完成（`6a34c78`），正文与既有证据用于 PeerJ 版排版。
 - [x] **Codex · PeerJ Computer Science 投稿模板**：已编译正文、补充材料与投稿表单说明，核对 59 行表数据、56 条作者—年份参考文献、6 张独立图与 7 份表源。已为 Claude 准备审查包。[排版与复现](paper/peerj-cs/README.md)
-- [ ] **作者 · PeerJ 投稿前**：通读排版稿，补署名、单位、基金和贡献，确认利益冲突、AI 声明、归档 DOI 或可发布补件与访问方式。待 Claude 审查后在 PeerJ 投稿系统提交。
+- [ ] **作者 · PeerJ 投稿前**：通读排版稿，确认基金和个人贡献、利益冲突、AI 声明、归档 DOI 或可发布补件与访问方式。待 Claude 审查后在 PeerJ 投稿系统提交。
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -100,6 +100,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Codex · 公开复现代码并填写 PeerJ 署名
+- 公开指定复现仓库的 51 个研究代码和说明文件，匿名克隆逐件核对，9 项轻量测试通过。[固定提交](https://github.com/liangdagongjue-code/mengwei/tree/c1b6998f764f77c70318db5dde602324b1c78c60)
+- 正文已加公开仓库链接，并在正文、补件和投稿说明登记三位作者，Wei Xiong 通讯。记录全体作者同意投稿。待确认资助、贡献、利益冲突、AI 版本和冻结数据归档。
+- 复编审查包并验收署名页、PDF 链接及其余图表哈希。主清单 SHA-256 为 `a6f5a81dfc84bb126c1ad798940f461b4e5aef267ac3c9052a5b1730a440754e`。
 
 ### 2026-11-25 · Codex · 格式转为 PeerJ Computer Science
 - 改用 PeerJ LaTeX 模板及初投规则，生成 29 页带行号正文、3 页 Supplemental Article S1、1 页投稿表单说明。保留 v5 的 193 词摘要和排序口径。

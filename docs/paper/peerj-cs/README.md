@@ -28,4 +28,4 @@ pdflatex -interaction=nonstopmode -halt-on-error cover-letter.tex
 | Fig5.png | `figure-6-powerpaint-coverage.pdf` |
 | Fig6.png | `figure-5-condition-mae.pdf` |
 
-图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/review-package/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。
+图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/author-review-20261126/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。独立复现代码已发布在 `c1b6998`。[复现仓库](https://github.com/liangdagongjue-code/mengwei/tree/c1b6998f764f77c70318db5dde602324b1c78c60)

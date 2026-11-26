@@ -13,8 +13,10 @@
 
 [作者须知](https://peerj.com/journals/computer-science/author-instructions/) · [初投清单](https://d2pdyyx74uypu5.cloudfront.net/docs/Pre-Submission-Checklist-Computer-Science.pdf) · [PeerJ LaTeX 模板](https://www.overleaf.com/latex/templates/latex-template-for-peerj-journal-submissions/ptdwfrqxqzbn)
 
+正文及补件已登记 Wei Meng、Wei Xiong 和 Zhanhao Liang，Wei Xiong 为通讯作者。全体作者已同意投稿。复现代码已独立公开并链接到正文。[复现仓库](https://github.com/liangdagongjue-code/mengwei)
+
 ## 投稿前由作者确认
 
-- 填写作者全名、单位、城市、国家、通讯邮箱及贡献，确认基金、利益冲突和稿件发表或在审状态。
+- 确认各作者的贡献、基金、利益冲突和稿件发表或在审状态。
 - 核实生成式 AI 工具名称、实际版本、用途和作者审阅范围，按投稿界面确认相应声明。[生成式 AI 政策](https://peerj.com/journals/computer-science/policies/#generative-ai)
 - 为复现代码与机器可读数据提供审稿和发表访问方式。使用代码仓库时按政策提供归档 DOI，或上传符合要求的可发布补充文件。服务器审查包供项目内部复核。许可、归档内容和访问方式由作者确认。[代码与数据可得性政策](https://peerj.com/journals/computer-science/policies/#data-materials-sharing)

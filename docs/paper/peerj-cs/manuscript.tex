@@ -161,7 +161,7 @@ Within each museum, overall artwork-level scores weighted the six damage conditi
 
 \subsection{Use of Generative AI Tools}\label{use-of-generative-ai-tools}
 
-Claude (Anthropic) assisted with protocol review and figure generation. Gemini (Google) assisted with English drafting and editing. Codex (OpenAI) assisted with experimental and figure-generation code, literature verification, and statistical verification scripts \emph{(author to confirm specific tool version details and exact scope of personal review prior to submission)}. These uses supported implementation, auditability, and clear reporting of the evaluation. Figures~\ref{figure:1} and~\ref{figure:3} show saved inpainting outputs from the evaluated models under the fixed experimental protocol. The research questions, methodological decisions, pre-inference protocol approvals, and final scientific interpretations were decided by the research team. No generative AI system was used to fabricate measurements or modify raw model outputs; all reported metrics, denominators, and confidence intervals were recomputed programmatically by deterministic scripts directly from frozen run outputs and verified against source manifests.
+Claude Opus 5.5 (Anthropic) assisted with protocol review and figure generation. Gemini (Google) assisted with English drafting and editing. Codex (OpenAI) assisted with experimental and figure-generation code, literature verification, and statistical verification scripts. These uses supported implementation, auditability, and clear reporting of the evaluation. Figures~\ref{figure:1} and~\ref{figure:3} show saved inpainting outputs from the evaluated models under the fixed experimental protocol. The research questions, methodological decisions, pre-inference protocol approvals, and final scientific interpretations were decided by the research team. No generative AI system was used to fabricate measurements or modify raw model outputs; all reported metrics, denominators, and confidence intervals were recomputed programmatically by deterministic scripts directly from frozen run outputs and verified against source manifests.
 
 \section{Results}\label{results}
 
@@ -282,18 +282,18 @@ Across 120 open-access paintings from two independent museums, three evaluation 
 
 \section*{Acknowledgments}
 
-During the preparation of this manuscript/study, the authors used Claude (Anthropic), Gemini (Google), and Codex (OpenAI) \emph{(specific tool version details to be confirmed by the author)} for protocol review and figure generation, English drafting and editing, and experimental coding, figure generation, literature verification, and statistical verification, respectively. The authors take responsibility for the content of this publication. \emph{(Author to confirm tool version details, scope of personal review, and any additional acknowledgments prior to submission.)}
+During the preparation of this work the authors used GPT-6 in order to undertake the translation and polishing of part of the text. After using this tool, the authors have reviewed and edited the content as needed and take full responsibility for the content of the published article.
 
 \section*{Additional Information and Declarations}
 
 \subsection*{Funding}
-This research received no external funding. \emph{(To be confirmed by the author prior to submission.)}
+This research received no funding.
 
 \subsection*{Competing Interests}
-The authors declare no conflicts of interest. \emph{(To be confirmed by the author prior to submission.)}
+The authors declare that they have no competing interests.
 
 \subsection*{Author Contributions}
-All authors approved the manuscript and agree to its submission to \textit{PeerJ Computer Science}. \emph{(Individual contributor roles to be confirmed by the authors.)}
+Wei Meng performed the experiments and wrote the original draft. Wei Xiong conceptualized and designed the study's main research contributions. Zhanhao Liang performed the experiments. All authors approved the manuscript and agree to its submission to \textit{PeerJ Computer Science}.
 
 \subsection*{Data Availability}
 Source painting images are publicly accessible open-access museum records: 60 CC0 works from the Cleveland Museum of Art Open Access Collection \citetext{\citeauthor{cma-openaccess}, n.d.} and 60 public-domain works obtained via the Art Institute of Chicago Open Access / IIIF Image API (1686-pixel-wide JPEG renditions) \citetext{\citeauthor{aic-openaccess}, n.d.}. The public reproduction repository includes the experimental protocols, museum acquisition and crop preparation, mask generation, model adapters, scoring, analysis, and figure code. \url{https://github.com/liangdagongjue-code/mengwei}. The code is available under the MIT License. \href{https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251}{Fixed software snapshot}. Version 1.0.0 is archived on Zenodo at \href{https://doi.org/10.5281/zenodo.24561409}{10.5281/zenodo.24561409}. Eight machine-readable Supplemental Data archives provide per-condition score tables, prepared case definitions, procedural masks, and diagnostic summaries from the museum cohorts, sensitivity analyses, and earlier pilot runs. The accompanying index records the archive checksums. The experiment server retains original museum downloads, generated color images, and run logs. The server also retains per-execution provenance sidecars where recorded, with null Git commit fields for some historical runs executed outside a Git checkout (\nolinkurl{docs/RUN_PROVENANCE.md}). Third-party model weights remain governed by their respective upstream release artifacts and terms: LaMa (IOPaint TorchScript release \texttt{big-lama.pt} \citep{suvorov2021, lamaweights}), MAT (IOPaint Places-512 state dictionary \nolinkurl{Places_512_FullData_G.pth} \citep{li2022mat, matweights}), PowerPaint v1 (pinned author source revision \texttt{5b4c3d5} and weight revision \texttt{b4174b7} \citep{zhuang2023, powerpaintv1src, powerpaintv1weights}), and SDXL Inpainting 0.1 (pinned weight revision \texttt{115134f} under the CreativeML Open RAIL++-M License, with intended research use documented on the model card \citep{sdxlinpaint, sdxlinpaintweights}).

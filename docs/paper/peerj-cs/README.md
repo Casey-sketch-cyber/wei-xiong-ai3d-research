@@ -28,4 +28,4 @@ pdflatex -interaction=nonstopmode -halt-on-error cover-letter.tex
 | Fig5.png | `figure-6-powerpaint-coverage.pdf` |
 | Fig6.png | `figure-5-condition-mae.pdf` |
 
-图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/doi-20261126/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。独立复现代码采用 MIT，当前归档快照为 `0b34175`。审查包另含八个机器可读补件、SHA-256 索引及 MIT 软件 1.0.0 的归档快照。[复现仓库](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251) · [版本 DOI](https://doi.org/10.5281/zenodo.24561409)
+图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/declarations-20261126/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。独立复现代码采用 MIT，当前归档快照为 `0b34175`。审查包另含八个机器可读补件、SHA-256 索引及 MIT 软件 1.0.0 的归档快照。[复现仓库](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251) · [版本 DOI](https://doi.org/10.5281/zenodo.24561409)

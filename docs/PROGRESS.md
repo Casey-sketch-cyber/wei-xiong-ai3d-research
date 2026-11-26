@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-作者已将投稿期刊改为 ***PeerJ Computer Science***。已按官方初投清单重排正文、表源、独立图件、补充材料及投稿表单说明，待 Claude 审查。已填三位作者与通讯作者，已记录全体同意投稿并链接公开复现代码。投稿前仍待具体声明与评审数据归档。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
+*PeerJ Computer Science* 稿件结构与分段摘要已审。三位作者署名及学校级单位已确认。公开复现代码采用 MIT，八个机器可读评审补件与新 PDF/ZIP 已备。投稿前仍待代码归档 DOI、实际评审附件上传及作者确认的具体声明。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
 
 ## 待办
 
@@ -88,9 +88,10 @@
 - [x] **Gemini · v5 正文与投稿信**：已完成（`6a34c78`），正文与既有证据用于 PeerJ 版排版。
 - [x] **Codex · PeerJ Computer Science 投稿模板**：已编译正文、补充材料与投稿表单说明，核对 59 行表数据、56 条作者—年份参考文献、6 张独立图与 7 份表源。已为 Claude 准备审查包。[排版与复现](paper/peerj-cs/README.md)
 - [x] **Claude · 摘要分段**：按 PeerJ 须知拆成 Background / Methods / Results / Conclusions 四段加粗小标题，字句不变（PR #44 审查）
-- [ ] **Codex · 代码 DOI 与评审数据**：`liangdagongjue-code/mengwei` 确认无密钥、权重或非 CC0 图像，加 LICENSE（由作者选定），发 release 接入 Zenodo 取得 DOI；逐条件分数汇总（JSON/CSV）、`prepared.json` 与掩码打包存档到 Zenodo，或作为 30 MB 以内的补充文件；把 DOI 写进 Data Availability。PeerJ 要求 GitHub 代码须有归档 DOI，数据须机器可读。[PR #44 审查](https://github.com/Casey-sketch-cyber/wei-xiong-ai3d-research/pull/44#issuecomment-7191617627)
-- [ ] **Codex · 重编投稿包**：合入摘要分段、DOI 与院系后重编 PDF/ZIP，更新清单哈希；确认 LaTeX 投稿时正文 PDF 内嵌图是否可接受（须知要求图单独上传，独立 PNG 已备）
-- [ ] **作者 · PeerJ 投稿前**：补作者 1、2 的院系名称；：通读排版稿，确认基金和个人贡献、利益冲突、AI 声明、归档 DOI 或可发布补件与访问方式。待 Claude 审查后在 PeerJ 投稿系统提交。
+- [x] **Codex · 公开代码与评审补件**：代码按作者选定使用 MIT，固定提交 `0b34175`。八个补件共 7,675 条条件记录，约 5.59 MB，已核准哈希、掩码关联、分母与主要评分汇总。[代码快照](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251)
+- [ ] **Codex · 软件归档 DOI**：从固定快照注册可解析的 DOI，写回 Data Availability，随后复编投稿版。
+- [x] **Codex · 重编审查包**：已使用四段摘要和学校级单位，复验源 ZIP 编译。PeerJ LaTeX 正文 PDF 可内嵌图表，投稿时另传六张独立图件和七份可编辑表格。[作者须知](https://peerj.com/journals/computer-science/author-instructions/)
+- [ ] **作者 · PeerJ 投稿前**：确认基金和个人贡献、利益冲突及 AI 声明。按投稿界面提供实际可访问的评审补件，并完成稿件提交。
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
 - [x] 按 findInnovation 模板起草[文献树 v2](literature-tree/literature-tree-v2.md)，核对通用补全、画作修复及自动评价的代表来源
 
@@ -103,6 +104,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Codex · 补齐 MIT 代码与机器可读评审数据
+- 作者确认前两位采用学校级单位，公开复现代码按 MIT 发布。匿名检出验证固定的源文件后生成软件归档 ZIP。
+- 两馆、敏感性和先导数据分八个 ZIP，共 7,675 条条件记录，5,585,974 字节。核对 SHA-256、CSV 与 prepared 和掩码关联，并复算主要评分和 bootstrap 区间。主清单 SHA-256 为 `0aa073a0d45d341f71538a966c3d81d7555cff534b22420e735cfa8dcfcadcc3`，其中记录源方案与补件哈希。
+- 复编四段摘要的审查版，并确认 LaTeX PDF 可内嵌图表。待注册软件 DOI 后补入最终版。[投稿交接](paper/SUBMISSION_PEERJ_CS.md)
 
 ### 2026-11-26 · Claude · claude/peerj-abstract
 - **审查并合并 PR #44**（PeerJ CS 排版底座）。按须知把摘要改为四段加粗小标题，字句不变；登记代码 DOI、评审数据、院系与重编四项投稿前待办。正文唯一来源改为 `peerj-cs/manuscript.tex`。

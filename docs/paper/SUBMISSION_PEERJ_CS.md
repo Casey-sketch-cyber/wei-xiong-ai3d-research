@@ -5,10 +5,10 @@
 | 文件 | 初投稿用途 |
 | --- | --- |
 | 正文 PDF | US Letter、1 英寸边距、12 pt Times、左对齐、连续行号，内嵌图表供审稿 |
-| LaTeX 源码 ZIP | 正文、BibTeX、模板类、内嵌图及七张可编辑表 |
+| LaTeX 源码 ZIP | 正文、BibTeX、模板类、内嵌图、七张正文表和补充文章源文件 |
 | 图 1–6 | 独立 PNG，宽度 3000 px，高度至少 900 px |
 | 表 1–7 | 逐表上传可编辑 TeX 源 |
-| Supplemental Article S1 | 单独 PDF，含 Notes S1–S3 和 Table S1 |
+| Supplemental Article S1 | 单独 PDF，含 Notes S1–S3 和 Tables S1–S2 |
 | Supplemental Data | 八个 ZIP，含逐条件 CSV、准备记录、二值评分掩码及诊断 JSON |
 | 投稿表单说明 | 一页作者草稿，供填写系统字段 |
 

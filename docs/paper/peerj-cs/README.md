@@ -4,7 +4,7 @@
 
 ## 编译
 
-投稿源码 ZIP 附带用于本次编译的 `wlpeerj.cls` 和六份矢量图。独立检出时，将该类文件放在 `manuscript.tex` 旁，并从服务器审查包的 ZIP 提取 `figures/`。类文件是 PeerJ/Overleaf 模板采用的 `wlpeerj` v1.2，复编使用 rticles 的离线版本（提交 `accdfa39225570a8ad9b786fbb3077060d1e12a5`，SHA-256 `7e8fe7e34634bbb864a57ee168cc6614d4f59b3623373e77141b67e6fe7037ac`）。PeerJ/Overleaf 模板页列 CC BY 4.0，rticles 随包标 GPL-3。[官方模板](https://www.overleaf.com/latex/templates/latex-template-for-peerj-journal-submissions/ptdwfrqxqzbn) · [离线类来源](https://github.com/rstudio/rticles/blob/accdfa39225570a8ad9b786fbb3077060d1e12a5/inst/rmarkdown/templates/peerj/skeleton/wlpeerj.cls)
+投稿源码 ZIP 附带用于本次编译的 `wlpeerj.cls`、六份矢量图及补充文章的 TeX 源。独立检出时，将该类文件放在 `manuscript.tex` 旁，并从服务器审查包的 ZIP 提取 `figures/`。类文件是 PeerJ/Overleaf 模板采用的 `wlpeerj` v1.2，复编使用 rticles 的离线版本（提交 `accdfa39225570a8ad9b786fbb3077060d1e12a5`，SHA-256 `7e8fe7e34634bbb864a57ee168cc6614d4f59b3623373e77141b67e6fe7037ac`）。PeerJ/Overleaf 模板页列 CC BY 4.0，rticles 随包标 GPL-3。[官方模板](https://www.overleaf.com/latex/templates/latex-template-for-peerj-journal-submissions/ptdwfrqxqzbn) · [离线类来源](https://github.com/rstudio/rticles/blob/accdfa39225570a8ad9b786fbb3077060d1e12a5/inst/rmarkdown/templates/peerj/skeleton/wlpeerj.cls)
 
 ```sh
 pdflatex -interaction=nonstopmode -halt-on-error manuscript.tex
@@ -15,7 +15,7 @@ pdflatex -interaction=nonstopmode -halt-on-error supplement.tex
 pdflatex -interaction=nonstopmode -halt-on-error cover-letter.tex
 ```
 
-辅助 PDF 使用独立的单栏格式。补充文件在系统中标为 `Supplemental Article S1`。投稿表单说明供作者填写字段时使用。每个 `tables/TableN.tex` 都是正文引用的可编辑表源。
+辅助 PDF 使用独立的单栏格式。补充文件在系统中标为 `Supplemental Article S1`。投稿表单说明供作者填写字段时使用。`tables/Table1.tex` 至 `tables/Table7.tex` 是正文的可编辑表源。补充文章的 [Table S2](tables/TableS2.tex) 汇总 29 项冻结对照。[效应 CSV](figdata/protocol_effects.csv) 按比较和指标逐行给出参照组、作品数、条件数、配对次数、两组均值、差值、区间和来源。差值方向统一为比较组减参照组。
 
 ## 图件映射
 
@@ -28,4 +28,4 @@ pdflatex -interaction=nonstopmode -halt-on-error cover-letter.tex
 | Fig5.png | `figure-6-powerpaint-coverage.pdf` |
 | Fig6.png | `figure-5-condition-mae.pdf` |
 
-图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/declarations-20261126/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。独立复现代码采用 MIT，当前归档快照为 `0b34175`。审查包另含八个机器可读补件、SHA-256 索引及 MIT 软件 1.0.0 的归档快照。[复现仓库](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251) · [版本 DOI](https://doi.org/10.5281/zenodo.24561409)
+图号随正文首次引用。独立 PNG 从对应矢量 PDF 按 3000 px 宽渲染。审查包放在服务器数据盘的 `paper/peerj-cs-submission/table-s2-20261126/`，清单覆盖正文、独立补件、源 ZIP、六张 PNG 与七张表。独立复现代码采用 MIT，当前归档快照为 `0b34175`。审查包另含八个机器可读补件、SHA-256 索引及 MIT 软件 1.0.0 的归档快照。[复现仓库](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251) · [版本 DOI](https://doi.org/10.5281/zenodo.24561409)

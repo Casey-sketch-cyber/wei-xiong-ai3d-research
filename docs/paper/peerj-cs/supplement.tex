@@ -1,0 +1,116 @@
+% Companion document for the PeerJ Computer Science submission.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[nott]{newtxtext}
+\usepackage{newtxmath}
+\usepackage{array,booktabs,needspace,xurl}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\thetable}{S\arabic{table}}
+\title{\Large\bfseries Supplemental Information\\[.35em]\large\normalfont Three Protocol Choices Shape Measured Fidelity of AI Inpainting on Museum Paintings}
+\author{Wei Meng \and Wei Xiong \and Zhanhao Liang}
+\date{}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\begin{document}
+\maketitle
+\setcounter{secnumdepth}{0}
+\section{Supplementary Note S1: Museum Cohort Screening, Exclusions, and Mask Specifications}\label{supplementary-note-s1-museum-cohort-screening-exclusions-and-mask-specifications}
+
+\subsection{Cleveland Museum of Art (CMA)}\label{cleveland-museum-of-art-cma}
+
+\begin{itemize}
+\tightlist
+\item
+  One catalog record initially returned as a painting (\texttt{cma-121867}) was excluded before model inference after pre-inference catalog verification identified it as a wooden door.
+\item
+  Within each of the four medium-and-support groups (oil on canvas, oil on wood, watercolor on paper, ink on paper), catalog IDs were deterministically permuted with NumPy PCG64 (seed \texttt{20261119}).
+\item
+  Positions 0--3 in each group (16 works total) overlapped with the earlier native-scale pilot; 15 retained pixel-identical crops, while \texttt{cma-173965} was upgraded from an alternate rendition to the museum\textquotesingle s full-size download.
+\item
+  Post-hoc inspection showed that one frozen crop (\emph{The Trinity}, coordinate \texttt{(5145,\ 503)} in the full-size TIFF) had constant black RGB \texttt{(0,\ 0,\ 0)} across all pixels. It was retained under the frozen cohort rule and checked in an exploratory exclusion sensitivity (\nolinkurl{docs/NATIVE_REVIEW.md}).
+\item
+  Frozen source plan SHA-256: \nolinkurl{c2bc7621d3ae660f2336f2b9edba206a2e73838035c5dcd092878e9a8a3128d0}; artwork manifest SHA-256: \nolinkurl{528d5d7cdc2fb90db95970f47a216c482fa3ad37ae3d43bfe68d7882faf6a83c}.
+\end{itemize}
+
+\subsection{Art Institute of Chicago (AIC)}\label{art-institute-of-chicago-aic}
+
+\begin{itemize}
+\tightlist
+\item
+  Drawn from frozen AIC catalog export SHA-256 \nolinkurl{632d9b8796015c577ca54120a5466a8cd916ad24ff522b2650a9ef29573f7892}.
+\item
+  Eligibility required a public-domain designation, valid primary IIIF image ID, published short edge \ensuremath{\geq} 640 px, aspect ratio \ensuremath{\leq} 2.8, and verified medium-and-support metadata, yielding 801 oil-on-canvas, 236 oil-on-wood, 97 watercolor-on-paper, and 35 ink-on-paper candidates.
+\item
+  Within each group, candidates were ordered by \texttt{SHA-256("20261121\textbar{}group\textbar{}object\_id")} (\texttt{candidate-order.json} SHA-256 \nolinkurl{09f5e80dafe9e3154ba11a32e4128fd8cbebbceb2b7c01c77d1a712a43e67ac3}) and sequentially audited until 15 works from distinct identifiable primary artists were acquired.
+\item
+  Across 84 audited candidates: 12 were skipped due to duplicate primary artist within the same group, 11 were skipped because requests for the 1686-pixel-wide IIIF JPEG redirected to 843-pixel files, and 1 failed the image-dimension check.
+\item
+  All 60 acquired Chicago images are official 1686-pixel-wide IIIF JPEGs with zero source image or crop SHA-256 overlap with Cleveland. Frozen plan SHA-256: \nolinkurl{5cb6c301a0469e2f5ecf7cc0d99c9b949fd105cea6a188037d748167f4c875af}.
+\end{itemize}
+
+\Needspace{7\baselineskip}
+\subsection{Procedural Mask Pixel Counts}\label{procedural-mask-pixel-counts}
+
+\begin{itemize}
+\tightlist
+\item
+  On 512 \ensuremath{\times} 512 crops (262,144 pixels), target area fractions of 1\% and 5\% correspond to 2,621 and 13,107 masked pixels (rounded to the nearest integer pixel).
+\item
+  Mask SHA-256 digests matched identically across within-group rank positions 0--14 across all four medium-and-support groups and between Cleveland and Chicago.
+\end{itemize}
+
+\section{Supplementary Note S2: Pinned Model Checkpoints, Environments, and Pre-Screening}\label{supplementary-note-s2-pinned-model-checkpoints-environments-and-pre-screening}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{LaMa}: IOPaint TorchScript release (SHA-256 verified), standard 512-pixel inference without iterative refinement.
+\item
+  \textbf{MAT}: IOPaint Places-512 state dictionary (\texttt{truncation\_psi\ =\ 1}). Because the IOPaint-released state dictionary omits \texttt{noise\_const} and \texttt{noise\_strength} buffers present in the original \texttt{G\_ema} release, the explicit decoder noise path was disabled (\nolinkurl{docs/OFFICIAL_INFERENCE.md}, \nolinkurl{docs/DECISIONS.md}), with deterministic per-condition latent seeding.
+\item
+  \textbf{PowerPaint v1}: Pinned author repository and replacement checkpoints running in an isolated Diffusers 0.27.0 / Transformers 4.40.2 / Accelerate 0.34.2 environment (\nolinkurl{docs/ARCHITECTURE.md}).
+\item
+  \textbf{SDXL Inpainting 0.1}: Diffusers 0.35.2, pinned Hugging Face revision \nolinkurl{115134f363124c53c7d878647567d04daf26e41e}, 9-channel UNet, EulerDiscreteScheduler, verified FP16 AutoencoderKL (\texttt{force\_upcast\ =\ false}; VAE file SHA-256 \nolinkurl{4ad62825e5c8b31eefb77355ba6693785619bf7d669d9b1a6fd9f19dec6d65b3}).
+\item
+  \textbf{FLUX.1 Fill {[}dev{]} pre-screening}: Excluded from GPU execution because full BF16 parameter storage alone requires at least 31.43 GiB (exceeding our single 24 GiB RTX 3090 without quantization or CPU offloading) and anonymous downloads of the gated checkpoint returned HTTP 401 (\nolinkurl{docs/DECISIONS.md}).
+\end{itemize}
+
+\section{Supplementary Note S3: SDXL Dual-Path Initialization Scaling and Audits}\label{supplementary-note-s3-sdxl-dual-path-initialization-scaling-and-audits}
+
+\begin{itemize}
+\tightlist
+\item
+  In Diffusers v0.35.2\textquotesingle s \texttt{StableDiffusionXLInpaintPipeline}, the \texttt{masked\_image} conditioning branch zeroes masked pixels in normalized \texttt{{[}-1,\ 1{]}} space (corresponding to mid-gray).
+\item
+  When \texttt{strength\ =\ 1.0}, the initial latent is sampled from pure Gaussian noise.
+\item
+  When \texttt{strength\ =\ 0.99} with 20 requested steps (\texttt{CFG\ =\ 8.0}), Diffusers executes 19 effective denoising steps starting at timestep \texttt{t\ =\ 901}, where the EulerDiscreteScheduler noise scale is \texttt{\ensuremath{\sigma}\ \ensuremath{\approx}\ 8.391}. The pipeline encodes the entire pre-masked RGB \texttt{image} through the VAE to form \texttt{z\_img}, initializes \(z_{\mathrm{img}}+\sigma\varepsilon\), and divides by \(\sqrt{1+\sigma^2}\) before the first UNet forward pass---assigning the encoded input latent a weight of \(1/\sqrt{1+\sigma^2}\approx 0.118\) (\nolinkurl{docs/OFFICIAL_INFERENCE.md}).
+\item
+  The 12-case Cleveland SDXL qualitative contact-sheet audit drew case IDs without replacement using NumPy PCG64 seed \texttt{20261121}; two sampled cases were re-run with the pinned pipeline and seed to verify pixel-exact reproduction alongside VAE checksum verification (\nolinkurl{docs/NATIVE_REVIEW.md}).
+\item
+  Beginning with the full-cohort Cleveland original-mask comparison (\nolinkurl{docs/NATIVE_APERTURE.md}, \nolinkurl{docs/RUN_PROVENANCE.md}), each execution recorded \texttt{git\_head}, \texttt{git\_dirty}, \nolinkurl{git_diff_sha256}, \nolinkurl{source_python_sha256}, and \texttt{git\_state} into per-execution provenance sidecars (\nolinkurl{provenance/<model>/<execution_id>.json}).
+\end{itemize}
+\clearpage
+For completeness, the earlier 16-work native-scale pilot before-versus-after alignment results (\nolinkurl{docs/LATENT_ALIGNMENT.md}) that motivated the full 60-work comparison in Table 3 of the main text:
+\begin{table}[!htbp]
+\caption{16-Work Native-Scale Pilot Latent-Alignment Summary}\label{table:s1}
+\centering
+\fontsize{8.5}{10.5}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.150\linewidth-1.500\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.160\linewidth-1.600\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.130\linewidth-1.300\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.280\linewidth-2.800\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.280\linewidth-2.800\tabcolsep\relax}}
+\toprule
+\textbf{Procedural condition} & \textbf{Missed hole pixels (SDXL / PowerPaint)} & \textbf{Stride-8 expanded / original area ratio} & \textbf{PowerPaint MAE change [95\% CI] (n)} & \textbf{SDXL MAE change [95\% CI] (n = 16)} \\
+\midrule
+Crack 1\% & 55.96\% / 56.29\% & 2.539 & \ensuremath{-}0.1252 [\ensuremath{-}0.1931, \ensuremath{-}0.0614] (n = 14) & \ensuremath{-}0.1085 [\ensuremath{-}0.1498, \ensuremath{-}0.0703] \\
+Crack 5\% & 25.20\% / 24.67\% & 1.594 & +0.0138 [\ensuremath{-}0.0023, 0.0329] (n = 14) & \ensuremath{-}0.0587 [\ensuremath{-}0.0877, \ensuremath{-}0.0323] \\
+Flake 1\% & 53.14\% / 53.14\% & 2.948 & \ensuremath{-}0.1553 [\ensuremath{-}0.1999, \ensuremath{-}0.1132] (n = 15) & \ensuremath{-}0.0868 [\ensuremath{-}0.1188, \ensuremath{-}0.0580] \\
+Flake 5\% & 25.43\% / 25.36\% & 1.727 & +0.0037 [\ensuremath{-}0.0054, 0.0132] (n = 13) & +0.0670 [0.0398, 0.0966] \\
+Contiguous loss 1\% & 14.05\% / 14.29\% & 1.386 & \ensuremath{-}0.0017 [\ensuremath{-}0.0063, 0.0025] (n = 14) & +0.0062 [\ensuremath{-}0.0279, 0.0396] \\
+Contiguous loss 5\% & 6.39\% / 6.40\% & 1.158 & +0.0054 [0.0013, 0.0096] (n = 14) & +0.0411 [0.0158, 0.0706] \\
+\textbf{Overall native pilot} & \textbf{—} & \textbf{—} & \textbf{\ensuremath{-}0.0424 [\ensuremath{-}0.0617, \ensuremath{-}0.0251] (0.0974 \ensuremath{\to} 0.0550; n = 12)} & \textbf{\ensuremath{-}0.0233 [\ensuremath{-}0.0374, \ensuremath{-}0.0104] (0.2963 \ensuremath{\to} 0.2730; n = 16)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{document}

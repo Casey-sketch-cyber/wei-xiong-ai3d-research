@@ -1,0 +1,21 @@
+\begin{table}[!htb]
+\caption{Artwork-level paired masked MAE differences relative to LaMa stratified by painting medium and support. Entries show candidate minus LaMa differences with 95\% bootstrap percentile CIs (positive values indicate higher error than LaMa). MAT and SDXL comparisons use all 15 works per group; PowerPaint v1 uses complete six-condition works (\texttt{n} = 8, 8, 12, and 13 in Cleveland; \texttt{n} = 13, 12, 15, and 14 in Chicago).}\label{table:7}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.110\linewidth-1.100\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.150\linewidth-1.500\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.245\linewidth-2.450\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.250\linewidth-2.500\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.245\linewidth-2.450\tabcolsep\relax}}
+\toprule
+\textbf{Collection} & \textbf{Medium and support} & \textbf{MAT \ensuremath{-} LaMa MAE [95\% CI]} & \textbf{PowerPaint v1 \ensuremath{-} LaMa MAE [95\% CI]} & \textbf{SDXL (main) \ensuremath{-} LaMa MAE [95\% CI]} \\
+\midrule
+Cleveland & Oil on canvas & +0.0013 [0.0006, 0.0021] & +0.0394 [0.0251, 0.0542] & +0.3378 [0.2346, 0.4416] \\
+Cleveland & Oil on wood & +0.0021 [0.0010, 0.0035] & +0.0336 [0.0250, 0.0422] & +0.3317 [0.2335, 0.4407] \\
+Cleveland & Watercolor on paper & +0.0024 [0.0016, 0.0033] & +0.0125 [0.0086, 0.0167] & +0.2076 [0.1352, 0.2820] \\
+Cleveland & Ink on paper & +0.0030 [0.0011, 0.0057] & +0.0274 [0.0142, 0.0437] & +0.1990 [0.1155, 0.2904] \\
+Chicago & Oil on canvas & +0.0023 [0.0012, 0.0035] & +0.0215 [0.0165, 0.0274] & +0.2286 [0.1638, 0.3032] \\
+Chicago & Oil on wood & +0.0035 [0.0018, 0.0058] & +0.0318 [0.0238, 0.0409] & +0.3447 [0.2554, 0.4367] \\
+Chicago & Watercolor on paper & +0.0022 [0.0010, 0.0036] & +0.0312 [0.0220, 0.0422] & +0.2059 [0.1290, 0.2944] \\
+Chicago & Ink on paper & +0.0045 [0.0023, 0.0071] & +0.0210 [0.0134, 0.0295] & +0.2129 [0.1185, 0.3211] \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,5 +1,7 @@
 # 投稿任务书：*Applied Sciences*（MDPI）
 
+> 历史任务书。作者已改投 [PeerJ Computer Science](SUBMISSION_PEERJ_CS.md)。
+
 > Claude 起草，2026-11-25。作者已选定投 MDPI *Applied Sciences*（ISSN 2076-3417，Basel）。投稿栏目选 **Computing and Artificial Intelligence**。本文件给 Gemini 和 Codex 分配投稿版的工作。期刊要求依据 [作者须知](https://www.mdpi.com/journal/applsci/instructions)，于 2026-11-25 查阅；开工前若发现须知已改，以官网为准，并在 PR 里注明。
 
 ## 期刊概况（2026-11-25 查阅）

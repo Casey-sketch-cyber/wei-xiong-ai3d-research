@@ -21,8 +21,8 @@
 
 | 工具 | 负责 | 不做 |
 |---|---|---|
-| Gemini | 写论文正文。当前任务：按 [`docs/paper/SUBMISSION_APPLSCI.md`](docs/paper/SUBMISSION_APPLSCI.md) 写 *Applied Sciences* 投稿版 `draft-v5-applsci.md` 和 cover letter（早先任务书 [`WRITING_BRIEF.md`](docs/paper/WRITING_BRIEF.md) 作背景） | 跑实验、改实验文档、自己补文献 |
-| Codex | 配图：为图 1、图 2 提供服务器上的真实裁片和模型输出，并运行 `docs/paper/figures/src/build.sh`；数据图（图 3–6）用脚本在服务器生成、不进 Git；文献检索与核对、新颖性检索、核对 Gemini 稿里的每个数字和引用；投稿阶段套期刊模板、核对格式与参考文献（见 [`SUBMISSION_APPLSCI.md`](docs/paper/SUBMISSION_APPLSCI.md)） | 重写正文的故事和语气 |
+| Gemini | 写论文正文。当前以 [PeerJ 投稿版](docs/paper/SUBMISSION_PEERJ_CS.md) 为目标，沿用 v5 正文的证据与引文。早先任务书 [`WRITING_BRIEF.md`](docs/paper/WRITING_BRIEF.md) 作背景 | 跑实验、改实验文档、自己补文献 |
+| Codex | 配图：为图 1、图 2 提供服务器上的真实裁片和模型输出，并运行 `docs/paper/figures/src/build.sh`；数据图（图 3–6）用脚本在服务器生成、不进 Git；文献检索与核对、新颖性检索、核对 Gemini 稿里的每个数字和引用；投稿阶段套期刊模板、核对格式与参考文献（见 [`SUBMISSION_PEERJ_CS.md`](docs/paper/SUBMISSION_PEERJ_CS.md)） | 重写正文的故事和语气 |
 | Claude | 审查所有 PR，合并或退回；用 FigGenie 画图 1（teaser）和图 2（流程图）并负责最后美化 | |
 
 `docs/PAPER_DRAFT.md` 是 v1 初稿，只读。

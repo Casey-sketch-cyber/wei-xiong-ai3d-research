@@ -1,0 +1,25 @@
+\begin{table}[!htb]
+\caption{Masked MAE stratified by procedural damage type and area fraction. Values are computed under the shared 8 \ensuremath{\times} 8 expanded input aperture and averaged over all artworks complete across all four models for each condition; \texttt{n} denotes the number of matched works per condition, and down arrows (\ensuremath{\downarrow}) indicate lower error is better.}\label{table:6}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.110\linewidth-1.540\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.180\linewidth-2.520\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.120\linewidth-1.680\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.135\linewidth-1.890\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.125\linewidth-1.750\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.155\linewidth-2.170\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.175\linewidth-2.450\tabcolsep\relax}}
+\toprule
+\textbf{Collection} & \textbf{Damage condition} & \textbf{Matched works (n)} & \textbf{LaMa MAE \ensuremath{\downarrow}} & \textbf{MAT MAE \ensuremath{\downarrow}} & \textbf{PowerPaint v1 MAE \ensuremath{\downarrow}} & \textbf{SDXL (main) MAE \ensuremath{\downarrow}} \\
+\midrule
+Cleveland & Crack 1\% & 45 & 0.0290 & 0.0299 & 0.0535 & 0.3359 \\
+Cleveland & Crack 5\% & 47 & 0.0312 & 0.0339 & 0.0641 & 0.2961 \\
+Cleveland & Flake 1\% & 47 & 0.0296 & 0.0302 & 0.0488 & 0.3004 \\
+Cleveland & Flake 5\% & 45 & 0.0309 & 0.0331 & 0.0568 & 0.3042 \\
+Cleveland & Contiguous loss 1\% & 49 & 0.0341 & 0.0366 & 0.0470 & 0.2874 \\
+Cleveland & Contiguous loss 5\% & 48 & 0.0345 & 0.0390 & 0.0697 & 0.2887 \\
+Chicago & Crack 1\% & 58 & 0.0302 & 0.0314 & 0.0514 & 0.3003 \\
+Chicago & Crack 5\% & 58 & 0.0377 & 0.0417 & 0.0711 & 0.2670 \\
+Chicago & Flake 1\% & 58 & 0.0312 & 0.0315 & 0.0500 & 0.2864 \\
+Chicago & Flake 5\% & 58 & 0.0362 & 0.0391 & 0.0620 & 0.2823 \\
+Chicago & Contiguous loss 1\% & 58 & 0.0404 & 0.0431 & 0.0628 & 0.2694 \\
+Chicago & Contiguous loss 5\% & 60 & 0.0477 & 0.0558 & 0.0956 & 0.2954 \\
+\bottomrule
+\end{tabular}
+\end{table}

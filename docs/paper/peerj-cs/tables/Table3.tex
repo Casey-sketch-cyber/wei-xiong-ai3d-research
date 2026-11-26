@@ -1,0 +1,20 @@
+\begin{table}[!htb]
+\caption{Latent-space mask under-coverage and paired alignment effects across the full 60-work Cleveland cohort (Protocol Factor 1). Entries report pixel under-coverage under default 8\ensuremath{\times} nearest-neighbor downsampling, stride-8 expanded-to-original input area ratios, and paired masked MAE changes (expanded minus original input, seed 2026) with 95\% bootstrap CIs. Overall rows use artworks complete across all six conditions under both apertures (\texttt{n\ =\ 40} works, 240 conditions for PowerPaint v1; \texttt{n\ =\ 60} works, 360 conditions for SDXL); em dashes (---) indicate geometry-specific ratios not aggregated into a single overall figure.}\label{table:3}
+\centering
+\fontsize{10}{12}\selectfont
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.135\linewidth-1.350\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.140\linewidth-1.400\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.135\linewidth-1.350\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.295\linewidth-2.950\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.295\linewidth-2.950\tabcolsep\relax}}
+\toprule
+\textbf{Procedural condition} & \textbf{Missed hole pixels (original mask)} & \textbf{Stride-8 expanded / original area ratio} & \textbf{PowerPaint v1 MAE change [95\% CI] (n)} & \textbf{SDXL MAE change [95\% CI] (n = 60)} \\
+\midrule
+Crack 1\% & 59.54\% & 2.649 & \ensuremath{-}0.1494 [\ensuremath{-}0.1853, \ensuremath{-}0.1143] (n = 45) & \ensuremath{-}0.0704 [\ensuremath{-}0.0878, \ensuremath{-}0.0540] \\
+Crack 5\% & 22.46\% & 1.566 & +0.0164 [0.0055, 0.0297] (n = 46) & \ensuremath{-}0.0034 [\ensuremath{-}0.0257, 0.0201] \\
+Flake 1\% & 52.93\% & 2.870 & \ensuremath{-}0.1707 [\ensuremath{-}0.2015, \ensuremath{-}0.1409] (n = 47) & \ensuremath{-}0.0652 [\ensuremath{-}0.0811, \ensuremath{-}0.0507] \\
+Flake 5\% & 25.01\% & 1.725 & +0.0082 [\ensuremath{-}0.0003, 0.0175] (n = 45) & +0.0594 [0.0459, 0.0737] \\
+Contiguous loss 1\% & 13.85\% & 1.371 & \ensuremath{-}0.0016 [\ensuremath{-}0.0048, 0.0012] (n = 46) & +0.0269 [0.0024, 0.0533] \\
+Contiguous loss 5\% & 6.63\% & 1.164 & +0.0206 [0.0067, 0.0385] (n = 46) & +0.0574 [0.0388, 0.0770] \\
+\textbf{Overall paired works} & \textbf{—} & \textbf{—} & \textbf{\ensuremath{-}0.0471 [\ensuremath{-}0.0589, \ensuremath{-}0.0360] (0.1055 \ensuremath{\to} 0.0583; n = 40)} & \textbf{+0.0008 [\ensuremath{-}0.0081, 0.0101] (0.3007 \ensuremath{\to} 0.3015; n = 60)} \\
+\bottomrule
+\end{tabular}
+\end{table}

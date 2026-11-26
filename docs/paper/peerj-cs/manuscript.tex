@@ -159,10 +159,6 @@ For prefill analyses, we additionally computed \textbf{signed luminance bias}: t
 
 Within each museum, overall artwork-level scores weighted the six damage conditions equally and included only artworks with all six conditions available for the comparison at hand. Four-model summary tables therefore use the common complete-work denominator (41/60 in Cleveland, 54/60 in Chicago), whereas pairwise comparisons against LaMa retain every artwork complete for that specific model pair (60/60 for MAT and SDXL in both museums; 41 and 54 for PowerPaint). Per-condition summaries use all artworks complete across all models in that comparison. Uncertainty was quantified via 10,000 artwork-level cluster bootstrap resamples, yielding unadjusted 95\% percentile confidence intervals (CIs). Before running the main experiments, we pre-specified practical equivalence margins of \textbf{0.01 masked MAE} (about 2.55 gray levels per 8-bit channel) and \textbf{0.02 local LPIPS}; medium-and-support contrasts and per-condition breakdowns are interpreted descriptively.
 
-\subsection{Use of Generative AI Tools}\label{use-of-generative-ai-tools}
-
-Claude Opus 5.5 (Anthropic) assisted with protocol review and figure generation. Gemini (Google) assisted with English drafting and editing. Codex (OpenAI) assisted with experimental and figure-generation code, literature verification, and statistical verification scripts. These uses supported implementation, auditability, and clear reporting of the evaluation. Figures~\ref{figure:1} and~\ref{figure:3} show saved inpainting outputs from the evaluated models under the fixed experimental protocol. The research questions, methodological decisions, pre-inference protocol approvals, and final scientific interpretations were decided by the research team. No generative AI system was used to fabricate measurements or modify raw model outputs; all reported metrics, denominators, and confidence intervals were recomputed programmatically by deterministic scripts directly from frozen run outputs and verified against source manifests.
-
 \section{Results}\label{results}
 
 \subsection{Model rankings replicate identically across both museum collections}\label{model-rankings-replicate-identically-across-both-museum-collections}
@@ -282,7 +278,7 @@ Across 120 open-access paintings from two independent museums, three evaluation 
 
 \section*{Acknowledgments}
 
-During the preparation of this work the authors used GPT-6 in order to undertake the translation and polishing of part of the text. After using this tool, the authors have reviewed and edited the content as needed and take full responsibility for the content of the published article.
+During the preparation of this work the authors used GPT-6 in order to undertake the translation and polishing of part of the text. After using this tool, the authors have reviewed and edited the content as needed and take full responsibility for the content of the published article. Claude (Anthropic), Gemini (Google), and Codex (OpenAI) also assisted with experimental and figure-generation code, protocol review, statistical and literature verification, and English drafting. The research questions, methodological decisions, and scientific interpretations were made by the authors; no AI tool generated or altered measurements, and all reported values were recomputed by scripts from the frozen run outputs. The authors take full responsibility for this work.
 
 \section*{Additional Information and Declarations}
 

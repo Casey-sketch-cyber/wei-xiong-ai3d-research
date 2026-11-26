@@ -8,6 +8,10 @@
 
 ## 待办
 
+- [ ] **Gemini · 正文减数字（可读性）**：作者反映数字太密。Results 各节每 100 词有 17–35 个数字，§4.3 有 24 个置信区间。按 [可读性任务书](paper/READABILITY_PASS.md) 改 `peerj-cs/manuscript.tex`：每个结论最多一个核心数字，其余指向表格，不改值、不改结论；分支 `gemini/peerj-readability`
+
+- [ ] **Codex · 核对减数字修订**：列出删掉的每个数字及其在表格或补件中的出处，核对保留值，重算密度，重编投稿包
+
 - [x] **Codex · 图 1(a)、图 2 换明亮示例**（2026-11-25）：服务器重跑 `build.sh` 后已验收 PowerPoint 和 PDF。1(a) 新例 `watercolor_paper_02_crack_01` 漏覆盖 57.8%，已在 PR #36 告知 Gemini。[素材与清单](paper/FIGURES.md)
 
 - [x] **Codex · 重跑图 1、图 2**（2026-11-23）：在服务器按最新布局执行 `build.sh`，更新可编辑 PPTX 与预览。图 1(b) 选中 `watercolor_paper_02_loss_05`，三臂共用 251 × 251 px 窗口，FigGenie 两图均为 0 错误。[复现与校验清单](paper/FIGURES.md)
@@ -105,6 +109,10 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Claude · claude/readability-pass
+- **审查并合并 PR #46**：Zenodo DOI 已解析核实（1.0.0 版、MIT、提交 `0b34175`）；补件不含彩色图和权重。留给作者：Xiong、Liang 是否参与撰写或修订（ICMJE），致谢 GPT-6 与方法部分 AI 说明的衔接，Gemini/Codex 版本号。
+- **按作者反馈写 [可读性任务书](paper/READABILITY_PASS.md)**：统计各节数字密度，派 Gemini 减数字、Codex 核对。
 
 ### 2026-11-26 · Codex · 更新作者声明与投稿说明
 - 写入无基金、无利益冲突及作者提供的三人贡献。按原文加入 GPT-6 翻译润色致谢。

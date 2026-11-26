@@ -8,7 +8,9 @@
 
 ## 待办
 
-- [ ] **Gemini · 写作讨论**：先在 [写作讨论](paper/WRITING_DISCUSSION.md) 回答五个问题（诊断、§4.3 改写示范、森林图、skill 规则、评测论文写法），分支 `gemini/writing-discussion`；Claude 汇总后更新论文写作 skill
+- [ ] **作者 · AI 声明统一方式（暂缓）**：方法部分与致谢两处统一，方案 A 全部并入致谢、方案 B 致谢加衔接半句；作者决定暂缓，投稿前再定
+
+- [ ] **Gemini · 写作讨论**：先在 [写作讨论](paper/WRITING_DISCUSSION.md) 回答五个问题（诊断、§4.3 改写示范、森林图、skill 规则、评测论文写法），分支 `gemini/writing-discussion`；Claude 汇总、作者看过后再写进论文写作 skill
 
 - [ ] **Gemini · 正文减数字（可读性）**（在写作讨论之后）：作者反映数字太密。Results 各节每 100 词有 17–35 个数字，§4.3 有 24 个置信区间。按 [可读性任务书](paper/READABILITY_PASS.md) 改 `peerj-cs/manuscript.tex`：每个结论最多一个核心数字，其余指向表格，不改值、不改结论；分支 `gemini/peerj-readability`
 
@@ -114,8 +116,8 @@
 
 ### 2026-11-26 · Claude · claude/author-roles-discussion
 - **作者贡献**：按作者决定，Wei Xiong 和 Zhanhao Liang 补上 “reviewed and edited the manuscript”。
-- **写作讨论**：按作者建议，减数字修订前先请 Gemini 讨论写法，并在论文写作 skill 中加入初版规则 “Numbers in the text”（paperwrite `ed564c5`）。
-- **AI 声明**：作者希望两处统一并以致谢为准；方法部分如何处理待作者回复，暂不修改。
+- **写作讨论**：按作者建议，减数字修订前先请 Gemini 讨论写法。初版规则草案放在讨论文件里；作者要求先讨论再写进 skill，paperwrite 的 `ed564c5` 已由 `e3bbda0` 撤回。
+- **AI 声明**：作者决定暂缓，方法部分与致谢的统一方式以后再定，目前两处保持原样。
 
 ### 2026-11-26 · Claude · claude/readability-pass
 - **审查并合并 PR #46**：Zenodo DOI 已解析核实（1.0.0 版、MIT、提交 `0b34175`）；补件不含彩色图和权重。留给作者：Xiong、Liang 是否参与撰写或修订（ICMJE），致谢 GPT-6 与方法部分 AI 说明的衔接，Gemini/Codex 版本号。

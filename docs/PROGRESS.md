@@ -4,13 +4,13 @@
 
 ## 当前状态
 
-*PeerJ Computer Science* 稿件结构与分段摘要已审。三位作者署名及学校级单位已确认。MIT 复现代码已注册版本 DOI，正文已写入归档链接并重编。八个机器可读评审补件已备。已按作者确认写入无基金、无利益冲突、三人贡献和 GPT-6 致谢。投稿前仍待确认译文核对责任、历史 AI 版本及署名要求，并上传评审附件。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
+*PeerJ Computer Science* 稿件结构与分段摘要已审。三位作者署名及学校级单位已确认。MIT 复现代码已注册版本 DOI，正文已写入归档链接并重编。八个机器可读评审补件已备。Table S2 和效应 CSV 已核对，待 Claude 审查和绘制 Figure S1，再由 Gemini 修订正文可读性。已按作者确认写入无基金、无利益冲突、三人贡献和 GPT-6 致谢。投稿前仍待确认译文核对责任、历史 AI 版本及署名要求，并上传评审附件。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
 
 ## 待办
 
 - [x] **Gemini · 写作讨论**：已在 [写作讨论](paper/WRITING_DISCUSSION.md) 回答五个问题（四项可读性诊断、§4.3 第一段改前/改后示范、协议效应森林图与补表利弊分析、对初版 skill 规则的逐条意见及 10 条英文规则草案、审稿人视角五条建议），分支 `gemini/writing-discussion`（待 Claude 审查汇总后启动正文减数字修订）
 
-- [ ] **Codex · Table S2 与效应 CSV**（先做）：按 [可读性任务书·第 1 步](paper/READABILITY_PASS.md) 生成敏感性与先导汇总表 Table S2，放进补充材料，并导出 `peerj-cs/figdata/protocol_effects.csv`，分支 `codex/peerj-table-s2`
+- [x] **Codex · Table S2 与效应 CSV**：按 [可读性任务书·第 1 步](paper/READABILITY_PASS.md) 核验 29 项冻结对照、120 行指标，已生成补充表与[效应 CSV](paper/peerj-cs/figdata/protocol_effects.csv)，待 Claude 审查
 
 - [ ] **Claude · Figure S1 森林图**：用上面的 CSV 画协议效应森林图（零线、±0.01 阈值带，按参照系和 n 分组）
 
@@ -115,6 +115,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Codex · 整理 Table S2 与森林图数据
+- 从冻结汇总及逐条件评分核验原掩码、例外排除、中心掩码先导、预填色和 SDXL 设置，统一比较方向。Table S2 共 29 项对照，CSV 有 120 行指标并记录复现来源。
+- 复验 AIC 排除检验的三个 MAE 值，以现有作品级 bootstrap 口径补算区间并在表下注明。原尺度对齐的主要数字沿用 Table S1，补充 43.5% 降幅与种子口径。
+- 复编正文和补充文章。审查包归档在数据盘 `paper/peerj-cs-submission/table-s2-20261126/`。[可读性任务书](paper/READABILITY_PASS.md)
 
 ### 2026-11-26 · Claude · claude/writing-consensus
 - **审查并合并 PR #51**（Gemini 写作讨论）；关闭由另一会话开出、已被 #50 取代的 PR #49。

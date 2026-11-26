@@ -12,7 +12,11 @@
 
 - [x] **Codex · Table S2 与效应 CSV**：按 [可读性任务书·第 1 步](paper/READABILITY_PASS.md) 核验 29 项冻结对照、120 行指标，已生成补充表与[效应 CSV](paper/peerj-cs/figdata/protocol_effects.csv)，待 Claude 审查
 
-- [ ] **Claude · Figure S1 森林图**：用上面的 CSV 画协议效应森林图（零线、±0.01 阈值带，按参照系和 n 分组）
+- [x] **Claude · Figure S1 森林图**：`docs/paper/figures/src/figS1/`，只读 CSV 的 29 行 MAE，A–F 组各用独立横轴，灰带标 ±0.01 阈值，区间整体在带外画实心蓝点；图注见该目录 README。[预览](paper/figures/previews/figure-S1-forest.png)
+
+- [ ] **Codex · Figure S1 入补充材料**：在服务器用 FigGenie 字体运行 `make_figS1.py`，把 `fig.pdf` 作为 Figure S1 放在 Supplemental Article S1 的 Table S2 之后（图注照 README），`fig.png` 作为独立图件；重编并更新清单哈希
+
+- [ ] **Codex · Table S2 补 G–I 组**：PR #53 审查列出的 31 个只在正文中的数（§4.2 次要指标与四模型均值、§4.4 重放 LPIPS、§4.5 画材组间差），补进 Table S2 或表 3、表 5 的次要列，同步 CSV；补齐后 Gemini 再删这些段落的数，Figure S1 随 CSV 重跑
 
 - [ ] **Gemini · 正文减数字（可读性）**（Table S2 合并后）：按已定稿的 [可读性任务书](paper/READABILITY_PASS.md) 修订 `peerj-cs/manuscript.tex`：减数字、拆长句、给实验起短名、加过渡句、§5.3 拆成条目；分支 `gemini/peerj-readability`
 
@@ -115,6 +119,10 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Claude · claude/figure-s1
+- **审查并合并 PR #53**（Table S2 与效应 CSV）：29 行 MAE 与正文逐一对上。脚本比对发现 Results 还有 31 个四位小数不在任何可读表里，已登记给 Codex。
+- **画 Figure S1 森林图**，交 Codex 放进补充材料。
 
 ### 2026-11-26 · Codex · 整理 Table S2 与森林图数据
 - 从冻结汇总及逐条件评分核验原掩码、例外排除、中心掩码先导、预填色和 SDXL 设置，统一比较方向。Table S2 共 29 项对照，CSV 有 120 行指标并记录复现来源。

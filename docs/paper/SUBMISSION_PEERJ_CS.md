@@ -14,10 +14,10 @@
 
 [作者须知](https://peerj.com/journals/computer-science/author-instructions/) · [初投清单](https://d2pdyyx74uypu5.cloudfront.net/docs/Pre-Submission-Checklist-Computer-Science.pdf) · [PeerJ LaTeX 模板](https://www.overleaf.com/latex/templates/latex-template-for-peerj-journal-submissions/ptdwfrqxqzbn)
 
-正文及补件已登记 Wei Meng、Wei Xiong 和 Zhanhao Liang，Wei Xiong 为通讯作者。作者确认前两位采用学校级单位。全体作者已同意投稿。MIT 复现代码已独立公开并链接到正文。[复现仓库](https://github.com/liangdagongjue-code/mengwei)
+正文及补件已登记 Wei Meng、Wei Xiong 和 Zhanhao Liang，Wei Xiong 为通讯作者。作者确认前两位采用学校级单位。全体作者已同意投稿。MIT 复现代码已独立公开，正文包含 GitHub 链接和 Zenodo 软件 1.0.0 的版本 DOI。[复现仓库](https://github.com/liangdagongjue-code/mengwei) · [软件归档](https://doi.org/10.5281/zenodo.24561409)
 
 ## 投稿前由作者确认
 
 - 确认各作者的贡献、基金、利益冲突和稿件发表或在审状态。
 - 核实生成式 AI 工具名称、实际版本、用途和作者审阅范围，按投稿界面确认相应声明。[生成式 AI 政策](https://peerj.com/journals/computer-science/policies/#generative-ai)
-- 将已冻结的 MIT 源码 ZIP 存为软件归档并取得 DOI。八个机器可读补件已核验，共 7,675 条评分或拦截记录，约 5.59 MB。按系统要求分别上传附件，验证审稿访问。源馆藏图片和模型文件由各自发布方提供。[代码与数据可得性政策](https://peerj.com/journals/computer-science/policies/#data-materials-sharing)
+- 八个机器可读补件已核验，共 7,675 条评分或拦截记录，约 5.59 MB。按系统要求分别上传附件，验证审稿访问。源馆藏图片和模型文件由各自发布方提供。[代码与数据可得性政策](https://peerj.com/journals/computer-science/policies/#data-materials-sharing)

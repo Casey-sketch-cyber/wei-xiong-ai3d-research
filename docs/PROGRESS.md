@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-*PeerJ Computer Science* 稿件结构与分段摘要已审。三位作者署名及学校级单位已确认。公开复现代码采用 MIT，八个机器可读评审补件与新 PDF/ZIP 已备。投稿前仍待代码归档 DOI、实际评审附件上传及作者确认的具体声明。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
+*PeerJ Computer Science* 稿件结构与分段摘要已审。三位作者署名及学校级单位已确认。MIT 复现代码已注册版本 DOI，正文已写入归档链接并重编。八个机器可读评审补件已备。投稿前仍待上传评审附件及作者确认具体声明。真实破损实验仍待供体出处映射和掩码授权。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) · [LaTeX 复现说明](paper/peerj-cs/README.md)
 
 ## 待办
 
@@ -89,7 +89,7 @@
 - [x] **Codex · PeerJ Computer Science 投稿模板**：已编译正文、补充材料与投稿表单说明，核对 59 行表数据、56 条作者—年份参考文献、6 张独立图与 7 份表源。已为 Claude 准备审查包。[排版与复现](paper/peerj-cs/README.md)
 - [x] **Claude · 摘要分段**：按 PeerJ 须知拆成 Background / Methods / Results / Conclusions 四段加粗小标题，字句不变（PR #44 审查）
 - [x] **Codex · 公开代码与评审补件**：代码按作者选定使用 MIT，固定提交 `0b34175`。八个补件共 7,675 条条件记录，约 5.59 MB，已核准哈希、掩码关联、分母与主要评分汇总。[代码快照](https://github.com/liangdagongjue-code/mengwei/tree/0b3417599e6dfd88b9597789cfca762a91c66251)
-- [ ] **Codex · 软件归档 DOI**：从固定快照注册可解析的 DOI，写回 Data Availability，随后复编投稿版。
+- [x] **Codex · 软件归档 DOI**：Zenodo 已公开 MIT 源码 1.0.0，核验版本 DOI、匿名下载校验值和重编 PDF 的可点击链接。[软件归档](https://doi.org/10.5281/zenodo.24561409)
 - [x] **Codex · 重编审查包**：已使用四段摘要和学校级单位，复验源 ZIP 编译。PeerJ LaTeX 正文 PDF 可内嵌图表，投稿时另传六张独立图件和七份可编辑表格。[作者须知](https://peerj.com/journals/computer-science/author-instructions/)
 - [ ] **作者 · PeerJ 投稿前**：确认基金和个人贡献、利益冲突及 AI 声明。按投稿界面提供实际可访问的评审补件，并完成稿件提交。
 - [ ] FLUX.1 Fill 原版全 BF16 常驻超出 24 GiB 且下载受限。取得授权组件后另测低显存配置的实际推理峰值
@@ -104,6 +104,11 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Codex · 公开归档软件并更新 PeerJ 审查包
+- 将固定提交 `0b34175` 的 MIT 源码归档为 Zenodo 1.0.0。匿名下载与已核验的源码 ZIP 一致。[版本 DOI](https://doi.org/10.5281/zenodo.24561409)
+- 在正文 Data Availability 加入可点击的版本 DOI，复编并核对 29 页正文和 56 条参考文献。
+- 更新源码 ZIP 和审查清单，保留原审查版。新包放在服务器数据盘的 `paper/peerj-cs-submission/doi-20261126/`。[审查包说明](paper/peerj-cs/README.md)
 
 ### 2026-11-26 · Codex · 补齐 MIT 代码与机器可读评审数据
 - 作者确认前两位采用学校级单位，公开复现代码按 MIT 发布。匿名检出验证固定的源文件后生成软件归档 ZIP。

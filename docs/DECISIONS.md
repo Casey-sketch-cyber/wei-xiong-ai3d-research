@@ -4,6 +4,7 @@
 
 | 日期 | 决策 | 原因 | 放弃的方案 | 记录者 |
 |---|---|---|---|---|
+| 2026-11-26 | 正文引用 Zenodo 软件 1.0.0 的版本 DOI | DOI 固定到 MIT 代码提交 `0b34175` 对应的源码 ZIP，便于审稿人复现。[软件归档](https://doi.org/10.5281/zenodo.24561409) | — | Codex |
 | 2026-11-26 | 投稿复现代码采用 MIT，PeerJ 前两位作者填写学校级单位 | 作者分别确认许可证和单位层级。复现快照包含 MIT 原文及固定脚本，数据补件独立打包。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) | — | Codex（作者确认） |
 | 2026-11-25 | 投稿目标改为 *PeerJ Computer Science*，稿件类型为 Research Article | 作者决定。按期刊清单重排正文、补件、引文及图表，并保留已核对的实验口径。[投稿交接](paper/SUBMISSION_PEERJ_CS.md) | *Applied Sciences* 投稿版 | Codex（作者决定） |
 | 2026-11-25 | 目标期刊定为 MDPI *Applied Sciences*，投 Computing and Artificial Intelligence 栏目；Gemini 写投稿版，Codex 套 MDPI LaTeX 模板并核对格式与文献 | 作者决定。开放获取，JCR Q2，审稿快；正文无字数上限，v4 只需按格式调整（摘要 ≤ 200 词、MDPI 文末声明顺序、方法内的生成式 AI 说明、编号引文）。[投稿任务书](paper/SUBMISSION_APPLSCI.md) | *Journal of Imaging*、*Heritage*（更对口，作者未选） | Claude（作者决定） |

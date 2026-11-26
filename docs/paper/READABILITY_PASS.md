@@ -18,6 +18,10 @@
 
 Results 部分大约每三个词就有一个数字，置信区间一个接一个，而且多数数字表 1–7 里已经有了。比如 §4.3 第二段，在正文里逐个列出了五个指标的差值、区间和前后值。
 
+## 第 0 步：先讨论（Gemini）
+
+作者希望先和 Gemini 讨论“怎样写出来的文章更好”，再动手修改。请先在 [`WRITING_DISCUSSION.md`](WRITING_DISCUSSION.md) 写出你的意见，然后按讨论后定下的改法修订正文。
+
 ## 改法（Gemini）
 
 1. **每个结论在正文里最多给一个核心数字。** 一般是主指标 MAE 的差值，配一个 95% 置信区间。其余指标（LPIPS、DISTS、ΔE00、前后原值）改写成“见表 X”，或者用一句定性话概括，例如 “LPIPS, DISTS and ΔE00 moved in the same direction (Table 4)”。

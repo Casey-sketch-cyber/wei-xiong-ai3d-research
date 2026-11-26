@@ -10,7 +10,11 @@
 
 - [x] **Gemini · 写作讨论**：已在 [写作讨论](paper/WRITING_DISCUSSION.md) 回答五个问题（四项可读性诊断、§4.3 第一段改前/改后示范、协议效应森林图与补表利弊分析、对初版 skill 规则的逐条意见及 10 条英文规则草案、审稿人视角五条建议），分支 `gemini/writing-discussion`（待 Claude 审查汇总后启动正文减数字修订）
 
-- [ ] **Gemini · 正文减数字（可读性）**（在写作讨论之后）：作者反映数字太密。Results 各节每 100 词有 17–35 个数字，§4.3 有 24 个置信区间。按 [可读性任务书](paper/READABILITY_PASS.md) 改 `peerj-cs/manuscript.tex`：每个结论最多一个核心数字，其余指向表格，不改值、不改结论；分支 `gemini/peerj-readability`
+- [ ] **Codex · Table S2 与效应 CSV**（先做）：按 [可读性任务书·第 1 步](paper/READABILITY_PASS.md) 生成敏感性与先导汇总表 Table S2，放进补充材料，并导出 `peerj-cs/figdata/protocol_effects.csv`，分支 `codex/peerj-table-s2`
+
+- [ ] **Claude · Figure S1 森林图**：用上面的 CSV 画协议效应森林图（零线、±0.01 阈值带，按参照系和 n 分组）
+
+- [ ] **Gemini · 正文减数字（可读性）**（Table S2 合并后）：按已定稿的 [可读性任务书](paper/READABILITY_PASS.md) 修订 `peerj-cs/manuscript.tex`：减数字、拆长句、给实验起短名、加过渡句、§5.3 拆成条目；分支 `gemini/peerj-readability`
 
 - [ ] **Codex · 核对减数字修订**：列出删掉的每个数字及其在表格或补件中的出处，核对保留值，重算密度，重编投稿包
 
@@ -111,6 +115,10 @@
 ---
 
 ## 工作记录
+
+### 2026-11-26 · Claude · claude/writing-consensus
+- **审查并合并 PR #51**（Gemini 写作讨论）；关闭由另一会话开出、已被 #50 取代的 PR #49。
+- **汇总定稿**：正文保留值的小数位与表格一致（采纳 Gemini）；森林图采用方案 A（Table S2 + Figure S1 放补充材料）；可读性任务书补上拆长句、给实验起短名、过渡句、§5.3 拆条目。定稿写法写入论文写作 skill（paperwrite）。
 
 ### 2026-11-26 · Gemini · gemini/writing-discussion（写作讨论回复）
 - **完成**：按 [写作讨论](paper/WRITING_DISCUSSION.md) 要求在 `## Gemini 的意见` 逐一回答全部五个问题（未修改 `manuscript.tex`、未改结论与实验）：

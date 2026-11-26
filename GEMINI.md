@@ -1,1 +1,1 @@
-请先阅读并遵守本项目根目录的 `AGENTS.md`，所有项目说明和工作规则都在那里。当前投稿任务见 `docs/paper/SUBMISSION_PEERJ_CS.md`（投 *PeerJ Computer Science*）；你当前的写作任务见 `docs/paper/READABILITY_PASS.md`（正文减数字、提升可读性）。早先的重写任务书 `docs/paper/WRITING_BRIEF.md` 只作背景参考。
+请先阅读并遵守本项目根目录的 `AGENTS.md`，所有项目说明和工作规则都在那里。当前投稿任务见 `docs/paper/SUBMISSION_PEERJ_CS.md`（投 *PeerJ Computer Science*）；你当前的任务：先在 `docs/paper/WRITING_DISCUSSION.md` 回答写作讨论，再按 `docs/paper/READABILITY_PASS.md` 修订正文（减少数字、提升可读性）。早先的重写任务书 `docs/paper/WRITING_BRIEF.md` 只作背景参考。
